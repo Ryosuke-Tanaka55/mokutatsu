@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  goal: 2020-12-03
+  goal: MyString
+  deadline: 2020-12-03
+  goal_index: MyString
+  achivement: 1
+  check: MyText
+  adjust: MyText
+  progress: 1
+  hold: false
+  note: MyText
+  user: one
+
+two:
+  goal: 2020-12-03
+  goal: MyString
+  deadline: 2020-12-03
+  goal_index: MyString
+  achivement: 1
+  check: MyText
+  adjust: MyText
+  progress: 1
+  hold: false
+  note: MyText
+  user: two
