@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
+  get '/rule', to: 'static_pages#rule'
+  get '/policy', to: 'static_pages#policy'
   get '/signup', to: 'users#new'
 
   # ログイン機能

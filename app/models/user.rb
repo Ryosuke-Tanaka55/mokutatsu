@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   # 「remember_token」という仮想の属性を作成
   attr_accessor :remember_token
+  
+  # emailを小文字にしてから保存
   before_save { self.email = email.downcase }
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -12,6 +14,9 @@ class User < ApplicationRecord
                     uniqueness: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
+
+   # 利用規約同意確認
+   validates :agreement, presence: {message: "が必要です。" }
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)

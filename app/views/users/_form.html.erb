@@ -13,6 +13,13 @@
   <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password_confirmation, class: "form-control" %>
 
+  <!-- 新規ユーザー作成の場合、利用規約の同意を確認 -->
+  <% if current_page?(action: "new") || current_page?(action: "index") %>
+    <%= f.check_box :agreement, {}, checked_value = "true", unchecked_value = "false" %>
+    <%= link_to "利用規約", rule_path, { target:"blank" } %>及び
+    <%= link_to "プライバシーポリシー", policy_path, { target:"blank" } %>に同意する
+  <% end %>
+
   <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
 
 <% end %>
