@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(version: 2020_12_05_111921) do
   create_table "schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "worked_on"
     t.string "goal"
-    t.date "deadline"
+    t.string "tag"
+    t.datetime "start_day"
+    t.datetime "finish_day"
     t.string "goal_index"
     t.integer "achivement"
     t.text "check"

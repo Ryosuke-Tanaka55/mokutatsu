@@ -3,9 +3,10 @@ class Schedule < ApplicationRecord
   has_many :schedules, through: :schedule_conections, source: :schedule
 
   validates :worked_on, presence: true
-  validates :deadline, :presence: true
-  validates :goal_index, :presence: true
-  validates :achivement, :presence: true
+  validates :start_day, presence: true
+  validates :finish_day, presence: true
+  validates :goal_index, presence: true
+  validates :achivement, presence: true
   validates :check, presence: true
   validates :adjust, presence: true
   validates :progress, presence: true

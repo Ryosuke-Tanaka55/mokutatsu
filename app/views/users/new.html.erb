@@ -5,6 +5,28 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= render 'form' %>
+    <%= form_with(model: @user, local: true) do |f| %>
+    <%= render 'shared/error_messages', object: @user %>
+
+    <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+    <%= f.text_field :name, class: "form-control" %>
+
+    <%= f.label :email, class: "label-#{yield(:class_text)}" %>
+    <%= f.email_field :email, class: "form-control" %>
+
+    <%= f.label :password, class: "label-#{yield(:class_text)}" %>
+    <%= f.password_field :password, class: "form-control" %>
+
+    <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+
+    <!-- 新規ユーザー作成の場合、利用規約の同意を確認 -->
+      <%= f.check_box :agreement, {}, checked_value = "true", unchecked_value = "false" %>
+      <%= link_to "利用規約", rule_path %>及び
+      <%= link_to "プライバシーポリシー", policy_path %>に同意する
+
+    <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+
+  <% end %>
   </div>
 </div>

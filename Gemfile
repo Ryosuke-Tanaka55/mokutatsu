@@ -9,6 +9,8 @@ gem 'rails-i18n'
 gem 'bcrypt'
 gem 'faker'
 gem 'jquery-rails'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'bootstrap-sass'

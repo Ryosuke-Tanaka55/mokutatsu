@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @schedules = Schedule.where(user_id: @user.id)
+    @shcedule = Schedule.new
   end
 
   def new

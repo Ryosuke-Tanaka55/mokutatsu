@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'schedules/new'
   root 'static_pages#top'
   get '/rule', to: 'static_pages#rule'
   get '/policy', to: 'static_pages#policy'
@@ -9,5 +10,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :users
+  resources :users do
+    member do
+      resources :schedules
+    end
+  end
 end

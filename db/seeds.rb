@@ -4,6 +4,7 @@ User.create!(name: "Sample User",
   email: "sample@email.com",
   password: "password",
   password_confirmation: "password",
+  agreement: true,
   admin: true)
 
 60.times do |n|
@@ -13,5 +14,6 @@ password = "password"
 User.create!(name: name,
     email: email,
     password: password,
-    password_confirmation: password)
+    password_confirmation: password,
+    agreement: true)
 end

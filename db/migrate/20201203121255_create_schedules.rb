@@ -3,7 +3,9 @@ class CreateSchedules < ActiveRecord::Migration[6.0]
     create_table :schedules do |t|
       t.date :worked_on
       t.string :goal
-      t.date :deadline
+      t.string :tag
+      t.datetime :start_day
+      t.datetime :finish_day
       t.string :goal_index
       t.integer :achivement
       t.text :check
