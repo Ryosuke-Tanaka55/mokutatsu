@@ -1,6 +1,6 @@
 class Schedule < ApplicationRecord
   belongs_to :user
-  has_many :schedules, through: :schedule_conections, source: :schedule
+  has_and_belongs_to_many :schedules, through: :schedule_conection, source: :schedule
 
   validates :worked_on, presence: true
   validates :start_day, presence: true
