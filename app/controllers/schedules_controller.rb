@@ -41,7 +41,7 @@ class SchedulesController < ApplicationController
   private
     # ストロングパラメーター
     def schedule_params
-      params_require(:schedule).permit(:worked_on, :goal, :deadline, :goal_index, :achivement,
-                                        :check, :adjust, :progress, :hold, :publish, :note)
+      params_require(:schedule).permit(:worked_on, :goal, :tag, :start_day, :finish_day, :goal_index, :achivement,
+                                        :check, :adjust, :progress, :hold, :publish, :note, :user_id)
     end
 end

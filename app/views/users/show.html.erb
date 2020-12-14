@@ -31,3 +31,32 @@
 <div class="row">
   <div id="calendar"></div>
 </div>
+
+<div id="inputScheduleForm" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-nm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">スケジュール登録</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: @schedule, url: schedules_path do |f| %>
+          <div  class="col">
+            <p>
+              <span>タイトル</span>
+              <span><%= f.collection_select :goal, @schedules, :id, :goal, {prompt: "選択してください。"}, {class: "new-wrapper__main__input-select"} %></span>
+            </p>
+            <span>開始日時</span>
+            <span><%= f.datetime_field  :start, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>
+            <span>終了日時</span>
+            <span><%= f.datetime_field :end, placeholder: "XXXX-XX-XX", class:"field" %></span><br>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit "登録する", class: "btn btn-primary" %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+          </div>
+        <% end %>
+        </div>
+      </div>
+  </div>
+</div>
