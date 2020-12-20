@@ -55,7 +55,7 @@ class GoalsController < ApplicationController
       params.require(:goal).permit(:goal, :tag, :start_day, :finish_day, :goal_index, :hold, :publish, :note, :user_id)
     end
 
-    # パラメーターからスケジュールを取得
+    # パラメーターから目標を取得
     def set_goal
       @goal = Goal.find(params[:id])
     end

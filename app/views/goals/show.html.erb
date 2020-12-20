@@ -41,7 +41,7 @@
       </tr>
       </tr>
         <th class="col-md-3"><%= Goal.human_attribute_name :hold %></th>
-          <td class="col-md-9"><%= @goal.hold %></td>
+          <td class="col-md-9"><%= @goal.hold ? "保留中" : "実行中" %></td>
       </tr>
       </tr>
         <th class="col-md-3"><%= Goal.human_attribute_name :publish %></th>
@@ -63,6 +63,7 @@
     <tr>
       <td>
         <%= link_to "編集", edit_goal_path(@user.id, @goal.id), class: "btn btn-success" %>
+        <%= link_to "検証", "#", class: "btn btn-warning" %>
         <%= link_to "削除", goal_path(@user.id, @goal.id), method: :delete,
             data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>
       </td>
