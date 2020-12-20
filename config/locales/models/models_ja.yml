@@ -2,13 +2,32 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      schedule: スケジュール
     attributes:
         user:
           id: ID
           name: 名前
+          nickname: ニックネーム
+          anonymous: 匿名希望
           email: メールアドレス
           password: パスワード
           password_confirmation: パスワード再入力
           agreement: 利用規約に同意
+          created_at: 作成日
+          updated_at: 更新日
+        goal:
+          worked_on: 日付
+          goal: ゴール
+          tag: タグ
+          start_day: 開始日
+          finish_day: 終了日
+          goal_index: 具体的な達成基準
+          achivement: ゴール達成率
+          check: ゴール検証
+          adjust: ゴール調整
+          progress: 進捗
+          hold: 保留
+          publish: 公開範囲
+          note: 備考
           created_at: 作成日
           updated_at: 更新日

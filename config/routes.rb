@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'schedules/new'
+  get 'goals/new'
   root 'static_pages#top'
   get '/rule', to: 'static_pages#rule'
   get '/policy', to: 'static_pages#policy'
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      resources :schedules
+      resources :goals
     end
   end
 end

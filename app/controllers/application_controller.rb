@@ -2,4 +2,36 @@ class ApplicationController < ActionController::Base
   # sessions_helperを全てのコントローラーで使えるようにする
   protect_from_forgery with: :exception
   include SessionsHelper
+
+  # beforeフィルター
+  
+  # paramsハッシュからユーザーを取得
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # ログイン済みのユーザーか確認
+  def loggend_in_user
+    unless logged_in?
+      store_location # sessions_helper参照
+      flash[:danger] = "ログインしてください。"
+      redirect_to login_url
+    end
+  end
+
+  # アクセスしたユーザーが現在ログインしているユーザーか確認
+  def correct_user
+    unless current_user?(@user)
+      flash[:danger] = "他のユーザー情報は閲覧出来ません。"
+      redirect_to root_url
+    end
+  end
+
+  # システム管理権限所有かどうか判定
+  def admin_user
+    unless current_user.admin?
+      flash[:danger] = "管理者権限がありません。"
+      redirect_to root_url
+    end
+  end
 end

@@ -1,8 +1,14 @@
 <%= form_with(model: @user, local: true) do |f| %>
-  <%= render 'shared/error_messages', object: @user %>
+  <%= render 'shared/object_error_messages', object: @user %>
 
   <%= f.label :name, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :name, class: "form-control" %>
+
+  <%= f.label :nickname, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :nickname, class: "form-control" %>
+  
+    <%= f.check_box :anonymous, {class: "check_box"}, checked_value = "true", unchecked_value = "false" %>
+    <%= f.label :anonymous, class: "label-#{yield(:class_text)}" %><br>
 
   <%= f.label :email, class: "label-#{yield(:class_text)}" %>
   <%= f.email_field :email, class: "form-control" %>

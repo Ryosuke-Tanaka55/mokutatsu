@@ -17,9 +17,15 @@ $(function () {
       $(document).on('turbolinks:before-cache', clearCalendar);
 
       $('#calendar').fullCalendar({
-      	events: '/events.json',
+        events: '/events.json',
+        selectable: true,
+        selectHelper: true,
+        select: function(data) {
+          var str = moment(data).format('YYYY/MM/DD');
+          console.log(str);
+        },
         //カレンダー上部を年月で表示させる
-        titleFormat: 'YYYY年 M月',
+				titleFormat: 'YYYY年 M月',
         //曜日を日本語表示
         dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
         //ボタンのレイアウト
@@ -47,7 +53,7 @@ $(function () {
         //イベントの文字色を変える
 				eventTextColor: '#000000',
 				// 日付クリック
-				dayClick : function ( date , jsEvent , view ) {
+				dayClick : function (date, jsEvent, view) {
 					$('#inputScheduleForm').modal('show');
 				},
 				// event クリックで編集、削除

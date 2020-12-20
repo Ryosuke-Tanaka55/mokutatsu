@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :schedules, dependent: :destroy
+  has_many :goals, dependent: :destroy
 
   # 「remember_token」という仮想の属性を作成
   attr_accessor :remember_token
@@ -8,6 +8,7 @@ class User < ApplicationRecord
   before_save { self.email = email.downcase }
 
   validates :name, presence: true, length: { maximum: 50 }
+  validates :nickname, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 100 },
                     format: { with: VALID_EMAIL_REGEX },

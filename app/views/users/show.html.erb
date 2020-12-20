@@ -11,7 +11,7 @@
 <div class="row">
   <div class="pull-left">
     <%= link_to  "スケジュール登録", "#", class: "btn btn-success" %>
-    <%= link_to  "PDCA登録", "#", class: "btn btn-primary" %>
+    <%= link_to  "目標登録", "#", class: "btn btn-primary" %>
   </div>
 </div>
 
@@ -32,18 +32,18 @@
   <div id="calendar"></div>
 </div>
 
-<div id="inputScheduleForm" class="modal fade" tabindex="-1">
+<div id="inputGoalForm" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-nm">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">スケジュール登録</h4>
+        <h4 class="modal-title">目標登録</h4>
       </div>
       <div class="modal-body">
-        <%= form_with model: @schedule, url: schedules_path do |f| %>
+        <%= form_with model: @goal, url: goals_path do |f| %>
           <div  class="col">
             <p>
               <span>タイトル</span>
-              <span><%= f.collection_select :goal, @schedules, :id, :goal, {prompt: "選択してください。"}, {class: "new-wrapper__main__input-select"} %></span>
+              <span><%= f.collection_select :goal, @goals, :id, :goal, {prompt: "選択してください。"}, {class: "new-wrapper__main__input-select"} %></span>
             </p>
             <span>開始日時</span>
             <span><%= f.datetime_field  :start, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>

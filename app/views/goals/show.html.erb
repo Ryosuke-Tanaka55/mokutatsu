@@ -1,0 +1,71 @@
+<% provide(:title, current_user.name) %>
+
+<div class="row">
+  <h1>目標詳細</h1>
+  <div class="col-md-10 col-md-offset3">
+    <table class="table table-bordered table-condensed" id="goal-table-detail">
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :goal %></th>
+          <td class="col-md-9"><%= @goal.goal %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :tag %></th>
+          <td class="col-md-9"><%= @goal.tag %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :start_day %></th>
+          <td class="col-md-9"><%= @goal.start_day %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :finish_day %></th>
+          <td class="col-md-9"><%= @goal.finish_day %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :goal_index %></th>
+          <td class="col-md-9"><%= @goal.goal_index %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :achivement %></th>
+          <td class="col-md-9"><%= @goal.achivement %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :check %></th>
+          <td class="col-md-9"><%= @goal.check %></td>
+      </tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :adjust %></th>
+          <td class="col-md-9"><%= @goal.adjust %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :progress %></th>
+          <td class="col-md-9"><%= @goal.progress %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :hold %></th>
+          <td class="col-md-9"><%= @goal.hold %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :publish %></th>
+          <td class="col-md-9"><%= @goal.publish %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :note %></th>
+          <td class="col-md-9"><%= @goal.note %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :created_at %></th>
+          <td class="col-md-9"><%= l(@goal.created_at, format: :long) %></td>
+      </tr>
+       <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :updated_at %></th>
+          <td class="col-md-9"><%= l(@goal.updated_at, format: :long) %></td>
+      </tr>
+    </table>
+    <tr>
+      <td>
+        <%= link_to "編集", edit_goal_path(@user.id, @goal.id), class: "btn btn-success" %>
+        <%= link_to "削除", goal_path(@user.id, @goal.id), method: :delete,
+            data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>
+      </td>
+    </tr>
+  </div>
+</div>

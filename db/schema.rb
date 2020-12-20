@@ -10,36 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_05_111921) do
+ActiveRecord::Schema.define(version: 2020_12_17_010054) do
 
-  create_table "schedule_conections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "schedule_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["schedule_id"], name: "index_schedule_conections_on_schedule_id"
+  create_table "goal_conections", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "goal_id"
+    t.index ["goal_id"], name: "index_goal_conections_on_goal_id"
   end
 
-  create_table "schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "goals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "worked_on"
     t.string "goal"
     t.string "tag"
-    t.datetime "start_day"
-    t.datetime "finish_day"
+    t.date "start_day"
+    t.date "finish_day"
     t.string "goal_index"
-    t.integer "achivement"
+    t.integer "achivement", default: 0, null: false
     t.text "check"
     t.text "adjust"
-    t.integer "progress"
+    t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
+    t.integer "publish", default: 0, null: false
     t.text "note"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_schedules_on_user_id"
+    t.index ["user_id"], name: "index_goals_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
+    t.string "nickname"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 2020_12_05_111921) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.boolean "agreement", default: false, null: false
+    t.boolean "anonymous", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "schedule_conections", "schedules"
-  add_foreign_key "schedules", "users"
+  add_foreign_key "goals", "users"
 end

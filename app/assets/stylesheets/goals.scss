@@ -1,0 +1,38 @@
+/* 入力フォーム */
+
+.label-create_goal {
+  margin-top: 5px;
+}
+
+.btn-create_goal {
+  margin-top: 10px;
+}
+
+.label-user--edit {
+  margin-top: 5px;
+}
+
+.btn-user--edit {
+  margin-top: 10px;
+}
+
+.datetime-form {
+  display: inline-block;
+  width: auto;
+}
+
+/* 目標一覧ページ */
+
+#table-goals {
+  td {
+    vertical-align: middle;
+  }  
+}
+
+.checkbox-goal {
+  width: auto;
+  margin-left: 25px;
+  span {
+    font-weight: normal;
+  }
+}
