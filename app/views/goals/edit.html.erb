@@ -40,7 +40,7 @@
         <%= f.select :publish, Goal.publishes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" , required: true } %>
 
         <%= f.label :note, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_field :note, class: "form-control" %>
+        <%= f.text_area :note, class: "form-control" %>
       
       <div class="button">
         <%= f.submit yield(:button_update), class: "btn btn-primary btn-#{yield(:button_update)}" %>

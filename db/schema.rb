@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_17_010054) do
+ActiveRecord::Schema.define(version: 2020_12_21_004815) do
 
   create_table "goal_conections", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "goal_id"
@@ -35,6 +35,27 @@ ActiveRecord::Schema.define(version: 2020_12_17_010054) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_goals_on_user_id"
+  end
+
+  create_table "subgoals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "subgoal"
+    t.date "start_day"
+    t.date "finish_day"
+    t.integer "achivement"
+    t.text "check"
+    t.text "adjust"
+    t.boolean "type", default: false, null: false
+    t.text "gap"
+    t.text "solution"
+    t.integer "priority", default: 0, null: false
+    t.integer "impact", default: 0, null: false
+    t.integer "worktime", default: 0, null: false
+    t.integer "easy", default: 0, null: false
+    t.integer "progress", default: 0, null: false
+    t.boolean "hold", default: false, null: false
+    t.text "note"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

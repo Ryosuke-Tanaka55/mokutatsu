@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       resources :goals
+      resources :subgoals
     end
   end
 end

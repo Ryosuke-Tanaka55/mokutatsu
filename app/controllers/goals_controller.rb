@@ -30,12 +30,12 @@ class GoalsController < ApplicationController
   end
   
   def update
-    goal = Goal.find(params[:id])
     @goals = Goal.where(user_id: current_user.id)
-    if goal.update(goal_params)
+    if @goal.update_attributes(edit_goal_params)
       flash[:success] = "目標を編集しました。"
       redirect_to @user
     else
+      flash.now[:danger] = "目標編集に失敗しました。"
       render :edit
     end
   end
@@ -53,6 +53,12 @@ class GoalsController < ApplicationController
     # 新規目標設定時
     def create_goal_params
       params.require(:goal).permit(:goal, :tag, :start_day, :finish_day, :goal_index, :hold, :publish, :note, :user_id)
+    end
+
+    # 編集時
+    def edit_goal_params
+      params.require(:goal).permit(:goal, :tag, :start_day, :finish_day, :progress, :goal_index, :achivement, 
+        :check, :adjust, :hold, :publish, :note, :user_id, :subgoal_id)
     end
 
     # パラメーターから目標を取得

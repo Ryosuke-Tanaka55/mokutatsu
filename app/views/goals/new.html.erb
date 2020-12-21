@@ -27,10 +27,11 @@
         <%= f.check_box :hold, class: "checkbox inline checkbox-goal" %>
 
         <%= f.label :publish, class: "label-#{yield(:class_text)}" %>
-        <%= f.select :publish, Goal.publishes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" , required: true } %>
+        <%= f.select :publish, Goal.publishes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+          { class: "form-control" , required: true } %>
 
         <%= f.label :note, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_field :note, class: "form-control" %>
+        <%= f.text_area :note, class: "form-control" %>
 
         <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
 
