@@ -17,6 +17,9 @@ class CreateSubgoals < ActiveRecord::Migration[6.0]
       t.integer :progress, null: false, default: 0
       t.boolean :hold, null: false, default: false
       t.text :note
+      t.references :user, foreign_key: true
+      t.references :goal, foreign_key: true
+      
 
       t.timestamps
     end

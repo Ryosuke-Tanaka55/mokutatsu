@@ -1,7 +1,17 @@
 class Goal < ApplicationRecord
   belongs_to :user
-  has_and_belongs_to_many :goals, through: :goal_conection, source: :goal
-  has_many :subgoals
+  # Goalテーブルとのリレーション関係
+  has_many :child_goals, through: :parent_childs, source: :child
+  has_many :parent_goals, through: :parent_childs, source: :parent
+
+  # 中間テーブル（goal_connection）とのリレーション構築
+  has_many :parent_childs, foreign_key: :parent_id
+  has_many :parent_childs, foreign_key: :child_id
+
+  # 配下のSubgoal、Do、ToDo
+  has_and_belongs_to_many :subgoals
+  has_many :does, through: :subgoals
+  has_many :todoes, through: :does
 
   validates :goal, presence: true
   validates :start_day, presence: true

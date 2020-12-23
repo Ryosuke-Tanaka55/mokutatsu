@@ -17,7 +17,7 @@ ja:
           updated_at: 更新日
         goal:
           worked_on: 日付
-          goal: 目標
+          goal: 目標（ゴール）
           tag: カテゴリー
           start_day: 開始日
           finish_day: 終了日
@@ -28,6 +28,25 @@ ja:
           progress: 進捗状況
           hold: 保留
           publish: 公開範囲
+          note: 備考
+          created_at: 作成日
+          updated_at: 更新日
+        subgoal:
+          subgoal: サブゴール
+          start_day: 開始日
+          finish_day: 終了日
+          achivement: サブゴール達成率(%)
+          check: サブゴール検証
+          adjust: サブゴール調整
+          type: タイプ
+          gap: ギャップ
+          solution: 解決策
+          priority: 優先度
+          impact: インパクト
+          worktime: 工数
+          easy: 手軽さ
+          progress: 進捗
+          hold: 保留
           note: 備考
           created_at: 作成日
           updated_at: 更新日

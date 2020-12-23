@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_21_004815) do
+ActiveRecord::Schema.define(version: 2020_12_23_083126) do
 
-  create_table "goal_conections", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "goal_id"
-    t.index ["goal_id"], name: "index_goal_conections_on_goal_id"
+  create_table "goal_connections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "parent_id"
+    t.integer "child_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["child_id"], name: "index_goal_connections_on_child_id"
+    t.index ["parent_id", "child_id"], name: "index_goal_connections_on_parent_id_and_child_id", unique: true
+    t.index ["parent_id"], name: "index_goal_connections_on_parent_id"
   end
 
   create_table "goals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -37,6 +42,13 @@ ActiveRecord::Schema.define(version: 2020_12_21_004815) do
     t.index ["user_id"], name: "index_goals_on_user_id"
   end
 
+  create_table "goals_subgoals", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "goal_id"
+    t.bigint "subgoal_id"
+    t.index ["goal_id"], name: "index_goals_subgoals_on_goal_id"
+    t.index ["subgoal_id"], name: "index_goals_subgoals_on_subgoal_id"
+  end
+
   create_table "subgoals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "subgoal"
     t.date "start_day"
@@ -54,14 +66,20 @@ ActiveRecord::Schema.define(version: 2020_12_21_004815) do
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
     t.text "note"
+    t.bigint "user_id"
+    t.bigint "goal_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["goal_id"], name: "index_subgoals_on_goal_id"
+    t.index ["user_id"], name: "index_subgoals_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "nickname"
     t.string "email"
+    t.string "image"
+    t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
@@ -73,4 +91,6 @@ ActiveRecord::Schema.define(version: 2020_12_21_004815) do
   end
 
   add_foreign_key "goals", "users"
+  add_foreign_key "subgoals", "goals"
+  add_foreign_key "subgoals", "users"
 end

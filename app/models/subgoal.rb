@@ -1,6 +1,12 @@
 class Subgoal < ApplicationRecord
-  belongs_to :goal
+  belongs_to :user
+  # Subgoalは複数のGoalを持つ可能性がある
+  has_and_belongs_to_many :goals
 
+  # 配下のDo、ToDo
+  has_many :does
+  has_many :todoes, through: :does
+  
   validates :subgoal, presence: true
   validates :start_day, presence: true
   validates :finish_day, presence: true
