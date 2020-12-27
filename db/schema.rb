@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 2020_12_24_100456) do
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
     t.text "note"
-    t.bigint "user_id", null: false
+    t.bigint "subgoal_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_doings_on_user_id"
+    t.index ["subgoal_id"], name: "index_doings_on_subgoal_id"
   end
 
   create_table "goal_connections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -87,12 +87,10 @@ ActiveRecord::Schema.define(version: 2020_12_24_100456) do
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
     t.text "note"
-    t.bigint "user_id"
     t.bigint "goal_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["goal_id"], name: "index_subgoals_on_goal_id"
-    t.index ["user_id"], name: "index_subgoals_on_user_id"
   end
 
   create_table "todos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -111,10 +109,10 @@ ActiveRecord::Schema.define(version: 2020_12_24_100456) do
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
     t.text "note"
-    t.bigint "user_id", null: false
+    t.bigint "doing_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_todos_on_user_id"
+    t.index ["doing_id"], name: "index_todos_on_doing_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -133,9 +131,8 @@ ActiveRecord::Schema.define(version: 2020_12_24_100456) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "doings", "users"
+  add_foreign_key "doings", "subgoals"
   add_foreign_key "goals", "users"
   add_foreign_key "subgoals", "goals"
-  add_foreign_key "subgoals", "users"
-  add_foreign_key "todos", "users"
+  add_foreign_key "todos", "doings"
 end

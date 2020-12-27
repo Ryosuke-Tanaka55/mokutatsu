@@ -20,13 +20,13 @@ class Subgoal < ApplicationRecord
   validates :hold, presence: true
 
   # 優先度
-  enum priority: { A: 0, B: 1, C: 2 }, _prefix: true
+  enum priority: { 高: 0, 中: 1, 低: 2 }, _prefix: true
   # インパクト
-  enum impact: { A: 0, B: 1, C: 2 }, _prefix: true
+  enum impact: { 大: 0, 中: 1, 小: 2 }, _prefix: true
   # 工数
-  enum worktime: { A: 0, B: 1, C: 2 }, _prefix: true
+  enum worktime: { 多: 0, 普通: 1, 少: 2 }, _prefix: true
   # 手軽さ
-  enum easy: { A: 0, B: 1, C: 2 }, _prefix: true
+  enum easy: { 楽: 0, 普通: 1, きつい: 2 }, _prefix: true
   # 進捗
   enum progress: { 未着手: 0, 作業中: 1, 完了: 2, 中止: 3 }, _prefix: true
 

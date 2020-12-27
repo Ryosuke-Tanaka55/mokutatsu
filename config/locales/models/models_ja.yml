@@ -54,4 +54,43 @@ ja:
           doing: Do
           start_day: 開始日
           finish_day: 終了日
+          achivement: Do達成率(%)
+          check: Do調整
+          type: タイプ
+          priority: 優先度
+          impact: インパクト
+          worktime: 工数
+          easy: 気軽さ
+          progress: 進捗
+          hold: 保留
+          note: 備考
+          created_at: 作成日
+          updated_at: 更新日
+        todo:
+          todo: ToDo
+          start_day: 開始日
+          finish_day: 終了日
+          estimated_time: 予定時間
+          estimated_start_time: 予定開始時間
+          estimated_finish_time: 予定終了時間
+          actual_start_time: 実働開始時間
+          actual_finish_time: 実働終了時間
+          achivement: ToDo達成率(%)
+          check: ToDo検証
+          adjust: ゴール調整
+          type: タイプ
+          progress: 進捗
+          hold: 保留
+          note: 備考
+          created_at: 作成日
+          updated_at: 更新日
+
+
+
+
+
+
+          
+
+
           
