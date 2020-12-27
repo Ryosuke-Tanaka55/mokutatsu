@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     @user = User.find(params[:id])
   end
 
+  # paramsハッシュ(user_id)からユーザーを取得
+  def set_user_id
+    @user = User.find(params[:user_id])
+  end
+
   # ログイン済みのユーザーか確認
   def loggend_in_user
     unless logged_in?

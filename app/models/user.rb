@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :goals, dependent: :destroy
-  has_many :subgoals, dependent: :destroy
+  has_many :subgoals, through: :goals, dependent: :destroy
+  has_many :doings, through: :subgoals, dependent: :destroy
+  has_many :todoes, through: :doings, dependent: :destroy
 
   # 「remember_token」という仮想の属性を作成
   attr_accessor :remember_token

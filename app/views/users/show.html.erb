@@ -39,7 +39,7 @@
         <h4 class="modal-title">目標登録</h4>
       </div>
       <div class="modal-body">
-        <%= form_with model: @goal, url: goals_path do |f| %>
+        <%= form_with model: @goal, url: new_user_goal_path(user_id: current_user.id) do |f| %>
           <div  class="col">
             <p>
               <span>タイトル</span>

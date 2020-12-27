@@ -1,11 +1,10 @@
 class Subgoal < ApplicationRecord
-  belongs_to :user
-  # Subgoalは複数のGoalを持つ可能性がある
-  has_and_belongs_to_many :goals
+  belongs_to :goal
 
   # 配下のDo、ToDo
-  has_many :does
-  has_many :todoes, through: :does
+  has_many :doings
+  accepts_nested_attributes_for :doings
+  has_many :todoes, through: :doings
   
   validates :subgoal, presence: true
   validates :start_day, presence: true
@@ -21,14 +20,14 @@ class Subgoal < ApplicationRecord
   validates :hold, presence: true
 
   # 優先度
-  enum priority: { A: 0, B: 1, C: 2 }
+  enum priority: { A: 0, B: 1, C: 2 }, _prefix: true
   # インパクト
-  enum impact: { A: 0, B: 1, C: 2 }
+  enum impact: { A: 0, B: 1, C: 2 }, _prefix: true
   # 工数
-  enum worktime: { A: 0, B: 1, C: 2 }
+  enum worktime: { A: 0, B: 1, C: 2 }, _prefix: true
   # 手軽さ
-  enum easy: { A: 0, B: 1, C: 2 }
+  enum easy: { A: 0, B: 1, C: 2 }, _prefix: true
   # 進捗
-  enum progress: { 未着手: 0, 作業中: 1, 完了: 2, 中止: 3 }
+  enum progress: { 未着手: 0, 作業中: 1, 完了: 2, 中止: 3 }, _prefix: true
 
 end

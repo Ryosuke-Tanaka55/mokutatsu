@@ -1,7 +1,7 @@
 <% provide(:title, current_user.name) %>
 
 <div class="row">
-  <h1>目標詳細</h1>
+  <h1>目標（ゴール）詳細</h1>
   <div class="col-md-10 col-md-offset3">
     <table class="table table-bordered table-condensed" id="goal-table-detail">
       <tr>
@@ -9,8 +9,8 @@
           <td class="col-md-9"><%= @goal.goal %></td>
       </tr>
       <tr>
-        <th class="col-md-3"><%= Goal.human_attribute_name :tag %></th>
-          <td class="col-md-9"><%= @goal.tag %></td>
+        <th class="col-md-3"><%= Goal.human_attribute_name :category %></th>
+          <td class="col-md-9"><%= @goal.category %></td>
       </tr>
       <tr>
         <th class="col-md-3"><%= Goal.human_attribute_name :start_day %></th>
@@ -62,9 +62,10 @@
     </table>
     <tr>
       <td>
-        <%= link_to "編集", edit_goal_path(@user.id, @goal.id), class: "btn btn-success" %>
+        <%= link_to  "詳細登録", new_user_subgoal_path(user_id: current_user.id), class: "btn btn-info" %>
+        <%= link_to "編集", edit_user_goal_path(@user.id, @goal.id), class: "btn btn-success" %>
         <%= link_to "検証", "#", class: "btn btn-warning" %>
-        <%= link_to "削除", goal_path(@user.id, @goal.id), method: :delete,
+        <%= link_to "削除", user_goal_path(@user.id, @goal.id), method: :delete,
             data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>
       </td>
     </tr>

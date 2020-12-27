@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_23_083126) do
+ActiveRecord::Schema.define(version: 2020_12_24_100456) do
+
+  create_table "doings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "doing"
+    t.datetime "start_day"
+    t.datetime "finish_day"
+    t.integer "achivement"
+    t.text "check"
+    t.text "adjust"
+    t.boolean "type", default: false, null: false
+    t.integer "priority"
+    t.integer "impact"
+    t.integer "worktime"
+    t.integer "easy"
+    t.integer "progress", default: 0, null: false
+    t.boolean "hold", default: false, null: false
+    t.text "note"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_doings_on_user_id"
+  end
 
   create_table "goal_connections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "parent_id"
@@ -25,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_083126) do
   create_table "goals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "worked_on"
     t.string "goal"
-    t.string "tag"
+    t.string "category"
     t.date "start_day"
     t.date "finish_day"
     t.string "goal_index"
@@ -74,6 +95,28 @@ ActiveRecord::Schema.define(version: 2020_12_23_083126) do
     t.index ["user_id"], name: "index_subgoals_on_user_id"
   end
 
+  create_table "todos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "todo"
+    t.date "start_day"
+    t.date "finish_day"
+    t.time "estimated_time"
+    t.datetime "estimated_start_time"
+    t.datetime "estimated_finish_time"
+    t.datetime "actual_start_time"
+    t.datetime "actual_finish_time"
+    t.integer "achivement"
+    t.text "check"
+    t.text "adjust"
+    t.boolean "type", default: false, null: false
+    t.integer "progress", default: 0, null: false
+    t.boolean "hold", default: false, null: false
+    t.text "note"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_todos_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "nickname"
@@ -90,7 +133,9 @@ ActiveRecord::Schema.define(version: 2020_12_23_083126) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "doings", "users"
   add_foreign_key "goals", "users"
   add_foreign_key "subgoals", "goals"
   add_foreign_key "subgoals", "users"
+  add_foreign_key "todos", "users"
 end

@@ -3,7 +3,7 @@ class CreateGoals < ActiveRecord::Migration[6.0]
     create_table :goals do |t|
       t.date :worked_on
       t.string :goal, presence: true
-      t.string :tag
+      t.string :category, presence: true
       t.date :start_day, presence: true
       t.date :finish_day, presence: true
       t.string :goal_index, presence: true

@@ -1,0 +1,19 @@
+<div class="registration-container">
+  <div class="registration-header">
+    <h1>PDCA登録</h1>
+    <p>目標をToDoレベルまで落とし込みます。</p>
+    <div class="registration-view-part">
+      <% form_with @goal, url: user_subgoals_path(user_id: current_user.id), html: {class: 'registration-form clearfix'} local: true) do |f| %>
+        <div class="subgoal-registration">
+          <div class="field">
+            <div class="field-label">
+              <% f.fields_for "subgoals[]", %>
+                <% %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
