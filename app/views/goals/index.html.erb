@@ -21,7 +21,7 @@
             <td><%= l(goal.finish_day, format: :long) %></td>
             <td align="center">
               <%= link_to "詳細", user_goal_path(@user.id, goal.id), class: "btn btn-default" %>
-              <%= link_to  "詳細登録", new_user_subgoal_path(user_id: current_user.id), class: "btn btn-info" %>
+              <%= link_to "サブゴール一覧", user_goal_subgoals_path(user_id: current_user.id, goal_id: goal.id), class: "btn btn-info" %>
               <%= link_to "検証", "#", class: "btn btn-warning" %>
               <%= link_to "編集", edit_user_goal_path(@user.id, goal.id), class: "btn btn-success" %>
               <%= link_to "削除", user_goal_path(@user.id, goal.id), method: :delete,

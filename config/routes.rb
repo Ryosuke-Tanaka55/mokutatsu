@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'doing/new'
   get 'goals/new'
   root 'static_pages#top'
   get '/rule', to: 'static_pages#rule'
@@ -14,7 +15,14 @@ Rails.application.routes.draw do
     member do
 
     end
-    resources :goals
-    resources :subgoals
+    resources :goals do
+      resources :goalgaps
+      resources :subgoals do
+        resources :subgoalgaps
+        resources :doings do
+          resources :todoes
+        end
+      end
+    end
   end
 end

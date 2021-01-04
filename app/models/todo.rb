@@ -7,7 +7,7 @@ class Todo < ApplicationRecord
   validates :estimated_time, presence: true
   validates :estimated_start_time, presence: true
   validates :estimated_finish_time, presence: true
-  validates :type, presence: true, presence: true
+  validates :pattern, presence: true, presence: true
   validates :priority, presence: true
   validates :progress, presence: true
   validates :hold, presence: true

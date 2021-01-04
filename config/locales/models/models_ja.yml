@@ -2,88 +2,113 @@ ja:
   activerecord:
     models:
       user: ユーザー
-      schedule: スケジュール
+      goal: 目標（ゴール）
+      goalgap: ギャップ
+      subgoal: サブゴール
+      subgoalgap: ギャップ
+      doing: Do
+      todo: ToDo
     attributes:
-        user:
-          id: ID
-          name: 名前
-          nickname: ニックネーム
-          anonymous: 匿名希望
-          email: メールアドレス
-          password: パスワード
-          password_confirmation: パスワード再入力
-          agreement: 利用規約に同意
-          created_at: 作成日
-          updated_at: 更新日
-        goal:
-          worked_on: 日付
-          goal: 目標（ゴール）
-          category: カテゴリー
-          start_day: 開始日
-          finish_day: 終了日
-          goal_index: 具体的な達成基準
-          achivement: 目標達成率(%)
-          check: 目標検証
-          adjust: 目標調整
-          progress: 進捗状況
-          hold: 保留
-          publish: 公開範囲
-          note: 備考
-          created_at: 作成日
-          updated_at: 更新日
-        subgoal:
-          subgoal: サブゴール
-          start_day: 開始日
-          finish_day: 終了日
-          achivement: サブゴール達成率(%)
-          check: サブゴール検証
-          adjust: サブゴール調整
-          type: タイプ
-          gap: ギャップ
-          solution: 解決策
-          priority: 優先度
-          impact: インパクト
-          worktime: 工数
-          easy: 手軽さ
-          progress: 進捗
-          hold: 保留
-          note: 備考
-          created_at: 作成日
-          updated_at: 更新日
-        doing:
-          doing: Do
-          start_day: 開始日
-          finish_day: 終了日
-          achivement: Do達成率(%)
-          check: Do調整
-          type: タイプ
-          priority: 優先度
-          impact: インパクト
-          worktime: 工数
-          easy: 気軽さ
-          progress: 進捗
-          hold: 保留
-          note: 備考
-          created_at: 作成日
-          updated_at: 更新日
-        todo:
-          todo: ToDo
-          start_day: 開始日
-          finish_day: 終了日
-          estimated_time: 予定時間
-          estimated_start_time: 予定開始時間
-          estimated_finish_time: 予定終了時間
-          actual_start_time: 実働開始時間
-          actual_finish_time: 実働終了時間
-          achivement: ToDo達成率(%)
-          check: ToDo検証
-          adjust: ゴール調整
-          type: タイプ
-          progress: 進捗
-          hold: 保留
-          note: 備考
-          created_at: 作成日
-          updated_at: 更新日
+      user:
+        id: ID
+        name: 名前
+        nickname: ニックネーム
+        anonymous: 匿名希望
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード再入力
+        agreement: 利用規約に同意
+        created_at: 作成日
+        updated_at: 更新日
+      goal:
+        worked_on: 日付
+        goal: 目標（ゴール）
+        category: カテゴリー
+        start_day: 開始日
+        finish_day: 終了日
+        goal_index: 具体的な達成基準
+        achivement: 目標達成率(%)
+        check: 目標検証
+        adjust: 目標調整
+        progress: 進捗状況
+        hold: 保留
+        publish: 公開範囲
+        note: 備考
+        created_at: 作成日
+        updated_at: 更新日
+      goalgap:
+        gap: ギャップ
+        solution: 解決策
+        impact: インパクト（効果）
+        worktime: 工数
+        eaasy: 気軽さ
+        priority: 優先度
+        created_at: 作成日
+        updated_at: 更新日
+      subgoal:
+        subgoal: サブゴール
+        start_day: 開始日
+        finish_day: 終了日
+        pattern: タイプ
+        achivement: サブゴール達成率(%)
+        check: サブゴール検証
+        adjust: サブゴール調整
+        pattern: タイプ
+        gap: ギャップ
+        solution: 解決策
+        priority: 優先度
+        impact: インパクト
+        worktime: 工数
+        easy: 手軽さ
+        progress: 進捗
+        hold: 保留
+        note: 備考
+        created_at: 作成日
+        updated_at: 更新日
+      subgoalgap:
+        gap: ギャップ
+        solution: 解決策
+        impact: インパクト（効果）
+        term: 期間
+        worktime: 工数
+        eaasy: 気軽さ
+        priority: 優先度
+        created_at: 作成日
+        updated_at: 更新日
+      doing:
+        doing: Do
+        start_day: 開始日
+        finish_day: 終了日
+        achivement: Do達成率(%)
+        check: Do調整
+        pattern: タイプ
+        priority: 優先度
+        impact: インパクト
+        worktime: 工数
+        easy: 気軽さ
+        progress: 進捗
+        hold: 保留
+        note: 備考
+        created_at: 作成日
+        updated_at: 更新日
+      todo:
+        todo: ToDo
+        start_day: 開始日
+        finish_day: 終了日
+        estimated_time: 予定時間
+        estimated_start_time: 予定開始時間
+        estimated_finish_time: 予定終了時間
+        actual_start_time: 実働開始時間
+        actual_finish_time: 実働終了時間
+        achivement: ToDo達成率(%)
+        check: ToDo検証
+        adjust: ゴール調整
+        pattern: タイプ
+        progress: 進捗
+        hold: 保留
+        note: 備考
+        created_at: 作成日
+        updated_at: 更新日
 
 
 

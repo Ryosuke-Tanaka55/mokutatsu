@@ -12,7 +12,7 @@ class CreateTodos < ActiveRecord::Migration[6.0]
       t.integer :achivement
       t.text :check
       t.text :adjust
-      t.boolean :type, null: false, default: false
+      t.boolean :pattern, null: false, default: false
       t.integer :progress, null: false, default: 0
       t.boolean :hold, null: false, default: false
       t.text :note

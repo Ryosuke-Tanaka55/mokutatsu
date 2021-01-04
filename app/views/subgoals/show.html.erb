@@ -1,0 +1,81 @@
+<% provide(:title, current_user.name) %>
+
+<div class="row">
+  <h1>サブゴール詳細</h1>
+  <div class="col-md-10 col-md-offset3">
+    <table class="table table-bordered table-condensed" id="subgoal-table-detail">
+      <tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :subgoal %></th>
+          <td class="col-md-9"><%= @subgoal.subgoal %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :important %></th>
+          <td class="col-md-9"><%= @subgoal.important %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :start_day %></th>
+          <td class="col-md-9"><%= @subgoal.start_day %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :finish_day %></th>
+          <td class="col-md-9"><%= @subgoal.finish_day %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :achivement %></th>
+          <td class="col-md-9"><%= @subgoal.achivement %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :check %></th>
+          <td class="col-md-9"><%= @subgoal.check %></td>
+      </tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :adjust %></th>
+          <td class="col-md-9"><%= @subgoal.adjust %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :pattern %></th>
+          <td class="col-md-9"><%= @subgoal.pattern %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :impact %></th>
+          <td class="col-md-9"><%= @subgoal.impact %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :worktime %></th>
+          <td class="col-md-9"><%= @subgoal.worktime %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :easy %></th>
+          <td class="col-md-9"><%= @subgoal.easy %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :progress %></th>
+          <td class="col-md-9"><%= @subgoal.progress %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :hold %></th>
+          <td class="col-md-9"><%= @subgoal.hold ? "保留中" : "実行中" %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :note %></th>
+          <td class="col-md-9"><%= @subgoal.note %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :created_at %></th>
+          <td class="col-md-9"><%= l(@subgoal.created_at, format: :long) %></td>
+      </tr>
+       <tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :updated_at %></th>
+          <td class="col-md-9"><%= l(@subgoal.updated_at, format: :long) %></td>
+      </tr>
+    </table>
+    <tr>
+      <td>
+        <%= link_to "編集", edit_user_goal_subgoal_path(user_id: current_user.id, goal_id: @subgoal.goal_id, id: @subgoal.id), class: "btn btn-success" %>
+        <%= link_to "検証", "#", class: "btn btn-warning" %>
+        <%= link_to "削除", user_goal_subgoal_path(user_id: current_user.id, goal_id: @subgoal.goal_id, id: @subgoal.id), method: :delete,
+            data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>
+        <%= link_to "戻る", user_goal_subgoals_path(user_id: current_user.id, goal_id: @subgoal.goal_id), class: "btn btn-default" %>
+      </td>
+    </tr>
+  </div>
+</div>

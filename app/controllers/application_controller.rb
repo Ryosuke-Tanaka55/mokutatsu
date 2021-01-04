@@ -39,4 +39,15 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+  # paramsからゴール(goal_id)を取得
+  def set_goal_id
+    @goal = Goal.find(params[:goal_id])
+  end
+
+  # paramsからサブゴール(subgoal_id)を取得
+  def set_subgoal_id
+    @subgoal = Subgoal.find(params[:subgoal_id])
+  end
+
 end

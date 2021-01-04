@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_24_100456) do
+ActiveRecord::Schema.define(version: 2021_01_01_090008) do
 
   create_table "doings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "doing"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_100456) do
     t.integer "achivement"
     t.text "check"
     t.text "adjust"
-    t.boolean "type", default: false, null: false
+    t.boolean "pattern", default: false, null: false
     t.integer "priority"
     t.integer "impact"
     t.integer "worktime"
@@ -43,6 +43,19 @@ ActiveRecord::Schema.define(version: 2020_12_24_100456) do
     t.index ["parent_id"], name: "index_goal_connections_on_parent_id"
   end
 
+  create_table "goalgaps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "gap"
+    t.text "solution"
+    t.integer "impact", default: 0, null: false
+    t.integer "worktime", default: 0, null: false
+    t.integer "easy", default: 0, null: false
+    t.integer "priority", default: 0, null: false
+    t.bigint "goal_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["goal_id"], name: "index_goalgaps_on_goal_id"
+  end
+
   create_table "goals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "worked_on"
     t.string "goal"
@@ -63,23 +76,29 @@ ActiveRecord::Schema.define(version: 2020_12_24_100456) do
     t.index ["user_id"], name: "index_goals_on_user_id"
   end
 
-  create_table "goals_subgoals", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "goal_id"
-    t.bigint "subgoal_id"
-    t.index ["goal_id"], name: "index_goals_subgoals_on_goal_id"
-    t.index ["subgoal_id"], name: "index_goals_subgoals_on_subgoal_id"
+  create_table "subgoalgaps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "gap"
+    t.text "solution"
+    t.integer "impact", default: 0, null: false
+    t.string "term"
+    t.integer "worktime", default: 0, null: false
+    t.integer "easy", default: 0, null: false
+    t.integer "priority", default: 0, null: false
+    t.bigint "subgoal_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subgoal_id"], name: "index_subgoalgaps_on_subgoal_id"
   end
 
   create_table "subgoals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "subgoal"
+    t.boolean "important", default: false, null: false
     t.date "start_day"
     t.date "finish_day"
     t.integer "achivement"
     t.text "check"
     t.text "adjust"
-    t.boolean "type", default: false, null: false
-    t.text "gap"
-    t.text "solution"
+    t.boolean "pattern", default: false, null: false
     t.integer "priority", default: 0, null: false
     t.integer "impact", default: 0, null: false
     t.integer "worktime", default: 0, null: false
@@ -105,7 +124,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_100456) do
     t.integer "achivement"
     t.text "check"
     t.text "adjust"
-    t.boolean "type", default: false, null: false
+    t.boolean "pattern", default: false, null: false
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
     t.text "note"
@@ -132,7 +151,9 @@ ActiveRecord::Schema.define(version: 2020_12_24_100456) do
   end
 
   add_foreign_key "doings", "subgoals"
+  add_foreign_key "goalgaps", "goals"
   add_foreign_key "goals", "users"
+  add_foreign_key "subgoalgaps", "subgoals"
   add_foreign_key "subgoals", "goals"
   add_foreign_key "todos", "doings"
 end

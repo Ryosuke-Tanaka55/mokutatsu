@@ -1,146 +1,62 @@
-<% provide(:title, '目標詳細登録') %>
-<% provide(:class_text, 'create_goaldetail') %>
-<% provide(:button_text_next, '次へ') %>
-<% provide(:button_text_registor, '登録') %>
+<% provide(:title, 'サブゴール登録') %>
+<% provide(:class_text, 'create_subgoal') %>
+<% provide(:button_text, '新規登録') %>
 
 <div class="registration-container">
   <div class="registration-header">
-    <h1>目標達成詳細登録</h1>
-    <h2>目標をToDoレベルまで落とし込みます。</h2>
+    <h1>サブゴール登録</h1>
+    <h2>ゴールとのギャップを埋める解決策を登録します。</h2>
     <div class="registration-view-part">
-      <%= form_with(model:@subgoal, url: user_subgoals_path, html: {class: 'registration-form clearfix'}, local: true) do |f| %>
-        <div class="subgoal-registration">
-          <div class="field">
-            <div class="field-label">
-              <%= f.label :subgoal, class: "label-#{yield(:class_text)}" %>
-              <%= f.text_field :subgoal, class: "form-control" %>
+      <%= form_with(model: @subgoal, url: user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal.id), local: true, method: :post ) do |f| %>
+        
+        <%= render 'shared/object_error_messages', object: @subgoal %>
+          <div class="subgoal-registration">
+            <div class="field">
+              <div class="field-label">
+                <%= f.label :subgoal, class: "label-#{yield(:class_text)}" %>
+                <%= f.text_field :subgoal, class: "form-control" %>
 
-              <%= f.label :start_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-              <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
+                <%= f.label :start_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
+                <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
 
-              <%= f.label :finish_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-              <%= f.date_select :finish_day, class: "form-control datetime-form" %><br>
+                <%= f.label :finish_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
+                <%= f.date_select :finish_day, class: "form-control datetime-form" %><br>
 
-              <%= f.label :type, class: "label-#{yield(:class_text)}" %>&nbsp;&nbsp;
-              <%= f.radio_button :type, "完結型" %>完結型 &nbsp;&nbsp;&nbsp;
-              <%= f.radio_button :type, "継続型" %>継続型<br>
+                <%= f.label :pattern, class: "label-#{yield(:class_text)}" %>&nbsp;&nbsp;
+                <%= f.radio_button :pattern, "完結型" %>完結型 &nbsp;&nbsp;&nbsp;
+                <%= f.radio_button :pattern, "継続型" %>継続型<br>
 
-              <%= f.label :gap, class: "label-#{yield(:class_text)}" %>
-              <%= f.text_area :gap, class: "form-control" %>
+                <%= f.label :priority, class: "label-#{yield(:class_text)}" %>
+                <%= f.select :priority, Subgoal.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+                  { class: "form-control" , required: true } %>
 
-              <%= f.label :solution, class: "label-#{yield(:class_text)}" %>
-              <%= f.text_area :solution, class: "form-control" %>
+                <%= f.label :impact, class: "label-#{yield(:class_text)}" %>
+                <%= f.select :impact, Subgoal.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+                  { class: "form-control" , required: true } %>
+                
+                <%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
+                <%= f.select :worktime, Subgoal.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+                  { class: "form-control" , required: true } %>
 
-              <%= f.label :priority, class: "label-#{yield(:class_text)}" %>
-              <%= f.select :priority, Subgoal.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-                { class: "form-control" , required: true } %>
+                <%= f.label :easy, class: "label-#{yield(:class_text)}" %>
+                <%= f.select :easy, Subgoal.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+                  { class: "form-control" , required: true } %>
+                
+                <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
+                <%= f.check_box :hold, class: "checkbox inline checkbox-subgoal" %>
 
-              <%= f.label :impact, class: "label-#{yield(:class_text)}" %>
-              <%= f.select :impact, Subgoal.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-                { class: "form-control" , required: true } %>
-              
-              <%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
-              <%= f.select :worktime, Subgoal.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-                { class: "form-control" , required: true } %>
+                <%= f.label :note, class: "label-#{yield(:class_text)}" %>
+                <%= f.text_area :note, class: "form-control" %>
 
-              <%= f.label :easy, class: "label-#{yield(:class_text)}" %>
-              <%= f.select :easy, Subgoal.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-                { class: "form-control" , required: true } %>
-              
-              <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
-              <%= f.check_box :hold, class: "checkbox inline checkbox-subgoal" %>
-
-              <%= f.label :note, class: "label-#{yield(:class_text)}" %>
-              <%= f.text_area :note, class: "form-control" %>
-
-              <%= f.button yield(:button_text_next), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}", id: "subgoal-step-btn" %>
+              </div>
             </div>
           </div>
+        
+        <div class="center">
+        <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
+        <%= link_to "戻る", user_goals_path(user_id: @user.id, id:@goal.id), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
         </div>
-
-        <%= f.fields_for :doings do |g| %>
-        <div class="doing-registration">
-          <div class="field">
-            <div class="field-label">
-              <%= g.label :doing, class: "label-#{yield(:class_text)}" %>
-              <%= g.text_field :doing, class: "form-control" %>
-
-              <%= g.label :start_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-              <%= g.date_select :start_day, class: "form-control datetime-form" %><br>
-
-              <%= g.label :finish_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-              <%= g.date_select :finish_day, class: "form-control datetime-form" %><br>
-
-              <%= g.label :type, class: "label-#{yield(:class_text)}" %>&nbsp;&nbsp;
-              <%= g.radio_button :type, "完結型" %>完結型 &nbsp;&nbsp;&nbsp;
-              <%= g.radio_button :type, "継続型" %>継続型<br>
-
-              <%= g.label :priority, class: "label-#{yield(:class_text)}" %>
-              <%= g.select :priority, Subgoal.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-                { class: "form-control" , required: true } %>
-
-              <%= g.label :impact, class: "label-#{yield(:class_text)}" %>
-              <%= g.select :impact, Subgoal.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-                { class: "form-control" , required: true } %>
-              
-              <%= g.label :worktime, class: "label-#{yield(:class_text)}" %>
-              <%= g.select :worktime, Subgoal.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-                { class: "form-control" , required: true } %>
-
-              <%= g.label :easy, class: "label-#{yield(:class_text)}" %>
-              <%= g.select :easy, Subgoal.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-                { class: "form-control" , required: true } %>
-              
-              <%= g.label :hold, class: "label-#{yield(:class_text)}" %>
-              <%= g.check_box :hold, class: "checkbox inline checkbox-subgoal" %>
-
-              <%= g.label :note, class: "label-#{yield(:class_text)}" %>
-              <%= g.text_area :note, class: "form-control" %>
-
-              <%= g.button yield(:button_text_next), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}", id: "doing-step-btn" %>
-            </div>
-          </div>
-        </div>
-
-        <%= g.fields_for :todoes do |h| %>
-        <div class="doing-registration">
-          <div class="field">
-            <div class="field-label">
-              <%= h.label :todo, class: "label-#{yield(:class_text)}" %>
-              <%= h.text_field :todo, class: "form-control" %>
-
-              <%= h.label :start_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-              <%= h.date_select :start_day, class: "form-control datetime-form" %><br>
-
-              <%= h.label :finish_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-              <%= h.date_select :finish_day, class: "form-control datetime-form" %><br>
-
-              <%= h.label :estimated_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-              <%= h.time_select :estimated_time, class: "form-control datetime-form" %><br>
-
-              <%= h.label :estimated_start_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-              <%= h.datetime_select :estimated_start_time, class: "form-control datetime-form" %><br>
-
-              <%= h.label :estimated_finish_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-              <%= h.datetime_select :estimated_finish_time, class: "form-control datetime-form" %><br>
-
-              <%= h.label :type, class: "label-#{yield(:class_text)}" %>&nbsp;&nbsp;
-              <%= h.radio_button :type, "完結型" %>完結型 &nbsp;&nbsp;&nbsp;
-              <%= h.radio_button :type, "継続型" %>継続型<br>
-              
-              <%= h.label :hold, class: "label-#{yield(:class_text)}" %>
-              <%= h.check_box :hold, class: "checkbox inline checkbox-subgoal" %>
-
-              <%= h.label :note, class: "label-#{yield(:class_text)}" %>
-              <%= h.text_area :note, class: "form-control" %>
-
-              <%= h.submit yield(:button_text_registor), class: "btn btn-lg btn-primary btn-#{yield(:button_text)}", id: "todo-step-btn" %>
-            </div>
-          </div>
-        </div>
-        <% end %>
       <% end %>
-    <% end %>
     </div>
   </div>
 </div>

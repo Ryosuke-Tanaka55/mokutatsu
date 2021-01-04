@@ -7,7 +7,7 @@ class CreateDoings < ActiveRecord::Migration[6.0]
       t.integer :achivement
       t.text :check
       t.text :adjust
-      t.boolean :type, null: false, default: false
+      t.boolean :pattern, null: false, default: false
       t.integer :priority, presence: true
       t.integer :impact, presence: true
       t.integer :worktime, presence: true

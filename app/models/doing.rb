@@ -6,7 +6,7 @@ class Doing < ApplicationRecord
   validates :doing, presence: true
   validates :start_day, presence: true
   validates :finish_day, presence: true
-  validates :type, presence: true
+  validates :pattern, presence: true
   validates :priority, presence: true
   validates :impact, presence: true
   validates :worktime, presence: true

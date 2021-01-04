@@ -62,11 +62,11 @@
     </table>
     <tr>
       <td>
-        <%= link_to  "詳細登録", new_user_subgoal_path(user_id: current_user.id), class: "btn btn-info" %>
         <%= link_to "編集", edit_user_goal_path(@user.id, @goal.id), class: "btn btn-success" %>
         <%= link_to "検証", "#", class: "btn btn-warning" %>
         <%= link_to "削除", user_goal_path(@user.id, @goal.id), method: :delete,
             data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>
+        <%= link_to "戻る", user_goals_path(user_id: @user.id), class: "btn btn-default" %>
       </td>
     </tr>
   </div>
