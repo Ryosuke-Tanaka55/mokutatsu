@@ -47,6 +47,7 @@ ja:
         updated_at: 更新日
       subgoal:
         subgoal: サブゴール
+        important: 最重要サブゴール
         start_day: 開始日
         finish_day: 終了日
         pattern: タイプ
@@ -80,7 +81,8 @@ ja:
         start_day: 開始日
         finish_day: 終了日
         achivement: Do達成率(%)
-        check: Do調整
+        check: Do検証
+        adjust: Do調整
         pattern: タイプ
         priority: 優先度
         impact: インパクト

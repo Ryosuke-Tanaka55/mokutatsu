@@ -8,25 +8,25 @@
     <table class="table table-hover" id="table-subgoals">
       <thead>
         <tr>
-          <th><%= Subgoal.human_attribute_name :subgoal %></th>
-          <th><%= Subgoal.human_attribute_name :start_day %></th>
-          <th><%= Subgoal.human_attribute_name :finish_day %></th>
+          <th><%= Doing.human_attribute_name :doing %></th>
+          <th><%= Doing.human_attribute_name :start_day %></th>
+          <th><%= Doing.human_attribute_name :finish_day %></th>
         </tr>
       </thead>
     
-      <% if @subgoals.present? %>
-        <% @subgoals.each do |subgoal| %>
+      <% if @doings.present? %>
+        <% @doings.each do |doing| %>
           <tr>
-            <td><%= link_to "#{subgoal.subgoal}", user_goal_subgoal_path(user_id: current_user.id, goal_id: subgoal.goal_id, id: subgoal.id) %></td>
-            <td><%= l(subgoal.start_day, format: :long) %></td>
-            <td><%= l(subgoal.finish_day, format: :long) %></td>
+            <td><%= link_to "#{doing.doing}", user_goal_subgoal_doing_path(user_id: current_user.id, goal_id: @subgoal.goal_id, subgoal_id: doing.subgoal_id, id: doing.id) %></td>
+            <td><%= l(doing.start_day, format: :long) %></td>
+            <td><%= l(doing.finish_day, format: :long) %></td>
             <td align="center">
-              <%= link_to "詳細", user_goal_subgoal_path(user_id: current_user.id, goal_id: subgoal.goal_id, id: subgoal.id), class: "btn btn-primary" %>
-              <%= link_to "Do一覧", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: subgoal.goal_id, id: subgoal.id), class: "btn btn-info" %>
+              <%= link_to "詳細", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: @subgoal.goal_id, subgoal_id: doing.subgoal_id, doing_id: doing.id), class: "btn btn-primary" %>
+              <%= link_to "ToDo一覧", user_goal_subgoal_doing_todoes_path(user_id: current_user.id, goal_id: @subgoal.goal_id, subgoal_id: doing.subgoal_id, doing_id: doing.id), class: "btn btn-info" %>
               <%= link_to "検証", "#", class: "btn btn-warning" %>
-              <%= link_to "編集", edit_user_goal_subgoal_path(user_id: current_user.id, goal_id: subgoal.goal_id, id: subgoal.id), class: "btn btn-success" %>
-              <%= link_to "削除", user_goal_subgoal_path(user_id: current_user.id, goal_id: subgoal.goal_id, id: subgoal.id), method: :delete,
-                  data: { confirm: "「#{subgoal.subgoal}」を削除してよろしいですか？" }, class: "btn btn-danger" %>
+              <%= link_to "編集", edit_user_goal_subgoal_doing_path(user_id: current_user.id, goal_id: @subgoal.goal_id, subgoal_id: doing.subgoal_id, id: doing.id), class: "btn btn-success" %>
+              <%= link_to "削除", user_goal_subgoal_doing_path(user_id: current_user.id, goal_id: @subgoal.goal_id, subgoal_id: doing.subgoal_id, id: doing.id), method: :delete,
+                  data: { confirm: "「#{doing.subgoal}」を削除してよろしいですか？" }, class: "btn btn-danger" %>
             </td>
           </tr>
         <% end %>

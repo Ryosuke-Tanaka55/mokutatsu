@@ -1,16 +1,16 @@
 class SubgoalsController < ApplicationController
   before_action :set_user_id
   before_action :set_goal_id
+  before_action :set_subgoal, only:[:show, :edit, :update, :destroy]
   before_action :loggend_in_user
   before_action :correct_user
-  before_action :set_subgoal, only:[:edit, :update, :destroy]
+  
 
   def index
     @subgoals = current_user.subgoals.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
   end
 
   def show
-    @subgoal = Subgoal.find(params[:id])
   end
 
   def new

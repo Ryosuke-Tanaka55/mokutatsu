@@ -12,7 +12,6 @@ class Doing < ApplicationRecord
   validates :worktime, presence: true
   validates :easy, presence: true
   validates :progress, presence: true
-  validates :hold, presence: true
 
   # 優先度
   enum priority: { 高: 0, 中: 1, 低: 2 }, _prefix: true

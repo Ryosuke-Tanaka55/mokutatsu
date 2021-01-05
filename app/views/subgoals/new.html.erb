@@ -16,6 +16,9 @@
                 <%= f.label :subgoal, class: "label-#{yield(:class_text)}" %>
                 <%= f.text_field :subgoal, class: "form-control" %>
 
+                <%= f.label :important, class: "label-#{yield(:class_text)}" %>
+                <%= f.check_box :important, class: "checkbox inline checkbox-doing" %>
+
                 <%= f.label :start_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
                 <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
 
@@ -54,7 +57,7 @@
         
         <div class="center">
         <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
-        <%= link_to "戻る", user_goals_path(user_id: @user.id, id:@goal.id), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
+        <%= link_to "戻る", user_goals_path(user_id: @user.id, id: @goal.id), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
         </div>
       <% end %>
     </div>

@@ -31,10 +31,9 @@ class GoalsController < ApplicationController
   end
   
   def update
-    @goal = Goal.where(user_id: current_user.id)
     if @goal.update_attributes(edit_goal_params)
       flash[:success] = "目標を編集しました。"
-      redirect_to goals_url
+      redirect_to user_goals_path
     else
       flash.now[:danger] = "目標編集に失敗しました。"
       render :edit
@@ -42,8 +41,7 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    goal = Goal.find(params[:id])
-    goal.destroy
+    @goal.destroy
     flash[:success] = "目標を削除しました。"
     redirect_to goals_url
   end

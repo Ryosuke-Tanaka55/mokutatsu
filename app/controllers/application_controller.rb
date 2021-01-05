@@ -50,4 +50,9 @@ class ApplicationController < ActionController::Base
     @subgoal = Subgoal.find(params[:subgoal_id])
   end
 
+  # paramsからDo(doing_id)を取得
+  def set_doing_id
+    @doing = Doing.find(params[:doing_id])
+  end
+
 end
