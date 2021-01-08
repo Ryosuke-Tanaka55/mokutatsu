@@ -10,7 +10,7 @@
       </tr>
       <tr>
         <th class="col-md-3"><%= Subgoal.human_attribute_name :important %></th>
-          <td class="col-md-9"><%= @subgoal.important %></td>
+          <td class="col-md-9"><%= @subgoal.important ? "重要" : "通常" %></td>
       </tr>
       <tr>
         <th class="col-md-3"><%= Subgoal.human_attribute_name :start_day %></th>
@@ -33,7 +33,7 @@
       </tr>
       </tr>
         <th class="col-md-3"><%= Subgoal.human_attribute_name :pattern %></th>
-          <td class="col-md-9"><%= @subgoal.pattern %></td>
+          <td class="col-md-9"><%= @subgoal.pattern ? "完結型" : "継続型" %></td>
       </tr>
       </tr>
         <th class="col-md-3"><%= Subgoal.human_attribute_name :impact %></th>

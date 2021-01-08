@@ -58,7 +58,7 @@
       
       <div class="button">
         <%= f.submit yield(:button_update), class: "btn btn-primary btn-#{yield(:button_update)}" %>
-        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_doings_path(@user.id, @goal.id), class: "btn btn-default w-20" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_doings_path(@user.id, @goal.id, @subgoal.id), class: "btn btn-default w-20" %>
       </div>
     <% end %>
   </div>

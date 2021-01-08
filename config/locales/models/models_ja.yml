@@ -95,6 +95,7 @@ ja:
         updated_at: 更新日
       todo:
         todo: ToDo
+        worked_on: 実行日
         start_day: 開始日
         finish_day: 終了日
         estimated_time: 予定時間
@@ -105,6 +106,7 @@ ja:
         achivement: ToDo達成率(%)
         check: ToDo検証
         adjust: ゴール調整
+        priority: 優先度
         pattern: タイプ
         progress: 進捗
         hold: 保留

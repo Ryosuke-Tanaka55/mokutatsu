@@ -114,13 +114,15 @@ ActiveRecord::Schema.define(version: 2021_01_01_090008) do
 
   create_table "todos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "todo"
+    t.date "worked_on"
     t.date "start_day"
     t.date "finish_day"
     t.time "estimated_time"
-    t.datetime "estimated_start_time"
-    t.datetime "estimated_finish_time"
+    t.time "estimated_start_time"
+    t.time "estimated_finish_time"
     t.datetime "actual_start_time"
     t.datetime "actual_finish_time"
+    t.integer "priority", default: 0, null: false
     t.integer "achivement"
     t.text "check"
     t.text "adjust"

@@ -13,7 +13,7 @@
         <%= f.text_field :subgoal, class: "form-control" %>
 
         <%= f.label :important, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_area :important, class: "form-control" %>
+        <%= f.check_box :important, class: "checkbox inline checkbox-subgoal" %>
 
         <%= f.label :start_day, class: "label-#{yield(:class_text)}" %>
         <%= f.date_select :start_day, class: "form-control datetime-form" %><br>

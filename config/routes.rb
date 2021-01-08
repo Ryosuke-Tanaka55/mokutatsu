@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'todoes/index'
+  get 'todoes/new'
   get 'doing/new'
   get 'goals/new'
   root 'static_pages#top'

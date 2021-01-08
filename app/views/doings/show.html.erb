@@ -29,7 +29,7 @@
       </tr>
       </tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :pattern %></th>
-          <td class="col-md-9"><%= @doing.pattern %></td>
+          <td class="col-md-9"><%= @doing.pattern ? "完結型" : "継続型" %></td>
       </tr>
       </tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :impact %></th>
