@@ -70,11 +70,11 @@
     </table>
     <tr>
       <td>
-        <%= link_to "編集", edit_user_goal_subgoal_path(user_id: current_user.id, goal_id: @subgoal.goal_id, id: @subgoal.id), class: "btn btn-success" %>
+        <%= link_to "編集", edit_user_goal_subgoal_path(user_id: current_user.id, goal_id: @goal.id, id: @subgoal.id), class: "btn btn-success" %>
         <%= link_to "検証", "#", class: "btn btn-warning" %>
-        <%= link_to "削除", user_goal_subgoal_path(user_id: current_user.id, goal_id: @subgoal.goal_id, id: @subgoal.id), method: :delete,
-            data: { confirm: "削除してよろしいですか？" }, class: "btn btn-danger" %>
-        <%= link_to "戻る", user_goal_subgoals_path(user_id: current_user.id, goal_id: @subgoal.goal_id), class: "btn btn-default" %>
+        <%= link_to "削除", user_goal_subgoal_path(user_id: current_user.id, goal_id: @goal.id, id: @subgoal.id), method: :delete,
+            data: { confirm: "#{ @subgoal.subgoal }を削除してよろしいですか？" }, class: "btn btn-danger" %>
+        <%= link_to "戻る", user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal.id), class: "btn btn-default" %>
       </td>
     </tr>
   </div>

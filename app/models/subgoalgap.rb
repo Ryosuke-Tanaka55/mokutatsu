@@ -9,11 +9,6 @@ class Subgoalgap < ApplicationRecord
   validates :easy, presence: true
   validates :priority, presence: true
 
-  # 配下のSubgoalgap、Do、ToDo
-  has_many :subgoalgaps, dependent: :destroy
-  has_many :doings, dependent: :destroy
-  has_many :todoes, through: :doings
-
   # インパクト
   enum impact: { 大: 0, 中: 1, 小: 2 }, _prefix: true
   # 工数

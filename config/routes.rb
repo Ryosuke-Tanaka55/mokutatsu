@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'subgoalgaps/new'
+  get 'subgoalgaps/index'
+  get 'goalgaps/new'
+  get 'goalgaps/index'
   get 'todoes/index'
   get 'todoes/new'
   get 'doing/new'

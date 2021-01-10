@@ -22,7 +22,7 @@ class TodoesController < ApplicationController
     @todo = @doing.todoes.build(create_todo_params)
     if @todo.save
       flash[:success] = "新規作成に成功しました。"
-      redirect_to user_goals_url
+      redirect_to user_goal_subgoal_doing_todoes_url
     else
       flash.now[:danger] = "新規作成に失敗しました。"     
       render :new
@@ -33,10 +33,9 @@ class TodoesController < ApplicationController
   end
   
   def update
-    @todo = Todo.where(goal_id: params[:goal_id])
     if @todo.update_attributes(edit_todo_params)
       flash[:success] = "編集に成功しました。"
-      redirect_to todos_url
+      redirect_to user_goal_subgoal_doing_todoes_url
     else
       flash.now[:danger] = "編集に失敗しました。"
       render :edit
@@ -45,8 +44,8 @@ class TodoesController < ApplicationController
 
   def destroy
     @todo.destroy
-    flash[:success] = "ToDoを削除しました。"
-    redirect_to todos_url
+    flash[:success] = "#{@todo.todo}を削除しました。"
+    redirect_to user_goal_subgoal_doing_todoes_url
   end
 
   private
@@ -60,7 +59,8 @@ class TodoesController < ApplicationController
     # 編集時
     def edit_todo_params
       params.require(:todo).permit(:todo, :worked_on, :start_day, :finish_day, :estimated_time, 
-        :estimated_start_time, :estimated_finish_time,:achivement, :pattern, :priority, :hold, :note, :doing_id
+        :estimated_start_time, :estimated_finish_time, :actual_start_time, :actual_finish_time, 
+        :achivement, :pattern, :priority, :hold, :note, :doing_id
       )
     end
 
@@ -69,4 +69,3 @@ class TodoesController < ApplicationController
       @todo = Todo.find(params[:id])
     end
 end
-

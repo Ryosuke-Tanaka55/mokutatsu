@@ -32,7 +32,6 @@ class SubgoalsController < ApplicationController
   end
   
   def update
-    @subgoal = Subgoal.where(goal_id: params[:goal_id])
     if @subgoal.update_attributes(edit_subgoal_params)
       flash[:success] = "編集に成功しました。"
       redirect_to subgoals_url
