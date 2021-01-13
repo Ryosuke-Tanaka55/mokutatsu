@@ -32,9 +32,12 @@ Rails.application.routes.draw do
     end
     resources :goals do
       resources :goalgaps
+      resources :goalchecks
       resources :subgoals do
         resources :subgoalgaps
+        resources :subgoalchecks
         resources :doings do
+          resources :doingchecks
           resources :todoes
         end
       end
