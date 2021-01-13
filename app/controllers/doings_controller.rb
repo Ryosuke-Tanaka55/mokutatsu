@@ -32,19 +32,18 @@ class DoingsController < ApplicationController
   end
 
   def update
-    @doing = Doing.where(goal_id: @subgoal.id)
     if @doing.update_attributes(edit_doing_params)
-      flash[:success] = "編集に成功しました。"
+      flash[:success] = "「#{ @doing.doing }」の編集に成功しました。"
       redirect_to user_goal_subgoal_doings_url
     else
-      flash.now[:danger] = "編集に失敗しました。"
+      flash.now[:danger] = "「#{ @doing.doing }」の編集に失敗しました。"
       render :edit
     end
   end
 
   def destroy
     @doing.destroy
-    flash[:success] = "Doを削除しました。"
+    flash[:success] = "「#{ @doing.doing }」を削除しました。"
     redirect_to user_goal_subgoal_doings_url
   end
 

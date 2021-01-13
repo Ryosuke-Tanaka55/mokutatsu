@@ -32,17 +32,17 @@ class GoalsController < ApplicationController
   
   def update
     if @goal.update_attributes(edit_goal_params)
-      flash[:success] = "目標を編集しました。"
+      flash[:success] = "「#{ @goal.goal }」を編集しました。"
       redirect_to user_goals_path
     else
-      flash.now[:danger] = "目標編集に失敗しました。"
+      flash.now[:danger] = "「#{ @goal.goal }」の編集に失敗しました。"
       render :edit
     end
   end
 
   def destroy
     @goal.destroy
-    flash[:success] = "目標を削除しました。"
+    flash[:success] = "「#{ @goal.goal }」を削除しました。"
     redirect_to goals_url
   end
 

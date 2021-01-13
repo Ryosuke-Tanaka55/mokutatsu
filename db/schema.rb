@@ -44,7 +44,8 @@ ActiveRecord::Schema.define(version: 2021_01_01_090008) do
   end
 
   create_table "goalgaps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "gap"
+    t.string "gap"
+    t.text "detail"
     t.text "solution"
     t.integer "impact", default: 0, null: false
     t.integer "worktime", default: 0, null: false
@@ -77,7 +78,8 @@ ActiveRecord::Schema.define(version: 2021_01_01_090008) do
   end
 
   create_table "subgoalgaps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "gap"
+    t.string "gap"
+    t.text "detail"
     t.text "solution"
     t.integer "impact", default: 0, null: false
     t.string "term"

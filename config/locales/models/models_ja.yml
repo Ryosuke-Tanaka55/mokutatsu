@@ -38,10 +38,11 @@ ja:
         updated_at: 更新日
       goalgap:
         gap: ギャップ
+        detail: ギャップ詳細
         solution: 解決策
         impact: インパクト（効果）
-        worktime: 工数
-        eaasy: 気軽さ
+        worktime: 工数（時間）
+        easy: 気軽さ
         priority: 優先度
         created_at: 作成日
         updated_at: 更新日
@@ -59,7 +60,7 @@ ja:
         solution: 解決策
         priority: 優先度
         impact: インパクト
-        worktime: 工数
+        worktime: 工数（時間）
         easy: 手軽さ
         progress: 進捗
         hold: 保留
@@ -68,11 +69,12 @@ ja:
         updated_at: 更新日
       subgoalgap:
         gap: ギャップ
+        detail: ギャップ詳細
         solution: 解決策
         impact: インパクト（効果）
         term: 期間
-        worktime: 工数
-        eaasy: 気軽さ
+        worktime: 工数（時間）
+        easy: 気軽さ
         priority: 優先度
         created_at: 作成日
         updated_at: 更新日
@@ -86,7 +88,7 @@ ja:
         pattern: タイプ
         priority: 優先度
         impact: インパクト
-        worktime: 工数
+        worktime: 工数（時間）
         easy: 気軽さ
         progress: 進捗
         hold: 保留

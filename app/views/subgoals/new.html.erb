@@ -1,13 +1,14 @@
 <% provide(:title, 'サブゴール登録') %>
 <% provide(:class_text, 'create_subgoal') %>
 <% provide(:button_text, '新規登録') %>
+<% provide(:button_cancel, '戻る') %>
 
 <div class="registration-container">
   <div class="registration-header">
     <h1>サブゴール登録</h1>
     <h2>ゴールとのギャップを埋める解決策を登録します。</h2>
     <div class="registration-view-part">
-      <%= form_with(model: @subgoal, url: user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal.id), local: true, method: :post ) do |f| %>
+      <%= form_with(model: @subgoal, url: user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal.id), method: :post, local: true) do |f| %>
         
         <%= render 'shared/object_error_messages', object: @subgoal %>
           <div class="subgoal-registration">
@@ -57,7 +58,7 @@
         
         <div class="center">
         <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
-        <%= link_to "戻る", user_goals_path(user_id: @user.id, id: @goal.id), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goals_path(user_id: @user.id, id: @goal.id), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
         </div>
       <% end %>
     </div>

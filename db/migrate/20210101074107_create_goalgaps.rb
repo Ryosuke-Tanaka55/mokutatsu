@@ -1,7 +1,8 @@
 class CreateGoalgaps < ActiveRecord::Migration[6.0]
   def change
     create_table :goalgaps do |t|
-      t.text :gap, presence: true
+      t.string :gap, presence: true
+      t.text :detail, presence: true
       t.text :solution, presence: true
       t.integer :impact, null: false, default: 0
       t.integer :worktime, null: false, default: 0

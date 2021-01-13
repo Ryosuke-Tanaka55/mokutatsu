@@ -1,4 +1,5 @@
 <% provide(:title, current_user.name) %>
+<% provide(:button_cancel, '戻る') %>
 
 <div class="row">
   <h1>Do詳細</h1>
@@ -70,7 +71,7 @@
         <%= link_to "検証", "#", class: "btn btn-warning" %>
         <%= link_to "削除", user_goal_subgoal_doing_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id id: @doing.id), method: :delete,
             data: { confirm: "#{ @doing.doing }を削除してよろしいですか？" }, class: "btn btn-danger" %>
-        <%= link_to "戻る", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id ), class: "btn btn-default" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id ), class: "btn btn-default" %>
       </td>
     </tr>
   </div>

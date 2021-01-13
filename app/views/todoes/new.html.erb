@@ -1,6 +1,7 @@
 <% provide(:title, 'ToDo登録') %>
 <% provide(:class_text, 'create_todo') %>
 <% provide(:button_text, '新規登録') %>
+<% provide(:button_cancel, '戻る') %>
 
 <div class="registration-container">
   <div class="registration-header">
@@ -51,7 +52,7 @@
         
         <div class="center">
         <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
-        <%= link_to "戻る", user_goal_subgoal_doing_todoes_path(user_id: @user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, doing_id: @doing.id), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_doing_todoes_path(user_id: @user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, doing_id: @doing.id), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
         </div>
       <% end %>
     </div>

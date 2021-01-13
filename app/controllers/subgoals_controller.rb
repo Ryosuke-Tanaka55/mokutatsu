@@ -21,7 +21,7 @@ class SubgoalsController < ApplicationController
     @subgoal = @goal.subgoals.build(create_subgoal_params)
     if @subgoal.save
       flash[:success] = "新規作成に成功しました。"
-      redirect_to user_goals_url
+      redirect_to user_goal_subgoals_url
     else
       flash.now[:danger] = "新規作成に失敗しました。"     
       render :new
@@ -33,18 +33,18 @@ class SubgoalsController < ApplicationController
   
   def update
     if @subgoal.update_attributes(edit_subgoal_params)
-      flash[:success] = "編集に成功しました。"
-      redirect_to subgoals_url
+      flash[:success] = "「#{ @subgoal.subgoal }」の編集に成功しました。"
+      redirect_to user_goal_subgoals_url
     else
-      flash.now[:danger] = "編集に失敗しました。"
+      flash.now[:danger] = "「#{ @subgoal.subgoal }」の編集に失敗しました。"
       render :edit
     end
   end
 
   def destroy
     @subgoal.destroy
-    flash[:success] = "サブゴールを削除しました。"
-    redirect_to subgoals_url
+    flash[:success] = "「#{ @subgoal.subgoal }」を削除しました。"
+    redirect_to user_goal_subgoals_url
   end
 
   private

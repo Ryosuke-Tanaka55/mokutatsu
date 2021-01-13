@@ -34,17 +34,17 @@ class TodoesController < ApplicationController
   
   def update
     if @todo.update_attributes(edit_todo_params)
-      flash[:success] = "編集に成功しました。"
+      flash[:success] = "「#{ @todo.todo }」編集に成功しました。"
       redirect_to user_goal_subgoal_doing_todoes_url
     else
-      flash.now[:danger] = "編集に失敗しました。"
+      flash.now[:danger] = "「#{ @todo.todo }」の編集に失敗しました。"
       render :edit
     end
   end
 
   def destroy
     @todo.destroy
-    flash[:success] = "#{@todo.todo}を削除しました。"
+    flash[:success] = "#{ @todo.todo }を削除しました。"
     redirect_to user_goal_subgoal_doing_todoes_url
   end
 

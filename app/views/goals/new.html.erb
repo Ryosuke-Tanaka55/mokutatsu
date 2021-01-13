@@ -1,6 +1,8 @@
 <% provide(:title, '目標登録') %>
 <% provide(:class_text, 'create_goal') %>
 <% provide(:button_text, '新規作成') %>
+<% provide(:button_cancel, '戻る') %>
+
 <h1>目標（ゴール）設定</h1>
 <h2>達成したいゴールを登録します。</h2>
 
@@ -36,6 +38,7 @@
         <%= f.text_area :note, class: "form-control" %>
 
         <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goals_path(@user.id, @goal.id), class: "btn btn-default w-20" %>
 
       <% end %>
   </div>
