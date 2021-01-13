@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  # 配下
   has_many :goals, dependent: :destroy
   has_many :goalgaps, through: :goals, dependent: :destroy
   has_many :subgoals, through: :goals, dependent: :destroy
@@ -12,6 +13,7 @@ class User < ApplicationRecord
   # emailを小文字にしてから保存
   before_save { self.email = email.downcase }
 
+  # バリデーション
   validates :name, presence: true, length: { maximum: 50 }
   validates :nickname, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

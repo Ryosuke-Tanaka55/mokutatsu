@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_01_090008) do
+ActiveRecord::Schema.define(version: 2021_01_13_074540) do
+
+  create_table "doingchecks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "check"
+    t.text "adjust"
+    t.datetime "estimate_check_at"
+    t.datetime "check_at"
+    t.date "span"
+    t.integer "achivement"
+    t.string "note"
+    t.bigint "doing_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["doing_id"], name: "index_doingchecks_on_doing_id"
+  end
 
   create_table "doings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "doing"
@@ -41,6 +55,20 @@ ActiveRecord::Schema.define(version: 2021_01_01_090008) do
     t.index ["child_id"], name: "index_goal_connections_on_child_id"
     t.index ["parent_id", "child_id"], name: "index_goal_connections_on_parent_id_and_child_id", unique: true
     t.index ["parent_id"], name: "index_goal_connections_on_parent_id"
+  end
+
+  create_table "goalchecks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "check"
+    t.text "adjust"
+    t.datetime "estimate_check_at"
+    t.datetime "check_at"
+    t.date "span"
+    t.integer "achivement"
+    t.string "note"
+    t.bigint "goal_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["goal_id"], name: "index_goalchecks_on_goal_id"
   end
 
   create_table "goalgaps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -75,6 +103,20 @@ ActiveRecord::Schema.define(version: 2021_01_01_090008) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_goals_on_user_id"
+  end
+
+  create_table "subgoalchecks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "check"
+    t.text "adjust"
+    t.datetime "estimate_check_at"
+    t.datetime "check_at"
+    t.date "span"
+    t.integer "achivement"
+    t.string "note"
+    t.bigint "subgoal_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subgoal_id"], name: "index_subgoalchecks_on_subgoal_id"
   end
 
   create_table "subgoalgaps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -154,9 +196,12 @@ ActiveRecord::Schema.define(version: 2021_01_01_090008) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "doingchecks", "doings"
   add_foreign_key "doings", "subgoals"
+  add_foreign_key "goalchecks", "goals"
   add_foreign_key "goalgaps", "goals"
   add_foreign_key "goals", "users"
+  add_foreign_key "subgoalchecks", "subgoals"
   add_foreign_key "subgoalgaps", "subgoals"
   add_foreign_key "subgoals", "goals"
   add_foreign_key "todos", "doings"

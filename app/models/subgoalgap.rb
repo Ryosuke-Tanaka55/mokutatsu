@@ -1,6 +1,7 @@
 class Subgoalgap < ApplicationRecord
   belongs_to :subgoal
 
+  # バリデーション
   validates :gap, presence: true, length: { minimum: 2 }
   validates :solution, presence: true, length: { minimum: 2 }
   validates :impact, presence: true

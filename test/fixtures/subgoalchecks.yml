@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  check: MyText
+  adjust: MyText
+  estimate_check_at: 2021-01-13 16:44:17
+  check_at: 2021-01-13 16:44:17
+  span: 2021-01-13
+  achivement: 1
+  note: MyString
+  goal: one
+
+two:
+  check: MyText
+  adjust: MyText
+  estimate_check_at: 2021-01-13 16:44:17
+  check_at: 2021-01-13 16:44:17
+  span: 2021-01-13
+  achivement: 1
+  note: MyString
+  goal: two

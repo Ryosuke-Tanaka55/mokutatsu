@@ -8,13 +8,15 @@ class Goal < ApplicationRecord
   has_many :parent_childs, foreign_key: :parent_id
   has_many :parent_childs, foreign_key: :child_id
 
-  # 配下のGoalgap、Subgoal、Do、ToDo
+  # 配下のGoalgap、Goalcheck、Subgoal、Do、ToDo
   has_many :goalgaps, dependent: :destroy
+  has_many :goalchecks, dependent: :destroy
   has_many :subgoals, dependent: :destroy
   accepts_nested_attributes_for :subgoals, allow_destroy: true
   has_many :doings, through: :subgoals
   has_many :todoes, through: :doings
 
+  # バリデーション
   validates :goal, presence: true
   validates :category, presence: true
   validates :start_day, presence: true

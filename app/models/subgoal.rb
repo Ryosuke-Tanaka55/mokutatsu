@@ -1,12 +1,14 @@
 class Subgoal < ApplicationRecord
   belongs_to :goal
 
-  # 配下のDo、ToDo
+  # 配下のSubgoalgap、Subgoalcheck、Do、ToDo
+  has_many :subgoalgaps, dependent: :destroy
+  has_many :subgoalchecks, dependent: :destroy
   has_many :doings
   accepts_nested_attributes_for :doings, allow_destroy: true
   has_many :todoes, through: :doings
-  has_many :subgoalgaps, dependent: :destroy
   
+  # バリデーション
   validates :subgoal, presence: true
   validates :start_day, presence: true
   validates :finish_day, presence: true

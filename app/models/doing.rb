@@ -1,8 +1,12 @@
 class Doing < ApplicationRecord
   belongs_to :subgoal
+
+  # 配下のDoingcheck、ToDo
+  has_many :doingchecks, dependent: :destroy
   has_many :todoes, dependent: :destroy
   accepts_nested_attributes_for :todoes
 
+  # バリデーション
   validates :doing, presence: true
   validates :start_day, presence: true
   validates :finish_day, presence: true

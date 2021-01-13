@@ -1,6 +1,7 @@
 class Todo < ApplicationRecord
   belongs_to :doing
 
+  # バリデーション
   validates :todo, presence: true
   validates :start_day, presence: true
   validates :finish_day, presence: true
