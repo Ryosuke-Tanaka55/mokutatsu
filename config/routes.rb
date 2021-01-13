@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'doingcheck/index'
+  get 'doingcheck/new'
+  get 'doingcheck/edit'
+  get 'subgoalcheck/index'
+  get 'subgoalcheck/new'
+  get 'subgoalcheck/edit'
+  get 'goalcheck/index'
+  get 'goalcheck/new'
+  get 'goalcheck/edit'
   get 'subgoalgaps/new'
   get 'subgoalgaps/index'
   get 'goalgaps/new'
