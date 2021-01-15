@@ -22,8 +22,8 @@
             <td><%= l(subgoal.finish_day, format: :long) %></td>
             <td align="center">
               <%= link_to "詳細", user_goal_subgoal_path(user_id: current_user.id, goal_id: @goal.id, id: subgoal.id), class: "btn btn-primary" %>
-              <%= link_to "Do一覧", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: subgoal.goal_id, subgoal_id: subgoal.id), class: "btn btn-info" %>
-              <%= link_to "検証", "#", class: "btn btn-warning" %>
+              <%= link_to "Do一覧", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: subgoal.id), class: "btn btn-info" %>
+              <%= link_to "検証", user_goal_subgoal_subgoalchecks_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: subgoal.id), class: "btn btn-warning" %>
               <%= link_to "編集", edit_user_goal_subgoal_path(user_id: current_user.id, goal_id: @goal.id, id: subgoal.id), class: "btn btn-success" %>
               <%= link_to "削除", user_goal_subgoal_path(user_id: current_user.id, goal_id: @goal.id, id: subgoal.id), method: :delete,
                   data: { confirm: "「#{ subgoal.subgoal }」を削除してよろしいですか？" }, class: "btn btn-danger" %>

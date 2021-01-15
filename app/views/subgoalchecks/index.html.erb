@@ -1,2 +1,36 @@
-<h1>Subgoalcheck#index</h1>
-<p>Find me in app/views/subgoalcheck/index.html.erb</p>
+<% provide(:title, current_user.name) %>
+
+<h1><%= @subgoal.subgoal %><br>検証一覧</h1>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <%= link_to "サブゴール検証新規作成", new_user_goal_subgoal_subgoalcheck_path(current_user, @goal, @subgoal), class: "btn btn-lg btn-primary pull-right" %>
+    <table class="table table-hover" id="table-subgoalchecks">
+      <thead>
+        <tr>
+          <th><%= Subgoalcheck.human_attribute_name :estimate_check_at %></th>
+          <th><%= Subgoalcheck.human_attribute_name :check_at %></th>
+          <th><%= Subgoalcheck.human_attribute_name :span %></th>
+          <th><%= Subgoalcheck.human_attribute_name :achivement %></th>
+        </tr>
+      </thead>
+    
+      <% if @subgoalchecks.present? && @subgoal.progress == ("未着手" || "作業中") %>
+        <% @subgoalchecks.each do |subgoalcheck| %>
+          <tr>
+            <td><%= link_to "#{ l(subgoalcheck.estimate_check_at, format: :long) }", user_goal_subgoal_subgoalcheck_path(current_user, @goal, @subgoal, subgoalcheck.id) %></td>
+            <td><%= l(subgoalcheck.check_at, format: :long) if subgoalcheck.check_at.present? %></td>
+            <td><%= l(subgoalcheck.span, format: :long) %></td>
+            <td><%= subgoalcheck.achivement if subgoalcheck.achivement.present? %></td>
+            <td align="center">
+              <%= link_to "詳細", user_goal_subgoal_subgoalcheck_path(current_user, @goal, @subgoal, subgoalcheck.id), class: "btn btn-primary" %>
+              <%= link_to "編集", edit_user_goal_subgoal_subgoalcheck_path(current_user, @goal, @subgoal, subgoalcheck.id), class: "btn btn-success" %>
+              <%= link_to "削除", user_goal_subgoal_subgoalcheck_path(current_user, @goal, @subgoal, subgoalcheck.id), method: :delete,
+                  data: { confirm: "「#{ l(subgoalcheck.estimate_check_at, format: :long) }」の検証を削除してよろしいですか？" }, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>

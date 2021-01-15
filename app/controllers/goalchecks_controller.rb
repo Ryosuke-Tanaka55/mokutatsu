@@ -33,17 +33,17 @@ class GoalchecksController < ApplicationController
   
   def update
     if @goalcheck.update_attributes(goalcheck_params)
-      flash[:success] = "#{ @goalcheck.gap }を編集しました。"
+      flash[:success] = "「#{ l(@goalcheck.estimate_check_at, format: :long) }」を編集しました。"
       redirect_to user_goal_goalchecks_url
     else
-      flash.now[:danger] = "#{ @goalcheck.gap }を編集できませんでした。。"
+      flash.now[:danger] = "「#{ l(@goalcheck.estimate_check_at, format: :long) }」を編集できませんでした。。"
       render :edit
     end
   end
 
   def destroy
     @goalcheck.destroy
-    flash[:success] = "#{ @goalcheck.gap }を削除しました。"
+    flash[:success] = "「#{ l(@goalcheck.estimate_check_at, format: :long) }」を削除しました。"
     redirect_to user_goal_goalchecks_url
   end
 

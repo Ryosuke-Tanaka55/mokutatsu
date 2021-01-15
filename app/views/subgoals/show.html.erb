@@ -77,7 +77,7 @@
     <tr>
       <td>
         <%= link_to "編集", edit_user_goal_subgoal_path(user_id: current_user.id, goal_id: @goal.id, id: @subgoal.id), class: "btn btn-success" %>
-        <%= link_to "検証", "#", class: "btn btn-warning" %>
+        <%= link_to "検証", user_goal_subgoal_subgoalchecks_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-warning" %>
         <%= link_to "削除", user_goal_subgoal_path(user_id: current_user.id, goal_id: @goal.id, id: @subgoal.id), method: :delete,
             data: { confirm: "#{ @subgoal.subgoal }を削除してよろしいですか？" }, class: "btn btn-danger" %>
         <%= link_to "#{yield(:button_cancel)}", user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal.id), class: "btn btn-default" %>

@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <%= link_to "検証新規作成", new_user_goal_goalcheck_path(current_user, @goal), class: "btn btn-lg btn-primary pull-right" %>
+    <%= link_to "ゴール検証新規作成", new_user_goal_goalcheck_path(current_user, @goal), class: "btn btn-lg btn-primary pull-right" %>
     <table class="table table-hover" id="table-goalchecks">
       <thead>
         <tr>
@@ -15,7 +15,7 @@
         </tr>
       </thead>
     
-      <% if @goalchecks.present? %>
+      <% if @goalchecks.present? && @goal.progress == ("未着手" || "作業中") %>
         <% @goalchecks.each do |goalcheck| %>
           <tr>
             <td><%= link_to "#{ l(goalcheck.estimate_check_at, format: :long) }", user_goal_goalcheck_path(current_user, @goal, goalcheck.id) %></td>

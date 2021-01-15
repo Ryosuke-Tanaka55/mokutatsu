@@ -21,9 +21,9 @@
             <td><%= l(doing.start_day, format: :long) %></td>
             <td><%= l(doing.finish_day, format: :long) %></td>
             <td align="center">
-              <%= link_to "詳細", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, id: doing.id), class: "btn btn-primary" %>
+              <%= link_to "詳細", user_goal_subgoal_doing_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, id: doing.id), class: "btn btn-primary" %>
               <%= link_to "ToDo一覧", user_goal_subgoal_doing_todoes_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, doing_id: doing.id), class: "btn btn-info" %>
-              <%= link_to "検証", "#", class: "btn btn-warning" %>
+              <%= link_to "検証", user_goal_subgoal_doing_doingchecks_path(current_user, @goal, @subgoal, doing), class: "btn btn-warning" %>
               <%= link_to "編集", edit_user_goal_subgoal_doing_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, id: doing.id), class: "btn btn-success" %>
               <%= link_to "削除", user_goal_subgoal_doing_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, id: doing.id), method: :delete,
                   data: { confirm: "「#{ doing.doing }」を削除してよろしいですか？" }, class: "btn btn-danger" %>
