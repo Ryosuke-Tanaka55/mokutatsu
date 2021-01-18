@@ -1,21 +1,4 @@
 Rails.application.routes.draw do
-  get 'doingcheck/index'
-  get 'doingcheck/new'
-  get 'doingcheck/edit'
-  get 'subgoalcheck/index'
-  get 'subgoalcheck/new'
-  get 'subgoalcheck/edit'
-  get 'goalcheck/index'
-  get 'goalcheck/new'
-  get 'goalcheck/edit'
-  get 'subgoalgaps/new'
-  get 'subgoalgaps/index'
-  get 'goalgaps/new'
-  get 'goalgaps/index'
-  get 'todoes/index'
-  get 'todoes/new'
-  get 'doing/new'
-  get 'goals/new'
   root 'static_pages#top'
   get '/rule', to: 'static_pages#rule'
   get '/policy', to: 'static_pages#policy'
@@ -28,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-
+      get :following, :followers
     end
     resources :goals do
       resources :goalgaps
@@ -43,4 +26,5 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :relationships, only: [:create, :destroy]
 end
