@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'posts/index'
+  get 'posts/show'
   root 'static_pages#top'
   get '/rule', to: 'static_pages#rule'
   get '/policy', to: 'static_pages#policy'
@@ -24,6 +26,9 @@ Rails.application.routes.draw do
           resources :todoes
         end
       end
+    end
+    resources :posts do
+      resource :likes, only: [:create, :destroy]
     end
   end
   resources :relationships, only: [:create, :destroy]
