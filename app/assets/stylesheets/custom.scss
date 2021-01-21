@@ -52,6 +52,34 @@ p {
 
 /* header */
 
+#top-bar {
+  background: #014099;
+}
+
+#menu-bar {
+  font-weight: bold;
+  a {
+    color: #fff;
+  }
+  a:hover {
+    text-decoration: none;
+    background: #3665a8;
+  }
+  a.dropdown-toggle {
+    background-color: transparent
+  }
+}
+
+#dropdown-menu-bar {
+  a { 
+    color: #000;
+  }
+  a:hover { 
+    color: #000;
+    background: #C0C0C0
+  }
+}
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -67,6 +95,7 @@ p {
   color: #fff;
   text-decoration: none;
 }
+
 
 /* debug */
 

@@ -1,7 +1,11 @@
-<h1>投稿詳細ページ</h1>
-<%= attachment_image_tag @post.user, :profile_image, fallback: "no_image.jpg", class:"profile-img-circle", size: "100x100" %>
-<%= @post.user.name %>
+<% provide(:title, @user.name ) %>
 
-<div id="show_like_<%= @post.id %>">
-  <%= render 'likes/like', post: @post %>
+<h1>投稿詳細ページ</h1>
+<div class="row">
+  <%= attachment_image_tag @post.user, :profile_image, fallback: "no_image.jpg", class:"profile-img-circle", size: "100x100" %>
+  <%= @post.user.name %>
+
+  <div id="show_like_<%= @post.id %>">
+    <%= render 'likes/like', post: @post %>
+  </div>
 </div>

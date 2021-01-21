@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'posts/index'
-  get 'posts/show'
   root 'static_pages#top'
   get '/rule', to: 'static_pages#rule'
   get '/policy', to: 'static_pages#policy'
@@ -12,9 +10,11 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources :users do
+    # フォロー
     member do
       get :following, :followers
     end
+    # ゴール関係
     resources :goals do
       resources :goalgaps
       resources :goalchecks
@@ -27,9 +27,10 @@ Rails.application.routes.draw do
         end
       end
     end
+    # 掲示板、いいね
     resources :posts do
       resource :likes, only: [:create, :destroy]
     end
+    resources :relationships, only: [:create, :destroy]
   end
-  resources :relationships, only: [:create, :destroy]
 end

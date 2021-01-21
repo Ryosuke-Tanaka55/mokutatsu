@@ -1,18 +1,19 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top", id="top-bar">
   <div class="container">
     <%= link_to "MOKU・TATSU", root_path, id: "logo" %>
     <nav>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right", id="menu-bar">
         <li><%= link_to "トップ", root_path %></li>
         <% if logged_in? %>
           <li><%= link_to  "マイページ", current_user %></li>
+          <li><%= link_to  "掲示板", user_posts_path(current_user) %>
           <li><%= link_to "ユーザー一覧", users_path %></li>
           <li><%= link_to  "目標一覧", user_goals_path(current_user) %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               アカウント <b class="caret"></b>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu", id="dropdown-menu-bar">
               <li><%= link_to "マイページ", current_user %></li>
               <li><%= link_to "ユーザー編集", edit_user_path(current_user) %></li>
               <li class="divider"></li>
