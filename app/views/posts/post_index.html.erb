@@ -1,0 +1,58 @@
+<div class="post_index">
+  <div class="post_title">
+    <h2>投稿一覧</h2>
+  <ul class="post_nav" >
+    <li class="post_nav--all.selected-tab", id="post-tab-all",  data-post="0" >
+      <h3>全て</h3>
+    </li>
+    <li class="post_nav--own.selected-tab", id="post-tab-own", data-post="1" >
+      <h3>自身の投稿</h3>
+    </li>
+    <li class="post_nav--followl", id="post-tab-follow", data-post="2" >
+      <h3>フォローの投稿</h3>
+    </li>
+    <li class="post_nav--follower", id="post-tab-follower", data-post="3" >
+      <h3>フォロワーの投稿</h3>
+    </li>
+  </ul>
+  <div calss="post_contents", id="post-all">
+    <% if @posts&.present? && @posts.size > 0 %>
+      <ul id="post-list">
+        <% @posts.each do | post | %>
+          <li class="post_contents_content" >
+            <%= link_to "#" do %>
+              <% if post.user.image.attached? %>
+                <%= image_tag post.user_id.image, class:"post_contents_content_image", height: '48px', width: '48px' %>
+              <% else %>
+                <%= image_tag '#', class:'post_contents_content_image', height: '48px', width: '48px' %>
+              <% end %>
+              <div class="post_contents_content_text">
+                <%= post_check(post) %> <!-- 独自ヘルパーメソッド -->
+                <%= stance_check(post) %> <!-- 独自ヘルパーメソッド -->
+                <p>
+                  <%= post.user.nickname %>
+                </p>
+                <p>
+                  <%= post.comment %>
+                <div class="post_contents_content_text_time">
+                  <%= icon 'far fa-lg','clock' %>
+                </div>
+                </p>
+                <p>
+                  <%= post.created_at.strftime("%m月%d日 %H:%M") %>
+                </p>
+              </div>
+              <div class="post_contents_content_link-icon" >
+                <%= icon 'fas fa-lg','angle-right' %>
+              </div>
+          </li>
+    <% else %>
+      <div class="post_contents_none", id="post-none">
+        <h3>
+          投稿はまだありません
+        </h3>
+      </div>
+      </ul>
+    <% end %>
+  </div>
+</div>

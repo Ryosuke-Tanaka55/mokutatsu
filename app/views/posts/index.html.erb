@@ -2,13 +2,17 @@
   
   <h1>全体の掲示板</h1>
   
-  <div class="col-md-10 col-md-offset-1">
-    <div class="container m-auto">
-      <div class="col-xs-12 col-md-12 col-lg-12">
-        <%= link_to  "自身の投稿", user_post_path(current_user), class: "btn btn-primary" %>
-      </div>
-      <div id="post_index_new">
-        <%= render 'post_new', posts: @posts %>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="container m-auto">
+        <div class="col-xs-12 col-md-12 col-lg-12">
+          <%= link_to  "自身の投稿", posts_show_own_post_user_path(current_user), class: "btn btn-primary" %>
+          <%= link_to  "フォローの投稿", "#", class: "btn btn-primary" %>
+          <%= link_to  "フォロワーの投稿", "#", class: "btn btn-primary" %>
+        </div>
+        <div id="post_index_new">
+          <%= render 'post_new', posts: @posts %>
+        </div>
       </div>
     </div>
   </div>

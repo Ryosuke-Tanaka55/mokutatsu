@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     # フォロー
     member do
       get :following, :followers
+      get 'posts/show_own_post'
+      get 'posts/show_follow_post'
     end
     # ゴール関係
     resources :goals do
