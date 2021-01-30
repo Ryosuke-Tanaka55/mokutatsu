@@ -1,18 +1,23 @@
   <% provide(:title, '掲示板') %>
   
   <h1>全体の掲示板</h1>
+  <%= link_to  "自身の投稿", posts_show_own_post_user_path(current_user), class: "btn btn-primary" %>
+  <%= link_to  "フォローの投稿", "#", class: "btn btn-primary" %>
+  <%= link_to  "フォロワーの投稿", "#", class: "btn btn-primary" %>
   
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-      <div class="container m-auto">
-        <div class="col-xs-12 col-md-12 col-lg-12">
-          <%= link_to  "自身の投稿", posts_show_own_post_user_path(current_user), class: "btn btn-primary" %>
-          <%= link_to  "フォローの投稿", "#", class: "btn btn-primary" %>
-          <%= link_to  "フォロワーの投稿", "#", class: "btn btn-primary" %>
-        </div>
-        <div id="post_index_new">
-          <%= render 'post_new', posts: @posts %>
-        </div>
-      </div>
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <% if @posts.any? %>
+        <h3>全体の投稿 (<%= Post.count %>)</h3>
+        <ol class="posts">
+          <%= render @posts %>
+        </ol>
+        <%= will_paginate @posts %>
+      <% end %>
     </div>
   </div>

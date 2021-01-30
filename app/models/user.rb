@@ -73,6 +73,7 @@ class User < ApplicationRecord
   # フォロー関係
 
   def feed
+    Post.where("user_id = ?", id)
   end
 
   # ユーザーをフォローする

@@ -22,7 +22,7 @@
           <li class="post_contents_content" >
             <%= link_to "#" do %>
               <% if post.user.image.attached? %>
-                <%= image_tag post.user_id.image, class:"post_contents_content_image", height: '48px', width: '48px' %>
+                <%= image_tag post.user.image, class:"post_contents_content_image", height: '48px', width: '48px' %>
               <% else %>
                 <%= image_tag '#', class:'post_contents_content_image', height: '48px', width: '48px' %>
               <% end %>

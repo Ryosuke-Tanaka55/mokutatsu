@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
       <%= form_with(model: @goalcheck, url: user_goal_goalcheck_path(current_user, @goal), local: true) do |f| %>
-        <%= render 'shared/object_error_messages', object: @goalcheck %>
+        <%= render 'shared/object_error_messages', object: f.object %>
 
         <%= f.label :check, class: "label-#{yield(:class_text)}" %>
         <%= f.text_area :check, class: "form-control" %>

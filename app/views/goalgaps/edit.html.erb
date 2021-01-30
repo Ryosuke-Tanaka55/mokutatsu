@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
       <%= form_with(model: @goalgap, url: user_goal_goalgap_path(user_id: current_user.id, goal_id: @goal.id), method: :patch, local: true) do |f| %>
-        <%= render 'shared/object_error_messages', object: @goalgap %>
+        <%= render 'shared/object_error_messages', object: f.object %>
 
         <%= f.label :gap, class: "label-#{yield(:class_text)}" %>
         <%= f.text_field :gap, class: "form-control" %>
