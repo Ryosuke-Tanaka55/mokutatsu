@@ -6,6 +6,7 @@ ruby '2.6.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'  
 gem 'active_storage_validations'
+gem 'aws-sdk-s3',              '1.46.0', require: false
 gem 'rails-i18n'
 gem 'bcrypt'
 gem 'enum_help'
@@ -14,6 +15,7 @@ gem 'jquery-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem 'image_processing'
 gem "refile-mini_magick"
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'

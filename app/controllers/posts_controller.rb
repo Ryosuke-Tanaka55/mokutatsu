@@ -25,9 +25,9 @@ class PostsController < ApplicationController
   end
 
   def create
+    @posts = current_user.posts.paginate(page: params[:page])
     @post = current_user.posts.build(post_params)
-    @posts =current_user.posts.paginate(page: params[:page])
-    @post.images.attach(params[:images])
+    @post.images.attach(params[:post][:images])
     if @post.save
       flash[:success] = "新規作成に成功しました。"
       render :show_own_post
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
   private
     # ストロングパラメーター
     def post_params
-      params.require(:post).permit(:content, :images [], :user_id)
+      params.require(:post).permit(:content, images: [])
     end
 
     # paramsハッシュからpostを取得

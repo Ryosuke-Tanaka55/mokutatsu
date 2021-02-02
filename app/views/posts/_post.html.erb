@@ -3,7 +3,11 @@
   <span class="user"><%= link_to post.user.name, post.user %></span>
   <span class="content">
     <%= post.content %>
-    <%= image_tag post.display_images if post.images.attached? %>
+    <% if @post.images.attached? %>
+      <% @post.images.each do | image | %>
+        <%= image_tag image, class: 'images' %>
+      <% end %>
+    <% end %>   
   </span>
   <span class="timestamp">
     <%= time_ago_in_words(post.created_at) %>前に投稿
