@@ -1,7 +1,7 @@
   <% provide(:title, '掲示板') %>
   
   <h1>全体の投稿</h1>
-  <%= link_to  "自身の投稿", posts_show_own_post_user_path(current_user), class: "btn btn-primary" %>
+  <%= link_to  "自分の投稿", posts_show_own_post_user_path(current_user), class: "btn btn-primary" %>
   <%= link_to  "フォローの投稿", "#", class: "btn btn-primary" %>
   <%= link_to  "フォロワーの投稿", "#", class: "btn btn-primary" %>
   

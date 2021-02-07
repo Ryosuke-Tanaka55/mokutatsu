@@ -1,5 +1,5 @@
 <% provide(:title, current_user.name) %>
-<h1><%= current_user.name %></h1>
+<h1><%= @user.name %>さんの投稿ページ</h1>
 
 <%= link_to  "全体の掲示板", user_posts_path(current_user), class: "btn btn-primary" %>
 <%= link_to  "フォローの投稿", "#", class: "btn btn-primary" %>
