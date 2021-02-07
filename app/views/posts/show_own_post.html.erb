@@ -1,5 +1,5 @@
 <% provide(:title, current_user.name) %>
-<h1>自身の投稿</h1>
+<h1><%= current_user.name %></h1>
 
 <%= link_to  "全体の掲示板", user_posts_path(current_user), class: "btn btn-primary" %>
 <%= link_to  "フォローの投稿", "#", class: "btn btn-primary" %>
@@ -10,9 +10,11 @@
     <section class="user_info">
       <%= render 'shared/user_info' %>
     </section>
-    <section class="post_form">
-      <%= render 'post_form' %>
-    </section>
+    <% if current_user == @user %>
+      <section class="post_form">
+        <%= render 'post_form' %>
+      </section>
+    <% end %>
   </aside>
   <div class="col-md-8">
     <% if current_user.posts.any? %>

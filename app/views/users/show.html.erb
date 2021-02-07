@@ -11,7 +11,7 @@
 <div class="row">
   <div class="pull-left">
     <%= link_to  "スケジュール登録", "#", class: "btn btn-success" %>
-    <%= link_to  "目標登録", "#", class: "btn btn-primary" %>
+    <%= link_to  "ゴール登録", "#", class: "btn btn-primary" %>
   </div>
 </div>
 
@@ -36,7 +36,7 @@
   <div class="modal-dialog modal-nm">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">目標登録</h4>
+        <h4 class="modal-title">ゴール登録</h4>
       </div>
       <div class="modal-body">
         <%= form_with model: @goal, url: new_user_goal_path(user_id: current_user.id) do |f| %>

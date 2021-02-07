@@ -2,7 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザー
-      goal: 目標（ゴール）
+      goal: ゴール
       goalgap: ギャップ
       subgoal: サブゴール
       subgoalgap: ギャップ
@@ -22,14 +22,14 @@ ja:
         updated_at: 更新日
       goal:
         worked_on: 日付
-        goal: 目標（ゴール）
+        goal: ゴール
         category: カテゴリー
         start_day: 開始日
         finish_day: 終了日
         goal_index: 具体的な達成基準
-        achivement: 目標達成率(%)
-        check: 目標検証
-        adjust: 目標調整
+        achivement: ゴール達成率(%)
+        check: ゴール検証
+        adjust: ゴール調整
         progress: 進捗状況
         hold: 保留
         publish: 公開範囲

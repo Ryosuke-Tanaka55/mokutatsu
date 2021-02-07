@@ -73,7 +73,10 @@ class User < ApplicationRecord
   # フォロー関係
 
   def feed
-    Post.where("user_id = ?", id)
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE follower_id = :user_id"
+    Post.where("user_id IN (#{following_ids})
+                OR user_id = :user_id", user_id: id)
   end
 
   # ユーザーをフォローする
@@ -91,7 +94,7 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  #既にいいねしているかどうか
+  # 既にいいねしているかどうか
   def already_liked?(post)
     self.likes.exists?(post_id: post.id)
   end

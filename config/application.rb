@@ -13,6 +13,8 @@ module PDCAApp
     config.time_zone = 'Asia/Tokyo'
     config.i18n.default_locale = :ja # デフォルトの言語を日本語に設定
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    # 認証トークンをremoteフォームに埋め込む
+    config.action_view.embed_authenticity_token_in_remote_forms = true
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

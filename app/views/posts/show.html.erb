@@ -1,11 +1,26 @@
-<% provide(:title, @user.name ) %>
+<% provide(:title, current_user.name) %>
+<h1><%= current_user.name %></h1>
 
-<h1>投稿詳細ページ</h1>
+<%= link_to  "全体の掲示板", user_posts_path(current_user), class: "btn btn-primary" %>
+<%= link_to  "フォローの投稿", "#", class: "btn btn-primary" %>
+<%= link_to  "フォロワーの投稿", "#", class: "btn btn-primary" %>
+
 <div class="row">
-  <%= attachment_image_tag @post.user, :profile_image, fallback: "no_image.jpg", class:"profile-img-circle", size: "100x100" %>
-  <%= @post.user.name %>
-
-  <div id="show_like_<%= @post.id %>">
-    <%= render 'likes/like', post: @post %>
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= render 'shared/user_info' %>
+    </section>
+    <section class="post_form">
+      <%= render 'post_form' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if current_user.posts.any? %>
+      <h3>投稿 (<%= current_user.posts.count %>)</h3>
+      <ol class="posts">
+        <%= render @posts %>
+      </ol>
+    <% end %>
+    <%= will_paginate @posts %>
   </div>
 </div>

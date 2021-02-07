@@ -1,6 +1,6 @@
 <li id="post-<%= post.id %>">
-  <%= link_to gravatar_for(post.user, size: 50), post.user %>
-  <span class="user"><%= link_to post.user.name, post.user %></span>
+  <%= link_to gravatar_for(post.user, size: 50), posts_show_own_post_user_path(post.user) %>
+  <span class="user"><%= link_to post.user.name, posts_show_own_post_user_path(post.user) %></span>
   <span class="content">
     <%= post.content %>
     <% if @post.images.attached? %>

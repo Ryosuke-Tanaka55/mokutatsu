@@ -1,6 +1,6 @@
   <% provide(:title, '掲示板') %>
   
-  <h1>全体の掲示板</h1>
+  <h1>全体の投稿</h1>
   <%= link_to  "自身の投稿", posts_show_own_post_user_path(current_user), class: "btn btn-primary" %>
   <%= link_to  "フォローの投稿", "#", class: "btn btn-primary" %>
   <%= link_to  "フォロワーの投稿", "#", class: "btn btn-primary" %>
@@ -10,8 +10,12 @@
       <section class="user_info">
         <%= render 'shared/user_info' %>
       </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
     </aside>
     <div class="col-md-8">
+      <%= render 'shared/follow_form' %>
       <% if @posts.any? %>
         <h3>全体の投稿 (<%= Post.count %>)</h3>
         <ol class="posts">

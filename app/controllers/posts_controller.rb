@@ -1,23 +1,24 @@
 class PostsController < ApplicationController
   before_action :loggend_in_user
+  before_action :set_user, only: [:show, :show_own_post]
+  before_action :set_user_id, only: [:index]
   before_action :set_post, only: [:edit, :update, :destroy]
   
   def index
+
     @posts = Post.order(created_at: :desc).paginate(page: params[:page])
     @feed_items = current_user.feed.paginate(page: params[:page])
     @post = current_user.posts.build
   end
 
   def show
-    @user = User.find(params[:id])
     @posts = @user.posts.paginate(page: params[:page])
   end
 
   # ユーザー自身の投稿
   def show_own_post
-    @user = User.find(params[:id])
     @post = current_user.posts.build
-    @posts =current_user.posts.paginate(page: params[:page])
+    @posts = @user.posts.paginate(page: params[:page])
   end
 
   def new

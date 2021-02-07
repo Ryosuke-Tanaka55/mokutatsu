@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :loggend_in_user, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :following, :followers]
+  before_action :loggend_in_user, only: [:index, :show, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
@@ -44,6 +44,20 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:success] = "#{ @user.name }のデータを削除しました。"
     redirect_to users_url
+  end
+
+  # フォロー
+  def following
+    @title = "フォロー"
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  # フォロワー
+  def followers
+    @title = "フォロワー"
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private
