@@ -15,7 +15,6 @@
       </section>
     </aside>
     <div class="col-md-8">
-      <%= render 'shared/follow_form' %>
       <% if @posts.any? %>
         <h3>全体の投稿 (<%= Post.count %>)</h3>
         <ol class="posts">

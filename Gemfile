@@ -10,6 +10,8 @@ gem 'aws-sdk-s3',              '1.46.0', require: false
 gem 'rails-i18n'
 gem 'bcrypt'
 gem 'enum_help'
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'faker'
 gem 'jquery-rails'
 gem 'fullcalendar-rails'

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :loggend_in_user
   before_action :set_user, only: [:show, :show_own_post]
-  before_action :set_user_id, only: [:index]
+  before_action :set_user_id, only: [:index, :create]
   before_action :set_post, only: [:edit, :update, :destroy]
   
   def index

@@ -36,6 +36,9 @@ class User < ApplicationRecord
    # 利用規約同意確認
    validates :agreement, presence: {message: "が必要です。" }
 
+   # プロフィール画像をアップロード
+   mount_uploader :image, ImageUploader
+
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
     cost = 
