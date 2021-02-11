@@ -1,5 +1,5 @@
 <li id="post-<%= post.id %>">
-  <%= link_to image_tag("#{ @user.image }", width: '120'), posts_show_own_post_user_path(@user) %>
+  <%= link_to image_tag("#{ @user.image }", width: '120', :alt => 'ユーザーアイコン'), posts_show_own_post_user_path(@user) %>
   <span class="user"><%= link_to post.user.name, posts_show_own_post_user_path(post.user) %></span>
   <span class="content">
     <%= post.content %>
