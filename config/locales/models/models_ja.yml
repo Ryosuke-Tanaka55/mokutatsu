@@ -8,6 +8,7 @@ ja:
       subgoalgap: ギャップ
       doing: Do
       todo: ToDo
+      post: 投稿
     attributes:
       user:
         id: ID
@@ -146,6 +147,11 @@ ja:
         note: 備考
         created_at: 作成日
         updated_at: 更新日
+      post:
+        content: 投稿
+        image: 画像
+        created_at: 作成日
+        updated_at: 更新日        
 
 
 
