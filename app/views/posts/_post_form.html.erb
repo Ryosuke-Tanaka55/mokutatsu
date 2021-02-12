@@ -1,7 +1,10 @@
 <%= form_with(model: @post, url: user_posts_path(current_user), local: true) do |f| %>
   <%= render 'shared/object_error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :content, placeholder: "新しい投稿を記載してください。" %>
+    <%= f.label :title, class: "label-#{yield(:class_text)}" %>
+    <%= f.text_field :title, placeholder: "タイトルを記載してください。", class: "form-control" %>
+    <%= f.label :content, class: "label-#{yield(:class_text)}" %>
+    <%= f.text_area :content, placeholder: "投稿を記載してください。", class: "form-control", size: "40x5" %>
   </div>
   <%= f.submit "投稿", class: "btn btn-primary" %>
   <span class="image">

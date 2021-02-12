@@ -2,7 +2,10 @@
   <%= link_to image_tag("#{ @user.image }", width: '120', :alt => 'ユーザーアイコン'), posts_show_own_post_user_path(@user) %>
   <span class="user"><%= link_to post.user.name, posts_show_own_post_user_path(post.user) %></span>
   <span class="content">
-    <%= post.content %>
+    <div class="post_title">
+      タイトル：<%= post.title %><br>
+    </div>
+    内容：<%= post.content %>
     <% if @post.images.attached? %>
       <% @post.images.each do | image | %>
         <%= image_tag image, class: 'images' %>

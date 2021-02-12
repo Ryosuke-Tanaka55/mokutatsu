@@ -1,9 +1,11 @@
 <% provide(:title, current_user.name) %>
+<% provide(:class_text, 'post_form') %>
+
 <h1><%= @user.name %>さんの投稿ページ</h1>
 
 <%= link_to  "全体の掲示板", user_posts_path(current_user), class: "btn btn-primary" %>
-<%= link_to  "フォローの投稿", "#", class: "btn btn-primary" %>
-<%= link_to  "フォロワーの投稿", "#", class: "btn btn-primary" %>
+<%= link_to  "フォロー", following_user_path(current_user), class: "btn btn-primary" %>
+<%= link_to  "フォロワー", followers_user_path(current_user), class: "btn btn-primary" %>
 
 <div class="row">
   <aside class="col-md-4">
@@ -19,8 +21,8 @@
     <% end %>
   </aside>
   <div class="col-md-8">
-    <% if current_user.posts.any? %>
-      <h3>投稿 (<%= current_user.posts.count %>)</h3>
+    <h3>投稿 (<%= @user.posts.count %>)</h3>
+    <% if @user.posts.any? %>
       <ol class="posts">
         <%= render @posts %>
       </ol>
