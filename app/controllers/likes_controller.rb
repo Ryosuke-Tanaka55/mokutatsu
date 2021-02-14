@@ -1,6 +1,7 @@
 class LikesController < ApplicationController
+  before_action :set_user_id
   before_action :post_params
-
+  
   def create
     like = current_user.likes.new(post_id: @post.id)
     like.save

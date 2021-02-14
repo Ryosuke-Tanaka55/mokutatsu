@@ -4,7 +4,7 @@ class TodoesController < ApplicationController
   before_action :set_subgoal_id
   before_action :set_doing_id
   before_action :set_todo, only:[:show, :edit, :update, :destroy]
-  before_action :loggend_in_user
+  before_action :logged_in_user
   before_action :correct_user
 
   def index

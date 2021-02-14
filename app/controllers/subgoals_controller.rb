@@ -2,7 +2,7 @@ class SubgoalsController < ApplicationController
   before_action :set_user_id
   before_action :set_goal_id
   before_action :set_subgoal, only:[:show, :edit, :update, :destroy]
-  before_action :loggend_in_user
+  before_action :logged_in_user
   before_action :correct_user
   
 

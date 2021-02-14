@@ -19,4 +19,7 @@
                                        data: { confirm: "削除してもよろしいですか。" } %>
     <% end %>
   </span>
+  <div id="index_like_<%= post.id %>">
+    <%= render 'likes/like', post: post %>
+  </div>
 </li>

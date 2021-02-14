@@ -1,5 +1,5 @@
 class GoalchecksController < ApplicationController
-  before_action :loggend_in_user
+  before_action :logged_in_user
   before_action :set_user_id
   before_action :set_goal_id
   before_action :set_goalcheck, only:[:show, :edit, :update, :destroy]

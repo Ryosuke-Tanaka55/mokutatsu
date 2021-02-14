@@ -1,4 +1,0 @@
-//投稿一覧いいね差し替え
-$("#index_like_<%= @post.id %>").html("<%= j(render partial: 'likes/like', locals: { post: @post}) %>");
-//投稿詳細いいね差し替え
-$("#show/like_<%= @post.id %>").html("<%= j(render partial: 'likes/like', locals: { post: @post}) %>");
