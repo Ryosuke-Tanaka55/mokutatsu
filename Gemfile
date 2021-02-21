@@ -19,7 +19,8 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem 'image_processing'
-gem "refile-mini_magick"
+gem 'mini_magick'
+gem 'active_storage_validations'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'bootstrap-sass'

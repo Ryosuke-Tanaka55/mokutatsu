@@ -5,14 +5,16 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
   
   def index
-
-    @posts = Post.order(created_at: :desc).paginate(page: params[:page])
     @feed_items = current_user.feed.paginate(page: params[:page])
-    @post = current_user.posts.build
+    @comment = Comment.new
+    @posts = Post.order(created_at: :desc).paginate(page: params[:page])
   end
 
   def show
-    @posts = @user.posts.paginate(page: params[:page])
+    @post = Post.find(params[:id])
+    @comment = Comment.new
+    #新着順で表示
+    @comments = @post.comments.order(created_at: :desc)
   end
 
   # ユーザー自身の投稿
@@ -61,6 +63,11 @@ class PostsController < ApplicationController
     # ストロングパラメーター
     def post_params
       params.require(:post).permit(:title, :content, images: [])
+    end
+
+    # ストロングパラメーター
+    def comment_params
+      params.require(:comment).permit(:comment, :post_id, :user_id)
     end
 
     # paramsハッシュからpostを取得

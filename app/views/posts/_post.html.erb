@@ -3,14 +3,15 @@
   <span class="user"><%= link_to post.user.name, posts_show_own_post_user_path(post.user) %></span>
   <span class="content">
     <div class="post_title">
-      タイトル：<%= post.title %><br>
+      タイトル：<%= link_to "#{ post.title }", user_post_path(@user, post) %><br>
     </div>
-    内容：<%= post.content %>
-    <% if @post.images.attached? %>
-      <% @post.images.each do | image | %>
-        <%= image_tag image, class: 'images' %>
+    <div class="post_content">
+      内容：<%= post.content %>
+      <% if post.images.attached? %>
+        <% post.images.each do |image| %>
+        <% end %>
       <% end %>
-    <% end %>   
+    </div>
   </span>
   <span class="timestamp">
     <%= time_ago_in_words(post.created_at) %>前に投稿

@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  before_action :logged_in_user
   before_action :set_user_id
   before_action :post_params
   

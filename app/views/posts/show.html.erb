@@ -1,26 +1,35 @@
-<% provide(:title, current_user.name) %>
-<h1><%= current_user.name %></h1>
+<% provide(:title, @user.name) %>
+<h1>投稿詳細ページ</h1>
 
-<%= link_to  "全体の掲示板", user_posts_path(current_user), class: "btn btn-primary" %>
-<%= link_to  "フォローの投稿", "#", class: "btn btn-primary" %>
-<%= link_to  "フォロワーの投稿", "#", class: "btn btn-primary" %>
+<%= link_to  "全体の投稿", user_posts_path(current_user), class: "btn btn-primary" %>
+<%= link_to  "フォロー", following_user_path(@user), class: "btn btn-primary" %>
+<%= link_to  "フォロワー", followers_user_path(@user), class: "btn btn-primary" %>
 
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
       <%= render 'shared/user_info' %>
     </section>
-    <section class="post_form">
-      <%= render 'post_form' %>
+    <section class="stats">
+      <%= render 'shared/stats' %>
     </section>
   </aside>
   <div class="col-md-8">
-    <% if current_user.posts.any? %>
-      <h3>投稿 (<%= current_user.posts.count %>)</h3>
-      <ol class="posts">
-        <%= render @posts %>
-      </ol>
-    <% end %>
-    <%= will_paginate @posts %>
+    <span class="content">
+      <div class="post_title">
+        タイトル：<%= @post.title %><br>
+      </div>
+      <div class="post_content">
+        内容：<%= @post.content %>
+        <% if @post.images.attached? %>
+          <% @post.images.each do |image| %>
+            <%= image_tag image, class: 'images' %>
+          <% end %>
+        <% end %>
+      </div>
+    </span>
+    <div id="comment_area">
+      <%= render 'comments/show', post: @post %>
+    </div>
   </div>
 </div>

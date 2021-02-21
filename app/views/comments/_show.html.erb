@@ -1,0 +1,17 @@
+<div class="row">
+  <ul>
+    <li class="comment-create">
+      <h4 class="text-left title">レビュー</h4>
+    </li>
+      <li id="comments_area">
+        <%= render partial: 'comments/index', locals: { comments: @comments } if @comments.present? %>
+    </li>
+  </ul>
+  <hr>
+  <% if logged_in? %>
+    <div class="comment-create">
+      <h4 class="text-left">レビューを投稿する</h4>
+      <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+    </div>
+  <% end %>
+</div>

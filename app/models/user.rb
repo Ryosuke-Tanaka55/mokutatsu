@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include CommonModule
+
   # 配下ゴールの関連付け
   has_many :goals, dependent: :destroy
   has_many :goalgaps, through: :goals, dependent: :destroy
@@ -16,6 +18,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   # 「remember_token」という仮想の属性を作成
   attr_accessor :remember_token
@@ -101,4 +104,5 @@ class User < ApplicationRecord
   def already_liked?(post)
     self.likes.exists?(post_id: post.id)
   end
+
 end

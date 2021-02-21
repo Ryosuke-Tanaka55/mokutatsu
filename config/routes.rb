@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     # 掲示板、いいね
     resources :posts do
       resource :likes, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
   end
   resources :relationships, only: [:create, :destroy]

@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
-  # sessions_helperを全てのコントローラーで使えるようにする
+  # sessions_helper、PostsHelperを全てのコントローラーで使えるようにする
   protect_from_forgery with: :exception
   include SessionsHelper
+  include PostsHelper
 
   # beforeフィルター
   
