@@ -23,9 +23,9 @@
   <div class="col-md-8">
     <h3>投稿 (<%= @user.posts.count %>)</h3>
     <% if @user.posts.any? %>
-      <ol class="posts">
+      <ul class="posts">
         <%= render @posts %>
-      </ol>
+      </ul>
     <% end %>
     <%= will_paginate @posts %>
   </div>

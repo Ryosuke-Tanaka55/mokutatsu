@@ -30,9 +30,8 @@ class PostsController < ApplicationController
   def create
     @posts = current_user.posts.paginate(page: params[:page])
     @post = current_user.posts.build(post_params)
-    @post.images.attach(params[:post][:images])
-    @post.title = "なし" if params[:title].blank?
-    @post.content = "なし" if params[:content].blank?
+    @post.title = "なし" if @post.title.blank?
+    @post.content = "なし" if @post.content.blank?
     if @post.save
       flash[:success] = "新規作成に成功しました。"
       redirect_to posts_show_own_post_user_url(current_user)
@@ -62,7 +61,7 @@ class PostsController < ApplicationController
   private
     # ストロングパラメーター
     def post_params
-      params.require(:post).permit(:title, :content, images: [])
+      params.require(:post).permit(:title, :content, {images: []} )
     end
 
     # ストロングパラメーター

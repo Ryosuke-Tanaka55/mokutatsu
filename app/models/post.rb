@@ -1,7 +1,6 @@
 class Post < ApplicationRecord
   include CommonModule
   belongs_to :user
-  accepts_nested_attributes_for :images
 
   # いいね、コメント、画像
   has_many :likes, dependent: :destroy

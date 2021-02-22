@@ -9,6 +9,7 @@
       内容：<%= post.content %>
       <% if post.images.attached? %>
         <% post.images.each do |image| %>
+          <%= image_tag image, class: 'images' %>
         <% end %>
       <% end %>
     </div>
