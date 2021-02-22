@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  include CommonModule
 
   # 配下ゴールの関連付け
   has_many :goals, dependent: :destroy

@@ -1,4 +1,4 @@
-<% if logged_in? %>
+<% if post.user != current_user %>
   <% if current_user.already_liked?(post) %>
     <%= link_to user_post_likes_path(@user, post), method: :delete, remote: true do %>
       <i class="fa fa-thumbs-up" aria-hidden="true" style="color: #FF9900;">
