@@ -6,7 +6,7 @@
     <li class="comment-container">
       <div class="comment-box">
         <div class="comment-avatar">
-          <%= image_tag "#{ comment.user.image.display_image }", fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>
+          <%= image_tag "#{ comment.user.image}", fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>
         </div>
         <div class="comment-text">
           <p><%= link_to "@#{ comment.user.name }", posts_show_own_post_user_path(comment.user.id) %></p>
@@ -33,15 +33,15 @@
           <li class="comment-container">
             <div class="comment-box">
               <div class="comment-avatar">
-                  <%= image_tag "#{ comment.user.image.display_image }", fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>
+                  <%= image_tag "#{ comment.user.image }", fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>
               </div>
               <div class="comment-text">
-                <p><%= link_to "@#{ comment.user.name }", users_user_path(comment.user.id) %></p>
+                <p><%= link_to "@#{ comment.user.name }", users_path(comment.user.id) %></p>
                 <div class="comment-entry">
                   <%= comment.comment %>
                   <% if comment.user == current_user %>
-                    <%= link_to post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
-                      <i class="fas fa-trash" style="color: black;"></i>
+                    <%= link_to user_post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
+                      <i class="fas fa-trash-alt" style="color: black;"></i>
                     <% end %>
                   <% end %>
                 </div>
