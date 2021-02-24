@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :image, ImageUploader
 
   # 配下ゴールの関連付け
   has_many :goals, dependent: :destroy
