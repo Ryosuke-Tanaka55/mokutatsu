@@ -21,6 +21,7 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem 'image_processing'
 gem 'mini_magick'
 gem 'active_storage_validations'
+gem 'google-api-client'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'bootstrap-sass'

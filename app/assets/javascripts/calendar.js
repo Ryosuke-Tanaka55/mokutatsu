@@ -1,71 +1,54 @@
 $(function () {
-  // 画面遷移を検知
-  $(document).on('turbolinks:load', function () {
-    // lengthを呼び出すことで、#calendarが存在していた場合はtrueの処理がされ、無い場合はnillを返す
-    if ($('#calendar').length) {
-    	function eventCalendar() {
-        return $('#calendar').fullCalendar({
-        });
+  $('#calendar').fullCalendar({
+    header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+    defaultDate: new Date(),
+    navLinks: true, // can click day/week names to navigate views
+    selectable: true,
+    selectHelper: true,
+    select: function(start, end) {
+        // Display the modal.
+        // You could fill in the start and end fields based on the parameters
+        $('.modal').modal('show');
+
+    },
+    eventClick: function(event, element) {
+        // Display the modal and set the values to the event values.
+        $('.modal').modal('show');
+        $('.modal').find('#title').val(event.title);
+        $('.modal').find('#starts-at').val(event.start);
+        $('.modal').find('#ends-at').val(event.end);
+
+    },
+    editable: true,
+    eventLimit: true // allow "more" link when too many events
+
+});
+
+// Bind the dates to datetimepicker.
+// You should pass the options you need
+$("#starts-at, #ends-at").datetimepicker();
+
+// Whenever the user clicks on the "save" button om the dialog
+$('#save-event').on('click', function() {
+    var title = $('#title').val();
+    if (title) {
+        var eventData = {
+            title: title,
+            start: $('#starts-at').val(),
+            end: $('#ends-at').val()
         };
-      function clearCalendar() {
-        $('#calendar').html('');
-      };
-
-      $(document).on('turbolinks:load', function () {
-        eventCalendar();
-        });
-      $(document).on('turbolinks:before-cache', clearCalendar);
-
-      $('#calendar').fullCalendar({
-        events: '/events.json',
-        selectable: true,
-        selectHelper: true,
-        select: function(data) {
-          var str = moment(data).format('YYYY/MM/DD');
-          console.log(str);
-        },
-        //カレンダー上部を年月で表示させる
-				titleFormat: 'YYYY年 M月',
-        //曜日を日本語表示
-        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
-        //ボタンのレイアウト
-        header: {
-        	left: '',
-        	center: 'title',
-        	right: 'today prev,next'
-        },
-        //終了時刻がないイベントの表示間隔
-        defaultTimedEventDuration: '03:00:00',
-        buttonText: {
-        	prev: '前',
-          next: '次',
-          prevYear: '前年',
-          nextYear: '翌年',
-          today: '今日',
-          month: '月',
-          week: '週',
-          day: '日'
-        },
-        //イベントの時間表示を24時間に
-        timeFormat: "HH:mm",
-        //イベントの色を変える
-        eventColor: '#63ceef',
-        //イベントの文字色を変える
-				eventTextColor: '#000000',
-				// 日付クリック
-				dayClick : function (date, jsEvent, view) {
-					$('#inputScheduleForm').modal('show');
-				},
-				// event クリックで編集、削除
-				eventClick : function(event, jsEvent , view) {
-					jsEvent.preventDefault();
-					$(`#inputScheduleEditForm${event.id}`).modal('show');
-				},
-
-				eventMouseover : function(event, jsEvent , view) {
-					jsEvent.preventDefault();
-				}
-      });
+        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
     }
+    $('#calendar').fullCalendar('unselect');
+
+    // Clear modal inputs
+    $('.modal').find('input').val('');
+
+    // hide modal
+    $('.modal').modal('hide');
   });
 });
