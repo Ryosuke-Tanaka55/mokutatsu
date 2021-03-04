@@ -18,6 +18,10 @@ $(function () {
     },
 
     defaultTimedEventDuration: '03:00:00',
+    navLinks: true,
+    businessHours: true,
+    editable: true,
+    locale: 'ja',
     buttonText: {
       prev: '前',
       next: '次',
@@ -31,11 +35,17 @@ $(function () {
     timeFormat: 'HH:mm',
     eventColor: '#63ceef',
     eventTextColor: '#000000',
-    
+
     defaultDate: new Date(),
     navLinks: true, // can click day/week names to navigate views
     selectable: true,
     selectHelper: true,
+    slotDuration: '00:15:00',
+    slotLabelInterval: '01:00',
+    nowIndicator: true,
+    defaultView: 'agendaDay',
+    resourceLabelText: 'リソース',
+    
     select: function(start, end) {
         // Display the modal.
         // You could fill in the start and end fields based on the parameters
