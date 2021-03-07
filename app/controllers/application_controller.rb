@@ -25,6 +25,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # ログインユーザーを制限する
+  def limitation_login_user
+    if @current_user
+      flash[:notice] = "すでにログイン状態です。"
+      redirect_to root_url
+    end
+  end
+
   # アクセスしたユーザーが現在ログインしているユーザーか確認
   def correct_user
     unless current_user?(@user)

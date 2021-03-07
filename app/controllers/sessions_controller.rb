@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  
+  before_action :limitaion_login_user
+
   def new
   end
 

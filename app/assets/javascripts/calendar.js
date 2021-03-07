@@ -8,8 +8,11 @@ $(function () {
         }
 
   $('#calendar').fullCalendar({
+    events: '/events.json',
+
     titleFormat: 'YYYY年 M月',
     dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+    
 
     header: {
         left: 'prev,next today',
@@ -31,6 +34,7 @@ $(function () {
       month: '月',
       week: '週',
       day: '日',
+      allDay:'終日',
     },
     timeFormat: 'HH:mm',
     eventColor: '#63ceef',
@@ -43,7 +47,8 @@ $(function () {
     slotDuration: '00:15:00',
     slotLabelInterval: '01:00',
     nowIndicator: true,
-    defaultView: 'agendaDay',
+    defaultView: 'month',
+    weekends:true,
     resourceLabelText: 'リソース',
     
     select: function(start, end) {

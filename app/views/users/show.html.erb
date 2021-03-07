@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 
-<h1>今日のTODO</h1>
+<h1>今日の予定</h1>
 
 <div class="row">
   <div class="page-header">
@@ -11,19 +11,26 @@
 <div class="row">
   <div class="pull-left">
     <%= link_to  "スケジュール登録", "#", class: "btn btn-success" %>
-    <%= link_to  "ゴール登録", "#", class: "btn btn-primary" %>
+    <%= link_to  "ゴール登録", user_goals_path(current_user), class: "btn btn-primary" %>
   </div>
 </div>
 
 <div>
-  <table class="table table-borderd user-table">
+  <table class="table table-borderd schedule-table">
     <thead>
       <tr>
-        <th>TODO</th>
-        <th>予定時間</th>
-        <th>進捗状況</th>
+        <th colspan="4">ToDo</th>
+        <th colspan="4">予定時間</th>
+        <th colspan="4">進捗状況</th>
       </tr>
     </thead>
+    <tbody>
+      <tr>
+        <td colspan="4">aaaaaa</td>
+        <td colspan="4"></td>
+        <td colspan="4"></td>
+      </tr>
+    </tbody>
   </table>
 </div>
 <br>
@@ -32,31 +39,38 @@
   <div id="calendar"></div>
 </div>
 
-<div id="inputGoalForm" class="modal fade" tabindex="-1">
-  <div class="modal-dialog modal-nm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">ゴール登録</h4>
-      </div>
-      <div class="modal-body">
-        <%= form_with model: @goal, url: new_user_goal_path(user_id: current_user.id) do |f| %>
-          <div  class="col">
-            <p>
-              <span>タイトル</span>
-              <span><%= f.collection_select :goal, @goals, :id, :goal, {prompt: "選択してください。"}, {class: "new-wrapper__main__input-select"} %></span>
-            </p>
-            <span>開始日時</span>
-            <span><%= f.datetime_field  :start, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>
-            <span>終了日時</span>
-            <span><%= f.datetime_field :end, placeholder: "XXXX-XX-XX", class:"field" %></span><br>
-          </div>
-          <div class="modal-footer">
-            <%= f.submit "登録する", class: "btn btn-primary" %>
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-          </div>
-        <% end %>
+<% if @todoes.present? %>
+  <div id="inputGoalForm" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-nm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">スケジュール登録</h4>
+        </div>
+        <div class="modal-body">
+          <%= form_with model: @goal, url: new_user_goal_path(user_id: current_user.id) do |f| %>
+            <div  class="col">
+              <p>
+                <span>ゴール</span>
+                <span><%= f.collection_select :goal, @goals, :id, :goal, {prompt: "選択してください。"}, {class: "new-wrapper__main__input-select"} %></span>
+              </p>
+              <%= f.fields_for :todoes do |todo| %>
+                <p>
+                  <span>TODO</span>
+                    <span><%= todo.collection_select :todo, @todoes, :id, :todo, {prompt: "選択してください。"}, {class: "new-wrapper__main__input-select"} %></span>
+                </p>
+                <span>予定開始日時</span>
+                <span><%= todo.datetime_field  :estimated_start_time, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>
+                <span>予定終了日時</span>
+                <span><%= todo.datetime_field :estimated_finish_time, placeholder: "XXXX-XX-XX", class:"field" %></span><br>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <%= f.submit "登録する", class: "btn btn-primary" %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+            </div>
+          <% end %>
         </div>
       </div>
-  </div>
-</div>
+    </div>
+<% end %>

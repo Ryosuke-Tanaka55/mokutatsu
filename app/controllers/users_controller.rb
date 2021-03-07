@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :limitaion_login_user, only:[:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :following, :followers]
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user, only: [:edit, :update]
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
   def show
     @goals = Goal.where(user_id: @user.id)
     @goal = Goal.new
+    @todoes = Todo.where(doing_id: @user.todoes.ids)
   end
 
   def new

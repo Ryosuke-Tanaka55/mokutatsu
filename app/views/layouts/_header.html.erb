@@ -3,7 +3,11 @@
     <%= link_to "MOKU・TATSU", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right", id="menu-bar">
-        <li><%= link_to "トップ", root_path %></li>
+        <li>
+          <%= link_to root_path, method: :get do %>
+             <i class="fas fa-home"></i>
+          <% end %>
+        </li>
         <% if logged_in? %>
           <li><%= link_to  "マイページ", current_user %></li>
           <li><%= link_to  "投稿", user_posts_path(current_user) %>
@@ -11,7 +15,7 @@
           <li><%= link_to  "ゴール一覧", user_goals_path(current_user) %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              アカウント <b class="caret"></b>
+              <i class="fas fa-user"></i><b class="caret"></b>
             </a>
             <ul class="dropdown-menu", id="dropdown-menu-bar">
               <li><%= link_to "マイページ", current_user %></li>
