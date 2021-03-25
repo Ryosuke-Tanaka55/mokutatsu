@@ -18,7 +18,7 @@ $(function () {
 
       //events: '/events.json', 以下に追加
       $('#calendar').fullCalendar({
-        events: '/shops/events.json',
+        events: '/users/events.json',
         titleFormat: 'YYYY年 M月',
         dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
         
@@ -75,6 +75,9 @@ $(function () {
             $('#event_start_time_1i').val(year);
             $('#event_start_time_2i').val(month);
             $('#event_start_time_3i').val(day);
+            $('#event_end_time_1i').val(year);
+            $('#event_end_time_2i').val(month);
+            $('#event_end_time_3i').val(day);
             //イベント登録フォームのモーダル表示
             $('#modal').modal();
             // 成功処理
