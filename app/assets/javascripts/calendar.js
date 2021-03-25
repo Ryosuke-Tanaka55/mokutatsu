@@ -18,95 +18,35 @@ $(function () {
 
       //events: '/events.json', 以下に追加
       $('#calendar').fullCalendar({
-        events: '/events.json',
-        //カレンダー上部を年月で表示させる
-        titleFormat: 'YYYY年 M月',
-        //曜日を日本語表示
-        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
-        //ボタンのレイアウト
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'month,agendaWeek,agendaDay'
-          },
-          //終了時刻がないイベントの表示間隔
-          defaultTimedEventDuration: '03:00:00',
-          buttonText: {
-            prev: '前',
-            next: '次',
-            prevYear: '前年',
-            nextYear: '翌年',
-            today: '今日',
-            month: '月',
-            week: '週',
-            day: '日',
-            allDay:'終日'
-          },
-          //イベントの時間表示を24時間に
-          timeFormat: 'HH:mm',
-          eventColor: '#63ceef',
-          eventTextColor: '#000000',
-
-          defaultDate: new Date(),
-          defaultDate: new Date(),
-          navLinks: true, // can click day/week names to navigate views
-          selectable: true,
-          selectHelper: true,
-          slotDuration: '00:15:00',
-          slotLabelInterval: '01:00',
-          nowIndicator: true,
-          defaultView: 'month',
-          weekends:true,
-          resourceLabelText: 'リソース',
-
-        select: function(start, end) {
-          // Display the modal.
-          // You could fill in the start and end fields based on the parameters
-          $('.modal').modal('show');
-    
-        },
-        eventClick: function(event, element) {
-          // Display the modal and set the values to the event values.
-          $('.modal').modal('show');
-          $('.modal').find('#title').val(event.title);
-          $('.modal').find('#starts-at').val(event.start);
-          $('.modal').find('#ends-at').val(event.end);  
-        },        
-        // Drag & Drop & Resize
-        editable: true,
-        //イベントの色を変える
-        eventColor: '#87cefa',
-        //イベントの文字色を変える
-        eventTextColor: '#000000',
-        eventLimit: true, // allow "more" link when too many events
-        eventRender: function(event, element) {
-          element.css("font-size", "0.8em");
-          element.css("padding", "5px");
+        events: '/shops/events.json',
+        timeFormat: 'H:mm',
+        eventColor: '#63ceef',
+        lang: 'ja',
+        dayClick: function (start, end, jsEvent, view) {
+          //クリックした日付情報を取得
+          const year = moment(start).year();
+          const month = moment(start).month()+1; //1月が0のため+1する
+          const day = moment(start).date();
+          //イベント登録のためnewアクションを発火
+          $.ajax({
+            type: 'GET',
+            url: '/shops/events/new',
+          }).done(function (res) {
+            //イベント登録用のhtmlを作成
+            $('.modal-body').html(res);
+            //イベント登録フォームの日付をクリックした日付とする
+            $('#event_start_time_1i').val(year);
+            $('#event_start_time_2i').val(month);
+            $('#event_start_time_3i').val(day);
+            //イベント登録フォームのモーダル表示
+            $('#modal').modal();
+            // 成功処理
+          }).fail(function (result) {
+            // 失敗処理
+            alert('エラーが発生しました。運営に問い合わせてください。')
+          });
         },
       });
     }
-});
-// Bind the dates to datetimepicker.
-// You should pass the options you need
-$("#starts-at, #ends-at").datetimepicker();
-
-// Whenever the user clicks on the "save" button om the dialog
-$('#save-event').on('click', function() {
-  var title = $('#title').val();
-  if (title) {
-      var eventData = {
-          title: title,
-          start: $('#starts-at').val(),
-          end: $('#ends-at').val()
-      };
-      $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-    }
-    $('#calendar').fullCalendar('unselect');
-
-    // Clear modal inputs
-    $('.modal').find('input').val('');
-
-    // hide modal
-    $('.modal').modal('hide');
-  });
+  });  
 });

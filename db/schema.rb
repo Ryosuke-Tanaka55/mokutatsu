@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_14_093110) do
+ActiveRecord::Schema.define(version: 2021_03_25_124615) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -77,6 +77,19 @@ ActiveRecord::Schema.define(version: 2021_02_14_093110) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["subgoal_id"], name: "index_doings_on_subgoal_id"
+  end
+
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.datetime "start"
+    t.datetime "end"
+    t.string "memo"
+    t.bigint "user_id", null: false
+    t.bigint "todo_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["todo_id"], name: "index_events_on_todo_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "goal_connections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -259,6 +272,8 @@ ActiveRecord::Schema.define(version: 2021_02_14_093110) do
   add_foreign_key "comments", "users"
   add_foreign_key "doingchecks", "doings"
   add_foreign_key "doings", "subgoals"
+  add_foreign_key "events", "todos"
+  add_foreign_key "events", "users"
   add_foreign_key "goalchecks", "goals"
   add_foreign_key "goalgaps", "goals"
   add_foreign_key "goals", "users"

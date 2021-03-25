@@ -19,6 +19,9 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  # スケジュール
+  has_many :events, dependent: :destroy
   
   # 「remember_token」という仮想の属性を作成
   attr_accessor :remember_token

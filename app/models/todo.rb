@@ -1,6 +1,9 @@
 class Todo < ApplicationRecord
   belongs_to :doing
 
+  # スケジュール
+  has_many :events, dependent: :destroy
+
   # バリデーション
   validates :todo, presence: true
   validates :start_day, presence: true
