@@ -19,9 +19,46 @@ $(function () {
       //events: '/events.json', 以下に追加
       $('#calendar').fullCalendar({
         events: '/shops/events.json',
-        timeFormat: 'H:mm',
+        titleFormat: 'YYYY年 M月',
+        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+        
+    
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+    
+        defaultTimedEventDuration: '03:00:00',
+        navLinks: true,
+        businessHours: true,
+        editable: true,
+        locale: 'ja',
+        buttonText: {
+          prev: '前',
+          next: '次',
+          prevYear: '前年',
+          nextYear: '翌年',
+          today: '今日',
+          month: '月',
+          week: '週',
+          day: '日',
+          allDay:'終日',
+        },
+        timeFormat: 'HH:mm',
         eventColor: '#63ceef',
-        lang: 'ja',
+        eventTextColor: '#000000',
+    
+        defaultDate: new Date(),
+        navLinks: true, // can click day/week names to navigate views
+        selectable: true,
+        selectHelper: true,
+        slotDuration: '00:15:00',
+        slotLabelInterval: '01:00',
+        nowIndicator: true,
+        defaultView: 'month',
+        weekends:true,
+        resourceLabelText: 'リソース',
         dayClick: function (start, end, jsEvent, view) {
           //クリックした日付情報を取得
           const year = moment(start).year();
