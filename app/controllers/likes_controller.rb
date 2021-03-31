@@ -4,8 +4,10 @@ class LikesController < ApplicationController
   before_action :post_params
   
   def create
-    like = current_user.likes.new(post_id: @post.id)
-    like.save
+    @like = current_user.likes.new(post_id: @post.id)
+    @like.save
+    # 通知機能
+    @post.create_notification_like!(current_user)
   end
 
   def destroy

@@ -18,7 +18,7 @@ $(function () {
 
       //events: '/events.json', 以下に追加
       $('#calendar').fullCalendar({
-        events: '/users/events.json',
+        events: '/events.json',
         titleFormat: 'YYYY年 M月',
         dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
         
@@ -67,7 +67,7 @@ $(function () {
           //イベント登録のためnewアクションを発火
           $.ajax({
             type: 'GET',
-            url: '/shops/events/new',
+            url: '/users/:user_id/events/new',
           }).done(function (res) {
             //イベント登録用のhtmlを作成
             $('.modal-body').html(res);
@@ -89,4 +89,26 @@ $(function () {
       });
     }
   });  
+});
+
+document.addEventListener('turbolinks:load', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new Calendar(calendarEl, {
+      plugins: [ monthGridPlugin, interactionPlugin, googleCalendarApi ],
+      //~省略~//
+
+      events: '/events.json', // <=これを追加
+      // 書き方のルールとしては['/コントローラー名.json']としてください
+
+  });
+
+  calendar.render();
+
+  //この下からも追加
+  //成功、失敗modalを閉じたときに予定を再更新してくれます
+  //これがないと追加しても自動更新されません
+  $(".error").click(function(){
+      calendar.refetchEvents();
+  });
 });

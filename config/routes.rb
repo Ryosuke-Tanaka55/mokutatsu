@@ -16,6 +16,10 @@ Rails.application.routes.draw do
       get 'posts/show_own_post'
       get 'posts/show_follow_post'
     end
+    # 通知機能
+    resources :notifications, only: :index
+    # スケジュール登録
+    resources :events
     # ゴール関係
     resources :goals do
       resources :goalgaps

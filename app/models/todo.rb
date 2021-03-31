@@ -1,7 +1,7 @@
 class Todo < ApplicationRecord
   belongs_to :doing
 
-  # スケジュール
+  # 配下のイベント
   has_many :events, dependent: :destroy
 
   # バリデーション

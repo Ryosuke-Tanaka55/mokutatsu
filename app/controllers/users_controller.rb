@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     @goals = Goal.where(user_id: @user.id)
     @goal = Goal.new
     @todoes = Todo.where(doing_id: @user.todoes.ids)
+    @notifications = current_user.passive_notifications.paginate(page: params[:page], per_page: 20)
+    @notifications.where(checked: false).each do |notification|
+      notification.update_attributes(checked: true)
+    end
   end
 
   def new
