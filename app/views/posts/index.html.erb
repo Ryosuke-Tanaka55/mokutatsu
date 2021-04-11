@@ -14,7 +14,7 @@
         <%= render 'shared/stats' %>
       </section>
     </aside>
-    <div class="col-md-8">
+    <div class="col-md-6">
       <% if @posts.any? %>
         <h3>全体の投稿 (<%= Post.count %>)</h3>
         <ol class="posts">
@@ -22,5 +22,8 @@
         </ol>
         <%= will_paginate @posts %>
       <% end %>
+    </div>
+    <div class="col-md-2">
+      <%= render partial: 'notifications/index'%>
     </div>
   </div>

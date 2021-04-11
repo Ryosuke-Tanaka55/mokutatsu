@@ -8,6 +8,10 @@ class PostsController < ApplicationController
     @feed_items = current_user.feed.paginate(page: params[:page])
     @comment = Comment.new
     @posts = Post.order(created_at: :desc).paginate(page: params[:page])
+    @notifications = current_user.passive_notifications.paginate(page: params[:page], per_page: 20)
+    @notifications.where(checked: false).each do |notification|
+      notification.update_attributes(checked: true)
+    end
   end
 
   def show
@@ -21,6 +25,10 @@ class PostsController < ApplicationController
   def show_own_post
     @post = current_user.posts.build
     @posts = @user.posts.paginate(page: params[:page])
+    @notifications = current_user.passive_notifications.paginate(page: params[:page], per_page: 20)
+    @notifications.where(checked: false).each do |notification|
+      notification.update_attributes(checked: true)
+    end
   end
 
   def new
@@ -31,7 +39,10 @@ class PostsController < ApplicationController
     @posts = current_user.posts.paginate(page: params[:page])
     @post = current_user.posts.build(post_params)
     @post.title = "なし" if @post.title.blank?
-    @post.content = "なし" if @post.content.blank?
+    if @post.content.blank?
+      flash[:danger] = "投稿内容は必須です。"
+      redirect_to posts_show_own_post_user_url(current_user) and return
+    end
     if @post.save
       flash[:success] = "新規作成に成功しました。"
       redirect_to posts_show_own_post_user_url(current_user)

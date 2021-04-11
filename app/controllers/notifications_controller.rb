@@ -1,8 +1,14 @@
 class NotificationsController < ApplicationController
-  def index
-    @notifications = current_user.passive_notifications.page(params[:page]).per(20)
-    @notifications.where(checked: false).each do |notification|
-      notification.update_attributes(checked: true)
-    end
+  before_action :set_user_id
+
+  def destroy
+    # 通知を全削除
+      @notifications = current_user.passive_notifications.destroy_all
+      if @notifications.present?
+        flash[:success] = "通知を削除しました。"
+      else
+        flash[:danger] = "通知はありません。"     
+      end
+      redirect_to request.referer
   end
 end

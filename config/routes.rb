@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       get 'posts/show_follow_post'
     end
     # 通知機能
-    resources :notifications, only: :index
+    resources :notifications, only: :destroy
     # スケジュール登録
     resources :events
     # ゴール関係
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     end
     # 掲示板、いいね
     resources :posts do
-      resource :likes, only: [:create, :destroy]
+      resources :likes, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
   end

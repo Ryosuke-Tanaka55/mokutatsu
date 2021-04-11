@@ -27,7 +27,7 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
 
   # 通知機能
-  has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
   
   # 「remember_token」という仮想の属性を作成
