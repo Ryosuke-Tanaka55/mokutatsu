@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     @feed_items = current_user.feed.paginate(page: params[:page])
     @comment = Comment.new
     @posts = Post.order(created_at: :desc).paginate(page: params[:page])
-    @notifications = current_user.passive_notifications.paginate(page: params[:page], per_page: 20)
+    @notifications = current_user.passive_notifications.paginate(page: params[:page], per_page: 5)
     @notifications.where(checked: false).each do |notification|
       notification.update_attributes(checked: true)
     end
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   def show_own_post
     @post = current_user.posts.build
     @posts = @user.posts.paginate(page: params[:page])
-    @notifications = current_user.passive_notifications.paginate(page: params[:page], per_page: 20)
+    @notifications = current_user.passive_notifications.paginate(page: params[:page], per_page: 5)
     @notifications.where(checked: false).each do |notification|
       notification.update_attributes(checked: true)
     end

@@ -149,7 +149,7 @@ ja:
         updated_at: 更新日
       post:
         title: タイトル
-        content: 投稿
+        content: 投稿内容
         image: 画像
         created_at: 作成日
         updated_at: 更新日        

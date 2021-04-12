@@ -1,12 +1,12 @@
 <% if post.user != current_user %>
   <% if current_user.already_liked?(post) %>
-    <%= link_to user_post_likes_path(@user, post), method: :delete, remote: true do %>
+    <%= link_to user_post_like_path(@user.id, post.id, post.like_ids), method: :delete, remote: true do %>
       <i class="fa fa-thumbs-up" aria-hidden="true" style="color: #FF9900;">
         <%= post.likes.count %>
       </i>
     <% end %>
   <% else %>
-    <%= link_to user_post_likes_path(@user, post), method: :post, remote: true do %>
+    <%= link_to user_post_likes_path(@user.id, post.id), method: :post, remote: true do %>
       <i class="fa fa-thumbs-up" aria-hidden="true" style="color: #C0C0C0;">
         <%= post.likes.count %>
       </i>
