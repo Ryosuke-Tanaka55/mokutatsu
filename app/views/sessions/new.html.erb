@@ -16,8 +16,13 @@
         <span>ログイン情報を記憶する</span>
       <% end %>
 
+      <%= recaptcha_tags %>
+
       <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-login" %>
     <% end %>
+        
+    <%= link_to image_tag("/assets/google_sign_in.png", :alt => 'Googleログイン'), "/auth/google_oauth2", id: "sign_in" %>
+    <p>Googleアカウントでログイン</p>
     <P>
       ユーザー登録がまだの場合は<%= link_to "こちら", signup_path %>
     </p>
