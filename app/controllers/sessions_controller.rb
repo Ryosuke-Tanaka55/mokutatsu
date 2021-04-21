@@ -5,16 +5,29 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      # ログイン後にユーザー情報ページにリダイレクトする
-      log_in user # 引数で渡されたユーザーオブジェクトでログイン（sessionshelper参照）
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_back_or user # sessions_helper参照
+    auth = request.env['omniauth.auth']
+    if auth.present?
+      user = User.from_omniauth(request.env['omniauth.auth'])
+      if user.save
+        session[:user_id] = user.id
+        flash[:success] = "ユーザー認証が完了しました。"
+        redirect_back_or user
+      else
+        flash[:danger] = "ユーザー認証に失敗しました。"
+        redirect_to login_url
+      end
     else
-      flash.now[:danger] = "認証に失敗しました。"
-      render :new
-    end 
+      user = User.find_by(email: params[:session][:email].downcase)
+      if user && user.authenticate(params[:session][:password])
+        # ログイン後にユーザー情報ページにリダイレクトする
+        log_in user # 引数で渡されたユーザーオブジェクトでログイン（sessionshelper参照）
+        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        redirect_back_or user # sessions_helper参照
+      else
+        flash.now[:danger] = "認証に失敗しました。"
+        render :new
+      end
+    end
   end
 
   def destroy

@@ -34,7 +34,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   
   # emailを小文字にしてから保存
-  before_save { self.email = email.downcase }
+  before_save :email_downcase, unless: :uid?
 
   # バリデーション
   validates :name, presence: true, length: { maximum: 50 }
@@ -44,7 +44,7 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
   has_secure_password validations: false
-  validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
+  validates :password, length: { minimum: 8 }, allow_nil: true
 
    # 利用規約同意確認
    validates :agreement, presence: {message: "が必要です。" }
@@ -140,5 +140,11 @@ class User < ApplicationRecord
   def already_liked?(post)
     self.likes.exists?(post_id: post.id)
   end
+
+  private
+    # emailを小文字にしてから保存
+    def email_downcase
+      self.email.downcase!
+    end
 
 end
