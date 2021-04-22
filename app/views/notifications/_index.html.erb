@@ -1,0 +1,15 @@
+ <div class="col-sm-10 offset-1">
+  <h3>通知</h3>
+  <%= link_to user_notification_path(@user.id, @notifications), method: :delete, data: { confirm: "削除してもよろしいですか。" } do %>
+    全削除<i class="fas fa-trash" style="color: black;"></i>
+  <% end %>
+   <hr>
+  <!-- 自分の投稿に対するいいね、コメントは通知に表示しない -->
+  <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+  <% if notifications.present? %>
+    <%= render @notifications %>
+    <%= will_paginate @notifications %>
+  <% else %>
+    <p>通知はありません。</P>
+  <% end %>
+</div>

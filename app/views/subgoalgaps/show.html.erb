@@ -1,0 +1,58 @@
+<% provide(:title, current_user.name) %>
+<% provide(:button_cancel, '戻る') %>
+
+<div class="row">
+  <h1>サブゴールギャップ詳細</h1>
+  <div class="col-md-10 col-md-offset3">
+    <table class="table table-bordered table-condensed" id="subgoalgap-table-detail">
+      <tr>
+        <th class="col-md-3"><%= Subgoalgap.human_attribute_name :gap %></th>
+          <td class="col-md-9"><%= @subgoalgap.gap %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoalgap.human_attribute_name :detail %></th>
+          <td class="col-md-9"><%= @subgoalgap.detail %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoalgap.human_attribute_name :solution %></th>
+          <td class="col-md-9"><%= @subgoalgap.solution %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoalgap.human_attribute_name :term %></th>
+          <td class="col-md-9"><%= @subgoalgap.term %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoalgap.human_attribute_name :impact %></th>
+          <td class="col-md-9"><%= @subgoalgap.impact %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoalgap.human_attribute_name :worktime %></th>
+          <td class="col-md-9"><%= @subgoalgap.worktime %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoalgap.human_attribute_name :easy %></th>
+          <td class="col-md-9"><%= @subgoalgap.easy %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoalgap.human_attribute_name :priority %></th>
+          <td class="col-md-9"><%= @subgoalgap.priority %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoalgap.human_attribute_name :created_at %></th>
+          <td class="col-md-9"><%= l(@subgoalgap.created_at, format: :long) %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Subgoalgap.human_attribute_name :updated_at %></th>
+          <td class="col-md-9"><%= l(@subgoalgap.updated_at, format: :long) %></td>
+      </tr>
+    </table>
+    <tr>
+      <td>
+        <%= link_to "編集", edit_user_goal_subgoal_subgoalgap_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, id: @subgoalgap.id), class: "btn btn-success" %>
+        <%= link_to "削除", user_goal_subgoal_subgoalgap_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, id: @subgoalgap.id), method: :delete,
+            data: { confirm: "#{ @subgoalgap.gap }を削除してよろしいですか？" }, class: "btn btn-danger" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_subgoalgaps_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-default" %>
+      </td>
+    </tr>
+  </div>
+</div>

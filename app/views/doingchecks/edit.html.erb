@@ -1,0 +1,37 @@
+<% provide(:title, '検証編集') %>
+<% provide(:class_text, 'edit_doingcheck') %>
+<% provide(:button_text, '編集') %>
+<% provide(:button_cancel, '戻る') %>
+
+<h1>Do検証編集</h1>
+<h2>達成したいDoの検証を編集します。</h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <%= form_with(model: @doingcheck, url: user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing), local: true) do |f| %>
+        <%= render 'shared/object_error_messages', object: f.object %>
+
+        <%= f.label :check, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_area :check, class: "form-control" %>
+
+        <%= f.label :adjust, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_area :adjust, class: "form-control" %>
+
+        <%= f.label :estimate_check_at, class: "label-#{yield(:class_text)}" %>
+        <%= f.datetime_select :estimate_check_at, class: "form-control datetime-form" %><br>
+
+        <%= f.label :span, class: "label-#{yield(:class_text)}" %>
+        <%= f.date_select :span, class: "form-control date-form" %><br>
+
+        <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
+        <%= f.number_field :achivement, class: "form-control" %>
+
+        <%= f.label :note, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_area :note, class: "form-control" %>
+
+        <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_doing_doingchecks_path(current_user, @goal, @subgoal, @doing), class: "btn btn-default w-20" %>
+
+      <% end %>
+  </div>
+</div>

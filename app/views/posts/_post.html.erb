@@ -1,0 +1,29 @@
+<li id="post-<%= post.id %>">
+  <%= link_to image_tag("#{ @user.image }", width: '120', :alt => 'ユーザーアイコン'), posts_show_own_post_user_path(@user) %>
+  <span class="user"><%= link_to post.user.name, posts_show_own_post_user_path(post.user) %></span>
+  <span class="content">
+    <div class="post_title">
+      タイトル：<%= link_to "#{ post.title }", user_post_path(@user, post) %><br>
+    </div>
+    <div class="post_content">
+      内容：<%= post.content %>
+    </div>
+    <div class="post_image">
+      <% if post.images.attached? %>
+        <% post.images.each do |image| %>
+          <%= image_tag image, class: 'images' %>
+        <% end %>
+      <% end %>
+    </div>
+  </span>
+  <span class="timestamp">
+    <%= time_ago_in_words(post.created_at) %>前に投稿
+    <% if current_user?(post.user) %>
+      <%= link_to "削除", user_post_path(current_user, post), method: :delete,
+                                       data: { confirm: "削除してもよろしいですか。" } %>
+    <% end %>
+  </span>
+  <div id="index_like_<%= post.id %>">
+    <%= render 'likes/like', post: post %>
+  </div>
+</li>

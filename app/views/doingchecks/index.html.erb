@@ -1,0 +1,36 @@
+<% provide(:title, current_user.name) %>
+
+<h1><%= @doing.doing %><br>検証一覧</h1>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <%= link_to "Do検証新規作成", new_user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing), class: "btn btn-lg btn-primary pull-right" %>
+    <table class="table table-hover" id="table-doingchecks">
+      <thead>
+        <tr>
+          <th><%= Doingcheck.human_attribute_name :estimate_check_at %></th>
+          <th><%= Doingcheck.human_attribute_name :check_at %></th>
+          <th><%= Doingcheck.human_attribute_name :span %></th>
+          <th><%= Doingcheck.human_attribute_name :achivement %></th>
+        </tr>
+      </thead>
+    
+      <% if @doingchecks.present? && @doing.progress == ("未着手" || "作業中") %>
+        <% @doingchecks.each do |doingcheck| %>
+          <tr>
+            <td><%= link_to "#{ l(doingcheck.estimate_check_at, format: :long) }", user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing, doingcheck) %></td>
+            <td><%= l(doingcheck.check_at, format: :long) if doingcheck.check_at.present? %></td>
+            <td><%= l(doingcheck.span, format: :long) %></td>
+            <td><%= doingcheck.achivement if doingcheck.achivement.present? %></td>
+            <td align="center">
+              <%= link_to "詳細", user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing, doingcheck), class: "btn btn-primary" %>
+              <%= link_to "編集", edit_user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing, doingcheck), class: "btn btn-success" %>
+              <%= link_to "削除", user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing, doingcheck), method: :delete,
+                  data: { confirm: "「#{ l(doingcheck.estimate_check_at, format: :long) }」の検証を削除してよろしいですか？" }, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>

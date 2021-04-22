@@ -1,0 +1,8 @@
+<%= form_with(model: @post, url: user_posts_path(current_user), remote: true) do |f| %>
+  <p>画像投稿</p>
+  <%= f.attachment_field :image %>
+  <p>タイトル</p>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.submit "保存", class:"form-control" %>
+<% end %>

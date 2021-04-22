@@ -1,0 +1,54 @@
+<% provide(:title, current_user.name) %>
+<% provide(:button_cancel, '戻る') %>
+
+<div class="row">
+  <h1>目標（ゴール）検証詳細</h1>
+  <div class="col-md-10 col-md-offset3">
+    <table class="table table-bordered table-condensed" id="goalcheck-table-detail">
+      <tr>
+        <th class="col-md-3"><%= Goalcheck.human_attribute_name :check %></th>
+          <td class="col-md-9"><%= @goalcheck.check %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goalcheck.human_attribute_name :adjust %></th>
+          <td class="col-md-9"><%= @goalcheck.adjust %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goalcheck.human_attribute_name :estimate_check_at %></th>
+          <td class="col-md-9"><%= l(@goalcheck.estimate_check_at, format: :long) %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goalcheck.human_attribute_name :check_at %></th>
+          <td class="col-md-9"><%= l(@goalcheck.check_at, format: :long) if @goalcheck.check_at.present? %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goalcheck.human_attribute_name :span %></th>
+          <td class="col-md-9"><%= @goalcheck.span %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goalcheck.human_attribute_name :achivement %></th>
+          <td class="col-md-9"><%= @goalcheck.achivement %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Goalcheck.human_attribute_name :note %></th>
+          <td class="col-md-9"><%= @goalcheck.note %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goalcheck.human_attribute_name :created_at %></th>
+          <td class="col-md-9"><%= l(@goalcheck.created_at, format: :long) %></td>
+      </tr>
+       <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :updated_at %></th>
+          <td class="col-md-9"><%= l(@goal.updated_at, format: :long) %></td>
+      </tr>
+    </table>
+    <tr>
+      <td>
+        <%= link_to "編集", edit_user_goal_goalcheck_path(current_user, @goal, @goalcheck), class: "btn btn-success" %>
+        <%= link_to "削除", user_goal_goalcheck_path(current_user, @goal, @goalcheck), method: :delete,
+            data: { confirm: "「#{ l(@goalcheck.estimate_check_at, format: :long) }」の検証を削除してよろしいですか？" }, class: "btn btn-danger" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_goalchecks_path(current_user, @goal), class: "btn btn-default" %>
+      </td>
+    </tr>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<% provide(:title, current_user.name) %>
+<% provide(:button_cancel, '戻る') %>
+
+<div class="row">
+  <h1>ゴール詳細</h1>
+  <div class="goalgap_select">
+    <%= link_to "ゴールギャップ新規作成", new_user_goal_goalgap_path(current_user, @goal), class: "btn btn-lg btn-primary pull-right" %>
+    <%= link_to "ゴールギャップ一覧", user_goal_goalgaps_path(current_user, @goal), class: "btn btn-lg btn-primary pull-right" %>
+  </div>
+  <div class="col-md-10 col-md-offset3">
+    <table class="table table-bordered table-condensed" id="goal-table-detail">
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :goal %></th>
+          <td class="col-md-9"><%= @goal.goal %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :category %></th>
+          <td class="col-md-9"><%= @goal.category %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :start_day %></th>
+          <td class="col-md-9"><%= @goal.start_day %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :finish_day %></th>
+          <td class="col-md-9"><%= @goal.finish_day %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :goal_index %></th>
+          <td class="col-md-9"><%= @goal.goal_index %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :achivement %></th>
+          <td class="col-md-9"><%= @goal.achivement %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :check %></th>
+          <td class="col-md-9"><%= @goal.check %></td>
+      </tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :adjust %></th>
+          <td class="col-md-9"><%= @goal.adjust %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :progress %></th>
+          <td class="col-md-9"><%= @goal.progress %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :hold %></th>
+          <td class="col-md-9"><%= @goal.hold ? "保留中" : "実行中" %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :publish %></th>
+          <td class="col-md-9"><%= @goal.publish %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :note %></th>
+          <td class="col-md-9"><%= @goal.note %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :created_at %></th>
+          <td class="col-md-9"><%= l(@goal.created_at, format: :long) %></td>
+      </tr>
+       <tr>
+        <th class="col-md-3"><%= Goal.human_attribute_name :updated_at %></th>
+          <td class="col-md-9"><%= l(@goal.updated_at, format: :long) %></td>
+      </tr>
+    </table>
+    <tr>
+      <td>
+        <%= link_to "編集", edit_user_goal_path(user_id: current_user.id, id: @goal.id), class: "btn btn-success" %>
+        <%= link_to "検証", user_goal_goalchecks_path(user_id: current_user.id, goal_id: @goal.id), class: "btn btn-warning" %>
+        <%= link_to "削除", user_goal_path(user_id: current_user.id, id: @goal.id), method: :delete,
+            data: { confirm: "#{ @goal.goal}を削除してよろしいですか？" }, class: "btn btn-danger" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goals_path(user_id: current_user.id), class: "btn btn-default" %>
+      </td>
+    </tr>
+  </div>
+</div>

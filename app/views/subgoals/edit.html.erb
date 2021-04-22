@@ -1,0 +1,69 @@
+<% provide(:title, 'Edit Subgoal')%>
+<% provide(:class_text, 'edit-subgoal') %>
+<% provide(:button_update, '更新') %>
+<% provide(:button_cancel, '戻る') %>
+
+<h1>サブゴール編集</h1>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_with(model: @subgoal, url: user_goal_subgoal_path(@user.id, @goal.id, @subgoal.id), method: :patch, local: true) do |f| %>
+      <%= render 'shared/object_error_messages', object: @subgoal %>
+      
+        <%= f.label :subgoal, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_field :subgoal, class: "form-control" %>
+
+        <%= f.label :important, class: "label-#{yield(:class_text)}" %>
+        <%= f.check_box :important, class: "checkbox inline checkbox-subgoal" %>
+
+        <%= f.label :start_day, class: "label-#{yield(:class_text)}" %>
+        <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
+
+        <%= f.label :finish_day, class: "label-#{yield(:class_text)}" %>
+        <%= f.date_select :finish_day, class: "form-control datetime-form" %><br>
+
+        <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_field :achivement, class: "form-control" %>
+
+        <%= f.label :check, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_area :check, class: "form-control" %>
+
+        <%= f.label :adjust, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_area :adjust, class: "form-control" %>
+
+        <%= f.label :pattern, class: "label-#{yield(:class_text)}" %>&nbsp;&nbsp;
+        <%= f.radio_button :pattern, "完結型" %>完結型 &nbsp;&nbsp;&nbsp;
+        <%= f.radio_button :pattern, "継続型" %>継続型<br>
+
+        <%= f.label :impact, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :impact, Subgoal.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+            { class: "form-control" , required: true } %>
+
+        <%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :worktime, Subgoal.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+            { class: "form-control" , required: true } %>
+
+        <%= f.label :easy, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :easy, Subgoal.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+            { class: "form-control" , required: true } %>
+
+        <%= f.label :priority, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :priority, Subgoal.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+            { class: "form-control" , required: true } %>
+
+        <%= f.label :progress, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :progress, Subgoal.progresses.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" , required: true } %>
+
+        <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
+        <%= f.check_box :hold, class: "checkbox inline checkbox-subgoal" %>
+
+        <%= f.label :note, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_area :note, class: "form-control" %>
+      
+      <div class="button">
+        <%= f.submit yield(:button_update), class: "btn btn-primary btn-#{yield(:button_update)}" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoals_path(@user.id, @goal.id), class: "btn btn-default w-20" %>
+      </div>
+    <% end %>
+  </div>
+</div>

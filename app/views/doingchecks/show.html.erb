@@ -1,0 +1,54 @@
+<% provide(:title, current_user.name) %>
+<% provide(:button_cancel, '戻る') %>
+
+<div class="row">
+  <h1>Do検証詳細</h1>
+  <div class="col-md-10 col-md-offset3">
+    <table class="table table-bordered table-condensed" id="doingcheck-table-detail">
+      <tr>
+        <th class="col-md-3"><%= Doingcheck.human_attribute_name :check %></th>
+          <td class="col-md-9"><%= @doingcheck.check %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Doingcheck.human_attribute_name :adjust %></th>
+          <td class="col-md-9"><%= @doingcheck.adjust %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Doingcheck.human_attribute_name :estimate_check_at %></th>
+          <td class="col-md-9"><%= l(@doingcheck.estimate_check_at, format: :long) %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Doingcheck.human_attribute_name :check_at %></th>
+          <td class="col-md-9"><%= l(@doingcheck.check_at, format: :long) if @doingcheck.check_at.present? %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Doingcheck.human_attribute_name :span %></th>
+          <td class="col-md-9"><%= @doingcheck.span %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Doingcheck.human_attribute_name :achivement %></th>
+          <td class="col-md-9"><%= @doingcheck.achivement %></td>
+      </tr>
+      </tr>
+        <th class="col-md-3"><%= Doingcheck.human_attribute_name :note %></th>
+          <td class="col-md-9"><%= @doingcheck.note %></td>
+      </tr>
+      <tr>
+        <th class="col-md-3"><%= Doingcheck.human_attribute_name :created_at %></th>
+          <td class="col-md-9"><%= l(@doingcheck.created_at, format: :long) %></td>
+      </tr>
+       <tr>
+        <th class="col-md-3"><%= Doing.human_attribute_name :updated_at %></th>
+          <td class="col-md-9"><%= l(@doing.updated_at, format: :long) %></td>
+      </tr>
+    </table>
+    <tr>
+      <td>
+        <%= link_to "編集", edit_user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing, @doingcheck), class: "btn btn-success" %>
+        <%= link_to "削除", user_goal_subgoal_subgoalcheck_path(current_user, @goal, @subgoal, @doing, @doingcheck), method: :delete,
+            data: { confirm: "「#{ l(@doingcheck.estimate_check_at, format: :long) }」の検証を削除してよろしいですか？" }, class: "btn btn-danger" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_subgoalchecks_path(current_user, @goal, @subgoal, @doing), class: "btn btn-default" %>
+      </td>
+    </tr>
+  </div>
+</div>

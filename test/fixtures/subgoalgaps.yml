@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gap: MyText
+  solution: MyText
+  impact: 1
+  term: MyString
+  worktime: 1
+  easy: 1
+  priority: 1
+  subgoal: one
+
+two:
+  gap: MyText
+  solution: MyText
+  impact: 1
+  term: MyString
+  worktime: 1
+  easy: 1
+  priority: 1
+  subgoal: two

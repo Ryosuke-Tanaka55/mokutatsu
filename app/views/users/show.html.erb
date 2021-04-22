@@ -1,0 +1,72 @@
+<% provide(:title, @user.name) %>
+
+<h1>今日の予定</h1>
+
+<div class="row">
+  <div class="page-header">
+    <h2>スケジュール管理</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="pull-left">
+    <%= link_to  "スケジュール登録", "#", class: "btn btn-success" %>
+    <%= link_to  "ゴール登録", user_goals_path(current_user), class: "btn btn-primary" %>
+  </div>
+</div>
+
+<div>
+  <table class="table table-borderd schedule-table">
+    <thead>
+      <tr>
+        <th colspan="4">ToDo</th>
+        <th colspan="4">予定時間</th>
+        <th colspan="4">進捗状況</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="4">aaaaaa</td>
+        <td colspan="4"></td>
+        <td colspan="4"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+
+<div class="row">
+  <div id="calendar"></div>
+</div>
+
+<% if @todoes.present? %>
+  <div id="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+
+<div id="response-modal" tabindex="0" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="error" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="response-modal-body">
+        </div>
+      </div>
+    </div>
+</div>
+<% end %>

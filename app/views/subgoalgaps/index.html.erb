@@ -1,0 +1,37 @@
+<% provide(:title, current_user.name) %>
+<h1><%= @subgoal.subgoal %><br>
+    サブゴールギャップ一覧
+</h1>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <%= link_to "サブゴールギャップ新規作成", new_user_goal_subgoal_subgoalgap_path(current_user, @goal, @subgoal), class: "btn btn-lg btn-primary pull-right" %>
+    <table class="table table-hover" id="table-subgoalgaps">
+      <thead>
+        <tr>
+          <th><%= Subgoalgap.human_attribute_name :gap %></th>
+          <th><%= Subgoalgap.human_attribute_name :priority %></th>
+          <th><%= Subgoalgap.human_attribute_name :created_at %></th>
+          <th><%= Subgoalgap.human_attribute_name :updated_at %></th>
+        </tr>
+      </thead>
+    
+      <% if @subgoalgaps.present? %>
+        <% @subgoalgaps.each do |subgoalgap| %>
+          <tr>
+            <td><%= link_to "#{ subgoalgap.gap }", user_goal_subgoal_subgoalgap_path(user_id: current_user, goal_id: @goal.id, subgoal_id: @subgoal.id, id: subgoalgap.id) %></td>
+            <td><%= subgoalgap.priority %></td>
+            <td><%= l(subgoalgap.created_at, format: :long) %></td>
+            <td><%= l(subgoalgap.updated_at, format: :long) %></td>
+            <td align="center">
+              <%= link_to "詳細", user_goal_subgoal_subgoalgap_path(user_id: current_user, goal_id: @goal.id, subgoal_id: @subgoal.id, id: subgoalgap.id), class: "btn btn-primary" %>
+              <%= link_to "編集", edit_user_goal_subgoal_subgoalgap_path(user_id: current_user, goal_id: @goal.id, subgoal_id: @subgoal.id, id: subgoalgap.id), class: "btn btn-success" %>
+              <%= link_to "削除", user_goal_subgoal_subgoalgap_path(uuser_id: current_user, goal_id: @goal.id, subgoal_id: @subgoal.id, id: subgoalgap.id), method: :delete,
+                  data: { confirm: "「#{ subgoalgap.gap }」を削除してよろしいですか？" }, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>

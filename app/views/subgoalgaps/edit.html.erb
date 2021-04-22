@@ -1,0 +1,47 @@
+<% provide(:title, 'サブゴールギャップ編集') %>
+<% provide(:class_text, 'update_subgoalgap') %>
+<% provide(:button_text, '更新') %>
+<% provide(:button_cancel, '戻る') %>
+
+<h1>サブゴールギャップ編集</h1>
+<h2>達成したいサブゴールと現状とのギャップを編集します。</h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <%= form_with(model: @subgoalgap, url: user_goal_subgoal_subgoalgap_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), method: :patch, local: true) do |f| %>
+        <%= render 'shared/object_error_messages', object: @subgoalgap %>
+
+        <%= f.label :gap, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_field :gap, class: "form-control" %>
+
+        <%= f.label :detail, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_area :detail, class: "form-control" %>
+
+        <%= f.label :solution, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_area :solution, class: "form-control" %>
+
+        <%= f.label :term, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_field :term, class: "form-control" %>
+
+        <%= f.label :impact, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :impact, Subgoalgap.impacts.keys, { include_blank: "選択してください。" }, 
+            { class: "form-control" , required: true } %>
+
+        <%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :worktime, Subgoalgap.worktimes.keys, { include_blank: "選択してください。" }, 
+            { class: "form-control" , required: true } %>
+
+        <%= f.label :easy, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :easy, Subgoalgap.easies.keys, { include_blank: "選択してください。" }, 
+            { class: "form-control" , required: true } %>
+
+        <%= f.label :priority, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :priority, Subgoalgap.priorities.keys, { include_blank: "選択してください。" }, 
+            { class: "form-control" , required: true } %>
+
+        <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_subgoalgaps_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-default" %>
+
+      <% end %>
+  </div>
+</div>
