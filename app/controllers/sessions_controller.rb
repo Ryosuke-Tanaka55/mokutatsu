@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
         # ログイン後にユーザー情報ページにリダイレクトする
         log_in user # 引数で渡されたユーザーオブジェクトでログイン（sessionshelper参照）
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        flash[:success] = "ユーザー認証に成功しました。"
         redirect_back_or user # sessions_helper参照
       else
         flash.now[:danger] = "ユーザー認証に失敗しました。"

@@ -11,7 +11,10 @@
   <%= f.label :anonymous, class: "label-#{yield(:class_text)}" %><br>
 
   <%= f.label :image, class: "label-#{yield(:class_text)}" %>
-  <%= f.file_field :image %> 
+  <%= f.file_field :image %>
+
+  <%= f.label :introduction, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_area :introduction, class: "form-control" %>
 
   <%= f.label :email, class: "label-#{yield(:class_text)}" %>
   <%= f.email_field :email, class: "form-control" %>

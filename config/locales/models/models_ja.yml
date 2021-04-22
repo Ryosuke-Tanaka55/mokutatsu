@@ -19,6 +19,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード再入力
+        introduction: 自己紹介
         agreement: 利用規約に同意
         created_at: 作成日
         updated_at: 更新日
