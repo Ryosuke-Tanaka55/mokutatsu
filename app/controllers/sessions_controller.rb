@@ -38,12 +38,5 @@ class SessionsController < ApplicationController
     flash[:success] = "ログアウトしました。"
     redirect_to root_url
   end
-
-    private
-    # reCAPTHがチェックされているか判定
-    def check_captcha
-      unless verify_recaptcha(message: "reCAPTCHAのチェックをしてください。")
-        redirect_to login_url
-      end
-    end
+  
 end
