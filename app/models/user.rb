@@ -37,17 +37,17 @@ class User < ApplicationRecord
   before_save :email_downcase, unless: :uid?
 
   # バリデーション
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, unless: :uid?, length: { maximum: 50 }
   validates :nickname, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 100 },
+  validates :email, presence: true, unless: :uid?, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: true
+                    uniqueness: { case_sensitive: false }
   has_secure_password validations: false
-  validates :password, length: { minimum: 8 }, allow_nil: true
+  validates :password, unless: :uid?, length: { minimum: 8 }, allow_nil: true
 
    # 利用規約同意確認
-   validates :agreement, presence: {message: "が必要です。" }
+   validates :agreement, presence: {message: "が必要です。" }, unless: :uid?
 
    # プロフィール画像をアップロード
    mount_uploader :image, ImageUploader

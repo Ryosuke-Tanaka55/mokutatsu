@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+
+  recaptcha:
+    errors:
+      verification_failed: 'reCAPTCHA認証に失敗しました。'
+      recaptcha_unreachable: 'reCAPTCHA認証に失敗しました。やり直してください。'

@@ -10,12 +10,14 @@ class SessionsController < ApplicationController
       user = User.from_omniauth(request.env['omniauth.auth'])
       if user.save
         session[:user_id] = user.id
-        flash[:success] = "ユーザー認証が完了しました。"
+        flash[:success] = "ユーザー認証に成功しました。"
         redirect_back_or user
       else
         flash[:danger] = "ユーザー認証に失敗しました。"
         redirect_to login_url
       end
+    elsif !verify_recaptcha(message: "reCAPTCHAのチェックをしてください。")
+      render :new
     else
       user = User.find_by(email: params[:session][:email].downcase)
       if user && user.authenticate(params[:session][:password])
@@ -24,7 +26,7 @@ class SessionsController < ApplicationController
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         redirect_back_or user # sessions_helper参照
       else
-        flash.now[:danger] = "認証に失敗しました。"
+        flash.now[:danger] = "ユーザー認証に失敗しました。"
         render :new
       end
     end
@@ -36,4 +38,12 @@ class SessionsController < ApplicationController
     flash[:success] = "ログアウトしました。"
     redirect_to root_url
   end
+
+    private
+    # reCAPTHがチェックされているか判定
+    def check_captcha
+      unless verify_recaptcha(message: "reCAPTCHAのチェックをしてください。")
+        redirect_to login_url
+      end
+    end
 end
