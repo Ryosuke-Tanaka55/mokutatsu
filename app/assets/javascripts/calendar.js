@@ -59,7 +59,7 @@ $(document).ready(function() {
         eventColor: '#63ceef',
         eventTextColor: '#000000',
         timezone: 'UTC',
-        events: '/users/:user_id/events.json',
+        events: '/users/events.json',
         titleFormat: 'YYYY年 M月',
         dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
         navLinks: true,
@@ -75,6 +75,7 @@ $(document).ready(function() {
         defaultView: 'month',
         weekends:true,
         resourceLabelText: 'リソース',
+        
         // 日付クリック
         dayClick : function ( date , jsEvent , view ) {
             $('#inputScheduleForm').modal('show');

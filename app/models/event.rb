@@ -4,6 +4,9 @@ class Event < ApplicationRecord
 
   default_scope -> { order(start_time: :asc) }
 
+  validates :title, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
   validate  :start_end_check
 
   # 時間の矛盾を防ぐ
