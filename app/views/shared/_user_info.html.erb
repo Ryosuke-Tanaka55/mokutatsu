@@ -5,4 +5,5 @@
 <% else %>
   <span><%= link_to "#{ @user.name }さんのゴールへ", @user %></span>
 <% end %>
+<span><%= @user.introduction %></span>
 <span><%= pluralize(@user.posts.count, "投稿") %></span>

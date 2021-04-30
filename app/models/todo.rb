@@ -1,5 +1,6 @@
 class Todo < ApplicationRecord
   belongs_to :doing
+  belongs_to :user
 
   # 配下のイベント
   has_many :events, dependent: :destroy

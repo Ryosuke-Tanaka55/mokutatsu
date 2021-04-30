@@ -1,14 +1,14 @@
 <h1> 新規スケジュール追加</h1>
-<%= form_with model: @event, url: new_user_event_path(@user) do |f| %>
+<%= form_with(model: @event, url: user_events_path(current_user.id)) do |f| %>
   <%= render 'shared/object_error_messages', object: f.object %>
   <div class="form-group">
     <%= f.label :title %>
-    <%= f.collection_select(:name, @todoes, :id, :name) :title, { include_blank: "選択してください。" }, { class:"form-control" }, required: true %>
+    <%= f.collection_select :name, @todoes, :id, :todo, { include_blank: "選択してください。" }, { class:"form-control" } %>
   </div>
   <div class="form-group">
-      <%= f.label :start_time %>
-      <br>
-      <%= f.datetime_select :start_time, {default: Date.today + 19.hours + 00.minutes, minute_step: 10}, class: "form-control" %>
+    <%= f.label :start_time %>
+    <br>
+    <%= f.datetime_select :start_time, {default: Date.today + 19.hours + 00.minutes, minute_step: 10}, class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :end_time %>
@@ -22,3 +22,4 @@
   <div class="actions">
     <%= f.submit class: "btn btn-primary mb-3 js-event-create-btn" %>
   </div>
+<% end %>

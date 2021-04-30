@@ -13,6 +13,9 @@ class UsersController < ApplicationController
     @goals = Goal.where(user_id: @user.id)
     @goal = Goal.new
     @todoes = Todo.where(doing_id: @user.todoes.ids)
+    # カレンダーのEvent
+    @events = Event.where(user_id: @user.id)
+    @event = Event.new
   end
 
   def new

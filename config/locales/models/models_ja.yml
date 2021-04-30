@@ -16,6 +16,7 @@ ja:
         nickname: ニックネーム
         anonymous: 匿名希望
         image: アイコン
+        introduction: 自己紹介
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード再入力
