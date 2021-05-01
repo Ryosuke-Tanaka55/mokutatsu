@@ -19,7 +19,6 @@ class CreateTodos < ActiveRecord::Migration[6.0]
       t.boolean :hold, null: false, default: false
       t.text :note
 
-      t.references :user, null: false, foreign_key: true
       t.references :doing, null: false, foreign_key: true
 
       t.timestamps

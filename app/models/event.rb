@@ -1,6 +1,5 @@
 class Event < ApplicationRecord
   belongs_to :user
-  belongs_to :todo
 
   default_scope -> { order(start_time: :asc) }
 

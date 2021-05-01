@@ -48,18 +48,18 @@
           <h4 class="modal-title">スケジュール登録</h4>
         </div>
         <div class="modal-body">
-          <%= form_with model:@events, url: user_events_path(@user.id) do |f| %>
+          <%= form_with model:@event, url: user_events_path(@user.id) do |f| %>
             <div  class="col">
               <p>
-                <span>タイトル</span>
-                <span><%= f.text_field :title, class: "form-control", placeholder: "ToDoを入力してください" %></span>
+                <span>ToDo</span>
+                <span><%= f.collection_select :title, @todoes, :todo, :todo, { include_blank: "選択してください。" }, { class:"form-control" } %></span>
               </p>
               <span>開始日時</span>
               <span><%= f.datetime_field  :start_time, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>
               <span>終了日時</span>
               <span><%= f.datetime_field :end_time, placeholder: "XXXX-XX-XX", class:"field" %></span><br>
-              <span>詳細
-              <%= f.text_field :description, class: "form-control", placeholder: "ToDoの詳細を記入してください" %></span>
+              <span>詳細</span>
+              <span><%= f.text_field :description, class: "form-control", placeholder: "ToDoの詳細を記入してください" %></span>
             </div>
             <div class="modal-footer">
                 <%= f.submit "登録する", class: "btn btn-primary" %>
@@ -73,7 +73,7 @@
   </div>
 <!-- 編集 ------------------------------------------------------------------>
   <div id="inputEditForm">
-      <%= render 'events/edit', events: @events %>
+    <%= render 'events/edit', events: @events %>
   </div>
 <% end %>
 

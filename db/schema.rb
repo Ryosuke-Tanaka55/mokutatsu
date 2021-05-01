@@ -85,10 +85,8 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
     t.datetime "end_time"
     t.string "description"
     t.bigint "user_id", null: false
-    t.bigint "todo_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["todo_id"], name: "index_events_on_todo_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -262,12 +260,10 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
     t.text "note"
-    t.bigint "user_id", null: false
     t.bigint "doing_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["doing_id"], name: "index_todos_on_doing_id"
-    t.index ["user_id"], name: "index_todos_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -295,7 +291,6 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
   add_foreign_key "comments", "users"
   add_foreign_key "doingchecks", "doings"
   add_foreign_key "doings", "subgoals"
-  add_foreign_key "events", "todos"
   add_foreign_key "events", "users"
   add_foreign_key "goalchecks", "goals"
   add_foreign_key "goalgaps", "goals"
@@ -307,5 +302,4 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
   add_foreign_key "subgoalgaps", "subgoals"
   add_foreign_key "subgoals", "goals"
   add_foreign_key "todos", "doings"
-  add_foreign_key "todos", "users"
 end
