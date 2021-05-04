@@ -14,6 +14,8 @@
 //= require jquery
 //= require moment
 //= require fullcalendar
+// @ app/assets/javascripts/application.js
+//= require fullcalendar/lang/ja
 //= require bootstrap
 //= require activestorage
 //= require turbolinks

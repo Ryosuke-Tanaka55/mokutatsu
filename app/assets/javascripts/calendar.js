@@ -37,16 +37,16 @@ $(document).ready(function() {
           titleFormat: 'YYYY年 M月',
           dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
           header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
+            left: 'prev,next prevYear,nextYear today',
+            center: 'month,agendaWeek,agendaDay,listMonth',
+            right: 'title'
           },
 
           defaultTimedEventDuration: '03:00:00',
           navLinks: true,
           businessHours: true,
-          editable: true,
           locale: 'ja',
+          firstDay : 1,
 
           buttonText: {
             prev: '前',
@@ -58,6 +58,7 @@ $(document).ready(function() {
             week: '週',
             day: '日',
             allDay:'終日',
+            listMonth: '予定リスト'
           },
 
           timeFormat: 'HH:mm',
@@ -71,6 +72,7 @@ $(document).ready(function() {
           selectable: true,
           selectHelper: true,
           editable: true,
+          eventLimit: true,
           slotDuration: '00:15:00',
           slotLabelInterval: '01:00',
           nowIndicator: true,
