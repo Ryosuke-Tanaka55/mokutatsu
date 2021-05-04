@@ -19,13 +19,13 @@
 //= require turbolinks
 //= require_tree .
 
-$(function(){
+document.addEventListener("turbolinks:load", function() {
   var pagetop = $('#page_top');
   // ボタン非表示
   pagetop.hide();
   // 100px スクロールしたらボタン表示
   $(window).scroll(function () {
-     if ($(this).scrollTop() > 300) {
+     if ($(this).scrollTop() > 400) {
           pagetop.fadeIn();
      } else {
           pagetop.fadeOut();
