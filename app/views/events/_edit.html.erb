@@ -7,7 +7,7 @@
         </div>
         <div class="modal-body">
           <div  class="col">
-            <%= form_with(model: event, url: user_events_path(event), method: :put) do |f| %>
+            <%= form_with(model: event, url: user_event_path(@user.id)) do |f| %>
               <p>
                 <span>ToDo</span>
                 <span id="inputTitle" value=""><span><%= f.collection_select :title, @todoes, :id, :todo, { include_blank: "選択してください。" }, { class:"form-control" } %></span>

@@ -1,5 +1,5 @@
 // CRUDを行う際にCSRF対策のtokenを発行
-$(document).ready(function() {
+window.onload = function(){ 
   var prepare = function(options, originalOptions, jqXHR) {
     var token;
     if (!options.crossDomain) {
@@ -9,7 +9,7 @@ $(document).ready(function() {
       }
     }
   };
-})
+};
 
     $(function () {
       // 画面遷移を検知
@@ -24,10 +24,6 @@ $(document).ready(function() {
           function clearCalendar() {
             $('#calendar').html('');
           }
-
-          $(document).on('turbolinks:load', function () {
-            eventCalendar();
-            });
 
           $(document).on('turbolinks:before-cache', clearCalendar);
 
@@ -62,7 +58,6 @@ $(document).ready(function() {
           },
 
           timeFormat: 'HH:mm',
-          eventColor: '#63ceef',
           eventTextColor: '#000000',
           navLinks: true,
           selectable: true,
@@ -93,14 +88,7 @@ $(document).ready(function() {
 
         eventMouseover : function(event, jsEvent , view) {
             jsEvent.preventDefault();
-        },
-
-        // event 色分け
-        eventRender: function(event, element) {
-          if(event.color == "0") {
-              element.css('background-color', '#F00');
-          }
-        },
+        }
       })
     }
   })

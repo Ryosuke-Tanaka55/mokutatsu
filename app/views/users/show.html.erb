@@ -65,7 +65,7 @@
               <span>終日</span>&nbsp;
               <span><%= f.check_box :allday,  { class: "check_box" }, true, false %></span><br>
               <span>色</span>
-              <span><%= f.select :color, Event.colors.keys.to_a, { include_blank: "選択してください。"}, { class:"form-control" } %></span>
+              <span><%= f.select :color, Event.colors.keys.to_a, { include_blank: "選択してください。", selected: "選択してください。"}, { class:"form-control" } %></span>
             </div>
             <div class="modal-footer">
                 <%= f.submit "登録する", class: "btn btn-primary" %>
