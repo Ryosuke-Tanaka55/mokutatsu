@@ -93,7 +93,14 @@ $(document).ready(function() {
 
         eventMouseover : function(event, jsEvent , view) {
             jsEvent.preventDefault();
-        }
+        },
+
+        // event 色分け
+        eventRender: function(event, element) {
+          if(event.color == "0") {
+              element.css('background-color', '#F00');
+          }
+        },
       })
     }
   })

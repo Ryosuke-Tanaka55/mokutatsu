@@ -15,11 +15,14 @@
               <span>開始日時</span>
               <span><%= f.datetime_field  :start_time, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>
               <span>終了日時</span>
-              <span><%= f.datetime_field  :end_time, placeholder: "XXXX-XX-XX", class:"field" %></span>
-              <span><br>
-                詳細
-                <%= f.text_field :description, class: "form-control", placeholder: "ToDoの詳細を記入してください" %>
-              </span>
+              <span><%= f.datetime_field :end_time, placeholder: "XXXX-XX-XX", class:"field" %></span><br>
+              <span>詳細</span>
+              <span><%= f.text_field :description, class: "form-control", placeholder: "ToDoの詳細を記入してください" %></span>
+              <span>終日</span>&nbsp;
+              <span><%= f.check_box :allday,  { class: "check_box" }, true, false %></span><br>
+              <span>色</span>
+              <span><%= f.select :color, Event.colors.keys.to_a, { include_blank: "選択してください。"}, { class:"form-control" } %></span>
+            </div>
               <div class="modal-footer">
                 <%= f.hidden_field :user_id, :value => current_user.id %>
                 <%= f.submit "編集する", class: "btn btn-primary" %>

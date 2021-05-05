@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.string "description"
+    t.string "color", null: false
+    t.boolean "allday", default: false, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -34,7 +34,7 @@ document.addEventListener("turbolinks:load", function() {
      }
   });
   pagetop.click(function () {
-     $('body, html').animate({ scrollTop: 0 }, 500);
+     $('body, html').animate({ scrollTop: 0 }, 300);
      return false;
   });
 });
