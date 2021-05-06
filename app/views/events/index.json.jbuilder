@@ -10,9 +10,9 @@ json.array! @events do |event|
   if event.color == "緑色"
     json.color '#33CC33'
   elsif event.color == "青色"
-    json.color '#00F'
+    json.color '#1E90FF'
   elsif event.color == "黄色"
-    json.color '#008000'
+    json.color '#FFFF00'
   elsif event.color == "赤色"
     json.color '#F00'
   elsif event.color == "水色"
@@ -20,7 +20,7 @@ json.array! @events do |event|
   elsif event.color == "桃色"
     json.color '#FF33CC'
   else
-    json.color '#808000'
+    json.color '#A9A9A9'
   end
 
  end
