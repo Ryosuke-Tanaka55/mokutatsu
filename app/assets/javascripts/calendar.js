@@ -86,6 +86,7 @@ $(document).on('turbolinks:load', function () {
       eventClick : function (event, jsEvent , view) {
         jsEvent.preventDefault();
         $(`#inputScheduleEditForm${event.id}`).modal('show');
+        $(`#inputScheduleEditForm${event.id}`).removeAttr("disabled");
       },
 
       eventMouseover : function(event, jsEvent , view) {

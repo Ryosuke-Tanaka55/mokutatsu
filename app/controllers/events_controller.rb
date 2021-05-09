@@ -21,7 +21,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     if @event.update_attributes(event_params)
       flash[:success] = "スケジュール編集に成功しました。"
-      @events = Event.where(user_id: current_user.id)
     else
       flash[:danger] = "スケジュール編集に失敗しました。"
     end
