@@ -117,6 +117,17 @@ p {
   margin-top: 15px;
 }
 
+#footer_logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold
+}
+
 #copyright small {
   font-size: 12px;
   line-height: 1.5;
@@ -288,4 +299,17 @@ span.image {
   input {
     border: 0;
   }
+}
+
+
+/* ログイン、ユーザー情報編集 */
+#user_info {
+  background-image: image-url('bg2.jpg');
+  background-color:rgba(255,255,255,0.1);
+  background-blend-mode:lighten;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: 0;
 }
