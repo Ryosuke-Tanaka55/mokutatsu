@@ -1,4 +1,6 @@
 <% provide(:title, @user.name) %>
+<% provide(:body_id, "view_background") %>
+
 <h1>投稿詳細ページ</h1>
 
 <%= link_to  "全体の投稿", user_posts_path(current_user), class: "btn btn-primary" %>

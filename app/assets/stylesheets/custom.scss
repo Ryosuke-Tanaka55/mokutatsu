@@ -301,11 +301,10 @@ span.image {
   }
 }
 
-
-/* ログイン、ユーザー情報編集 */
-#user_info {
+/* 背景画像 */
+#view_background {
   background-image: image-url('bg2.jpg');
-  background-color:rgba(255,255,255,0.1);
+  background-color:rgba(255,255,255,0.6);
   background-blend-mode:lighten;
   background-position: center center;
   background-repeat: no-repeat;
