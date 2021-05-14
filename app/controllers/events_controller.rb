@@ -4,6 +4,13 @@ class EventsController < ApplicationController
     @events = Event.where(user_id: current_user.id)
   end
 
+  def new
+    @user = User.find(params[:user_id])
+    @todoes = Todo.where(doing_id: @user.todoes.ids)
+    @events = Event.where(user_id: @user.id)
+    @event = Event.new
+  end
+
   def create
     @event = Event.new(event_params)
     if @event.save
