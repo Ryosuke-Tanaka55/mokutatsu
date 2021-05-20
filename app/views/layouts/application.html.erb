@@ -10,14 +10,17 @@
     <script src="https://kit.fontawesome.com/5caca421e0.js" crossorigin="anonymous"></script>
     <%= render 'layouts/shim' %>
   </head>
+
   <body id="<%= yield(:body_id) %>">
     <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |message_type, msg| %>
-        <div class="alert alert-<%= message_type %>"><%= msg %></div>
-      <% end %>
-      <%= yield %>
-      <%= debug(params) if Rails.env.development? %>
+    <div class="wrapper">
+      <div class="container">
+        <% flash.each do |message_type, msg| %>
+          <div class="alert alert-<%= message_type %>"><%= msg %></div>
+        <% end %>
+        <%= yield %>
+        <%= debug(params) if Rails.env.development? %>
+      </div>
     </div>
     <footer id="pageFoot" class="footer outer-block">
       <%= render 'layouts/footer' %>
