@@ -120,6 +120,7 @@ GEM
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    cocoon (1.2.15)
     coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 5.2.0)
@@ -404,6 +405,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave
   chromedriver-helper
+  cocoon
   coffee-rails (~> 5.0.0)
   dotenv-rails
   enum_help

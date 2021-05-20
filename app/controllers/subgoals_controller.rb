@@ -10,15 +10,16 @@ class SubgoalsController < ApplicationController
     @subgoals = current_user.subgoals.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
   end
 
+  def new
+    @subgoal = Subgoal.new
+    @subgoalgap = @subgoal.subgoalgaps.build
+  end
+
   def show
   end
 
-  def new
-    @subgoal = Subgoal.new
-  end
-
   def create
-    @subgoal = @goal.subgoals.build(create_subgoal_params)
+    @subgoal = @goal.subgoals.build(create_subgoalgap_params)
     if @subgoal.save
       flash[:success] = "新規作成に成功しました。"
       redirect_to user_goal_subgoals_url
@@ -49,10 +50,10 @@ class SubgoalsController < ApplicationController
 
   private
     # ストロングパラメーター
-    # 新規登録時
+    # 新規登録時 subgoalgapを同時に登録
     def create_subgoal_params
-      params.require(:subgoal).permit(:subgoal, :start_day, :finish_day, :pattern, 
-        :priority, :impact, :worktime, :easy, :hold, :note, :goal_id)
+      params.require(:subgoal).permit(:subgoal, :start_day, :finish_day, :pattern, :priority, :impact, :worktime, :easy, :hold, :note, :goal_id, 
+        subgoalgaps_attributes: [:id, :gap, :detail, :solution, :impact, :term, :worktime, :easy, :priority, :subgoal_id, :_destroy])
     end
 
     # 編集時
@@ -61,10 +62,10 @@ class SubgoalsController < ApplicationController
         :pattern, :priority, :impact, :worktime, :easy, :progress, :hold, :note, doing_attributes:
         [
           :doing, :start_day, :finish_day, :achivement, :check, :adjust, :pattern, :priority, :impact, :worktime,
-          :easy, :progress, :hold, :note, todo_attributes:
+          :easy, :progress, :hold, :note, :_destroy, todo_attributes:
           [
             :todo, :start_day, :finish_day, :estimated_time, :estimated_start_time, :estimated_finish_time, :achivement,
-            :actual_start_time, :actual_finish_time, :check, :adjust, :pattern, :progress, :hold, :note
+            :actual_start_time, :actual_finish_time, :check, :adjust, :pattern, :progress, :hold, :note,  :_destroy
           ]
         ]
       )

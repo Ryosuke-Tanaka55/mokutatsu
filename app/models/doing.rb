@@ -4,7 +4,7 @@ class Doing < ApplicationRecord
   # 配下のDoingcheck、ToDo
   has_many :doingchecks, dependent: :destroy
   has_many :todoes, dependent: :destroy
-  accepts_nested_attributes_for :todoes
+  accepts_nested_attributes_for :todoes, allow_destroy: true
 
   # バリデーション
   validates :doing, presence: true

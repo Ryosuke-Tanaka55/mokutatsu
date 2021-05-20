@@ -115,24 +115,30 @@ p {
 #pageFoot {
   border-top: solid 1px #ccc;
   margin-top: 15px;
+  background: #222;
 }
 
-#footer_logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #000000;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold
+#pageFoot .nav li a {
+  padding: 15px;
+  color: #ccc;
 }
 
-#copyright small {
-  font-size: 12px;
-  line-height: 1.5;
-  clear: both;
-  float: right;
+#pageFoot .wrap {
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#pageFoot .nav {
+  display: inline-block;
+}
+
+#pageFoot .nav li {
+  display: inline-block;
 }
 
 #page_top {
@@ -140,6 +146,11 @@ p {
   bottom: 30px;
   right: 20px;
 }
+
+.web-copyright {
+  color: #fff;
+}
+
 #page_top a {
   background: rgba(0,0,0,.5);
   color: #fff;
@@ -147,6 +158,7 @@ p {
   text-decoration: none;
   padding: 20px 20px;
 }
+
 #page_top a:hover {
   background-color: #666;
   text-decoration: none;

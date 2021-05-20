@@ -10,6 +10,7 @@ class Goal < ApplicationRecord
 
   # 配下のGoalgap、Goalcheck、Subgoal、Do、ToDo
   has_many :goalgaps, dependent: :destroy
+  accepts_nested_attributes_for :goalgaps, allow_destroy: true
   has_many :goalchecks, dependent: :destroy
   has_many :subgoals, dependent: :destroy
   accepts_nested_attributes_for :subgoals, allow_destroy: true

@@ -1,12 +1,16 @@
 <div class="container">
-  <%= link_to "MOKU TATSU", root_path, id: "footer_logo" %>
-  <div class="col-xs-12 clo-md-2 col-md-offset-4 mt-3">
-    <%= link_to "利用規約", rule_path, id: "rule" %>
-  </div>
-  <div class="col-xs-12 clo-md-2 col-md-offset-4 mt-3">
-    <%= link_to "プライバシーポリシー", policy_path, id: "policy" %>
-  </div>
+  <div class="inner-block">
+    <div class="wrap">
+      <%= link_to "MOKU TATSU", root_path, id: "logo" %>
+      <nav>
+        <ul class="nav navbar-nav", id="menu-bar">
+          <li><%= link_to "利用規約", rule_path, id: "rule" %></li>
+          <li><%= link_to "プライバシーポリシー", policy_path, id: "policy" %></li>
+        </ul>
+      </nav>
+    </div>
+  </div><!-- /inner-block -->
   <div class="text-center web-copyright pt-5 pb-3">
-    Copyright&copy; 2021 @zenryokushonensha ALL Rights Reserveed.
+        COPYRIGHT&copy; zenryokushonensha ALL Rights Reserveed.
   </div>
 </div>

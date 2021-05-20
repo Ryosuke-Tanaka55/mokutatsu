@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require cocoon
 //= require moment
 //= require fullcalendar
 // @ app/assets/javascripts/application.js

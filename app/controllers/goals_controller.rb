@@ -13,7 +13,8 @@ class GoalsController < ApplicationController
 
   def new
     @goal = Goal.new
-    @goal.subgoals.build
+    @subgoal = @goal.subgoals.build
+    @goalgaps = @goal.goalgaps.build
   end
 
   def create
@@ -48,9 +49,10 @@ class GoalsController < ApplicationController
 
   private
     # ストロングパラメーター
-    # 新規目標設定時
+    # 新規目標設定時 goalgapを同時に登録
     def create_goal_params
-      params.require(:goal).permit(:goal, :category, :start_day, :finish_day, :goal_index, :hold, :publish, :note)
+      params.require(:goal).permit(:goal, :category, :start_day, :finish_day, :goal_index, :hold, :publish, :note, 
+        goalgaps_attributes: [:id, :gap, :detail, :solution, :impact, :worktime, :easy, :priority, :goal_id, :_destroy])
     end
 
     # 編集時

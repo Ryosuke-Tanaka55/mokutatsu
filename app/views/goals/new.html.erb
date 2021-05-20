@@ -5,7 +5,7 @@
 <% provide(:button_cancel, '戻る') %>
 
 <h1>ゴール設定</h1>
-<h2>達成したいゴールを登録します。</h2>
+<h2>達成したいゴールとそのギャップを登録します。</h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -37,9 +37,26 @@
 
         <%= f.label :note, class: "label-#{yield(:class_text)}" %>
         <%= f.text_area :note, class: "form-control" %>
+        
+        <div class="goalgaps">
+          <%= f.fields_for :goalgaps do |g| %>
+            <%= render "goalgap_fields", f: g %>
+          <% end %>
+          <div class="add-botton-box">
+            <%= link_to_add_association "ゴールギャップ追加", f, :goalgaps,
+              class: "btn-sm btn-success",
+              data: {
+                association_insertion_node: '#detail-association-insertion-point',
+                association_insertion_method: 'after'
+              }
+            %>
+          </div>
+        </div>
 
-        <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
-        <%= link_to "#{yield(:button_cancel)}", user_goals_path(@user.id, @goal.id), class: "btn btn-default w-20" %>
+        <div id="detail-association-insertion-point"></div>
+
+        <%= f.submit yield(:button_text), class: "btn btn-primary btn btn-#{yield(:class_text)}" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goals_path(@user.id, @goal.id), class: "btn btn-default btn-#{yield(:class_text)}" %>
 
       <% end %>
   </div>

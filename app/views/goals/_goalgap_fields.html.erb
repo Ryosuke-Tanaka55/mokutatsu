@@ -1,0 +1,38 @@
+<div class="nested-fields">
+  <%= f.label :gap, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :gap, class: "form-control" %>
+
+  <%= f.label :detail, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_area :detail, class: "form-control" %>
+
+  <%= f.label :solution, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_area :solution, class: "form-control" %>
+
+  <%= f.label :impact, class: "label-#{yield(:class_text)}" %>
+  <%= f.select :impact, Goalgap.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+    { class: "form-control" , required: true } %>
+
+  <%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
+  <%= f.select :worktime, Goalgap.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+    { class: "form-control" , required: true } %>
+
+  <%= f.label :easy, class: "label-#{yield(:class_text)}" %>
+  <%= f.select :easy, Goalgap.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+    { class: "form-control" , required: true } %>
+
+  <%= f.label :priority, class: "label-#{yield(:class_text)}" %>
+  <%= f.select :priority, Goalgap.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+    { class: "form-control" , required: true } %>
+  
+  <div class="delete-botton-box">
+    <%= link_to_remove_association "ゴールギャップ削除", f,
+      class: "btn-sm btn-danger",
+      data: {
+        association_insertion_node: '#detail-association-insertion-point',
+        association_insertion_method: 'after'
+      }
+    %>
+  </div>
+
+  <div id="detail-association-insertion-point"></div>
+</div>
