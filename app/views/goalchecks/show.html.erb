@@ -1,11 +1,12 @@
-<% provide(:title, current_user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'ゴール検証詳細') %>
+<% provide(:body_id, 'view-background') %>
 <% provide(:button_cancel, '戻る') %>
 
+ <h1>ゴール検証詳細</h1>
+
 <div class="row">
-  <h1>目標（ゴール）検証詳細</h1>
   <div class="col-md-10 col-md-offset3">
-    <table class="table table-bordered table-condensed" id="goalcheck-table-detail">
+    <table class="table table-bordered table-condensed" id="table-detail">
       <tr>
         <th class="col-md-3"><%= Goalcheck.human_attribute_name :check %></th>
           <td class="col-md-9"><%= @goalcheck.check %></td>

@@ -1,11 +1,12 @@
-<% provide(:title, current_user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'Do検証詳細') %>
+<% provide(:body_id, 'view-background') %>
 <% provide(:button_cancel, '戻る') %>
 
+<h1>Do検証詳細</h1>
+
 <div class="row">
-  <h1>Do検証詳細</h1>
   <div class="col-md-10 col-md-offset3">
-    <table class="table table-bordered table-condensed" id="doingcheck-table-detail">
+    <table class="table table-bordered table-condensed" id="table-detail">
       <tr>
         <th class="col-md-3"><%= Doingcheck.human_attribute_name :check %></th>
           <td class="col-md-9"><%= @doingcheck.check %></td>
@@ -36,19 +37,19 @@
       </tr>
       <tr>
         <th class="col-md-3"><%= Doingcheck.human_attribute_name :created_at %></th>
-          <td class="col-md-9"><%= l(@doingcheck.created_at, format: :long) %></td>
+          <td class="col-md-9"><%= @doingcheck.created_at.strftime("%Y年%m月%d日") %></td>
       </tr>
        <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :updated_at %></th>
-          <td class="col-md-9"><%= l(@doing.updated_at, format: :long) %></td>
+          <td class="col-md-9"><%= @doing.updated_at.strftime("%Y年%m月%d日") %></td>
       </tr>
     </table>
     <tr>
       <td>
         <%= link_to "編集", edit_user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing, @doingcheck), class: "btn btn-success" %>
-        <%= link_to "削除", user_goal_subgoal_subgoalcheck_path(current_user, @goal, @subgoal, @doing, @doingcheck), method: :delete,
+        <%= link_to "削除", user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing, @doingcheck), method: :delete,
             data: { confirm: "「#{ l(@doingcheck.estimate_check_at, format: :long) }」の検証を削除してよろしいですか？" }, class: "btn btn-danger" %>
-        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_subgoalchecks_path(current_user, @goal, @subgoal, @doing), class: "btn btn-default" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_doing_doingchecks_path(current_user, @goal, @subgoal, @doing), class: "btn btn-default" %>
       </td>
     </tr>
   </div>

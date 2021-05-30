@@ -1,13 +1,16 @@
-<% provide(:title, current_user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'Do一覧') %>
+<% provide(:body_id, 'view-background') %>
 
-<h1><%= @subgoal.subgoal %><br>Do一覧</h1>
+<h1><%= @subgoal.subgoal %></h1>
+<h1>Do一覧</h1>
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <%= link_to "サブゴール一覧へ戻る", user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-default pull-right" %>
-    <%= link_to "Do新規作成", new_user_goal_subgoal_doing_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-primary pull-right" %>
-    <table class="table table-hover" id="table-subgoals">
+    <div class="menu-btn">
+      <%= link_to "Do新規作成", new_user_goal_subgoal_doing_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-primary pull-left" %>
+      <%= link_to "サブゴール一覧へ戻る", user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-default pull-left" %>
+    </div>
+    <table class="table table-hover" id="table-index">
       <thead>
         <tr>
           <th><%= Doing.human_attribute_name :doing %></th>

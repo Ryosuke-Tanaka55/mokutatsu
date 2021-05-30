@@ -11,7 +11,7 @@
 
 new function(){
 	
-	var footerId = "footer";
+	var footerId = "footerf";
 	//メイン
 	function footerFixed(){
 		//ドキュメントの高さ

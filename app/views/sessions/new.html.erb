@@ -1,5 +1,5 @@
-<% provide(:title, "ログイン") %>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'ログイン') %>
+<% provide(:body_id, 'view-background') %>
 
 <h1>ログイン</h1>
 
@@ -23,7 +23,9 @@
       <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-login" %>
     <% end %>
 
-    <%= link_to image_tag("/assets/google_sign_in.png", :alt => 'Googleログイン'), "/auth/google_oauth2", id: "sign_in" %>
+    <div class="sign-in">
+      <%= link_to image_tag("/assets/google_sign_in.png", :alt => 'Googleログイン'), "/auth/google_oauth2", id: "sign-in" %>
+    </div>
     <p>Googleアカウントでログイン</p>
     <P>
       ユーザー登録がまだの場合は<%= link_to "こちら", signup_path %>

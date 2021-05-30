@@ -1,41 +1,65 @@
-<% provide(:title, '検証登録') %>
-<% provide(:body_id, "view_background") %>
-<% provide(:class_text, 'create_doingcheck') %>
+<% provide(:title, 'Do検証登録') %>
+<% provide(:body_id, "view-background") %>
+<% provide(:class_text, 'create-doingcheck') %>
 <% provide(:button_text, '新規作成') %>
 <% provide(:button_cancel, '戻る') %>
 
-<h1>Do検証設定</h1>
-<h2>達成したいDoの検証を登録します。</h2>
+<h1>Do検証登録</h1>
+<h2 class="head-supplement">
+  <div class="h2-text">
+    まずは以下2点から考える。<br>
+    Q1.十分な時間をかけたか？<br>
+    Q2.なぜ時間をかけても未達なのか？
+  </div>
+</h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-      <%= form_with(model: @doingcheck, url: user_goal_subgoal_doing_doingchecks_path(current_user, @goal, @subgoal, @doing), local: true) do |f| %>
-        <%= render 'shared/object_error_messages', object: f.object %>
+    <%= form_with(model: @doingcheck, url: user_goal_subgoal_doing_doingchecks_path(current_user, @goal, @subgoal, @doing), local: true) do |f| %>
+      <%= render 'shared/object_error_messages', object: f.object %>
 
-        <%= f.label :check, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_area :check, class: "form-control" %>
+      <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
+      <%= f.number_field :achivement, in: 0..100, step: 10, class: "form-control" %>
+      <div id="form-assist">
+        ・Do達成率を記載する
+      </div>
 
-        <%= f.label :adjust, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_area :adjust, class: "form-control" %>
+      <%= f.label :check, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_area :check, class: "form-control" %>
+      <div id="form-assist">
+        実行できた、またはできなかった理由を掘り下げる<br>
+        ・「具体的にいうと？」という問いを繰り返す<br>
+        ・「なぜ？」を繰り返し課題を整理する
+      </div>
 
-        <%= f.label :check_at, class: "label-#{yield(:class_text)}" %>
-        <%= f.datetime_select :check_at, class: "form-control datetime-form" %><br>
+      <%= f.label :adjust, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_area :adjust, class: "form-control" %>
+      <div id="form-assist">
+        検証から調整を考える<br>
+        ・ゴールそのものの見直しが必要か（中止、変更、追加）<br>
+        ・計画の大幅な見直しが必要か（課題の入れ替え、追加）<br>
+        ・サブゴール、Do、ToDoの見直しが必要か（入れ替え、優先順位の変更）<br>
+        ・調整の必要なし
+      </div>
 
-        <%= f.label :estimate_check_at, class: "label-#{yield(:class_text)}" %>
-        <%= f.datetime_select :estimate_check_at, class: "form-control datetime-form" %><br>
+      <%= f.label :check_at, class: "label-#{yield(:class_text)}" %>
+      <%= f.datetime_select :check_at, class: "form-control datetime-form" %><br>
 
-        <%= f.label :span, class: "label-#{yield(:class_text)}" %>
-        <%= f.date_select :span, class: "form-control date-form" %><br>
+      <%= f.label :estimate_check_at, class: "label-#{yield(:class_text)}" %>
+      <%= f.datetime_select :estimate_check_at, class: "form-control datetime-form" %><br>
 
-        <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
-        <%= f.number_field :achivement, class: "form-control" %>
+      <%= f.label :span, class: "label-#{yield(:class_text)}" %>
+      <%= f.date_select :span, class: "form-control date-form" %><br>
+      <div id="form-assist">
+        検証の周期を登録
+      </div>
 
-        <%= f.label :note, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_area :note, class: "form-control" %>
+      <%= f.label :note, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_area :note, class: "form-control" %>
 
-        <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
-        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_doing_doingchecks_path(current_user, @goal, @subgoal, @doing), class: "btn btn-default w-20" %>
+      <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
+      <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_doing_doingchecks_path(current_user, @goal, @subgoal, @doing), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
 
-      <% end %>
+    <% end %>
   </div>
 </div>

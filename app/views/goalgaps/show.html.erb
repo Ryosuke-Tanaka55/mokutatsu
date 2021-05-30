@@ -1,11 +1,12 @@
-<% provide(:title, current_user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'ゴールギャップ詳細') %>
+<% provide(:body_id, 'view-background') %>
 <% provide(:button_cancel, '戻る') %>
 
-<div class="row">
-  <h1>ゴールギャップ詳細</h1>
+<h1>ゴールギャップ詳細</h1>
+
+<div class="row">  
   <div class="col-md-10 col-md-offset3">
-    <table class="table table-bordered table-condensed" id="goalgap-table-detail">
+    <table class="table table-bordered table-condensed" id="table-detail">
       <tr>
         <th class="col-md-3"><%= Goalgap.human_attribute_name :gap %></th>
           <td class="col-md-9"><%= @goalgap.gap %></td>

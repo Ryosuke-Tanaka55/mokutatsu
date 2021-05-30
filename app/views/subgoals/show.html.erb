@@ -1,15 +1,16 @@
 <% provide(:title, current_user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:body_id, 'view-background') %>
 <% provide(:button_cancel, '戻る') %>
 
-<div class="row">
-  <h1>サブゴール詳細</h1>
-  <div class="goalgap_select">
-    <%= link_to "サブゴールギャップ新規作成", new_user_goal_goalgap_path(current_user, @goal, @subgoal), class: "btn btn-lg btn-primary pull-right" %>
-    <%= link_to "サブゴールギャップ一覧", user_goal_subgoal_subgoalgaps_path(current_user, @goal, @subgoal), class: "btn btn-lg btn-primary pull-right" %>
+<h1>サブゴール詳細</h1>
+
+<div class="row">  
+  <div class="menu-button">
+    <%= link_to "サブゴールギャップ新規作成", new_user_goal_goalgap_path(current_user, @goal, @subgoal), class: "btn btn-lg btn-primary" %>
+    <%= link_to "サブゴールギャップ一覧", user_goal_subgoal_subgoalgaps_path(current_user, @goal, @subgoal), class: "btn btn-lg btn-primary" %>
   </div>
   <div class="col-md-10 col-md-offset3">
-    <table class="table table-bordered table-condensed" id="subgoal-table-detail">
+    <table class="table table-bordered table-condensed" id="table-detail">
       <tr>
         <th class="col-md-3"><%= Subgoal.human_attribute_name :subgoal %></th>
           <td class="col-md-9"><%= @subgoal.subgoal %></td>

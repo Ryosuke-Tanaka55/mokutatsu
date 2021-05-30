@@ -1,5 +1,5 @@
-<% provide(:title, 'Edit Todo')%>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'ToDo編集')%>
+<% provide(:body_id, 'view-background') %>
 <% provide(:class_text, 'edit-todo') %>
 <% provide(:button_update, '更新') %>
 <% provide(:button_cancel, '戻る') %>
@@ -7,7 +7,7 @@
 <h1>ToDo編集</h1>
 
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-6 col-md-offset-3">
     <%= form_with(model: @todo, url: user_goal_subgoal_doing_todo_path(@user.id, @goal.id, @subgoal.id, @doing.id), method: :patch, local: true) do |f| %>
       <%= render 'shared/object_error_messages', object: f.object %>
       
@@ -50,8 +50,8 @@
         <%= f.text_area :note, class: "form-control" %>
           
       <div class="button">
-        <%= f.submit yield(:button_update), class: "btn btn-primary btn-#{yield(:button_update)}" %>
-        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_doing_todoes_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, doing_id: @doing.id), class: "btn btn-default w-20" %>
+        <%= f.submit yield(:button_update), class: "btn btn-primary btn-lg btn-#{yield(:button_update)}" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_doing_todoes_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, doing_id: @doing.id), class: "btn btn-default btn-lg btn-#{yield(:button_update)}" %>
       </div>
     <% end %>
   </div>

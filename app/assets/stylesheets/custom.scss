@@ -3,8 +3,26 @@
 
 /* universal */
 
+html, body{
+	margin: 0;	/* 余白の削除 */
+	padding: 0;	/* 余白の削除 */
+	height: 100%;	/* 縦の高さを100% */
+	width: 100%;	/* 横の幅を100% */
+}
+
 body {
   padding-top: 60px;
+}
+
+main {
+  padding-bottom: 60px;
+}
+
+#wrapper {
+  position: relative;
+  height: auto !important; /*IE6対策*/
+  height: 100%; /*IE6対策*/
+  min-height: 100%;
 }
 
 section {
@@ -32,14 +50,14 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   text-align: center;
   font-weight: normal;
   color: #777;
@@ -50,16 +68,12 @@ p {
   line-height: 1.7em;
 }
 
-/* wrapper */
-.wrapper{
-  height: 100%;
-  min-height: 100vh;
-  position: relative;/*←相対位置*/
-  padding-bottom: 120px;/*←footerの高さ*/
-  box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+.btn {
+  margin: 0px 5px;
 }
 
-/* ページヘッダー */
+/* header */
+
 #top-bar {
   background: #014099;
 }
@@ -123,11 +137,10 @@ p {
 #pageFoot {
   border-top: solid 1px #ccc;
   width: 100%;
-  padding: 30px 0;
-  position: absolute;/*←絶対位置*/
-  bottom: 0; /*下に固定*/
+  margin-top: 15px;
+  position: absolute;
   background: #222;
-  }
+}
 
 #pageFoot .nav li a {
   padding: 15px;
@@ -189,6 +202,25 @@ p {
   @extend .has-error;
   .form-control {
     color: $state-danger-text;
+  }
+}
+
+/* ボタン */
+
+.menu-button {
+  margin: 20px 0px;
+  .mgr-10 {
+    margin-left: 10px; 
+  }
+}
+
+.add-button-box, .delete-button-box {
+  margin: 20px 0px;
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    opacity: 5.0;
   }
 }
 
@@ -280,6 +312,7 @@ aside {
 }
 
 /* 投稿 */
+
 .posts {
   list-style: none;
   padding: 0;
@@ -325,7 +358,7 @@ span.image {
 }
 
 /* 背景画像 */
-#view_background {
+#view-background {
   background-image: image-url('bg2.jpg');
   background-color:rgba(255,255,255,0.8);
   background-blend-mode:lighten;
@@ -334,4 +367,48 @@ span.image {
   background-attachment: fixed;
   background-size: cover;
   z-index: 0;
+}
+
+/* 詳細テーブル */
+#table-detail {
+  margin-top: 10px;
+  td {
+    vertical-align: middle;
+  }
+}
+
+/* 一覧テーブル*/
+#table-index {
+  margin-top: 10px;
+  td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  th, tr {
+    text-align: center;
+  }
+}
+
+/* フォーム見出し説明 */
+h2.head-supplement {
+  font-size: 1.2em;
+  display: block;
+  letter-spacing: -1px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+  .h2-text {
+    text-align: left;
+    display: inline-block;
+  }
+}
+
+/* フォーム補足説明 */
+#form-assist {
+  font-size: 0.8em;
+  letter-spacing: -1px;
+  margin-top: 3px;
+  margin-bottom: 5px;
+  color: #777;
 }

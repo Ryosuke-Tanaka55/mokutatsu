@@ -1,18 +1,11 @@
 <% provide(:title, @user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:body_id, "view-background") %>
 
 <h1>今日の予定</h1>
 
 <div class="row">
   <div class="page-header">
     <h2>スケジュール管理</h2>
-  </div>
-</div>
-
-<div class="row">
-  <div class="pull-left">
-    <%= link_to  "スケジュール登録", new_user_event_path(current_user), remote: true, class: "btn btn-success" %>
-    <%= link_to  "ゴール登録", user_goals_path(current_user), class: "btn btn-primary" %>
   </div>
 </div>
 
@@ -27,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @todoes.each do |todo| %>
+      <% @todoes_today.each do |todo| %>
       <tr>
         <td colspan="3"><%= todo.todo %></td>
         <td colspan="3"><%= l(todo.estimated_start_time, format: :time) %></td>
@@ -38,7 +31,13 @@
     </tbody>
   </table>
 </div>
-<br>
+
+<div class="row">
+  <div class="schedule-button">
+    <%= link_to  "スケジュール登録", new_user_event_path(current_user), remote: true, class: "btn btn-success" %>
+    <%= link_to  "ゴール登録", user_goals_path(current_user), class: "btn btn-primary" %>
+  </div>
+</div>
 
 <div id="calendar"></div>
 

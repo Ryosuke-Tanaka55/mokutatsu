@@ -1,13 +1,16 @@
-<% provide(:title, current_user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'ToDo一覧') %>
+<% provide(:body_id, 'view-background') %>
 
-<h1><%= @doing.doing %><br>ToDo一覧</h1>
+<h1><%= @doing.doing %></h1>
+<h1>ToDo一覧</h1>
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <%= link_to "Do一覧へ戻る", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-default pull-right" %>
-    <%= link_to "ToDo新規作成", new_user_goal_subgoal_doing_todo_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, doing_id: @doing.id), class: "btn btn-lg btn-primary pull-right" %>
-    <table class="table table-hover" id="table-subgoals">
+    <div class="menu-button">
+      <%= link_to "ToDo新規作成", new_user_goal_subgoal_doing_todo_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id, doing_id: @doing.id), class: "btn btn-lg btn-primary" %>
+      <%= link_to "Do一覧へ戻る", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-default" %>
+    </div>
+    <table class="table table-hover" id="table-index">
       <thead>
         <tr>
           <th><%= Todo.human_attribute_name :todo %></th>

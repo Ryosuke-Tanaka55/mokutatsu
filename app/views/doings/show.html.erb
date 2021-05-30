@@ -1,11 +1,12 @@
-<% provide(:title, current_user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'Do詳細') %>
+<% provide(:body_id, 'view-background') %>
 <% provide(:button_cancel, '戻る') %>
 
+<h1>Do詳細</h1>
+
 <div class="row">
-  <h1>Do詳細</h1>
   <div class="col-md-10 col-md-offset3">
-    <table class="table table-bordered table-condensed" id="doing-table-detail">
+    <table class="table table-bordered table-condensed" id="table-detail">
       <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :doing %></th>
           <td class="col-md-9"><%= @doing.doing %></td>

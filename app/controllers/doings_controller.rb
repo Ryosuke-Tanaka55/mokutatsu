@@ -55,7 +55,7 @@ class DoingsController < ApplicationController
         :priority, :impact, :worktime, :easy, :hold, :note, :subgoal_id, 
         todoes_attributes: [:id, :todo, :worked_on, :start_day, :finish_day, :estimated_time, :estimated_start_time, :estimated_finish_time,
            :actual_start_time, :actual_finish_time, :achivement, :check, :pattern, :priority, :progress, :hold, :note, 
-           :user_id, :doing_id, :_destroy]))
+           :user_id, :doing_id, :_destroy])
     end
 
      # 編集時

@@ -1,11 +1,15 @@
-<% provide(:title, current_user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'Do検証一覧') %>
+<% provide(:body_id, 'view-background') %>
 
-<h1><%= @doing.doing %><br>検証一覧</h1>
+<h1><%= @doing.doing %></h1>
+<h1>Do検証一覧</h1>
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <%= link_to "Do検証新規作成", new_user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing), class: "btn btn-lg btn-primary pull-right" %>
+    <div class="menu-button">
+      <%= link_to "Do検証新規作成", new_user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing), class: "btn btn-lg btn-primary" %>
+      <%= link_to "Do一覧へ戻る", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-default" %>
+    </div>
     <table class="table table-hover" id="table-doingchecks">
       <thead>
         <tr>

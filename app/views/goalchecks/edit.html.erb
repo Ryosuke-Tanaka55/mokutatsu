@@ -1,31 +1,52 @@
-<% provide(:title, '検証編集') %>
-<% provide(:body_id, "view_background") %>
-<% provide(:class_text, 'edit_goalcheck') %>
+<% provide(:title, 'ゴール検証編集') %>
+<% provide(:body_id, 'view-background') %>
+<% provide(:class_text, 'edit-goalcheck') %>
 <% provide(:button_text, '編集') %>
 <% provide(:button_cancel, '戻る') %>
 
-<h1>目標（ゴール）検証編集</h1>
-<h2>達成したいゴールの検証を編集します。</h2>
+<h1>ゴール検証編集</h1>
+<h2 class="head-supplement">
+  <div class="h2-text">
+    ・月1回程度達成率を確認する
+  </div>
+</h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
       <%= form_with(model: @goalcheck, url: user_goal_goalcheck_path(current_user, @goal), local: true) do |f| %>
         <%= render 'shared/object_error_messages', object: f.object %>
 
+        <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
+        <%= f.number_field :achivement, class: "form-control" %>
+        <div id="form-assist">
+          ・ゴール達成率を記載する
+        </div>
+
         <%= f.label :check, class: "label-#{yield(:class_text)}" %>
         <%= f.text_area :check, class: "form-control" %>
+        <div id="form-assist">
+          ゴール達成率から理由を探る<br>
+          ・ゴールに近づくサブゴール、DO、ToDoとなっていたか<br>
+          ・達成できたまたはできなかった理由を深掘りする
+        </div>
 
         <%= f.label :adjust, class: "label-#{yield(:class_text)}" %>
         <%= f.text_area :adjust, class: "form-control" %>
+          検証から調整を考える<br>
+          ・ゴールそのものの見直しが必要か<br>
+          ・計画の大幅な見直しが必要か<br>
+          ・サブゴール、Do、ToDoの見直しが必要か<br>
+          ・調整の必要なし
+        </div>
 
         <%= f.label :estimate_check_at, class: "label-#{yield(:class_text)}" %>
         <%= f.datetime_select :estimate_check_at, class: "form-control datetime-form" %><br>
 
         <%= f.label :span, class: "label-#{yield(:class_text)}" %>
         <%= f.date_select :span, class: "form-control date-form" %><br>
-
-        <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
-        <%= f.number_field :achivement, class: "form-control" %>
+        <div id="form-assist">
+          検証の周期を登録
+        </div>
 
         <%= f.label :note, class: "label-#{yield(:class_text)}" %>
         <%= f.text_area :note, class: "form-control" %>

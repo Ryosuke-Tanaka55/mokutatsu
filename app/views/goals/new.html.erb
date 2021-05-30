@@ -1,11 +1,19 @@
 <% provide(:title, 'ゴール登録') %>
-<% provide(:body_id, "view_background") %>
-<% provide(:class_text, 'create_goal') %>
+<% provide(:body_id, 'view-background') %>
+<% provide(:class_text, 'create-goal') %>
 <% provide(:button_text, '新規作成') %>
 <% provide(:button_cancel, '戻る') %>
 
-<h1>ゴール設定</h1>
+<h1>ゴール登録</h1>
 <h2>達成したいゴールとそのギャップを登録します。</h2>
+<h2 class="head-supplement">
+  <div class="h2-text">
+    ゴール設定の基準<br>
+    ・期日を決める（理想は1～3ヶ月）<br>
+    ・なるべく数値化する<br>
+    ・適度に具体的なものにする
+  </div>
+</h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -14,6 +22,9 @@
 
         <%= f.label :goal, class: "label-#{yield(:class_text)}" %>
         <%= f.text_field :goal, class: "form-control" %>
+        <div id="form-assist">
+          達成したいゴールを登録
+        </div>
 
         <%= f.label :category, class: "label-#{yield(:class_text)}" %>
         <%= f.select :category, Goal.categories.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
@@ -27,22 +38,27 @@
 
         <%= f.label :goal_index, class: "label-#{yield(:class_text)}" %>
         <%= f.text_field :goal_index, class: "form-control" %>
+        <div id="form-assist">
+          達成基準を登録<br>
+          ・なるべく数値化する
+        </div>
 
         <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
         <%= f.check_box :hold, class: "checkbox inline checkbox-goal" %>
-
-        <%= f.label :publish, class: "label-#{yield(:class_text)}" %>
-        <%= f.select :publish, Goal.publishes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-          { class: "form-control" , required: true } %>
+        <div id="form-assist">
+          すぐに着手しない場合はチェック
+        </div>
 
         <%= f.label :note, class: "label-#{yield(:class_text)}" %>
         <%= f.text_area :note, class: "form-control" %>
         
+        <div id="detail-association-insertion-point"></div>
+
         <div class="goalgaps">
           <%= f.fields_for :goalgaps do |g| %>
             <%= render "goalgap_fields", f: g %>
           <% end %>
-          <div class="add-botton-box">
+          <div class="add-button-box">
             <%= link_to_add_association "ゴールギャップ追加", f, :goalgaps,
               class: "btn-sm btn-success",
               data: {
@@ -53,10 +69,8 @@
           </div>
         </div>
 
-        <div id="detail-association-insertion-point"></div>
-
-        <%= f.submit yield(:button_text), class: "btn btn-primary btn btn-#{yield(:class_text)}" %>
-        <%= link_to "#{yield(:button_cancel)}", user_goals_path(@user.id, @goal.id), class: "btn btn-default btn-#{yield(:class_text)}" %>
+      <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
+      <%= link_to "#{yield(:button_cancel)}", user_goals_path(@user.id, @goal.id), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
 
       <% end %>
   </div>

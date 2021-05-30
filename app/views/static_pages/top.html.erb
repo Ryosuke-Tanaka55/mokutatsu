@@ -5,7 +5,11 @@
   <div class="center">
     <h1>MOKU TATSU</h1>
     <p>このアプリケーションは、目標達成の手助けを行います。</p>
-    <%= link_to "ログイン", login_path, class: "btn btn-lg btn btn-success" %>
-    <p>アカウント作成は<%= link_to "こちら", signup_path %>から</p>
+    <% if logged_in? %>
+      <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-lg btn btn-danger" %>
+    <% else %>
+      <%= link_to "ログイン", login_path, class: "btn btn-lg btn btn-success" %>
+      <p>アカウント作成は<%= link_to "こちら", signup_path %>から</p>
+    <% end %>
   </div>
 </div>

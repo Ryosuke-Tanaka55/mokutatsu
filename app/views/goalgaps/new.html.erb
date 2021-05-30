@@ -1,45 +1,62 @@
 <% provide(:title, 'ゴールギャップ登録') %>
-<% provide(:body_id, "view_background") %>
-<% provide(:class_text, 'create_goalgap') %>
+<% provide(:body_id, 'view-background') %>
+<% provide(:class_text, 'create-goalgap') %>
 <% provide(:button_text, '新規作成') %>
 <% provide(:button_cancel, '戻る') %>
 
-<h1>ゴールギャップ設定</h1>
-<h2>達成したい目標（ゴール）と現状とのギャップを登録します。</h2>
+<h1>ゴールギャップ登録</h1>
+	<h2>達成したいゴールと現状とのギャップを登録します。</h2>
+		<div class="head-supplement">
+			ゴールとのギャップを埋める課題を考えていきます。
+		</div>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-      <%= form_with(model: @goalgap, url: user_goal_goalgaps_path(user_id: current_user.id, goal_id: @goal.id), local: true) do |f| %>
-        <%= render 'shared/object_error_messages', object: f.object %>
+		<%= form_with(model: @goalgap, url: user_goal_goalgaps_path(user_id: current_user.id, goal_id: @goal.id), local: true) do |f| %>
+			<%= render 'shared/object_error_messages', object: f.object %>
 
-        <%= f.label :gap, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_field :gap, class: "form-control" %>
+			<%= f.label :gap, class: "label-#{yield(:class_text)}" %>
+			<%= f.text_field :gap, class: "form-control" %>
+			<div id="form-assist">
+        逆算してゴールとのギャップを考える<br>
+        ・何が不足しているか<br>
+        ・チームであれば第三者とも認識を擦り合わせておく
+      </div>
 
-        <%= f.label :detail, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_area :detail, class: "form-control" %>
+			<%= f.label :detail, class: "label-#{yield(:class_text)}" %>
+			<%= f.text_area :detail, class: "form-control" %>
+			<div id="form-assist">
+        ギャップの具体的なものを記載する
+      </div>
 
-        <%= f.label :solution, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_area :solution, class: "form-control" %>
+			<%= f.label :solution, class: "label-#{yield(:class_text)}" %>
+			<%= f.text_area :solution, class: "form-control" %>
+			<div id="form-assist">
+        洗い出したギャップを解決する課題を考える<br>
+				・課題抽出は現時点での考えられるものを正確かつもれなく行うことが理想<br>
+				・自分は何をすべきか<br>
+        ・前進を加速させる伸ばせる長所はないか<br>
+        ・あらかじめ手を打っておくべきリスクはあるか<br>
+				・上手くいっている人はどんな工夫をしているか
+      </div>
+			<div class="goalgaps">
+      	<%= f.fields_for :goalgaps do |g| %>
+        	<%= render "goalgap_fields", f: g %>
+        <% end %>
+        <div class="add-button-box">
+          <%= link_to_add_association "ゴールギャップ追加", f, :goalgaps,
+						class: "btn-sm btn-success",
+						data: {
+							association_insertion_node: '#detail-association-insertion-point',
+							association_insertion_method: 'after'
+						}
+					%>
+          </div>
+        </div>
 
-        <%= f.label :impact, class: "label-#{yield(:class_text)}" %>
-        <%= f.select :impact, Goalgap.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-            { class: "form-control" , required: true } %>
+			<%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
+			<%= link_to "#{yield(:button_cancel)}", user_goal_goalgaps_path(user_id: current_user.id, goal_id: @goal.id), class: "btn  btn-default btn-lg btn-#{yield(:class_text)}" %>
 
-        <%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
-        <%= f.select :worktime, Goalgap.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-            { class: "form-control" , required: true } %>
-
-        <%= f.label :easy, class: "label-#{yield(:class_text)}" %>
-        <%= f.select :easy, Goalgap.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-            { class: "form-control" , required: true } %>
-
-        <%= f.label :priority, class: "label-#{yield(:class_text)}" %>
-        <%= f.select :priority, Goalgap.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-            { class: "form-control" , required: true } %>
-
-        <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
-         <%= link_to "#{yield(:button_cancel)}", user_goal_goalgaps_path(user_id: current_user.id, goal_id: @goal.id), class: "btn btn-default" %>
-
-      <% end %>
+		<% end %>
   </div>
 </div>

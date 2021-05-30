@@ -1,14 +1,18 @@
-<% provide(:title, current_user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'ゴールギャップ一覧') %>
+<% provide(:body_id, 'view-background') %>
 
-<h1><%= @goal.goal %><br>
-    ゴールギャップ一覧
-</h1>
+<h1><%= @goal.goal %></h1>
+<h1>ゴールギャップ一覧</h1>
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <%= link_to "ゴールギャップ新規作成", new_user_goal_goalgap_path(current_user, @goal), class: "btn btn-lg btn-primary pull-right" %>
-    <table class="table table-hover" id="table-goalgaps">
+    <div class="menu-btn">
+      <%= link_to "ゴールギャップ新規作成", new_user_goal_goalgap_path(current_user, @goal), class: "btn btn-lg btn-primary" %>
+      <span class="mgr-10">
+        <%= link_to "ゴール一覧へ戻る", user_goals_path(current_user, @goal), class: "btn btn-lg btn-default" %>
+      </span>
+    </div>
+    <table class="table table-hover" id="table-index">
       <thead>
         <tr>
           <th><%= Goalgap.human_attribute_name :gap %></th>

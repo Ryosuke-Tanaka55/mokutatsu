@@ -1,11 +1,12 @@
-<% provide(:title, current_user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'ToDo詳細') %>
+<% provide(:body_id, 'view-background') %>
 <% provide(:button_cancel, '戻る') %>
 
+<h1>ToDo詳細</h1>
+
 <div class="row">
-  <h1>ToDo詳細</h1>
   <div class="col-md-10 col-md-offset3">
-    <table class="table table-bordered table-condensed" id="todo-table-detail">
+    <table class="table table-bordered table-condensed" id="table-detail">
       <tr>
         <th class="col-md-3"><%= Todo.human_attribute_name :todo %></th>
           <td class="col-md-9"><%= @todo.todo %></td>

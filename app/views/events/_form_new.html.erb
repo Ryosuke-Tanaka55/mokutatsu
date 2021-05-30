@@ -3,7 +3,7 @@
   <%= render 'shared/object_error_messages', object: f.object %>
   <div class="form-group">
     <%= f.label :title %>
-    <%= f.collection_select :name, @todoes, :id, :todo, { include_blank: "選択してください。" }, { class:"form-control" } %>
+    <%= f.collection_select :title, @todoes, :todo, :todo, { include_blank: "選択してください。" }, { class:"form-control" } %>
   </div>
   <div class="form-group">
     <%= f.label :start_time %>

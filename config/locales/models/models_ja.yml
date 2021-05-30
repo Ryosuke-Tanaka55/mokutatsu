@@ -52,7 +52,7 @@ ja:
       goalcheck:
         check: ゴール検証
         adjust: ゴール調整
-        estimate_check_at: 検証予定日時
+        estimate_check_at: 次回検証予定日時
         check_at: 検証日時
         span: 検証周期
         achivement: ゴール達成率(%)
@@ -94,7 +94,7 @@ ja:
       subgoalcheck:
         check: サブゴール検証
         adjust: サブゴール調整
-        estimate_check_at: 検証予定日時
+        estimate_check_at: 次回検証予定日時
         check_at: 検証日時
         span: 検証周期
         achivement: サブゴール達成率(%)
@@ -121,7 +121,7 @@ ja:
       doingcheck:
           check: Do検証
           adjust: Do調整
-          estimate_check_at: 検証予定日時
+          estimate_check_at: 次回検証予定日時
           check_at: 検証日時
           span: 検証周期
           achivement: Do達成率(%)

@@ -22,7 +22,7 @@ class SubgoalgapsController < ApplicationController
     @subgoalgap = @subgoal.subgoalgaps.build(subgoalgap_params)
     if @subgoalgap.save
       flash[:success] = "新規作成に成功しました。"
-      redirect_to user_goal_goalcheck_index_url
+      redirect_to user_goal_subgoal_subgoalgaps_url
     else
       flash.now[:danger] = "新規作成に失敗しました。"     
       render :new
@@ -44,7 +44,7 @@ class SubgoalgapsController < ApplicationController
   def destroy
     @subgoalgap.destroy
     flash[:success] = "#{ @subgoalgap.gap }を削除しました。"
-    redirect_to user_goal_goalcheck_index_url
+    redirect_to user_goal_subgoal_subgoalgaps_url
   end
 
   private

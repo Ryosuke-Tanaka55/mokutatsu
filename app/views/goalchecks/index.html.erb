@@ -1,12 +1,16 @@
-<% provide(:title, current_user.name) %>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'ゴール検証一覧') %>
+<% provide(:body_id, 'view-background') %>
 
-<h1><%= @goal.goal %><br>検証一覧</h1>
+<h1><%= @goal.goal %></h1>
+<h1>ゴール検証一覧</h1>
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <%= link_to "ゴール検証新規作成", new_user_goal_goalcheck_path(current_user, @goal), class: "btn btn-lg btn-primary pull-right" %>
-    <table class="table table-hover" id="table-goalchecks">
+    <div class="menu-button">
+      <%= link_to "ゴール検証新規作成", new_user_goal_goalcheck_path(current_user, @goal), class: "btn btn-lg btn-primary" %>
+      <%= link_to "ゴール一覧へ戻る", user_goals_path(user_id: current_user.id), class: "btn btn-lg btn-default" %>
+    </div>
+    <table class="table table-hover" id="table-index">
       <thead>
         <tr>
           <th><%= Goalcheck.human_attribute_name :estimate_check_at %></th>

@@ -19,7 +19,7 @@ class SubgoalsController < ApplicationController
   end
 
   def create
-    @subgoal = @goal.subgoals.build(create_subgoalgap_params)
+    @subgoal = @goal.subgoals.build(create_subgoal_params)
     if @subgoal.save
       flash[:success] = "新規作成に成功しました。"
       redirect_to user_goal_subgoals_url

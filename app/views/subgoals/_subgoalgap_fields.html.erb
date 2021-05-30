@@ -12,6 +12,9 @@
   <%= f.select :impact, Goalgap.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
     { class: "form-control" , required: true } %>
 
+  <%= f.label :term, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :term, class: "form-control" %>
+
   <%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
   <%= f.select :worktime, Goalgap.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
     { class: "form-control" , required: true } %>
@@ -24,7 +27,7 @@
   <%= f.select :priority, Goalgap.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
     { class: "form-control" , required: true } %>
   
-  <div class="delete-botton-box">
+  <div class="delete-button-box">
     <%= link_to_remove_association "サブゴールギャップ削除", f,
       class: "btn-sm btn-danger",
       data: {

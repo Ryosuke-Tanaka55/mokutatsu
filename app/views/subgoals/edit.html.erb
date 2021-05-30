@@ -1,5 +1,5 @@
-<% provide(:title, 'Edit Subgoal')%>
-<% provide(:body_id, "view_background") %>
+<% provide(:title, 'サブゴール編集')%>
+<% provide(:body_id, 'view-background') %>
 <% provide(:class_text, 'edit-subgoal') %>
 <% provide(:button_update, '更新') %>
 <% provide(:button_cancel, '戻る') %>
@@ -62,8 +62,8 @@
         <%= f.text_area :note, class: "form-control" %>
       
       <div class="button">
-        <%= f.submit yield(:button_update), class: "btn btn-primary btn-#{yield(:button_update)}" %>
-        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoals_path(@user.id, @goal.id), class: "btn btn-default w-20" %>
+        <%= f.submit yield(:button_update), class: "btn btn-primary btn-lg btn-#{yield(:button_update)}" %>
+        <%= link_to "#{yield(:button_cancel)}", user_goal_subgoals_path(@user.id, @goal.id), class: "btn btn-default btn-lg btn-#{yield(:button_update)}" %>
       </div>
     <% end %>
   </div>
