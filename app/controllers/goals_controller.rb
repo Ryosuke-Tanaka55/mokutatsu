@@ -13,17 +13,17 @@ class GoalsController < ApplicationController
 
   def new
     @goal = Goal.new
-    @subgoal = @goal.subgoals.build
+    @subgoals = @goal.subgoals.build
     @goalgaps = @goal.goalgaps.build
   end
 
   def create
     @goal = current_user.goals.build(create_goal_params)
     if @goal.save
-      flash[:success] = "目標の新規作成に成功しました。"
+      flash[:success] = "ゴールの新規作成に成功しました。"
       redirect_to user_goals_url
     else
-      flash.now[:danger] = "目標の新規作成に失敗しました。"     
+      flash.now[:danger] = "ゴールの新規作成に失敗しました。"     
       render :new
     end
   end
@@ -49,7 +49,7 @@ class GoalsController < ApplicationController
 
   private
     # ストロングパラメーター
-    # 新規目標設定時 goalgapを同時に登録
+    # 新規ゴール登録時 goalgapを同時に登録
     def create_goal_params
       params.require(:goal).permit(:goal, :category, :start_day, :finish_day, :goal_index, :hold, :publish, :note, 
         goalgaps_attributes: [:id, :gap, :detail, :solution, :impact, :worktime, :easy, :priority, :goal_id, :_destroy])
@@ -61,7 +61,7 @@ class GoalsController < ApplicationController
          :achivement, :check, :adjust, :hold, :publish, :note)
     end
 
-    # パラメーターから目標を取得
+    # パラメーターからゴールを取得
     def set_goal
       @goal = Goal.find(params[:id])
     end

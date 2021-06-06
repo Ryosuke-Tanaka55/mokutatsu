@@ -5,10 +5,11 @@
 <% provide(:button_cancel, '戻る') %>
 
 <h1>ゴールギャップ登録</h1>
-	<h2>達成したいゴールと現状とのギャップを登録します。</h2>
-		<div class="head-supplement">
-			ゴールとのギャップを埋める課題を考えていきます。
-		</div>
+<h2 class="head-supplement">ゴールと現状とのギャップを登録します。
+	<div class="h2-text">
+		ゴールとのギャップを埋める課題を考えていきます。
+	</div>
+</h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -18,7 +19,7 @@
 			<%= f.label :gap, class: "label-#{yield(:class_text)}" %>
 			<%= f.text_field :gap, class: "form-control" %>
 			<div id="form-assist">
-        逆算してゴールとのギャップを考える<br>
+        ・逆算してゴールとのギャップを考える<br>
         ・何が不足しているか<br>
         ・チームであれば第三者とも認識を擦り合わせておく
       </div>
@@ -26,33 +27,47 @@
 			<%= f.label :detail, class: "label-#{yield(:class_text)}" %>
 			<%= f.text_area :detail, class: "form-control" %>
 			<div id="form-assist">
-        ギャップの具体的なものを記載する
+        ・ギャップの具体的なものを記載する
       </div>
 
 			<%= f.label :solution, class: "label-#{yield(:class_text)}" %>
 			<%= f.text_area :solution, class: "form-control" %>
 			<div id="form-assist">
-        洗い出したギャップを解決する課題を考える<br>
+        ・洗い出したギャップを解決する課題を考える<br>
 				・課題抽出は現時点での考えられるものを正確かつもれなく行うことが理想<br>
 				・自分は何をすべきか<br>
         ・前進を加速させる伸ばせる長所はないか<br>
         ・あらかじめ手を打っておくべきリスクはあるか<br>
 				・上手くいっている人はどんな工夫をしているか
       </div>
-			<div class="goalgaps">
-      	<%= f.fields_for :goalgaps do |g| %>
-        	<%= render "goalgap_fields", f: g %>
-        <% end %>
-        <div class="add-button-box">
-          <%= link_to_add_association "ゴールギャップ追加", f, :goalgaps,
-						class: "btn-sm btn-success",
-						data: {
-							association_insertion_node: '#detail-association-insertion-point',
-							association_insertion_method: 'after'
-						}
-					%>
-          </div>
-        </div>
+
+        <%= f.label :impact, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :impact, Goalgap.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+            { class: "form-control" , required: true } %>
+			<div id="form-assist">
+        ・どれくらいの効果が見込めるかを選択
+      </div>
+
+        <%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :worktime, Goalgap.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+            { class: "form-control" , required: true } %>
+			<div id="form-assist">
+        ・どれくらいの時間がかかるかを選択
+      </div>
+
+        <%= f.label :easy, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :easy, Goalgap.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+            { class: "form-control" , required: true } %>
+			<div id="form-assist">
+        ・低コスト、低リスク、低負荷の度合いを選択
+      </div>
+
+        <%= f.label :priority, class: "label-#{yield(:class_text)}" %>
+        <%= f.select :priority, Goalgap.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+            { class: "form-control" , required: true } %>
+      <div id="form-assist">
+        ・インパクト、工数、気軽さから優先度を選択
+      </div>
 
 			<%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
 			<%= link_to "#{yield(:button_cancel)}", user_goal_goalgaps_path(user_id: current_user.id, goal_id: @goal.id), class: "btn  btn-default btn-lg btn-#{yield(:class_text)}" %>

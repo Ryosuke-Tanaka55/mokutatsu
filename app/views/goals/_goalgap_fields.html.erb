@@ -1,11 +1,11 @@
 <div class="nested-fields">
   <%= f.label :gap, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :gap, class: "form-control" %>
-    <div id="form-assist">
-      逆算してゴールとのギャップを考える<br>
-      ・何が不足しているか<br>
-      ・チームであれば第三者とも認識を擦り合わせておく
-    </div>
+  <div id="form-assist">
+    逆算してゴールとのギャップを考える<br>
+    ・何が不足しているか<br>
+    ・チームであれば第三者とも認識を擦り合わせておく
+  </div>
 
   <%= f.label :detail, class: "label-#{yield(:class_text)}" %>
   <%= f.text_area :detail, class: "form-control" %>
@@ -23,7 +23,35 @@
     ・あらかじめ手を打っておくべきリスクはあるか<br>
     ・上手くいっている人はどんな工夫をしているか
   </div>
-    
+
+  <%= f.label :impact, class: "label-#{yield(:class_text)}" %>
+  <%= f.select :impact, Goalgap.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+      { class: "form-control" , required: true } %>
+  <div id="form-assist">
+    ・どれくらいの効果が見込めるかを選択
+  </div>
+
+  <%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
+  <%= f.select :worktime, Goalgap.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+      { class: "form-control" , required: true } %>
+  <div id="form-assist">
+    ・どれくらいの時間がかかるかを選択
+  </div>
+
+  <%= f.label :easy, class: "label-#{yield(:class_text)}" %>
+  <%= f.select :easy, Goalgap.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+      { class: "form-control" , required: true } %>
+  <div id="form-assist">
+    ・低コスト、低リスク、低負荷の度合いを選択
+  </div>
+
+  <%= f.label :priority, class: "label-#{yield(:class_text)}" %>
+  <%= f.select :priority, Goalgap.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+      { class: "form-control" , required: true } %>
+  <div id="form-assist">
+    インパクト、工数、気軽さから優先度を選択
+  </div>
+
   <div class="delete-button-box">
     <%= link_to_remove_association "ゴールギャップ削除", f,
       class: "btn-sm btn-danger pull-right",

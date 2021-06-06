@@ -17,61 +17,60 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-      <%= form_with(model: @goal, url: user_goals_path(current_user), local: true) do |f| %>
-        <%= render 'shared/object_error_messages', object: @goal %>
+    <%= form_with(model: @goal, url: user_goals_path(current_user), local: true) do |f| %>
+      <%= render 'shared/object_error_messages', object: @goal %>
 
-        <%= f.label :goal, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_field :goal, class: "form-control" %>
-        <div id="form-assist">
-          達成したいゴールを登録
-        </div>
+      <%= f.label :goal, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :goal, class: "form-control" %>
+      <div id="form-assist">
+        ・達成したいゴールを登録
+      </div>
 
-        <%= f.label :category, class: "label-#{yield(:class_text)}" %>
-        <%= f.select :category, Goal.categories.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-          { class: "form-control" , required: true } %>
+      <%= f.label :category, class: "label-#{yield(:class_text)}" %>
+      <%= f.select :category, Goal.categories.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+        { class: "form-control" , required: true } %>
 
-        <%= f.label :start_day, class: "label-#{yield(:class_text)}" %>
-        <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
+      <%= f.label :start_day, class: "label-#{yield(:class_text)}" %>
+      <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
 
-        <%= f.label :finish_day, class: "label-#{yield(:class_text)}" %>
-        <%= f.date_select :finish_day, class: "form-control datetime-form" %><br>
+      <%= f.label :finish_day, class: "label-#{yield(:class_text)}" %>
+      <%= f.date_select :finish_day, class: "form-control datetime-form" %><br>
 
-        <%= f.label :goal_index, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_field :goal_index, class: "form-control" %>
-        <div id="form-assist">
-          達成基準を登録<br>
-          ・なるべく数値化する
-        </div>
+      <%= f.label :goal_index, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_field :goal_index, class: "form-control" %>
+      <div id="form-assist">
+        ・達成基準を登録<br>
+        ・なるべく数値化する
+      </div>
 
-        <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
-        <%= f.check_box :hold, class: "checkbox inline checkbox-goal" %>
-        <div id="form-assist">
-          すぐに着手しない場合はチェック
-        </div>
+      <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
+      <%= f.check_box :hold, class: "checkbox inline checkbox-goal" %>
+      <div id="form-assist">
+        ・すぐに着手しない場合はチェック
+      </div>
 
-        <%= f.label :note, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_area :note, class: "form-control" %>
-        
-        <div id="detail-association-insertion-point"></div>
+      <%= f.label :note, class: "label-#{yield(:class_text)}" %>
+      <%= f.text_area :note, class: "form-control" %>
 
-        <div class="goalgaps">
-          <%= f.fields_for :goalgaps do |g| %>
-            <%= render "goalgap_fields", f: g %>
-          <% end %>
-          <div class="add-button-box">
-            <%= link_to_add_association "ゴールギャップ追加", f, :goalgaps,
-              class: "btn-sm btn-success",
-              data: {
-                association_insertion_node: '#detail-association-insertion-point',
-                association_insertion_method: 'after'
-              }
-            %>
-          </div>
-        </div>
+      <div class="goalgaps">
+        <%= f.fields_for :goalgaps do |g| %>
+          <%= render "goalgap_fields", f: g %>
+        <% end %>
+      </div>
+
+      <div class="add-button-box">
+        <%= link_to_add_association "＋ ゴールギャップ追加", f, :goalgaps,
+          class: "btn-sm btn-success",
+          data: {
+            association_insertion_node: '#detail-association-insertion-point',
+            association_insertion_method: 'before'
+          }
+        %>
+      </div>
 
       <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
       <%= link_to "#{yield(:button_cancel)}", user_goals_path(@user.id, @goal.id), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
 
-      <% end %>
+    <% end %>
   </div>
 </div>

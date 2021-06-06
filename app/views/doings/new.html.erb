@@ -58,13 +58,13 @@
       <%= f.select :priority, Doing.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
         { class: "form-control" , required: true } %>
       <div id="form-assist">
-        ・優先度を選択
+        ・インパクト、工数、気軽さから優先度を選択
       </div>
 
       <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
       <%= f.check_box :hold, class: "checkbox inline checkbox-doing" %>
       <div id="form-assist">
-        ・保留にする場合選択
+        ・すぐに着手しない場合はチェック
       </div>
 
       <%= f.label :note, class: "label-#{yield(:class_text)}" %>

@@ -8,8 +8,8 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <div class="menu-button">
-      <%= link_to "サブゴールギャップ新規作成", new_user_goal_subgoal_subgoalgap_path(current_user, @goal, @subgoal), class: "btn btn-lg btn-primary" %>
-      <%= link_to "サブゴール一覧へ戻る", user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal), class: "btn btn-lg btn-default" %>
+      <%= link_to "サブゴールギャップ新規作成", new_user_goal_subgoal_subgoalgap_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-primary" %>
+      <%= link_to "サブゴール一覧へ戻る", user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal.id), class: "btn btn-lg btn-default" %>
     </div>
     <table class="table table-hover" id="table-index">
       <thead>

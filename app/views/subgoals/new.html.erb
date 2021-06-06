@@ -7,7 +7,7 @@
 <h1>サブゴール登録</h1>
 <h2 class="head-supplement">ゴールとのギャップを埋める解決策を登録します。
   <div class="h2-text">
-    ゴールギャップが参考になります。
+    ゴールギャップを元に解決策を登録します。
   </div>
 </h2>
 
@@ -18,9 +18,12 @@
 
       <%= f.label :subgoal, class: "label-#{yield(:class_text)}" %>
       <%= f.text_field :subgoal, class: "form-control" %>
-
-      <%= f.label :important, class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :important, class: "checkbox inline checkbox-subgoal" %>
+      <div id="form-assist">
+        ・ゴールギャップの解決策からなるべく数値化した課題を設定する
+        ・できるだけ頻繁に検証できるものにする
+        ・成果がその数値に正確に反映されるものにする
+        ・サブゴールは目指すべき結果であり行動目標ではない
+      </div>
 
       <%= f.label :start_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
       <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
@@ -31,25 +34,49 @@
       <%= f.label :pattern, class: "label-#{yield(:class_text)}" %>&nbsp;&nbsp;
       <%= f.radio_button :pattern, "完結型" %>完結型 &nbsp;&nbsp;&nbsp;
       <%= f.radio_button :pattern, "継続型" %>継続型<br>
-
-      <%= f.label :priority, class: "label-#{yield(:class_text)}" %>
-      <%= f.select :priority, Subgoal.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
-        { class: "form-control" , required: true } %>
+      <div id="form-assist">
+        ・1回のアクションで終了か継続してアクションするものか選択
+      </div>
 
       <%= f.label :impact, class: "label-#{yield(:class_text)}" %>
       <%= f.select :impact, Subgoal.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
         { class: "form-control" , required: true } %>
-      
+      <div id="form-assist">
+        ・どれくらいの効果が見込めるかを選択
+      </div>
+
       <%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
       <%= f.select :worktime, Subgoal.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
         { class: "form-control" , required: true } %>
+			<div id="form-assist">
+        ・どれくらいの時間がかかるかを選択
+      </div>
 
       <%= f.label :easy, class: "label-#{yield(:class_text)}" %>
       <%= f.select :easy, Subgoal.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
         { class: "form-control" , required: true } %>
+			<div id="form-assist">
+        ・低コスト、低リスク、低負荷の度合いを選択
+      </div>
+
+      <%= f.label :priority, class: "label-#{yield(:class_text)}" %>
+      <%= f.select :priority, Subgoal.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+        { class: "form-control" , required: true } %>
+      <div id="form-assist">
+        ・インパクト、工数、気軽さから優先度を設定する
+      </div>
+
+      <%= f.label :important, class: "label-#{yield(:class_text)}" %>
+      <%= f.check_box :important, class: "checkbox inline checkbox-subgoal" %>
+      <div id="form-assist">
+        ・ゴール到達に最も繋がるサブゴールを最低1つ、できれば2つ選択
+      </div>
       
       <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
       <%= f.check_box :hold, class: "checkbox inline checkbox-subgoal" %>
+      <div id="form-assist">
+        ・すぐに着手しない場合はチェック
+      </div>
 
       <%= f.label :note, class: "label-#{yield(:class_text)}" %>
       <%= f.text_area :note, class: "form-control" %>
@@ -58,20 +85,21 @@
         <%= f.fields_for :subgoalgaps do |g| %>
           <%= render "subgoalgap_fields", f: g %>
         <% end %>
-        <div class="add-button-box">
-          <%= link_to_add_association "サブゴールギャップ追加", f, :subgoalgaps,
-            class: "btn-sm btn-success",
-            data: {
-              association_insertion_node: '#detail-association-insertion-point',
-              association_insertion_method: 'after'
-            }
-          %>
-        </div>
       </div>
-      <div id="detail-association-insertion-point"></div>
+
+      <div class="add-button-box">
+        <%= link_to_add_association "サブゴールギャップ追加", f, :subgoalgaps,
+          class: "btn-sm btn-success",
+          data: {
+            association_insertion_node: '#detail-association-insertion-point',
+            association_insertion_method: 'before'
+          }
+        %>
+      </div>
         
       <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
       <%= link_to "#{yield(:button_cancel)}", user_goals_path(user_id: @user.id, id: @goal.id), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
+    
     <% end %>
   </div>
 </div>

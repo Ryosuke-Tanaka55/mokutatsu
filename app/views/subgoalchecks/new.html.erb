@@ -6,8 +6,11 @@
 
 <h1>サブゴール検証登録</h1>
 <h2 class="head-supplement">
-  達成したいサブゴール検証を登録します。
-
+  サブゴール検証を登録します。
+  <div class="h2-text">
+    ・結果目標に対する達成率を検証する<br>
+    ・数字を比較し達成率を確認する<br>
+  </div>
 </h2>
 
 <div class="row">
@@ -15,11 +18,31 @@
     <%= form_with(model: @subgoalcheck, url: user_goal_subgoal_subgoalchecks_path(current_user, @goal, @subgoal), local: true) do |f| %>
       <%= render 'shared/object_error_messages', object: @subgoalcheck %>
 
+      <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
+      <%= f.number_field :achivement, class: "form-control" %>
+      <div id="form-assist">
+        サブゴールの達成率を把握する<br>
+        ・数字を比較し達成率を確認する<br>
+        ・行動したかではなく結果が出たかどうかで確認する
+      </div>
+
       <%= f.label :check, class: "label-#{yield(:class_text)}" %>
       <%= f.text_area :check, class: "form-control" %>
+      <div id="form-assist">
+        できた、またはできなかった理由を掘り下げる<br>
+        ・できた理由（「どうやったらさらに成果があがるか？」）<br>
+        ・できなかった理由（「どうやったらできるようになるか？」）
+      </div>
 
       <%= f.label :adjust, class: "label-#{yield(:class_text)}" %>
       <%= f.text_area :adjust, class: "form-control" %>
+      <div id="form-assist">
+        検証から調整を考える<br>
+        ・ゴールそのものの見直しが必要か（中止、変更、追加）<br>
+        ・計画の大幅な見直しが必要か（課題の入れ替え、追加）<br>
+        ・サブゴール、Do、ToDoの見直しが必要か（入れ替え、優先順位の変更）<br>
+        ・調整の必要なし
+      </div>
 
       <%= f.label :check_at, class: "label-#{yield(:class_text)}" %>
       <%= f.datetime_select :check_at, class: "form-control datetime-form" %><br>
@@ -29,15 +52,15 @@
 
       <%= f.label :span, class: "label-#{yield(:class_text)}" %>
       <%= f.date_select :span, class: "form-control date-form" %><br>
-
-      <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
-      <%= f.number_field :achivement, class: "form-control" %>
+      <div id="form-assist">
+        検証の周期を登録
+      </div>
 
       <%= f.label :note, class: "label-#{yield(:class_text)}" %>
       <%= f.text_area :note, class: "form-control" %>
 
-      <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
-      <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_subgoalchecks_path(current_user, @goal, @subgoal), class: "btn btn-default w-20" %>
+      <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
+      <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_subgoalchecks_path(current_user, @goal, @subgoal), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
 
     <% end %>
   </div>

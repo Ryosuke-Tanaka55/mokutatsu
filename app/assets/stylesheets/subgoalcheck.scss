@@ -1,3 +1,34 @@
-// Place all the styles related to the Subgoalcheck controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* 入力フォーム */
+
+.label-create-subgoalcheck {
+  margin-top: 5px;
+}
+
+.btn-create-subgoalcheck {
+  margin-top: 10px;
+}
+
+.label-edit-subgoalcheck {
+  margin-top: 5px;
+}
+
+.btn-edit-subgoalcheck {
+  margin-top: 10px;
+}
+
+.datetime-form {
+  display: inline-block;
+  width: auto;
+}
+
+.button {
+  margin: 10px 0px 0px;
+}
+
+.checkbox-subgoalcheck {
+  width: auto;
+  margin-left: 25px;
+  span {
+    font-weight: normal;
+  }
+}

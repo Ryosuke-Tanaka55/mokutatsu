@@ -5,7 +5,11 @@
 <% provide(:button_cancel, '戻る') %>
 
 <h1>サブゴールギャップ編集</h1>
-<h2 class="head-supplement">達成したいサブゴールと現状とのギャップを編集します。</h2>
+<h2 class="head-supplement">サブゴールと現状とのギャップを編集します。
+	<div class="h2-text">
+		サブゴールとのギャップを埋める課題を考えていきます。
+	</div>
+</h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -14,31 +18,61 @@
 
       <%= f.label :gap, class: "label-#{yield(:class_text)}" %>
       <%= f.text_field :gap, class: "form-control" %>
+      <div id="form-assist">
+        ・逆算してサブゴールとのギャップを考える<br>
+        ・何が不足しているか<br>
+        ・チームであれば第三者とも認識を擦り合わせておく
+      </div>
 
       <%= f.label :detail, class: "label-#{yield(:class_text)}" %>
       <%= f.text_area :detail, class: "form-control" %>
+      <div id="form-assist">
+        ・ギャップの具体的なものを記載する
+      </div>
 
       <%= f.label :solution, class: "label-#{yield(:class_text)}" %>
       <%= f.text_area :solution, class: "form-control" %>
+      <div id="form-assist">
+        ・洗い出したギャップを解決する策を考える<br>
+        ・次のDoを実行した結果どうなりたいかの基準を考える<br>
+        ・検証フェーズで客観的に進捗状況を把握するため<br>
+        ・なるべく数値化し、次のDoに落とし込むことを意識する<br>
+        ・課題抽出は現時点での考えられるものを正確かつもれなく行うことが理想<br>      
+      </div>
 
-      <%= f.label :term, class: "label-#{yield(:class_text)}" %>
-      <%= f.text_field :term, class: "form-control" %>
+			<%= f.label :term, class: "label-#{yield(:class_text)}" %>
+			<%= f.text_field :term, class: "form-control" %>
+			<div id="form-assist">
+        ・1日ごとに費やす時間と日数を見積もる
+      </div>	
 
-      <%= f.label :impact, class: "label-#{yield(:class_text)}" %>
-      <%= f.select :impact, Subgoalgap.impacts.keys, { include_blank: "選択してください。" }, 
-          { class: "form-control" , required: true } %>
+			<%= f.label :impact, class: "label-#{yield(:class_text)}" %>
+			<%= f.select :impact, Subgoalgap.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+					{ class: "form-control" , required: true } %>
+			<div id="form-assist">
+        ・どれくらいの効果が見込めるかを選択
+      </div>
 
-      <%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
-      <%= f.select :worktime, Subgoalgap.worktimes.keys, { include_blank: "選択してください。" }, 
-          { class: "form-control" , required: true } %>
+			<%= f.label :worktime, class: "label-#{yield(:class_text)}" %>
+			<%= f.select :worktime, Subgoalgap.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+					{ class: "form-control" , required: true } %>
+			<div id="form-assist">
+        ・どれくらいの時間がかかるかを選択
+      </div>
 
-      <%= f.label :easy, class: "label-#{yield(:class_text)}" %>
-      <%= f.select :easy, Subgoalgap.easies.keys, { include_blank: "選択してください。" }, 
-          { class: "form-control" , required: true } %>
+			<%= f.label :easy, class: "label-#{yield(:class_text)}" %>
+			<%= f.select :easy, Subgoalgap.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+					{ class: "form-control" , required: true } %>
+			<div id="form-assist">
+        ・低コスト、低リスク、低負荷の度合いを選択
+      </div>
 
-      <%= f.label :priority, class: "label-#{yield(:class_text)}" %>
-      <%= f.select :priority, Subgoalgap.priorities.keys, { include_blank: "選択してください。" }, 
-          { class: "form-control" , required: true } %>
+			<%= f.label :priority, class: "label-#{yield(:class_text)}" %>
+			<%= f.select :priority, Subgoalgap.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+					{ class: "form-control" , required: true } %>
+      <div id="form-assist">
+        ・インパクト、工数、気軽さから優先度を設定する
+      </div>
 
       <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
       <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_subgoalgaps_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-default btn-#{yield(:class_text)}" %>
