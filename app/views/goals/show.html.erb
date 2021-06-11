@@ -23,11 +23,11 @@
       </tr>
       <tr>
         <th class="col-md-3"><%= Goal.human_attribute_name :start_day %></th>
-          <td class="col-md-9"><%= @goal.start_day %></td>
+          <td class="col-md-9"><%= l(@goal.start_day, format: :long) %></td>
       </tr>
       <tr>
         <th class="col-md-3"><%= Goal.human_attribute_name :finish_day %></th>
-          <td class="col-md-9"><%= @goal.finish_day %></td>
+          <td class="col-md-9"><%= l(@goal.finish_day, format: :long) %></td>
       </tr>
       <tr>
         <th class="col-md-3"><%= Goal.human_attribute_name :goal_index %></th>

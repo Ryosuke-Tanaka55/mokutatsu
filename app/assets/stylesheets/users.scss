@@ -63,3 +63,12 @@
     vertical-align: middle;
   }  
 }
+
+/* ユーザー検索 */
+#search-users {
+  float: right;
+  text-align: center;
+  .form-text {
+    display:inline-flex;
+  }
+}

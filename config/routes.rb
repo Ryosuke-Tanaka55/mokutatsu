@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       get :following, :followers
       get 'posts/show_own_post'
       get 'posts/show_follow_post'
+    # ユーザー検索
+      get 'search'
     end
     # 通知機能
     resources :notifications, only: :destroy

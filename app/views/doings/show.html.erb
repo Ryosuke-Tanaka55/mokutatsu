@@ -13,11 +13,11 @@
       </tr>
       <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :start_day %></th>
-          <td class="col-md-9"><%= @doing.start_day %></td>
+          <td class="col-md-9"><%= l(@doing.start_day, format: :long) %></td>
       </tr>
       <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :finish_day %></th>
-          <td class="col-md-9"><%= @doing.finish_day %></td>
+          <td class="col-md-9"><%= l(@doing.finish_day, format: :long) %></td>
       </tr>
       <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :achivement %></th>

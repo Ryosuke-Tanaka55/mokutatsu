@@ -68,6 +68,18 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  # ユーザー検索
+  def search
+    if params[:name].present?
+      @users = User.where('name LIKE ?', "%#{params[:name]}%").paginate(page: params[:page], per_page: 20 )
+      flash.now[:success] = "#{@users.count}件ヒットしました。"
+    else
+      @users = User.paginate(page: params[:page], per_page: 20 )
+      flash.now[:danger] = "該当ユーザーはいませんでした。"
+    end
+    render :index
+  end
+
   private
     # ストロングパラメーター
     def user_params

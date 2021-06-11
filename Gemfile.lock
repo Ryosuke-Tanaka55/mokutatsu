@@ -237,6 +237,7 @@ GEM
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     mysql2 (0.5.3-x64-mingw32)
+    nested_form (0.3.2)
     netrc (0.11.0)
     nio4r (2.5.7)
     nokogiri (1.11.3-x64-mingw32)
@@ -419,6 +420,7 @@ DEPENDENCIES
   mini_magick
   momentjs-rails
   mysql2 (>= 0.4.4, < 0.6.0)
+  nested_form
   omniauth
   omniauth-google-oauth2
   puma (~> 3.11)

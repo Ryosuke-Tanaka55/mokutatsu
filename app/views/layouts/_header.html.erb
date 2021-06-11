@@ -11,7 +11,15 @@
         </li>
         <% if logged_in? %>
           <li><%= link_to  "マイページ", current_user %></li>
-          <li><%= link_to  "投稿", user_posts_path(current_user) %>
+          <li>
+            <% if unchecked_notifications.any? %>
+              <%= link_to user_posts_path(current_user), method: :get do %>
+                投稿<i class="fa fa-circle fa-fw fa-xs" style="color: gold;"></i>
+              <% end %>
+            <% else %>
+              <%= link_to  "投稿", user_posts_path(current_user) %>
+            <% end %>
+          </li>
           <li><%= link_to "ユーザー一覧", users_path %></li>
           <li><%= link_to  "ゴール一覧", user_goals_path(current_user) %></li>
           <li class="dropdown">

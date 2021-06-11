@@ -15,6 +15,7 @@ gem 'mini_magick'
 gem 'image_processing'
 gem 'faker'
 gem 'cocoon'
+gem "nested_form"
 gem 'jquery-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'

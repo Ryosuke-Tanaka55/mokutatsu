@@ -21,11 +21,11 @@
       </tr>
       <tr>
         <th class="col-md-3"><%= Subgoal.human_attribute_name :start_day %></th>
-          <td class="col-md-9"><%= @subgoal.start_day %></td>
+          <td class="col-md-9"><%= l(@subgoal.start_day, format: :long) %></td>
       </tr>
       <tr>
         <th class="col-md-3"><%= Subgoal.human_attribute_name :finish_day %></th>
-          <td class="col-md-9"><%= @subgoal.finish_day %></td>
+          <td class="col-md-9"><%= l(@subgoal.finish_day, format: :long) %></td>
       </tr>
       <tr>
         <th class="col-md-3"><%= Subgoal.human_attribute_name :achivement %></th>
