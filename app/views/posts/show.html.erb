@@ -36,7 +36,7 @@
     <%= time_ago_in_words(@post.created_at) %>前に投稿
     <% if current_user?(@post.user) %>
       <%= link_to "削除", user_post_path(current_user,@post), method: :delete,
-                                       data: { confirm: "削除してもよろしいですか。" } %>
+        data: { confirm: "削除してもよろしいですか。" } %>
     <% end %>
   </span>
   <div id="index_like_<%= @post.id %>">

@@ -8,30 +8,29 @@
         <%= link_to image_tag("#{ @user.image }", width: '50', :alt => 'ユーザーアイコン'), posts_show_own_post_user_path(@user) %>
         <strong>
           <%= visitor.name %>
-       さん
-
+       さんが
       <% case notification.action %>
         <% when 'follow' then %>
-          があなたをフォローしました。
+          あなたをフォローしました。
         <% when 'like' then %>
-          が<%= link_to 'あなたの投稿', posts_show_own_post_user_path(@user), style: "font-weight: bold;" %>
+          <%= link_to 'あなたの投稿', posts_show_own_post_user_path(@user), style: "font-weight: bold;" %>
           にいいねしました。
         <% when 'comment' then %>
           <% if notification.post.user_id == visited.id %>
-            の<%= link_to "あなたの投稿", posts_show_own_post_user_path(@user), style: "font-weight: bold;" %>
+            <%= link_to "あなたの投稿", posts_show_own_post_user_path(@user), style: "font-weight: bold;" %>
           <% else %>
             <span>
-              <%= link_to post_path(notification.post) do %>
-                <%= link_to image_tag("#{ @user.image }", width: '150', :alt => 'ユーザーアイコン'), posts_show_own_post_user_path(@user) %>
+              <%= link_to user_posts_path(notification.post) do %>
+                <%= link_to image_tag("#{ @user.image }", width: '50', :alt => 'ユーザーアイコン'), posts_show_own_post_user_path(@user) %>
                 <strong>
-                  が<%= notification.post.user.name + "さんの投稿" %>
+                  <%= link_to "#{ notification.post.user.name }さんの投稿",  posts_show_own_post_user_path(notification.post.user_id), style: "font-weight: bold;" %>
             </span>
+          <% end %>
+        <% end %>
             にコメントしました。
           <p class="text-muted.mb-0">
             <%= Comment.find_by(id: notification.comment_id)&.comment %>
           </p>
-          <% end %>
-        <% end %>
       <% end %>
     <% end %>
   </span>

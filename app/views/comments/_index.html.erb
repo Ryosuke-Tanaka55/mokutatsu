@@ -1,6 +1,6 @@
 <!-- コメント内容(2件) ------------------------------------------------------------------>
 <%= comments.count %>件コメント
-<h5 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h5>
+<h5 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">▼もっと見る....</h5>
 <% comments.first(2).each do |comment| %>
   <% unless comment.id.nil? %>
     <li class="comment-container">
@@ -13,7 +13,8 @@
           <div class="comment-entry">
             <%= comment.comment %>
             <% if comment.user == current_user %>
-              <%= link_to user_post_comment_path(comment.user.id, comment.post_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
+              <%= link_to user_post_comment_path(comment.user.id, comment.post_id, comment.id), method: :delete,
+                data: { confirm: "削除してよろしいですか？" }, remote: true, class: "comment_destroy" do %>
                 <i class="fas fa-trash-alt" style="color: black;"></i>
               <% end %>
             <% end %>
@@ -40,7 +41,8 @@
                 <div class="comment-entry">
                   <%= comment.comment %>
                   <% if comment.user == current_user %>
-                    <%= link_to user_post_comment_path(comment.user.id, comment.post_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
+                    <%= link_to user_post_comment_path(comment.user.id, comment.post_id, comment.id), method: :delete,
+                      data: { confirm: "削除してよろしいですか？" }, remote: true, class: "comment_destroy" do %>
                       <i class="fas fa-trash-alt" style="color: black;"></i>
                     <% end %>
                   <% end %>

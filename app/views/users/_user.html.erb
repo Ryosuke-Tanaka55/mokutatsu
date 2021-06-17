@@ -3,6 +3,6 @@
   <%= link_to user.name, posts_show_own_post_user_path(user) %>
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "削除", user_posts_path(current_user), method: :delete,
-                                  data: { confirm: "#{ user.name }を削除してもよろしいですか。" } %>
+        data: { confirm: "#{ user.name }を削除してもよろしいですか。" } %>
   <% end %>
 </li>
