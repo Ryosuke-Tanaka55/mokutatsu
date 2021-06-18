@@ -5,6 +5,7 @@ class GoalgapsController < ApplicationController
   before_action :set_goalgap, only:[:show, :edit, :update, :destroy]
   before_action :correct_user
 
+
   def index
     @goalgaps = current_user.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
   end
@@ -49,7 +50,8 @@ class GoalgapsController < ApplicationController
   private
     # ストロングパラメーター
     def goalgap_params
-      params.require(:goal).permit(goalgaps_attributes: [:id, :gap, :detail, :solution, :impact, :worktime, :easy, :priority, :goal_id, :_destroy])
+      params.require(:goalgap).permit(:gap, :detail, :solution, :impact, 
+        :worktime, :easy, :priority, :goal_id)
     end
 
     # paramsハッシュからgoalgapを取得

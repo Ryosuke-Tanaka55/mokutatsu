@@ -2,7 +2,7 @@
   <%= f.label :gap, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :gap, class: "form-control" %>
   <div id="form-assist">
-    逆算してゴールとのギャップを考える<br>
+    ・逆算してゴールとのギャップを考える<br>
     ・何が不足しているか<br>
     ・チームであれば第三者とも認識を擦り合わせておく
   </div>
@@ -10,13 +10,13 @@
   <%= f.label :detail, class: "label-#{yield(:class_text)}" %>
   <%= f.text_area :detail, class: "form-control" %>
   <div id="form-assist">
-    ギャップの具体的なものを記載する
+    ・ギャップの具体的なものを記載する
   </div>
 
   <%= f.label :solution, class: "label-#{yield(:class_text)}" %>
   <%= f.text_area :solution, class: "form-control" %>
   <div id="form-assist">
-    洗い出したギャップを解決する課題を考える<br>
+    ・洗い出したギャップを解決する課題を考える<br>
     ・課題抽出は現時点での考えられるものを正確かつもれなく行うことが理想<br>
     ・自分は何をすべきか<br>
     ・前進を加速させる伸ばせる長所はないか<br>
@@ -49,7 +49,7 @@
   <%= f.select :priority, Goalgap.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
       { class: "form-control" , required: true } %>
   <div id="form-assist">
-    インパクト、工数、気軽さから優先度を選択
+    ・インパクト、工数、気軽さから優先度を選択
   </div>
 
   <div class="delete-button-box">

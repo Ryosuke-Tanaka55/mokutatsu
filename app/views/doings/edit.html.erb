@@ -65,9 +65,9 @@
       <%= f.select :progress, Doing.progresses.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" , required: true } %>
 
       <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :hold, class: "checkbox inline checkbox-doing" %>
+      <%= f.check_box :hold, class: "form-inline checkbox-doing" %>
       <div id="form-assist">
-        ・保留にする場合選択
+        ・すぐに着手しない場合はチェック
       </div>
 
       <%= f.label :note, class: "label-#{yield(:class_text)}" %>

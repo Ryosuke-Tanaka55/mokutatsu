@@ -25,14 +25,14 @@
         <%= f.label :check, class: "label-#{yield(:class_text)}" %>
         <%= f.text_area :check, class: "form-control" %>
         <div id="form-assist">
-          ゴール達成率から理由を探る<br>
+          ・ゴール達成率から理由を探る<br>
           ・ゴールに近づくサブゴール、DO、ToDoとなっていたか<br>
           ・達成できたまたはできなかった理由を深掘りする
         </div>
 
         <%= f.label :adjust, class: "label-#{yield(:class_text)}" %>
         <%= f.text_area :adjust, class: "form-control" %>
-          検証から調整を考える<br>
+          ・検証から調整を考える<br>
           ・ゴールそのものの見直しが必要か<br>
           ・計画の大幅な見直しが必要か<br>
           ・サブゴール、Do、ToDoの見直しが必要か<br>
@@ -45,7 +45,7 @@
         <%= f.label :span, class: "label-#{yield(:class_text)}" %>
         <%= f.date_select :span, class: "form-control date-form" %><br>
         <div id="form-assist">
-          検証の周期を登録
+          ・検証の周期を登録
         </div>
 
         <%= f.label :note, class: "label-#{yield(:class_text)}" %>

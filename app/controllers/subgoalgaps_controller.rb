@@ -50,8 +50,7 @@ class SubgoalgapsController < ApplicationController
   private
     # ストロングパラメーター
     def subgoalgap_params
-      params.require(:subgoalgap).permit(:gap, :detail, :solution, :term, :impact, 
-        :worktime, :easy, :priority, :goal_id)
+      params.require(:subgoalgap).permit(:gap, :detail, :solution, :term, :impact, :worktime, :easy, :priority, :goal_id)
     end
 
     # paramsハッシュからsubgoalgapを取得

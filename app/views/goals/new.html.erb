@@ -44,7 +44,7 @@
       </div>
 
       <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :hold, class: "checkbox inline checkbox-goal" %>
+      <%= f.check_box :hold, class: "form-inline checkbox-goal" %>
       <div id="form-assist">
         ・すぐに着手しない場合はチェック
       </div>
@@ -58,6 +58,7 @@
         <% end %>
       </div>
 
+      <div id="detail-association-insertion-point"></div>
       <div class="add-button-box">
         <%= link_to_add_association "＋ ゴールギャップ追加", f, :goalgaps,
           class: "btn-sm btn-success",

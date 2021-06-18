@@ -46,7 +46,7 @@
       <%= f.select :progress, Goal.progresses.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" , required: true } %>
 
       <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :hold, class: "checkbox inline checkbox-goal" %>
+      <%= f.check_box :hold, class: "form-inline checkbox-goal" %>
 
       <%= f.label :note, class: "label-#{yield(:class_text)}" %>
       <%= f.text_area :note, class: "form-control" %>

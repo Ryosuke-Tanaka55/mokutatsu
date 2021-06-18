@@ -26,6 +26,20 @@ class Goal < ApplicationRecord
   validates :progress, presence: true
   validates :publish, presence: true
 
+  # 開始日は今日以降出ないと無効
+  validate :start_day_fast_than_today_if_invalid
+
+  # 開始日より終了日が早い場合は無効
+  validate :start_day_than_finish_day_fast_if_invalid
+
+  def start_day_fast_than_today_if_invalid
+    errors.add(:start_day, "が過去です。")  if start_day < Date.today
+  end 
+  
+  def start_day_than_finish_day_fast_if_invalid
+    errors.add(:start_day, "より早い終了日は無効です。") if start_day > finish_day
+  end
+
   # カテゴリー
   enum category: { 勉強: 0, 資格: 1, 語学: 2, 運動: 3, ダイエット: 4, 筋トレ: 5, 趣味: 6, 貯金: 7, 起業: 8, 旅行: 9, その他: 10 }
   # 進捗
