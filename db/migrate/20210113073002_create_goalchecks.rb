@@ -5,7 +5,7 @@ class CreateGoalchecks < ActiveRecord::Migration[6.0]
       t.text :adjust
       t.datetime :estimate_check_at
       t.datetime :check_at
-      t.date :span
+      t.string :span
       t.integer :achivement
       t.string :note
       t.references :goal, null: false, foreign_key: true

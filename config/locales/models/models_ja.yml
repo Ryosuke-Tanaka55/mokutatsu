@@ -3,9 +3,9 @@ ja:
     models:
       user: ユーザー
       goal: ゴール
-      goalgap: ギャップ
+      goalgap: ゴールギャップ
       subgoal: サブゴール
-      subgoalgap: ギャップ
+      subgoalgap: サブゴールギャップ
       doing: Do
       todo: ToDo
       post: 投稿
@@ -13,8 +13,6 @@ ja:
       user:
         id: ID
         name: 名前
-        nickname: ニックネーム
-        anonymous: 匿名希望
         image: アイコン
         introduction: 自己紹介
         email: メールアドレス
@@ -24,18 +22,13 @@ ja:
         created_at: 作成日
         updated_at: 更新日
       goal:
-        worked_on: 日付
         goal: ゴール
         category: カテゴリー
         start_day: 開始日
         finish_day: 終了日
         goal_index: 具体的な達成基準
-        achivement: ゴール達成率(%)
-        check: ゴール検証
-        adjust: ゴール調整
         progress: 進捗状況
         hold: 保留
-        publish: 公開範囲
         note: 備考
         created_at: 作成日
         updated_at: 更新日

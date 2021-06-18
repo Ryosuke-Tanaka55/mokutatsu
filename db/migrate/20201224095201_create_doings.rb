@@ -4,9 +4,6 @@ class CreateDoings < ActiveRecord::Migration[6.0]
       t.string :doing, presence: true
       t.datetime :start_day, presence: true
       t.datetime :finish_day, presence: true
-      t.integer :achivement
-      t.text :check
-      t.text :adjust
       t.boolean :pattern, null: false, default: false
       t.integer :priority, presence: true
       t.integer :impact, presence: true
