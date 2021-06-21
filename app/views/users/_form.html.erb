@@ -4,12 +4,6 @@
   <%= f.label :name, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :name, class: "form-control" %>
 
-  <%= f.label :nickname, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_field :nickname, class: "form-control" %>
-  
-  <%= f.check_box :anonymous, {class: "check_box"}, checked_value = "true", unchecked_value = "false" %>
-  <%= f.label :anonymous, class: "label-#{yield(:class_text)}" %><br>
-
   <%= f.label :image, class: "label-#{yield(:class_text)}" %>
   <%= f.file_field :image %>
 

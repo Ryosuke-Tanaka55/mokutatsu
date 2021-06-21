@@ -13,6 +13,7 @@ class SubgoalsController < ApplicationController
   def new
     @subgoal = Subgoal.new
     @subgoalgap = @subgoal.subgoalgaps.build
+    @goalgaps = current_user.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
   end
 
   def show
@@ -30,6 +31,7 @@ class SubgoalsController < ApplicationController
   end
 
   def edit
+    @goalgaps = current_user.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
   end
   
   def update

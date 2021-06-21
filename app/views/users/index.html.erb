@@ -19,19 +19,21 @@
   <table class="table table-condendsed table-hover" id="table-users" >
     <thead>
       <tr>
-        <th><%= User.human_attribute_name :name %></th>
+        <th class="user-name"><%= User.human_attribute_name :name %></th>
+        <th><%= User.human_attribute_name :introduction %></th>
       </tr>
     </thead>
 
     <% @users.each do |user| %>
       <tr>
-        <td><%= link_to user.name, user %></td>
+        <td><%= link_to user.name, posts_show_own_post_user_path(user.id) %></td>
+        <td><%= user.introduction %></td>
         <td>
-          <% if current_user.admin? && !current_user?(user) %>
-            <%= link_to "削除", user, method: :delete,
-              data: { confirm: "#{ user.name } を削除してよろしいでしょうか？"}, 
-              class: "btn btn-danger" %>
-          <% end %>
+        <% if current_user.admin? || current_user?(user) %>
+          <%= link_to "アカウント削除", user, method: :delete,
+            data: { confirm: "#{ user.name } を削除してよろしいですか。"}, 
+            class: "btn btn-danger" %>
+        <% end %>
         </td>
       </tr>
     <% end %>
