@@ -15,7 +15,7 @@
             <% if comment.user == current_user %>
               <%= link_to user_post_comment_path(comment.user.id, comment.post_id, comment.id), method: :delete,
                 data: { confirm: "削除してよろしいですか？" }, remote: true, class: "comment_destroy" do %>
-                <i class="fas fa-trash-alt" style="color: black;"></i>
+                <i class="fas fa-fw fa-trash-alt" style="color: black;"></i>
               <% end %>
             <% end %>
           </div>
@@ -43,7 +43,7 @@
                   <% if comment.user == current_user %>
                     <%= link_to user_post_comment_path(comment.user.id, comment.post_id, comment.id), method: :delete,
                       data: { confirm: "削除してよろしいですか？" }, remote: true, class: "comment_destroy" do %>
-                      <i class="fas fa-trash-alt" style="color: black;"></i>
+                      <i class="fas fa-fw fa-trash-alt" style="color: black;"></i>
                     <% end %>
                   <% end %>
                 </div>

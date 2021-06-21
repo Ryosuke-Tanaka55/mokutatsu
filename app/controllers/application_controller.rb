@@ -49,6 +49,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # システム管理者を除外
+  def not_admin_user
+    if current_user.admin?
+      flash[:danger] = "管理者のマイページはありません。"
+      redirect_to root_url
+    end
+  end
+
   # paramsからゴール(goal_id)を取得
   def set_goal_id
     @goal = Goal.find(params[:goal_id])

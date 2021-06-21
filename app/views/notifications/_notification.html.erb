@@ -5,7 +5,7 @@
   <div class="form-inline clearfix">
     <span>
       <%= link_to user_path(visitor) do %>
-        <%= link_to image_tag("#{ @user.image }", width: '50', :alt => 'ユーザーアイコン'), posts_show_own_post_user_path(@user) %>
+        <%= link_to image_tag("#{ @user.image }", width: '50', :alt => 'ユーザーアイコン'), posts_show_own_post_user_path(visitor.id) %>
         <strong>
           <%= visitor.name %>
        さんが
@@ -13,11 +13,11 @@
         <% when 'follow' then %>
           あなたをフォローしました。
         <% when 'like' then %>
-          <%= link_to 'あなたの投稿', posts_show_own_post_user_path(@user), style: "font-weight: bold;" %>
+          <%= link_to 'あなたの投稿', posts_show_own_post_user_path(current_user.id), style: "font-weight: bold;" %>
           にいいねしました。
         <% when 'comment' then %>
           <% if notification.post.user_id == visited.id %>
-            <%= link_to "あなたの投稿", posts_show_own_post_user_path(@user), style: "font-weight: bold;" %>
+            <%= link_to "あなたの投稿", posts_show_own_post_user_path(current_user.id), style: "font-weight: bold;" %>
           <% else %>
             <span>
               <%= link_to user_posts_path(notification.post) do %>

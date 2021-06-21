@@ -1,6 +1,6 @@
 # coding: utf-8
 
-User.create!(name: "Sample User",
+User.create!(name: "管理者",
   email: "sample@email.com",
   password: "password",
   password_confirmation: "password",
@@ -20,8 +20,8 @@ end
 
 # 以下のリレーションシップを作成する
 users = User.all
-user  = users.first
-following = users[2..50]
-followers = users[3..40]
+user  = users.second
+following = users[3..50]
+followers = users[4..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
