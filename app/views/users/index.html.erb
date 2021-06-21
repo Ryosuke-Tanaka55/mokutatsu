@@ -28,7 +28,7 @@
       <tr>
         <td><%= link_to user.name, posts_show_own_post_user_path(user.id) %></td>
         <td><%= user.introduction %></td>
-        <td>
+        <td style="text-align: right;">
         <% if current_user.admin? || current_user?(user) %>
           <%= link_to "アカウント削除", user, method: :delete,
             data: { confirm: "#{ user.name } を削除してよろしいですか。"}, 

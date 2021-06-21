@@ -14,7 +14,7 @@
           <li>
             <% if unchecked_notifications.any? %>
               <%= link_to user_posts_path(current_user), method: :get do %>
-                投稿<i class="fa fa-circle fa-fw fa-xs" style="color: gold;"></i>
+                投稿<i class="fa fa-circle fa-fw fa-xs" style="color: gold; bottom: 5px;"></i>
               <% end %>
             <% else %>
               <%= link_to  "投稿", user_posts_path(current_user) %>
