@@ -2,8 +2,8 @@ class CreateDoings < ActiveRecord::Migration[6.0]
   def change
     create_table :doings do |t|
       t.string :doing, presence: true
-      t.datetime :start_day, presence: true
-      t.datetime :finish_day, presence: true
+      t.date :start_day, presence: true
+      t.date :finish_day, presence: true
       t.boolean :pattern, null: false, default: false
       t.integer :priority, presence: true
       t.integer :impact, presence: true

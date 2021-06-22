@@ -21,10 +21,10 @@
       </div>
 
       <%= f.label :start_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-      <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
+      <%= f.date_select :start_day, start_year: Time.now.year, class: "form-control datetime-form" %><br>
 
       <%= f.label :finish_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-      <%= f.date_select :finish_day, class: "form-control datetime-form" %><br>
+      <%= f.date_select :finish_day, start_year: Time.now.year, class: "form-control datetime-form" %><br>
 
       <%= f.label :pattern, class: "label-#{yield(:class_text)}" %>&nbsp;&nbsp;
       <%= f.radio_button :pattern, "完結型" %>完結型 &nbsp;&nbsp;&nbsp;

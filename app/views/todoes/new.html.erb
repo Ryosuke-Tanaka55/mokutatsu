@@ -26,22 +26,16 @@
       </div>
 
       <%= f.label :estimated_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-      <%= f.time_select :estimated_time, class: "form-control datetime-form" %><br>
+      <%= f.text_field :estimated_time, class: "form-control" %><br>
       <div id="form-assist">
         ・どれくらいの時間がかかるかを記載
       </div>
 
-      <%= f.label :start_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-      <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
+      <%= f.label :start_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
+      <%= f.datetime_select :start_time, class: "form-control datetime-form" %><br>
 
-      <%= f.label :finish_day, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-      <%= f.date_select :finish_day, class: "form-control datetime-form" %><br>
-
-      <%= f.label :estimated_start_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-      <%= f.datetime_select :estimated_start_time, class: "form-control datetime-form" %><br>
-
-      <%= f.label :estimated_finish_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-      <%= f.datetime_select :estimated_finish_time, class: "form-control datetime-form" %><br>
+      <%= f.label :finish_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
+      <%= f.datetime_select :finish_time, class: "form-control datetime-form" %><br>
 
       <%= f.label :pattern, class: "label-#{yield(:class_text)}" %>&nbsp;&nbsp;
       <%= f.radio_button :pattern, "完結型" %>完結型 &nbsp;&nbsp;&nbsp;
@@ -57,7 +51,7 @@
         ・優先度を設定する
       </div>
       
-      <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
+      <%= f.label :hold, class: "label-#{yield(:class_text)}" %>;&nbsp;
       <%= f.check_box :hold, class: "form-inline checkbox-doing" %>
       <div id="form-assist">
         ・すぐに着手しない場合はチェック

@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2021_06_22_040956) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "comment"
-    t.string "image"
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -60,8 +59,8 @@ ActiveRecord::Schema.define(version: 2021_06_22_040956) do
 
   create_table "doings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "doing"
-    t.datetime "start_day"
-    t.datetime "finish_day"
+    t.date "start_day"
+    t.date "finish_day"
     t.boolean "pattern", default: false, null: false
     t.integer "priority"
     t.integer "impact"
@@ -234,11 +233,8 @@ ActiveRecord::Schema.define(version: 2021_06_22_040956) do
   create_table "todos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "todo"
     t.date "worked_on"
-    t.date "start_day"
-    t.date "finish_day"
-    t.time "estimated_time"
-    t.time "estimated_start_time"
-    t.time "estimated_finish_time"
+    t.datetime "start_time"
+    t.datetime "finish_time"
     t.datetime "actual_start_time"
     t.datetime "actual_finish_time"
     t.integer "priority", default: 0, null: false
