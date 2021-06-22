@@ -24,8 +24,7 @@ class Goal < ApplicationRecord
   validates :finish_day, presence: true
   validates :goal_index, presence: true
   validates :progress, presence: true
-  validates :publish, presence: true
-
+  
   # 開始日は今日以降出ないと無効
   validate :start_day_fast_than_today_if_invalid
 
@@ -44,6 +43,5 @@ class Goal < ApplicationRecord
   enum category: { 勉強: 0, 資格: 1, 語学: 2, 運動: 3, ダイエット: 4, 筋トレ: 5, 趣味: 6, 貯金: 7, 起業: 8, 旅行: 9, その他: 10 }
   # 進捗
   enum progress: { 未着手: 0, 作業中: 1, 完了: 2, 中止: 3 }, _prefix: true
-  # 公開範囲
-  enum publish: { 非公開: 0, グループ内のみ: 1,  公開: 2 }
+ 
 end

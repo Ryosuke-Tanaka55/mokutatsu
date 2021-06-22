@@ -8,7 +8,7 @@
   </div>
   <%= f.submit "投稿", class: "btn btn-primary" %>
   <span class="image">
-    <%= f.file_field :images, multiple: true %>
+    <%= f.file_field :post_image, multiple: true, name: "post_images[post_image][]" %>
   </span>
 <% end %>
 

@@ -51,14 +51,13 @@ class GoalsController < ApplicationController
     # ストロングパラメーター
     # 新規ゴール登録時 goalgapを同時に登録
     def create_goal_params
-      params.require(:goal).permit(:goal, :category, :start_day, :finish_day, :goal_index, :hold, :publish, :note, 
+      params.require(:goal).permit(:goal, :category, :start_day, :finish_day, :goal_index, :hold, :note, 
         goalgaps_attributes: [:id, :gap, :detail, :solution, :impact, :worktime, :easy, :priority, :goal_id, :_destroy])
     end
 
     # 編集時
     def edit_goal_params
-      params.require(:goal).permit(:goal, :category, :start_day, :finish_day, :progress, :goal_index,
-         :achivement, :check, :adjust, :hold, :publish, :note)
+      params.require(:goal).permit(:goal, :category, :start_day, :finish_day, :progress, :goal_index, :hold, :note)
     end
 
     # パラメーターからゴールを取得

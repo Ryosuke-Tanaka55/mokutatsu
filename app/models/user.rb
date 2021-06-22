@@ -38,7 +38,6 @@ class User < ApplicationRecord
 
   # バリデーション
   validates :name, presence: true, unless: :uid?, length: { maximum: 50 }
-  validates :nickname, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, unless: :uid?, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :logged_in_user
-  before_action :set_user, only: [:show, :show_own_post]
+  before_action :set_user, only: [:show_own_post]
   before_action :set_user_id, only: [:index, :create]
   before_action :set_post, only: [:edit, :update, :destroy]
   
@@ -14,8 +14,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
+  def show 
     @post = Post.find(params[:id])
+    @user = @post.user
     @comment = Comment.new
     #新着順で表示
     @comments = @post.comments.order(created_at: :desc)
@@ -36,7 +37,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    @posts = current_user.posts.paginate(page: params[:page])
     @post = current_user.posts.build(post_params)
     @post.title = "なし" if @post.title.blank?
     if @post.content.blank?
@@ -44,6 +44,12 @@ class PostsController < ApplicationController
       redirect_to posts_show_own_post_user_url(current_user) and return
     end
     if @post.save
+      # 画像が投稿されていた場合
+      if params[:post_images].present?
+        params[:post_images][:post_image].each do |image|
+          @post_image = @post.post_images.create!(post_image: image, post_id: @post.id)
+        end
+      end
       flash[:success] = "新規作成に成功しました。"
       redirect_to posts_show_own_post_user_url(current_user)
     else
@@ -72,12 +78,7 @@ class PostsController < ApplicationController
   private
     # ストロングパラメーター
     def post_params
-      params.require(:post).permit(:title, :content, {images: []} )
-    end
-
-    # ストロングパラメーター
-    def comment_params
-      params.require(:comment).permit(:comment, :post_id, :user_id)
+      params.require(:post).permit(:title, :content, post_images_attributes: [:post_image]).merge(user_id: current_user.id)
     end
 
     # paramsハッシュからpostを取得

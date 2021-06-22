@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_133241) do
+ActiveRecord::Schema.define(version: 2021_06_22_040956) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
     t.text "adjust"
     t.datetime "estimate_check_at"
     t.datetime "check_at"
-    t.date "span"
+    t.string "span"
     t.integer "achivement"
     t.string "note"
     t.bigint "doing_id", null: false
@@ -62,9 +62,6 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
     t.string "doing"
     t.datetime "start_day"
     t.datetime "finish_day"
-    t.integer "achivement"
-    t.text "check"
-    t.text "adjust"
     t.boolean "pattern", default: false, null: false
     t.integer "priority"
     t.integer "impact"
@@ -92,22 +89,12 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "goal_connections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "parent_id"
-    t.integer "child_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["child_id"], name: "index_goal_connections_on_child_id"
-    t.index ["parent_id", "child_id"], name: "index_goal_connections_on_parent_id_and_child_id", unique: true
-    t.index ["parent_id"], name: "index_goal_connections_on_parent_id"
-  end
-
   create_table "goalchecks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "check"
     t.text "adjust"
     t.datetime "estimate_check_at"
     t.datetime "check_at"
-    t.date "span"
+    t.string "span"
     t.integer "achivement"
     t.string "note"
     t.bigint "goal_id", null: false
@@ -131,18 +118,13 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
   end
 
   create_table "goals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.date "worked_on"
     t.string "goal"
     t.string "category"
     t.date "start_day"
     t.date "finish_day"
     t.string "goal_index"
-    t.integer "achivement", default: 0, null: false
-    t.text "check"
-    t.text "adjust"
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
-    t.integer "publish", default: 0, null: false
     t.text "note"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -174,9 +156,17 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
+  create_table "post_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "post_image"
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_post_images_on_post_id"
+  end
+
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
-    t.text "content"
+    t.text "content", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -198,7 +188,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
     t.text "adjust"
     t.datetime "estimate_check_at"
     t.datetime "check_at"
-    t.date "span"
+    t.string "span"
     t.integer "achivement"
     t.string "note"
     t.bigint "subgoal_id", null: false
@@ -227,9 +217,6 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
     t.boolean "important", default: false, null: false
     t.date "start_day"
     t.date "finish_day"
-    t.integer "achivement"
-    t.text "check"
-    t.text "adjust"
     t.boolean "pattern", default: false, null: false
     t.integer "priority", default: 0, null: false
     t.integer "impact", default: 0, null: false
@@ -262,15 +249,16 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
     t.text "note"
+    t.bigint "user_id", null: false
     t.bigint "doing_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["doing_id"], name: "index_todos_on_doing_id"
+    t.index ["user_id"], name: "index_todos_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.string "nickname"
     t.string "email"
     t.string "image"
     t.text "introduction"
@@ -280,7 +268,6 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.boolean "agreement", default: false, null: false
-    t.boolean "anonymous", default: false, null: false
     t.string "provider"
     t.string "uid"
     t.string "oauth_token"
@@ -299,9 +286,11 @@ ActiveRecord::Schema.define(version: 2021_04_15_133241) do
   add_foreign_key "goals", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "post_images", "posts"
   add_foreign_key "posts", "users"
   add_foreign_key "subgoalchecks", "subgoals"
   add_foreign_key "subgoalgaps", "subgoals"
   add_foreign_key "subgoals", "goals"
   add_foreign_key "todos", "doings"
+  add_foreign_key "todos", "users"
 end

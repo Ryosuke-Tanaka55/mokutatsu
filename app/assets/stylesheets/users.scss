@@ -35,7 +35,7 @@
 /* 入力フォーム */
 
 .label-signup {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .btn-signup {
@@ -43,7 +43,7 @@
 }
 
 .label-user--edit {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .btn-user--edit {
@@ -54,6 +54,12 @@
   width: 40%;
   display: block;
   margin: auto;
+}
+
+.sign-in {
+  p {
+    font-size: 1.5em;
+  }
 }
 
 /* ユーザー一覧ページ */

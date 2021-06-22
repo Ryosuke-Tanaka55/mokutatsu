@@ -1,5 +1,5 @@
 <li id="post-<%= post.id %>">
-  <%= link_to image_tag("#{ @user.image }", width: '120', :alt => 'ユーザーアイコン'), posts_show_own_post_user_path(@user) %>
+  <%= link_to image_tag("#{ post.user.image }", width: '120', :alt => 'ユーザーアイコン'), posts_show_own_post_user_path(post.user.id) %>
   <span class="user"><%= link_to post.user.name, posts_show_own_post_user_path(post.user) %></span>
   <span class="content">
     <div class="post_title">
@@ -9,9 +9,9 @@
       内容：<%= post.content %>
     </div>
     <div class="post_image">
-      <% if post.images.attached? %>
-        <% post.images.each do |image| %>
-          <%= image_tag image, class: 'images' %>
+      <% if post.post_images.present? %>
+        <% post.post_images.each do |image| %>
+          <%= image_tag image.post_image.url, class: 'images' %>
         <% end %>
       <% end %>
     </div>

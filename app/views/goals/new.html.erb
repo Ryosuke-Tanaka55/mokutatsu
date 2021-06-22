@@ -31,7 +31,7 @@
         { class: "form-control" , required: true } %>
 
       <%= f.label :start_day, class: "label-#{yield(:class_text)}" %>
-      <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
+      <%= f.date_select :start_day, start_year: Time.now.year, class: "form-control datetime-form" %><br>
 
       <%= f.label :finish_day, class: "label-#{yield(:class_text)}" %>
       <%= f.date_select :finish_day, class: "form-control datetime-form" %><br>
@@ -43,7 +43,7 @@
         ・なるべく数値化する
       </div>
 
-      <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
+      <%= f.label :hold, class: "label-#{yield(:class_text)}" %>&nbsp;
       <%= f.check_box :hold, class: "form-inline checkbox-goal" %>
       <div id="form-assist">
         ・すぐに着手しない場合はチェック
@@ -59,6 +59,7 @@
       </div>
 
       <div id="detail-association-insertion-point"></div>
+      
       <div class="add-button-box">
         <%= link_to_add_association "＋ ゴールギャップ追加", f, :goalgaps,
           class: "btn-sm btn-success",

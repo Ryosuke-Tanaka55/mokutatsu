@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :limitation_login_user, only:[:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :following, :followers]
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy, :following, :followers]
-  before_action :correct_user, only: [:edit, :show, :update, :destroy]
-  before_action :admin_user, only: [:destroy]
+  before_action :correct_user, only: [:edit, :show, :update]
+  before_action :admin_or_correct_user, only: [:destroy]
   before_action :not_admin_user, only: [:show]
 
   def index
@@ -52,7 +52,11 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:success] = "#{ @user.name }のデータを削除しました。"
-    redirect_to users_url
+    if current_user.admin?
+      redirect_to users_url
+    else
+      redirect_to root_url
+    end
   end
 
   # フォロー
@@ -84,7 +88,7 @@ class UsersController < ApplicationController
   private
     # ストロングパラメーター
     def user_params
-      params.require(:user).permit(:name, :nickname, :anonymous, :email, :image, :introduction, :password, :password_confirmation, :agreement)
+      params.require(:user).permit(:name, :email, :image, :introduction, :password, :password_confirmation, :agreement)
     end
 
 end

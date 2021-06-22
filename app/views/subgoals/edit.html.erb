@@ -26,7 +26,7 @@
       </div>
 
       <%= f.label :start_day, class: "label-#{yield(:class_text)}" %>
-      <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
+      <%= f.date_select :start_day, start_year: Time.now.year, class: "form-control datetime-form" %><br>
 
       <%= f.label :finish_day, class: "label-#{yield(:class_text)}" %>
       <%= f.date_select :finish_day, class: "form-control datetime-form" %><br>
@@ -69,13 +69,13 @@
       <%= f.label :progress, class: "label-#{yield(:class_text)}" %>
       <%= f.select :progress, Subgoal.progresses.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" , required: true } %>
 
-      <%= f.label :important, class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :important, class: "checkbox inline checkbox-subgoal" %>
+      <%= f.label :important, class: "label-#{yield(:class_text)}" %>&nbsp;
+      <%= f.check_box :important, class: "form-inline checkbox-subgoal" %>
       <div id="form-assist">
         ・ゴール到達に最も繋がるサブゴールを最低1つ、できれば2つ選択
       </div>
 
-      <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
+      <%= f.label :hold, class: "label-#{yield(:class_text)}" %>&nbsp;
       <%= f.check_box :hold, class: "form-inline checkbox-subgoal" %>
       <div id="form-assist">
         ・すぐに着手しない場合はチェック

@@ -33,17 +33,6 @@
         <th class="col-md-3"><%= Goal.human_attribute_name :goal_index %></th>
           <td class="col-md-9"><%= @goal.goal_index %></td>
       </tr>
-      <tr>
-        <th class="col-md-3"><%= Goal.human_attribute_name :achivement %></th>
-          <td class="col-md-9"><%= @goal.achivement %></td>
-      </tr>
-      <tr>
-        <th class="col-md-3"><%= Goal.human_attribute_name :check %></th>
-          <td class="col-md-9"><%= @goal.check %></td>
-      </tr>
-        <th class="col-md-3"><%= Goal.human_attribute_name :adjust %></th>
-          <td class="col-md-9"><%= @goal.adjust %></td>
-      </tr>
       </tr>
         <th class="col-md-3"><%= Goal.human_attribute_name :progress %></th>
           <td class="col-md-9"><%= @goal.progress %></td>
@@ -51,10 +40,6 @@
       </tr>
         <th class="col-md-3"><%= Goal.human_attribute_name :hold %></th>
           <td class="col-md-9"><%= @goal.hold ? "保留中" : "実行中" %></td>
-      </tr>
-      </tr>
-        <th class="col-md-3"><%= Goal.human_attribute_name :publish %></th>
-          <td class="col-md-9"><%= @goal.publish %></td>
       </tr>
       </tr>
         <th class="col-md-3"><%= Goal.human_attribute_name :note %></th>

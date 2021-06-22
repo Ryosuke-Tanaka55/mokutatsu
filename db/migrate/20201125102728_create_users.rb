@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.text :introduction
       
       t.timestamps
+      
     end
   end
 end

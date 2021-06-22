@@ -1,11 +1,10 @@
 <% provide(:title, '投稿詳細') %>
 <% provide(:body_id, 'view-background') %>
 
-<h1>投稿詳細</h1>
+<h1><%= @post.user.name %>さんの投稿詳細</h1>
 
 <%= link_to  "全体の投稿", user_posts_path(current_user), class: "btn btn-primary" %>
-<%= link_to  "フォロー", following_user_path(@user), class: "btn btn-primary" %>
-<%= link_to  "フォロワー", followers_user_path(@user), class: "btn btn-primary" %>
+<%= link_to  "自分の投稿", posts_show_own_post_user_path(current_user), class: "btn btn-primary" %>
 
 <div class="row">
   <aside class="col-md-4">
@@ -24,13 +23,13 @@
       <div class="post_content">
         内容：<%= @post.content %>
       </div>
-      <div class="post_image">
-        <% if @post.images.attached? %>
-          <% @post.images.each do |image| %>
-            <%= image_tag image, class: 'images' %>
-          <% end %>
+    <div class="post_image">
+      <% if @post.post_images.present? %>
+        <% @post.post_images.each do |image| %>
+          <%= image_tag image.post_image.url, class: 'images' %>
         <% end %>
-      </div>
+      <% end %>
+    </div>
     </span>
     <span class="timestamp">
     <%= time_ago_in_words(@post.created_at) %>前に投稿

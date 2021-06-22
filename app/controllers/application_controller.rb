@@ -52,7 +52,15 @@ class ApplicationController < ActionController::Base
   # システム管理者を除外
   def not_admin_user
     if current_user.admin?
-      flash[:danger] = "管理者のマイページはありません。"
+      flash[:danger] = "管理者は利用できません。"
+      redirect_to root_url
+    end
+  end
+
+  # システム管理者かアクセスしたユーザーが現在ログインしているユーザーか判定
+  def admin_or_correct_user
+    unless current_user?(@user) || current_user.admin?
+      flash[:danger] = "他のユーザー情報は操作できません。"
       redirect_to root_url
     end
   end

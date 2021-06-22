@@ -12,7 +12,6 @@ class CreateDoings < ActiveRecord::Migration[6.0]
       t.integer :progress, null: false, default: 0
       t.boolean :hold, null: false, default: false
       t.text :note
-
       t.references :subgoal, null: false, foreign_key: true
 
       t.timestamps

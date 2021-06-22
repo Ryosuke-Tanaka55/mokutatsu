@@ -8,7 +8,6 @@ class CreateGoals < ActiveRecord::Migration[6.0]
       t.string :goal_index, presence: true
       t.integer :progress, null: false, default: 0
       t.boolean :hold, null: false, default: false
-      t.integer :publish, null: false, default: 0
       t.text :note
       t.references :user, null: false, foreign_key: true
 

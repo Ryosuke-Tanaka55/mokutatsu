@@ -3,7 +3,8 @@ class Post < ApplicationRecord
 
   # いいね、コメント、画像
   has_many :likes, dependent: :destroy
-  has_many_attached :images
+  has_many :post_images, dependent: :destroy
+  accepts_nested_attributes_for :post_images
   has_many :comments, dependent: :destroy
 
   # 通知機能
@@ -13,6 +14,7 @@ class Post < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :title, presence: true
+  validates :content, presence: true
 
   # 「いいね」の通知機能
   def create_notification_like!(current_user)

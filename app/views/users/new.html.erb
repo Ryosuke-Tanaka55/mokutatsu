@@ -2,6 +2,7 @@
 <% provide(:body_id, "view-background") %>
 <% provide(:class_text, 'signup') %>
 <% provide(:button_text, '新規作成') %>
+<% provide(:button_cancel, '戻る') %>
 
 
 <h1>ユーザー登録</h1>
@@ -9,5 +10,10 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= render 'form' %>
+    <div class="sign-in">
+      <p>Googleアカウントでもログインできます。</p>
+      <%= link_to image_tag("/assets/google_sign_in.png", :alt => 'Googleログイン'), "/auth/google_oauth2", id: "sign-in" %>
+    </div>
+    <p>Googleアカウントでログイン</p>
   </div>
 </div>

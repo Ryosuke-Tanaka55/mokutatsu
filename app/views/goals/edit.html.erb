@@ -30,7 +30,7 @@
         { class: "form-control" , required: true } %>
 
       <%= f.label :start_day, class: "label-#{yield(:class_text)}" %>
-      <%= f.date_select :start_day, class: "form-control datetime-form" %><br>
+      <%= f.date_select :start_day, start_year: Time.now.year, class: "form-control datetime-form" %><br>
 
       <%= f.label :finish_day, class: "label-#{yield(:class_text)}" %>
       <%= f.date_select :finish_day, class: "form-control datetime-form" %><br>
@@ -46,7 +46,7 @@
       <%= f.select :progress, Goal.progresses.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" , required: true } %>
 
       <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
-      <%= f.check_box :hold, class: "form-inline checkbox-goal" %>
+      <%= f.check_box :hold, class: "form-inline checkbox-goal" %><br>
 
       <%= f.label :note, class: "label-#{yield(:class_text)}" %>
       <%= f.text_area :note, class: "form-control" %>

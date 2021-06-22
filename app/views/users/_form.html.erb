@@ -21,12 +21,13 @@
 
   <!-- 新規ユーザー作成の場合、利用規約の同意を確認 -->
   <% if current_user.nil? %>
-    <%= f.check_box :agreement, {}, checked_value = "true", unchecked_value = "false" %>
-    <%= link_to "利用規約", rule_path %>及び
-    <%= link_to "プライバシーポリシー", policy_path %>に同意する
+    <div class=<%= "label-#{yield(:class_text)}" %>>
+      <%= f.check_box :agreement, {}, checked_value = "true", unchecked_value = "false" %>
+      <%= link_to "利用規約", rule_path %>及び
+      <%= link_to "プライバシーポリシー", policy_path %>に同意する<br>
+    </div>
   <% end %>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
   <%= link_to "#{yield(:button_cancel)}", :back, class: "btn btn-lg btn-default btn-#{yield(:class_text)}" %>
-
 <% end %>

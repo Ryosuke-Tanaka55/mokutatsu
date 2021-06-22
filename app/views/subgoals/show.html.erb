@@ -28,18 +28,6 @@
           <td class="col-md-9"><%= l(@subgoal.finish_day, format: :long) %></td>
       </tr>
       <tr>
-        <th class="col-md-3"><%= Subgoal.human_attribute_name :achivement %></th>
-          <td class="col-md-9"><%= @subgoal.achivement %></td>
-      </tr>
-      <tr>
-        <th class="col-md-3"><%= Subgoal.human_attribute_name :check %></th>
-          <td class="col-md-9"><%= @subgoal.check %></td>
-      </tr>
-      <tr>
-        <th class="col-md-3"><%= Subgoal.human_attribute_name :adjust %></th>
-          <td class="col-md-9"><%= @subgoal.adjust %></td>
-      </tr>
-      <tr>
         <th class="col-md-3"><%= Subgoal.human_attribute_name :pattern %></th>
           <td class="col-md-9"><%= @subgoal.pattern ? "完結型" : "継続型" %></td>
       </tr>

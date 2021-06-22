@@ -18,7 +18,7 @@ class Goalcheck < ApplicationRecord
     errors.add(:estimate_check_at, "が過去です。")  if estimate_check_at < Date.today
   end
 
-  def estimate_check_at_fast_than_today_if_invalid
+  def check_at_fast_than_today_if_invalid
     errors.add(:check_at, "が過去です。")  if check_at < Date.today
   end
   

@@ -4,6 +4,7 @@ class Comment < ApplicationRecord
 
   # 画像
   has_many_attached :images
+  
   # 通知機能
   has_many :notifications, dependent: :destroy
 

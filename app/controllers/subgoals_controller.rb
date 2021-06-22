@@ -60,17 +60,8 @@ class SubgoalsController < ApplicationController
 
     # 編集時
     def edit_subgoal_params
-      params.require(:subgoal).permit(:subgoal, :start_day, :finish_day, :achivement, :check, :adjust,
-        :pattern, :priority, :impact, :worktime, :easy, :progress, :hold, :note, doing_attributes:
-        [
-          :doing, :start_day, :finish_day, :achivement, :check, :adjust, :pattern, :priority, :impact, :worktime,
-          :easy, :progress, :hold, :note, :_destroy, todo_attributes:
-          [
-            :todo, :start_day, :finish_day, :estimated_time, :estimated_start_time, :estimated_finish_time, :achivement,
-            :actual_start_time, :actual_finish_time, :check, :adjust, :pattern, :progress, :hold, :note,  :_destroy
-          ]
-        ]
-      )
+      params.require(:subgoal).permit(:subgoal, :start_day, :finish_day, :pattern, :priority, :impact, 
+        :worktime, :easy, :progress, :hold, :note)
     end
 
     # パラメーターから目標を取得
