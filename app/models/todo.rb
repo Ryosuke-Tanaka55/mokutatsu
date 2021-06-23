@@ -14,16 +14,16 @@ class Todo < ApplicationRecord
   validates :progress, presence: true
 
   # 開始日は今日以降出ないと無効
-  validate :start_day_fast_than_today_if_invalid
-
+  validate :start_time_than_fast_than_today_if_invalid
+  
   # 開始日より終了日が早い場合は無効
   validate :start_time_than_finish_time_fast_if_invalid
 
   # 実働開始時間より実働終了時間が早い場合は無効
   validate :actual_start_time_than_actual_finish_time_fast_if_invalid
 
-  def start_time_than_finish_time_fast_if_invalid
-    errors.add(:start_time, "が過去です。")  if start_day < DateTime.now - 1
+  def start_time_than_fast_than_today_if_invalid
+    errors.add(:start_time, "が過去です。")  if start_time < DateTime.now - 1
   end 
   
   def start_time_than_finish_time_fast_if_invalid

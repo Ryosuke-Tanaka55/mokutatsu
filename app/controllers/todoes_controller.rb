@@ -52,15 +52,13 @@ class TodoesController < ApplicationController
     # ストロングパラメーター
     # 新規登録時
     def create_todo_params
-      params.require(:todo).permit(:todo, :worked_on, :start_day, :finish_day, :estimated_time, 
-        :estimated_start_time, :estimated_finish_time, :pattern, :priority, :hold, :note, :doing_id)
+      params.require(:todo).permit(:todo, :worked_on, :start_time, :finish_time, :estimated_time, :pattern, :priority, :hold, :note, :doing_id)
     end
 
     # 編集時
     def edit_todo_params
-      params.require(:todo).permit(:todo, :worked_on, :start_day, :finish_day, :estimated_time, 
-        :estimated_start_time, :estimated_finish_time, :actual_start_time, :actual_finish_time, 
-        :achivement, :pattern, :priority, :hold, :note, :doing_id
+      params.require(:todo).permit(:todo, :worked_on, :start_time, :finish_time, :estimated_time, 
+        :actual_start_time, :actual_finish_time, :achivement, :pattern, :priority, :hold, :note, :doing_id
       )
     end
 
