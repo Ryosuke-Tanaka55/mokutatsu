@@ -52,8 +52,7 @@ class DoingchecksController < ApplicationController
   private
     # ストロングパラメーター
     def doingcheck_params
-      params.require(:doingcheck).permit(:check, :adjust, :estimate_check_at, :check_at, :span, 
-        :achivement, :note, :doing_id)
+      params.require(:doingcheck).permit(:check, :adjust, :estimate_check_at, :check_at, :span, :achivement, :note, :doing_id)
     end
 
     # paramsハッシュからid取得

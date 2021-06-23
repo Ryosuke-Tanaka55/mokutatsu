@@ -13,7 +13,6 @@ class GoalsController < ApplicationController
 
   def new
     @goal = Goal.new
-    @subgoals = @goal.subgoals.build
     @goalgaps = @goal.goalgaps.build
   end
 

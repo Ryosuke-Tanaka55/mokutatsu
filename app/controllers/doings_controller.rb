@@ -52,21 +52,13 @@ class DoingsController < ApplicationController
     # 新規登録時
     def create_doing_params
       params.require(:doing).permit(:doing, :start_day, :finish_day, :pattern, 
-        :priority, :impact, :worktime, :easy, :hold, :note, :subgoal_id, 
-        todoes_attributes: [:id, :todo, :worked_on, :start_day, :finish_day, :estimated_time, :estimated_start_time, :estimated_finish_time,
-           :actual_start_time, :actual_finish_time, :achivement, :check, :pattern, :priority, :progress, :hold, :note, 
-           :user_id, :doing_id, :_destroy])
+        :priority, :impact, :worktime, :easy, :hold, :note, :subgoal_id)
     end
 
      # 編集時
      def edit_doing_params
       params.require(:doing).permit(:doing, :start_day, :finish_day, :achivement, :check, :adjust,
-        :pattern, :priority, :impact, :worktime, :easy, :progress, :hold, :note, todo_attributes:
-        [
-          :todo, :start_day, :finish_day, :estimated_time, :estimated_start_time, :estimated_finish_time, :achivement,
-            :actual_start_time, :actual_finish_time, :check, :adjust, :pattern, :progress, :hold, :note, :_destroy
-        ]
-      )
+        :pattern, :priority, :impact, :worktime, :easy, :progress, :hold, :note, :subgoal_id)
     end
 
     # パラメーターからDoを取得

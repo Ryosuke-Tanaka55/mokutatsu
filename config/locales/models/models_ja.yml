@@ -124,11 +124,9 @@ ja:
       todo:
         todo: ToDo
         worked_on: 実行日
-        start_day: 開始日
-        finish_day: 終了日
+        start_time: 開始日時
+        finish_time: 終了日時
         estimated_time: 予定時間
-        estimated_start_time: 予定開始時間
-        estimated_finish_time: 予定終了時間
         actual_start_time: 実働開始時間
         actual_finish_time: 実働終了時間
         achivement: ToDo達成率(%)
