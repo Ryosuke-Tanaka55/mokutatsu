@@ -58,7 +58,7 @@ class TodoesController < ApplicationController
     # 編集時
     def edit_todo_params
       params.require(:todo).permit(:todo, :worked_on, :start_time, :finish_time, :estimated_time, 
-        :actual_start_time, :actual_finish_time, :achivement, :pattern, :priority, :hold, :note, :doing_id
+        :actual_start_time, :actual_finish_time, :achivement, :check, :adjust, :pattern, :priority, :hold, :note, :doing_id
       )
     end
 
