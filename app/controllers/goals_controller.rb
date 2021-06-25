@@ -46,6 +46,11 @@ class GoalsController < ApplicationController
     redirect_to goals_url
   end
 
+  def goalgap_info
+    @goal = Goal.find(params[:goal_id])
+    @goalgaps = current_user.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+  end
+
   private
     # ストロングパラメーター
     # 新規ゴール登録時 goalgapを同時に登録

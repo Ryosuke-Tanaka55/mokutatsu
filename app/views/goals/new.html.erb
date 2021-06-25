@@ -27,7 +27,7 @@
       </div>
 
       <%= f.label :category, class: "label-#{yield(:class_text)}" %>
-      <%= f.select :category, Goal.categories.keys, { include_blank: "選択してください。", selected: "選択してください。"}, 
+      <%= f.select :category, Goal.categories.keys, { include_blank: "選択してください。" }, 
         { class: "form-control" , required: true } %>
 
       <%= f.label :start_day, class: "label-#{yield(:class_text)}" %>

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     # ゴール関係
     resources :goals do
       resources :goalgaps
+      get 'goalgap_info'
       resources :goalchecks
       resources :subgoals do
         resources :subgoalgaps

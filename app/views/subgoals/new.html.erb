@@ -10,9 +10,12 @@
     ゴールギャップを元に解決策を登録します。
   </div>
 </h2>
-
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    <div class="gap-index">
+      <%= link_to "ゴールギャップ一覧", user_goal_goalgap_info_path(current_user.id, goal_id: @goal.id), remote: true, class: "btn btn-success" %>
+    </div>
+    
     <%= form_with(model: @subgoal, url: user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal.id), method: :post, local: true) do |f| %>
       <%= render 'shared/object_error_messages', object: @subgoal %>
 
@@ -107,3 +110,6 @@
     <% end %>
   </div>
 </div>
+
+<!--モーダルウインドウ表示-->
+<div id="goalgap-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

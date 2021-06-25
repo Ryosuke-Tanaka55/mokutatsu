@@ -9,6 +9,8 @@ ja:
       doing: Do
       todo: ToDo
       post: 投稿
+      comment : コメント
+      like : いいね
     attributes:
       user:
         id: ID
@@ -30,6 +32,16 @@ ja:
         progress: 進捗状況
         hold: 保留
         note: 備考
+        created_at: 作成日
+        updated_at: 更新日
+      goal/goalgaps:
+        gap: ギャップ
+        detail: ギャップ詳細
+        solution: 解決策
+        impact: インパクト（効果）
+        worktime: 工数（時間）
+        easy: 気軽さ
+        priority: 優先度
         created_at: 作成日
         updated_at: 更新日
       goalgap:
@@ -57,13 +69,7 @@ ja:
         important: 最重要サブゴール
         start_day: 開始日
         finish_day: 終了日
-        pattern: タイプ
-        achivement: サブゴール達成率(%)
-        check: サブゴール検証
-        adjust: サブゴール調整
-        pattern: タイプ
-        gap: ギャップ
-        solution: 解決策
+        pattern: タイプ    
         priority: 優先度
         impact: インパクト
         worktime: 工数（時間）
@@ -71,6 +77,17 @@ ja:
         progress: 進捗
         hold: 保留
         note: 備考
+        created_at: 作成日
+        updated_at: 更新日
+      subgoal/subgoalgaps:
+        gap: ギャップ
+        detail: ギャップ詳細
+        solution: 解決策
+        impact: インパクト（効果）
+        term: 期間
+        worktime: 工数（時間）
+        easy: 気軽さ
+        priority: 優先度
         created_at: 作成日
         updated_at: 更新日
       subgoalgap:
@@ -144,14 +161,11 @@ ja:
         content: 投稿内容
         image: 画像
         created_at: 作成日
-        updated_at: 更新日        
-
-
-
-
-
-
-          
+        updated_at: 更新日
+      comment:
+        comment: コメント
+        created_at: 作成日
+        updated_at: 更新日    
 
 
           

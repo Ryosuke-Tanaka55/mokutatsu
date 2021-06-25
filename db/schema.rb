@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_040956) do
 
   create_table "goals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "goal"
-    t.string "category"
+    t.integer "category"
     t.date "start_day"
     t.date "finish_day"
     t.string "goal_index"

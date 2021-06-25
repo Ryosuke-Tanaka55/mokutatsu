@@ -2,7 +2,7 @@ class CreateGoals < ActiveRecord::Migration[6.0]
   def change
     create_table :goals do |t|
       t.string :goal, presence: true
-      t.string :category, presence: true
+      t.integer :category, presence: true
       t.date :start_day, presence: true
       t.date :finish_day, presence: true
       t.string :goal_index, presence: true

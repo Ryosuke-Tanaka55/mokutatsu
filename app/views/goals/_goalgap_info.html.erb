@@ -1,0 +1,52 @@
+<div class="modal-dialog modal-lg modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <h1 class="modal-title"><%= @goal.goal %></h1>
+      <h1 class="modal-title">ゴールギャップ一覧</h1>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-hover" id="table-index">
+            <thead>
+              <tr>
+                <th><%= Goalgap.human_attribute_name :gap %></th>
+                <th><%= Goalgap.human_attribute_name :impact %></th>
+                <th><%= Goalgap.human_attribute_name :worktime %></th>
+                <th><%= Goalgap.human_attribute_name :easy %></th>
+                <th><%= Goalgap.human_attribute_name :priority %></th>
+                <th><%= Goalgap.human_attribute_name :created_at %></th>
+                <th><%= Goalgap.human_attribute_name :updated_at %></th>
+              </tr>
+            </thead>
+          
+            <% if @goalgaps.present? %>
+              <% @goalgaps.each do |goalgap| %>
+                <tr>
+                  <td><%= goalgap.gap %></td>
+                  <td><%= goalgap.impact %></td>
+                  <td><%= goalgap.worktime %></td>
+                  <td><%= goalgap.easy %></td>
+                  <td><%= goalgap.priority %></td>
+                  <td><%= l(goalgap.created_at, format: :long) %></td>
+                  <td><%= l(goalgap.updated_at, format: :long) %></td>
+                  <td align="center">
+                    <%= link_to "詳細", user_goal_goalgap_path(user_id: current_user, goal_id: @goal.id, id: goalgap.id), class: "btn btn-primary" %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+          <div class="center">
+            <button type="button" class="btn btn-secondary btn-<%= yield(:class_text) %>" data-dismiss="modal">
+              閉じる
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
