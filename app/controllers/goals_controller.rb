@@ -48,7 +48,7 @@ class GoalsController < ApplicationController
 
   def goalgap_info
     @goal = Goal.find(params[:goal_id])
-    @goalgaps = current_user.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    @goalgaps = @goal.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
   end
 
   private

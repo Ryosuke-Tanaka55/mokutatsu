@@ -35,8 +35,8 @@ ja:
         created_at: 作成日
         updated_at: 更新日
       goal/goalgaps:
-        gap: ギャップ
-        detail: ギャップ詳細
+        gap: ゴールギャップ
+        detail: ゴールギャップ詳細
         solution: 解決策
         impact: インパクト（効果）
         worktime: 工数（時間）
@@ -45,8 +45,8 @@ ja:
         created_at: 作成日
         updated_at: 更新日
       goalgap:
-        gap: ギャップ
-        detail: ギャップ詳細
+        gap: ゴールギャップ
+        detail: ゴールギャップ詳細
         solution: 解決策
         impact: インパクト（効果）
         worktime: 工数（時間）
@@ -80,8 +80,8 @@ ja:
         created_at: 作成日
         updated_at: 更新日
       subgoal/subgoalgaps:
-        gap: ギャップ
-        detail: ギャップ詳細
+        gap: サブゴールギャップ
+        detail: サブゴールギャップ詳細
         solution: 解決策
         impact: インパクト（効果）
         term: 期間
@@ -91,8 +91,8 @@ ja:
         created_at: 作成日
         updated_at: 更新日
       subgoalgap:
-        gap: ギャップ
-        detail: ギャップ詳細
+        gap: サブゴールギャップ
+        detail: サブゴールギャップ詳細
         solution: 解決策
         impact: インパクト（効果）
         term: 期間

@@ -1,0 +1,56 @@
+<% provide(:class_text, 'create-subgoal') %>
+
+<div class="modal-dialog modal-lg modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <h1><%= @subgoal.subgoal %><br>
+          サブゴールギャップ一覧
+      </h1>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <table class="table table-hover" id="table-index">
+            <thead>
+              <tr>
+                <th width="150"><%= Subgoalgap.human_attribute_name :gap %></th>
+                <th width="150"><%= Subgoalgap.human_attribute_name :impact %></th>
+                <th width="50"><%= Subgoalgap.human_attribute_name :term %></th>
+                <th width="180"><%= Subgoalgap.human_attribute_name :worktime %></th>
+                <th width="100"><%= Subgoalgap.human_attribute_name :easy %></th>
+                <th width="100"><%= Subgoalgap.human_attribute_name :priority %></th>
+                <th width="90"><%= Subgoalgap.human_attribute_name :created_at %></th>
+                <th width="90"><%= Subgoalgap.human_attribute_name :updated_at %></th>
+              </tr>
+            </thead>
+          
+            <% if @subgoalgaps.present? %>
+              <% @subgoalgaps.each do |subgoalgap| %>
+                <tr>
+                  <td><%= subgoalgap.gap %></td>
+                  <td><%= subgoalgap.impact %></td>
+                  <td><%= subgoalgap.term %></td>
+                  <td><%= subgoalgap.worktime %></td>
+                  <td><%= subgoalgap.easy %></td>
+                  <td><%= subgoalgap.priority %></td>
+                  <td><%= subgoalgap.created_at.strftime("%Y年%-m月%-d日") %></td>
+                  <td><%= subgoalgap.updated_at.strftime("%Y年%-m月%-d日") %></td>
+                  <td align="center">
+                    <%= link_to "詳細", user_goal_subgoal_subgoalgap_path(user_id: current_user, goal_id: @goal.id, subgoal_id: @subgoal.id, id: subgoalgap.id), class: "btn btn-primary" %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+          <div class="center">
+            <button type="button" class="btn btn-default btn-<%= yield(:class_text) %>" data-dismiss="modal">
+              閉じる
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

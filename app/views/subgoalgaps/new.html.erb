@@ -4,7 +4,7 @@
 <% provide(:button_text, '新規作成') %>
 <% provide(:button_cancel, '戻る') %>
 
-<h1>サブゴールギャップ設定</h1>
+<h1>サブゴールギャップ登録</h1>
 <h2 class="head-supplement">サブゴールと現状とのギャップを登録します。
 	<div class="h2-text">
 		サブゴールとのギャップを埋める課題を考えていきます。
@@ -73,24 +73,6 @@
 					{ class: "form-control" , required: true } %>
       <div id="form-assist">
         ・インパクト、工数、気軽さから優先度を設定する
-      </div>
-
-			<div id="detail-association-insertion-point"></div>
-
-      <div class="subgoalgaps">
-        <%= f.fields_for :subgoalgaps do |g| %>
-          <%= render "subgoalgap_fields", f: g %>
-        <% end %>
-      </div>
-
-      <div class="add-button-box">
-        <%= link_to_add_association "サブゴールギャップ追加", f, :subgoalgaps,
-          class: "btn-sm btn-success",
-          data: {
-            association_insertion_node: '#detail-association-insertion-point',
-            association_insertion_method: 'after',
-          }
-        %>
       </div>
 
 			<%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>

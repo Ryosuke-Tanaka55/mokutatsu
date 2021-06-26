@@ -50,6 +50,11 @@ class SubgoalsController < ApplicationController
     redirect_to user_goal_subgoals_url
   end
 
+  def subgoalgap_info
+    @subgoal = Subgoal.find(params[:subgoal_id])
+    @subgoalgaps = @subgoal.subgoalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+  end
+
   private
     # ストロングパラメーター
     # 新規登録時 subgoalgapを同時に登録

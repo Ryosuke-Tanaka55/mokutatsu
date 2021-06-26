@@ -28,10 +28,11 @@ Rails.application.routes.draw do
     resources :events
     # ゴール関係
     resources :goals do
-      resources :goalgaps
       get 'goalgap_info'
+      resources :goalgaps
       resources :goalchecks
       resources :subgoals do
+        get 'subgoalgap_info'
         resources :subgoalgaps
         resources :subgoalchecks
         resources :doings do
