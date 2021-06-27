@@ -3,14 +3,14 @@
 
 <div class="container">
   <div class="center">
-    <h1>MOKU TATSU</h1>
-    <p>このアプリケーションは、目標達成の手助けを行います。</p>
+    <h1 class="title">MOKU TATSU</h1>
+    <p class="app-nav">このアプリケーションは、目標達成の手助けを行います。</p>
     <% if logged_in? %>
       <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-lg btn btn-danger" %>
     <% else %>
-      <p>アカウントをお持ちの方はこちら</p>
+      <p class="account-nav">アカウントをお持ちの方はこちら</p>
       <%= link_to "ログイン", login_path, class: "btn btn-lg btn btn-success" %><br>
-      <p>アカウントをお持ちでない方はこちら</p>
+      <p class="account-nav">アカウントをお持ちでない方はこちら</p>
       <%= link_to "アカウント新規作成", signup_path, class: "btn btn-lg btn btn-warning" %>
     <% end %>
   </div>

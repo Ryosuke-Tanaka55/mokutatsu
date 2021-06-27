@@ -10,6 +10,28 @@
   z-index: 0;
 }
 
+/* タイトル */
+h1.title {
+	font-size:5em;
+	text-align:center;
+	line-height:0.95em;
+	font-weight:bold;
+	color: #FFF;
+	text-shadow: 0 0 0.2em rgba(0,0,0,1);
+}
+
+/* アプリ説明 */
+p.app-nav {
+  font-weight: 600;
+  font-size: 25px;
+}
+
+/* アカウント作成 */
+p.account-nav {
+  font-size: 20px;
+  font-weight: 600;
+}
+
 /* 利用規約 */
 .flash text-center {
   opacity: 0.01;
