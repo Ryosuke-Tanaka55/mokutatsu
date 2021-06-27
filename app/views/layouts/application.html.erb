@@ -18,7 +18,9 @@
         <div class="container">
           <%= breadcrumbs separator: " &rsaquo; ", class: "breadcrumbs-list" %> <!-- パンくずリスト -->
           <% flash.each do |message_type, msg| %>
-            <div class="alert alert-<%= message_type %>"><%= msg %></div>
+            <div class="alert alert-<%= message_type %>"><%= msg %>
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
           <% end %>
           <main>
             <%= yield %> <!-- ここにコンテンツの内容が入る -->

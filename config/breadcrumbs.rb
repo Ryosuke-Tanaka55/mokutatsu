@@ -35,13 +35,24 @@ crumb :post_index do |post|
   parent :user_show, post
 end
 
-crumb :post_show_own_post do |post|
-  link "#{ post.user.name }さんの投稿ページ", posts_show_own_post_user_path(post.user_id)
-  parent :post_index, post.user_id
+crumb :post_show_own_post do |user|
+  user = User.find(params[:id])
+  link "#{ user.name }さんの投稿ページ", posts_show_own_post_user_path(user.id)
+  parent :post_index, user
 end
 
 crumb :post_show do |post|
   link "#{ post.user.name }さんの投稿詳細"
+  parent :post_show_own_post, post
+end
+
+# フォロー、フォロワー
+crumb :user_follow do |post|
+  if controller.action_name == "following"
+    link "#{ post.name }さんのフォロー"
+  else
+    link "#{ post.name }さんのフォロワー"
+  end
   parent :post_show_own_post, post
 end
 
