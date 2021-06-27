@@ -1,6 +1,9 @@
 <% provide(:title, 'ゴール検証一覧') %>
 <% provide(:body_id, 'view-background') %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :goalcheck_index, @goal %>
+
 <h1><%= @goal.goal %></h1>
 <h1>ゴール検証一覧</h1>
 
@@ -25,7 +28,7 @@
           <tr>
             <td><%= link_to "#{ l(goalcheck.estimate_check_at, format: :long) }", user_goal_goalcheck_path(current_user, @goal, goalcheck.id) %></td>
             <td><%= l(goalcheck.check_at, format: :long) if goalcheck.check_at.present? %></td>
-            <td><%= l(goalcheck.span, format: :long) %></td>
+            <td><%= goalcheck.span %></td>
             <td><%= goalcheck.achivement if goalcheck.achivement.present? %></td>
             <td align="center">
               <%= link_to "詳細", user_goal_goalcheck_path(current_user, @goal, goalcheck.id), class: "btn btn-primary" %>

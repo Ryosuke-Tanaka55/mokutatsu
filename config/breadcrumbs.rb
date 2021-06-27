@@ -55,3 +55,65 @@ crumb :user_follow do |user|
   parent :post_show_own_post, user
 end
 
+# ゴール
+crumb :goal_index do
+  link "#{ current_user.name }のゴール一覧", user_goals_path(current_user)
+  parent :user_show, current_user
+end
+
+crumb :goal_new do
+  link "ゴール登録", new_user_goal_path(current_user)
+  parent :goal_index, current_user
+end
+
+crumb :goal_show do |goal|
+  link "ゴール詳細", user_goals_path(goal)
+  parent :goal_index, current_user
+end
+
+crumb :goal_edit do |goal|
+  link "ゴール編集", edit_user_goal_path(goal)
+  parent :goal_index, current_user
+end
+
+# ゴールギャップ
+crumb :goalgap_index do |goal|
+  link "ゴールギャップ一覧", user_goal_goalgaps_path(goal)
+  parent :goal_show, current_user, goal
+end
+
+crumb :goalgap_new do |goal|
+  link "ゴールギャップ登録", new_user_goal_goalgap_path(goal)
+  parent :goalgap_index, goal.user_id
+end
+
+crumb :goalgap_show do |goal|
+  link "ゴールギャップ詳細", user_goal_goalgap_path(goal)
+  parent :goalgap_index, goal.user_id, goal.id
+end
+
+crumb :goalgap_edit do |goal|
+  link "ゴールギャップ編集", edit_user_goal_goalgap_path(goal)
+  parent :goalgap_index, goal.user_id
+end
+
+# ゴール検証
+crumb :goalcheck_index do |goal|
+  link "ゴール検証一覧", user_goal_goalchecks_path(goal)
+  parent :goal_index, current_user, goal.id
+end
+
+crumb :goalcheck_new do |goal|
+  link "ゴール検証登録", new_user_goal_goalcheck_path(goal)
+  parent :goalcheck_index, current_user, goal.id
+end
+
+crumb :goalcheck_show do |goal|
+  link "ゴール検証詳細", user_goal_goalcheck_path(goal)
+  parent :goalcheck_index, current_user, goal.id
+end
+
+crumb :goalcheck_edit do |goal|
+  link "ゴール検証編集", edit_user_goal_goalcheck_path(goal)
+  parent :goalcheck_index, current_user, goal.id
+end

@@ -1,6 +1,9 @@
 <% provide(:title, 'ゴールギャップ一覧') %>
 <% provide(:body_id, 'view-background') %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :goalgap_index, @goal %>
+
 <h1><%= @goal.goal %></h1>
 <h1>ゴールギャップ一覧</h1>
 
