@@ -1,6 +1,9 @@
 <% provide(:title, 'ログイン') %>
 <% provide(:body_id, 'view-background') %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :session_new %>
+
 <h1>ログイン</h1>
 
 <div class="row">
@@ -27,7 +30,7 @@
     <div class="sign-in">
       <%= link_to image_tag("/assets/google_sign_in.png", :alt => 'Googleログイン'), "/auth/google_oauth2", id: "sign-in" %>
     </div>
-    <p>Googleアカウントでログイン</p>
+    <b>Googleアカウントでログイン</b>
     <P>
       ユーザー登録がまだの場合は<%= link_to "こちら", signup_path %>
     </p>

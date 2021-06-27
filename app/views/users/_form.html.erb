@@ -25,6 +25,8 @@
       <%= f.check_box :agreement, {}, checked_value = "true", unchecked_value = "false" %>
       <%= link_to "利用規約", rule_path %>及び
       <%= link_to "プライバシーポリシー", policy_path %>に同意する<br>
+      <%= recaptcha_tags %>
+      <p>Googleアカウントでログインしない場合はチェックを入れてください。</p>
     </div>
   <% end %>
 

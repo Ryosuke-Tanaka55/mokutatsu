@@ -197,6 +197,19 @@ p {
   text-decoration: none;
 }
 
+/* パンくずリスト */
+.breadcrumbs-list {
+  a:hover {
+    text-decoration: none;
+    background: #C0C0C0;
+  }
+  .current {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: bold;
+  }
+}
+
 /* error_messages */
 
 #error_explanation {

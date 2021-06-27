@@ -1,6 +1,9 @@
 <% provide(:title, 'ユーザー一覧') %>
 <% provide(:body_id, "view-background") %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :user_index, current_user %>
+
 <h1>ユーザー一覧</h1>
 
 <!-- ユーザー検索 -->

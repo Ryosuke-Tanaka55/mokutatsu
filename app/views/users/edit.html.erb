@@ -5,13 +5,26 @@
 <% provide(:button_cancel, '戻る') %>
 
 <!-- パンくずリスト -->
-<% breadcrumb :user_edit %>
+<% breadcrumb :user_edit, @user %>
 
 <h1>ユーザー情報更新</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3" >
     <%= image_tag("#{ @user.image }", class: 'account-page__inner--icon__input__image') %>
-    <%= render 'form' %>
+    <% if current_user.password.present? %>
+      <%= render 'form' %>
+    <% else %>
+      <%= form_with(model: @user, local: true) do |f| %>
+        <%= render 'shared/object_error_messages', object: f.object %>
+        
+        <%= f.label :introduction, class: "label-#{yield(:class_text)}" %>
+        <%= f.text_field :introduction, class: "form-control" %>
+
+        <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
+        <%= link_to "#{yield(:button_cancel)}", :back, class: "btn btn-lg btn-default btn-#{yield(:class_text)}" %>
+
+      <% end %>
+    <% end %>  
   </div>
 </div>

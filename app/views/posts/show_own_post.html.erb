@@ -2,6 +2,9 @@
 <% provide(:body_id, 'view-background') %>
 <% provide(:class_text, 'post_form') %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :post_show_own_post, @post %>
+
 <h1><%= @user.name %>さんの投稿ページ</h1>
 
 <%= link_to  "全体の掲示板", user_posts_path(current_user), class: "btn btn-primary" %>

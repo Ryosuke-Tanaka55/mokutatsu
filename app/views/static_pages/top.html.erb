@@ -1,10 +1,13 @@
 <% provide(:title, "トップ") %>
 <% provide(:body_id, "top") %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :root %>
+
 <div class="container">
   <div class="center">
     <h1 class="title">MOKU TATSU</h1>
-    <p class="app-nav">このアプリケーションは、目標達成の手助けを行います。</p>
+    <p class="app-nav">このアプリケーションは、目標達成の手助けを行います</p>
     <% if logged_in? %>
       <%= link_to "ログアウト", logout_path, method: :delete, class: "btn btn-lg btn btn-danger" %>
     <% else %>

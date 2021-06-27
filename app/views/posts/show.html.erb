@@ -1,6 +1,9 @@
 <% provide(:title, '投稿詳細') %>
 <% provide(:body_id, 'view-background') %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :post_show, @post %>
+
 <h1><%= @post.user.name %>さんの投稿詳細</h1>
 
 <%= link_to  "全体の投稿", user_posts_path(current_user), class: "btn btn-primary" %>

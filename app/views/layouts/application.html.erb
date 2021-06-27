@@ -16,7 +16,7 @@
     <div id="wrapper">
       <%= render 'layouts/header' %>
         <div class="container">
-          <%= breadcrumbs separator: " &rsaquo; " %> <!-- パンくずリスト -->
+          <%= breadcrumbs separator: " &rsaquo; ", class: "breadcrumbs-list" %> <!-- パンくずリスト -->
           <% flash.each do |message_type, msg| %>
             <div class="alert alert-<%= message_type %>"><%= msg %></div>
           <% end %>
