@@ -30,29 +30,28 @@ crumb :user_edit do |user|
 end
 
 # 投稿
-crumb :post_index do |post|
-  link "全体の投稿", user_posts_path(post)
-  parent :user_show, post
+crumb :post_index do
+  link "全体の投稿", user_posts_path(current_user)
+  parent :user_show, current_user
 end
 
 crumb :post_show_own_post do |user|
-  user = User.find(params[:id])
-  link "#{ user.name }さんの投稿ページ", posts_show_own_post_user_path(user.id)
-  parent :post_index, user
+  link "#{ user.name }さんの投稿ページ", posts_show_own_post_user_path(user)
+  parent :post_index, current_user
 end
 
 crumb :post_show do |post|
   link "#{ post.user.name }さんの投稿詳細"
-  parent :post_show_own_post, post
+  parent :post_show_own_post, post.user
 end
 
 # フォロー、フォロワー
-crumb :user_follow do |post|
+crumb :user_follow do |user|
   if controller.action_name == "following"
-    link "#{ post.name }さんのフォロー"
+    link "#{ user.name }さんのフォロー"
   else
-    link "#{ post.name }さんのフォロワー"
+    link "#{ user.name }さんのフォロワー"
   end
-  parent :post_show_own_post, post
+  parent :post_show_own_post, user
 end
 
