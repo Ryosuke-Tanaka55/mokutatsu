@@ -8,6 +8,17 @@ crumb :session_new do
   parent :root
 end
 
+# 利用規約、プライバシーポリシー
+crumb :rule do
+  link "利用規約", rule_path
+  parent :root
+end
+
+crumb :policy do
+  link "プライバシーポリシー", policy_path
+  parent :root
+end
+
 # ユーザー
 crumb :user_new do
   link "ユーザー登録", new_user_path
