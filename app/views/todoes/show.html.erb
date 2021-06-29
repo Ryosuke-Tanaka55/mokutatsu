@@ -2,6 +2,9 @@
 <% provide(:body_id, 'view-background') %>
 <% provide(:button_cancel, '戻る') %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :todo_show, @todo %>
+
 <h1>ToDo詳細</h1>
 
 <div class="row">
@@ -16,25 +19,18 @@
           <td class="col-md-9"><%= @todo.worked_on %></td>
       </tr>
       <tr>
-        <th class="col-md-3"><%= Todo.human_attribute_name :start_day %></th>
-          <td class="col-md-9"><%= @todo.start_day %></td>
+        <th class="col-md-3"><%= Todo.human_attribute_name :start_time %></th>
+          <td class="col-md-9"><%= @todo.start_time %></td>
       </tr>
       <tr>
-        <th class="col-md-3"><%= Todo.human_attribute_name :finish_day %></th>
-          <td class="col-md-9"><%= @todo.finish_day %></td>
+        <th class="col-md-3"><%= Todo.human_attribute_name :finish_time %></th>
+          <td class="col-md-9"><%= @todo.finish_time %></td>
       </tr>
       <tr>
         <th class="col-md-3"><%= Todo.human_attribute_name :estimated_time %></th>
-          <td class="col-md-9"><%= l(@todo.estimated_time, format: :long) %></td>
+          <td class="col-md-9"><%= @todo.estimated_time %></td>
       </tr>
       <tr>
-        <th class="col-md-3"><%= Todo.human_attribute_name :estimated_start_time %></th>
-          <td class="col-md-9"><%= l(@todo.estimated_start_time, format: :long) %></td>
-      </tr>
-        <th class="col-md-3"><%= Todo.human_attribute_name :estimated_finish_time %></th>
-          <td class="col-md-9"><%= l(@todo.estimated_finish_time, format: :long) %></td>
-      </tr>
-            <tr>
         <th class="col-md-3"><%= Todo.human_attribute_name :actual_start_time %></th>
           <td class="col-md-9"><%= l(@todo.actual_start_time, format: :long) if @todo.actual_start_time.present? %></td>
       </tr>

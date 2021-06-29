@@ -1,6 +1,9 @@
 <% provide(:title, current_user.name) %>
 <% provide(:body_id, 'view-background') %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :subgoal_index, @goal %>
+
 <h1><%= @goal.goal %></h1>
 <h1>サブゴール一覧</h1>
 

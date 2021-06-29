@@ -35,7 +35,8 @@ class SubgoalgapsController < ApplicationController
   def update
     if @subgoalgap.update_attributes(subgoalgap_params)
       flash[:success] = "#{ @subgoalgap.gap }を編集しました。"
-      redirect_to user_goal_goalcheck_index_url
+      redirect_to user_goal_subgoal_subgoalgaps_url
+    else
       flash.now[:danger] = "#{ @subgoalgap.gap }を編集できませんでした。。"
       render :edit
     end

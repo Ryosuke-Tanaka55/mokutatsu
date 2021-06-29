@@ -2,6 +2,9 @@
 <% provide(:body_id, 'view-background') %>
 <% provide(:button_cancel, '戻る') %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :doing_show, @doing %>
+
 <h1>Do詳細</h1>
 
 <div class="row">
@@ -18,17 +21,6 @@
       <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :finish_day %></th>
           <td class="col-md-9"><%= l(@doing.finish_day, format: :long) %></td>
-      </tr>
-      <tr>
-        <th class="col-md-3"><%= Doing.human_attribute_name :achivement %></th>
-          <td class="col-md-9"><%= @doing.achivement %></td>
-      </tr>
-      <tr>
-        <th class="col-md-3"><%= Doing.human_attribute_name :check %></th>
-          <td class="col-md-9"><%= @doing.check %></td>
-      </tr>
-        <th class="col-md-3"><%= Doing.human_attribute_name :adjust %></th>
-          <td class="col-md-9"><%= @doing.adjust %></td>
       </tr>
       </tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :pattern %></th>

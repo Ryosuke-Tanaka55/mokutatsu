@@ -5,6 +5,7 @@ class CreateTodos < ActiveRecord::Migration[6.0]
       t.date :worked_on, presence: true
       t.datetime :start_time, presence: true
       t.datetime :finish_time, presence: true
+      t.string :estimated_time, presence: true
       t.datetime :actual_start_time
       t.datetime :actual_finish_time
       t.integer :priority, null: false, default: 0

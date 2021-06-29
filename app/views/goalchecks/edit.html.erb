@@ -20,7 +20,7 @@
       <%= render 'shared/object_error_messages', object: f.object %>
 
       <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
-      <%= f.number_field :achivement, in: 0..100, step: 5, class: "form-control" %>
+      <%= f.number_field :achivement, in: 0..100, step: 10, class: "form-control" %>
       <div id="form-assist">
         ・ゴール達成率を記載する
       </div>

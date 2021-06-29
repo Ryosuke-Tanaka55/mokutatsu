@@ -235,6 +235,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_040956) do
     t.date "worked_on"
     t.datetime "start_time"
     t.datetime "finish_time"
+    t.string "estimated_time"
     t.datetime "actual_start_time"
     t.datetime "actual_finish_time"
     t.integer "priority", default: 0, null: false

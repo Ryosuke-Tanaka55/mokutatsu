@@ -1,6 +1,9 @@
 <% provide(:title, 'Do検証一覧') %>
 <% provide(:body_id, 'view-background') %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :doingcheck_index, @doing %>
+
 <h1><%= @doing.doing %></h1>
 <h1>Do検証一覧</h1>
 
@@ -20,12 +23,12 @@
         </tr>
       </thead>
     
-      <% if @doingchecks.present? && @doing.progress == ("未着手" || "作業中") %>
+      <% if @doingchecks.present? %>
         <% @doingchecks.each do |doingcheck| %>
           <tr>
             <td><%= link_to "#{ l(doingcheck.estimate_check_at, format: :long) }", user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing, doingcheck) %></td>
             <td><%= l(doingcheck.check_at, format: :long) if doingcheck.check_at.present? %></td>
-            <td><%= l(doingcheck.span, format: :long) %></td>
+            <td><%= doingcheck.span %></td>
             <td><%= doingcheck.achivement if doingcheck.achivement.present? %></td>
             <td align="center">
               <%= link_to "詳細", user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing, doingcheck), class: "btn btn-primary" %>

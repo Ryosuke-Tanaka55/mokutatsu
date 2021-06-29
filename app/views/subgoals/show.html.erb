@@ -2,11 +2,14 @@
 <% provide(:body_id, 'view-background') %>
 <% provide(:button_cancel, '戻る') %>
 
+<!-- パンくずリスト -->
+<% breadcrumb :subgoal_show, @subgoal %>
+
 <h1>サブゴール詳細</h1>
 
 <div class="row">  
   <div class="menu-button">
-    <%= link_to "サブゴールギャップ新規作成", new_user_goal_goalgap_path(current_user, @goal, @subgoal), class: "btn btn-lg btn-primary" %>
+    <%= link_to "サブゴールギャップ新規作成", new_user_goal_subgoal_subgoalgap_path(current_user, @goal, @subgoal), class: "btn btn-lg btn-primary" %>
     <%= link_to "サブゴールギャップ一覧", user_goal_subgoal_subgoalgaps_path(current_user, @goal, @subgoal), class: "btn btn-lg btn-primary" %>
   </div>
   <div class="col-md-10 col-md-offset3">
