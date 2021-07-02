@@ -1,5 +1,6 @@
 <% provide(:title, 'Do検証一覧') %>
 <% provide(:body_id, 'view-background') %>
+<% provide(:button_search, '検索') %>
 
 <!-- パンくずリスト -->
 <% breadcrumb :doingcheck_index, @doing %>
@@ -9,6 +10,30 @@
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
+    <!-- 検索 -->
+    <div class="col-md-6 col-md-offset-6">
+      <div class="search-form">
+        <h2>Do検証検索</h2>
+        <%= form_with(scope: :search, url: search_user_goal_subgoal_doing_doingchecks_path(current_user, @doing), method: :get, local: true) do |f| %>
+          <div class="field">
+            <%= f.label :estimate_check_at, Doingcheck.human_attribute_name(:estimate_check_at) %><br>
+            <%= f.datetime_field :estimate_check_at_from, value: @search_params[:estimate_check_at_from] %> ~
+            <%= f.datetime_field :estimate_check_at_to, value: @search_params[:estimate_check_at_to] %>
+          </div>
+
+          <div class="field">
+            <%= f.label :check_at, Doingcheck.human_attribute_name(:check_at) %><br>
+            <%= f.datetime_field :check_at_from, value: @search_params[:check_at_from] %> ~
+            <%= f.datetime_field :check_at_to, value: @search_params[:check_at_to] %>
+          </div>
+
+          <div class="actions">
+            <%= submit_tag "#{yield(:button_search)}", class: "btn btn-primary btn-#{yield(:class_text)}" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
     <div class="menu-button">
       <%= link_to "Do検証新規作成", new_user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing), class: "btn btn-lg btn-primary" %>
       <%= link_to "Do一覧へ戻る", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-default" %>

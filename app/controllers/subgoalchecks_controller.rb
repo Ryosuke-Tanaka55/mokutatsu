@@ -59,7 +59,7 @@ class SubgoalchecksController < ApplicationController
       @subgoalchecks = Subgoalcheck.search(@search_params)
       flash.now[:success] = "#{ @subgoalchecks.count }件ヒットしました。"
     else
-      @subgoalchecks = current_user.goals.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+      @subgoalchecks = @subgoal.subgoalchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
       flash.now[:danger] = "該当するサブゴール検証はありませんでした。"
     end
     render :index

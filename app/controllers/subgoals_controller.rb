@@ -5,7 +5,6 @@ class SubgoalsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user
   
-
   def index
     @search_params = subgoal_search_params
     if @search_params.present?
@@ -68,7 +67,7 @@ class SubgoalsController < ApplicationController
       @subgoals = Subgoal.search(@search_params)
       flash.now[:success] = "#{ @subgoals.count }件ヒットしました。"
     else
-      @subgoals = current_user.subgoals.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+      @subgoals = @goal.subgoals.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
       flash.now[:danger] = "該当するサブゴールはありませんでした。"
     end
     render :index

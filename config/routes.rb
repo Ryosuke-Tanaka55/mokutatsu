@@ -58,7 +58,14 @@ Rails.application.routes.draw do
           end
         end
         resources :doings do
-          resources :doingchecks
+          collection do
+            get :search
+          end
+          resources :doingchecks do
+            collection do
+              get :search
+            end
+          end
           resources :todoes
         end
       end

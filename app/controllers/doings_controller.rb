@@ -7,7 +7,12 @@ class DoingsController < ApplicationController
   before_action :correct_user
 
   def index
-    @doings = current_user.doings.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    @search_params = doing_search_params
+    if @search_params.present?
+      @doings = Doing.search(@search_params).paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+    else
+      @doings = current_user.doings.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+    end
   end
 
   def  show 
@@ -47,6 +52,19 @@ class DoingsController < ApplicationController
     redirect_to user_goal_subgoal_doings_url
   end
 
+  # Do検索
+  def search
+    @search_params = doing_search_params
+    if Doing.search(@search_params).count > 0
+      @doings = Doing.search(@search_params)
+      flash.now[:success] = "#{ @doings.count }件ヒットしました。"
+    else
+      @doings = current_user.doings.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+      flash.now[:danger] = "該当するDoはありませんでした。"
+    end
+    render :index
+  end
+
   private
     # ストロングパラメーター
     # 新規登録時
@@ -59,6 +77,14 @@ class DoingsController < ApplicationController
      def edit_doing_params
       params.require(:doing).permit(:doing, :start_day, :finish_day, :achivement, :check, :adjust,
         :pattern, :priority, :impact, :worktime, :easy, :progress, :hold, :note, :subgoal_id)
+    end
+
+    # Do検索
+    def doing_search_params
+      params.fetch(:search, {}).permit(:doing, :start_day_from, :start_day_to, 
+        :priority, :hold).merge(goal_id: @subgoal.goal_id, subgoal_id: @subgoal.id)
+      # fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
+      # ここでの:searchには、フォームから送られてくるparamsの値が入っている
     end
 
     # パラメーターからDoを取得

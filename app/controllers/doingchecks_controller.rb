@@ -9,7 +9,12 @@ class DoingchecksController < ApplicationController
 
 
   def index
-    @doingchecks = @doing.doingchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    @search_params = doingcheck_search_params
+    if @search_params.present?
+      @doingchecks = Doingcheck.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    else
+      @doingchecks = @doing.doingchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    end
   end
 
   def show
@@ -49,10 +54,31 @@ class DoingchecksController < ApplicationController
     redirect_to user_goal_subgoal_doing_doingchecks_url
   end
 
+  # Do検証検索
+  def search
+    @search_params = doingcheck_search_params
+    if Doingcheck.search(@search_params).count > 0
+      @doingchecks = Doingcheck.search(@search_params)
+      flash.now[:success] = "#{ @doings.count }件ヒットしました。"
+    else
+      @doingchecks = @doing.doingchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+      flash.now[:danger] = "該当するDo検証はありませんでした。"
+    end
+    render :index
+  end
+
   private
     # ストロングパラメーター
     def doingcheck_params
       params.require(:doingcheck).permit(:check, :adjust, :estimate_check_at, :check_at, :span, :achivement, :note, :doing_id)
+    end
+
+    # サブゴール検証検索
+    def doingcheck_search_params
+      params.fetch(:search, {}).permit(:estimate_check_at_from, :estimate_check_at_to, :check_at_from, 
+        :check_at_from, :check_at_to).merge(subgoal_id: @doing.subgoal_id, doing_id: @doing.id )
+      # fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
+      # ここでの:searchには、フォームから送られてくるparamsの値が入っている
     end
 
     # paramsハッシュからid取得

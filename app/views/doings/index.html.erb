@@ -1,5 +1,6 @@
 <% provide(:title, 'Do一覧') %>
 <% provide(:body_id, 'view-background') %>
+<% provide(:button_search, '検索') %>
 
 <!-- パンくずリスト -->
 <% breadcrumb :doing_index, @subgoal %>
@@ -9,6 +10,39 @@
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
+    <!-- 検索 -->
+    <div class="col-md-5 col-md-offset-6">
+      <div class="search-form">
+        <h2>Do検索</h2>
+        <%= form_with(scope: :search, url: search_user_goal_subgoal_doings_path(current_user, @subgoal), method: :get, local: true) do |f| %>
+          <div class="field">
+            <%= f.label :doing, Doing.human_attribute_name(:doing) %>
+            <%= f.text_field :doing, value: @search_params[:doing], placeholder: "キーワードを入力してください。", class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :start_day, Doing.human_attribute_name(:start_day) %><br>
+            <%= f.date_field :start_day_from, value: @search_params[:start_day_from] %> ~
+            <%= f.date_field :start_day_to, value: @search_params[:start_day_to] %>
+          </div>
+
+          <div class="field">
+            <%= f.label :priority, Doing.human_attribute_name(:priority) %><br>
+            <%= f.select :priority, Doing.priorities.keys, { include_blank: "選択してください。"}, { class: "form-control" } %>
+          </div>
+
+          <div class="field">
+            <%= f.label :hold, Doing.human_attribute_name(:hold) %>
+            <%= f.check_box :hold, { class: "form-check-input"} %>
+          </div>
+
+          <div class="actions">
+            <%= submit_tag "#{yield(:button_search)}", class: "btn btn-primary btn-#{yield(:class_text)}" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
     <div class="menu-btn">
       <%= link_to "Do新規作成", new_user_goal_subgoal_doing_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-primary pull-left" %>
       <%= link_to "サブゴール一覧へ戻る", user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-default pull-left" %>
@@ -16,9 +50,9 @@
     <table class="table table-hover" id="table-index">
       <thead>
         <tr>
-          <th><%= Doing.human_attribute_name :doing %></th>
-          <th><%= Doing.human_attribute_name :start_day %></th>
-          <th><%= Doing.human_attribute_name :finish_day %></th>
+          <th width="200"><%= Doing.human_attribute_name :doing %></th>
+          <th width="150"><%= Doing.human_attribute_name :start_day %></th>
+          <th width="150"><%= Doing.human_attribute_name :finish_day %></th>
         </tr>
       </thead>
     

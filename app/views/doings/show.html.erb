@@ -22,31 +22,35 @@
         <th class="col-md-3"><%= Doing.human_attribute_name :finish_day %></th>
           <td class="col-md-9"><%= l(@doing.finish_day, format: :long) %></td>
       </tr>
-      </tr>
+      <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :pattern %></th>
           <td class="col-md-9"><%= @doing.pattern ? "完結型" : "継続型" %></td>
       </tr>
-      </tr>
+      <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :impact %></th>
           <td class="col-md-9"><%= @doing.impact %></td>
       </tr>
-      </tr>
+      <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :worktime %></th>
           <td class="col-md-9"><%= @doing.worktime %></td>
       </tr>
-      </tr>
+      <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :easy %></th>
           <td class="col-md-9"><%= @doing.easy %></td>
       </tr>
-      </tr>
+      <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :progress %></th>
           <td class="col-md-9"><%= @doing.progress %></td>
       </tr>
+      <tr>
+        <th class="col-md-3"><%= Doing.human_attribute_name :priority %></th>
+          <td class="col-md-9"><%= @doing.priority %></td>
       </tr>
+      <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :hold %></th>
           <td class="col-md-9"><%= @doing.hold ? "保留中" : "実行中" %></td>
       </tr>
-      </tr>
+      <tr>
         <th class="col-md-3"><%= Doing.human_attribute_name :note %></th>
           <td class="col-md-9"><%= @doing.note %></td>
       </tr>
