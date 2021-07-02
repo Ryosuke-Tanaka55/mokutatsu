@@ -9,7 +9,7 @@ class GoalgapsController < ApplicationController
   def index
     @search_params = goalgap_search_params
     if @search_params.present?
-      @goals = Goalgap.search(@search_params)
+      @goalgaps = Goalgap.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     else
       @goalgaps = @goal.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     end

@@ -9,7 +9,7 @@ class GoalchecksController < ApplicationController
   def index
     @search_params = goalcheck_search_params
     if @search_params.present?
-      @goalchecks = Goalcheck.search(@search_params)
+      @goalchecks = Goalcheck.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     else
       @goalchecks = @goal.goalchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     end

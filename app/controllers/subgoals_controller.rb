@@ -9,7 +9,7 @@ class SubgoalsController < ApplicationController
   def index
     @search_params = subgoal_search_params
     if @search_params.present?
-      @subgoals = Subgoal.search(@search_params)
+      @subgoals = Subgoal.search(@search_params).paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
     else
       @subgoals = current_user.subgoals.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
     end
