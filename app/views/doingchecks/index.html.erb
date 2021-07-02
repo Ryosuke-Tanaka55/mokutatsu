@@ -38,13 +38,13 @@
       <%= link_to "Do検証新規作成", new_user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing), class: "btn btn-lg btn-primary" %>
       <%= link_to "Do一覧へ戻る", user_goal_subgoal_doings_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-default" %>
     </div>
-    <table class="table table-hover" id="table-doingchecks">
+    <table class="table table-hover" id="table-index">
       <thead>
         <tr>
-          <th><%= Doingcheck.human_attribute_name :estimate_check_at %></th>
-          <th><%= Doingcheck.human_attribute_name :check_at %></th>
-          <th><%= Doingcheck.human_attribute_name :span %></th>
-          <th><%= Doingcheck.human_attribute_name :achivement %></th>
+          <th width="200"><%= Doingcheck.human_attribute_name :estimate_check_at %></th>
+          <th width="200"><%= Doingcheck.human_attribute_name :check_at %></th>
+          <th width="100"><%= Doingcheck.human_attribute_name :span %></th>
+          <th width="150"><%= Doingcheck.human_attribute_name :achivement %></th>
         </tr>
       </thead>
     
