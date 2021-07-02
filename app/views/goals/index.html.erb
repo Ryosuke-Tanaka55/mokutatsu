@@ -1,41 +1,81 @@
 <% provide(:title, 'ゴール一覧') %>
 <% provide(:body_id, 'view-background') %>
+<% provide(:class_text, 'index-goal') %>
+<% provide(:button_search, '検索') %>
 
 <!-- パンくずリスト -->
 <% breadcrumb :goal_index, current_user %>
 
-<h1><%= current_user.name %>さんのゴール一覧</h1>
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="menu-button">
-      <%= link_to "ゴール新規作成", new_user_goal_path(current_user), class: "btn btn-lg btn-primary pull-left" %>
-    </div>
-    <table class="table table-hover" id="table-index">
-      <thead>
-        <tr>
-          <th><%= Goal.human_attribute_name :goal %></th>
-          <th><%= Goal.human_attribute_name :start_day %></th>
-          <th><%= Goal.human_attribute_name :finish_day %></th>
-        </tr>
-      </thead>
-    
-      <% if @goals.present? %>
-        <% @goals.each do |goal| %>
+
+<div class="container">
+  <h1><%= current_user.name %>さんのゴール一覧</h1>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <!-- 検索 -->
+      <div class="col-md-5 col-md-offset-6">
+        <div class="search-form">
+          <h2>ゴール検索</h2>
+          <%= form_with(scope: :search, url: search_user_goals_path(current_user, @goals), method: :get, local: true) do |f| %>
+            <div class="field">
+              <%= f.label :goal, Goal.human_attribute_name(:goal) %>
+              <%= f.text_field :goal, value: @search_params[:goal], placeholder: "キーワードを入力してください。", class: "form-control" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :start_day, Goal.human_attribute_name(:start_day) %><br>
+              <%= f.date_field :start_day_from, value: @search_params[:start_day_from] %> ~
+              <%= f.date_field :start_day_to, value: @search_params[:start_day_to] %>
+            </div>
+
+            <div class="field">
+              <%= f.label :progress, Goal.human_attribute_name(:progress) %><br>
+              <%= f.select :progress, options_for_select([["未着手", "未着手"],["作業中","作業中"],["完了","完了"],["中止","中止"]]), 
+                  { selected: @search_params[:progress], include_blank: "選択してください。" },  { class: "form-control" } %>
+            </div>
+
+            <div class="field">
+              <%= f.label :hold, Goal.human_attribute_name(:hold) %>
+              <%= f.check_box :hold, { class: "form-check-input "} %>
+            </div>
+
+            <div class="actions">
+              <%= submit_tag "#{yield(:button_search)}", class: "btn btn-primary btn-#{yield(:class_text)}" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="menu-button">
+        <%= link_to "ゴール新規作成", new_user_goal_path(current_user), class: "btn btn-lg btn-primary pull-left" %><br><br>
+      </div>
+
+      <table class="table table-hover" id="table-index">
+        <thead>
           <tr>
-            <td><%= link_to "#{goal.goal}", user_goal_path(@user.id, goal.id) %></td>
-            <td><%= l(goal.start_day, format: :long) %></td>
-            <td><%= l(goal.finish_day, format: :long) %></td>
-            <td align="center">
-              <%= link_to "詳細", user_goal_path(@user.id, goal.id), class: "btn btn-primary" %>
-              <%= link_to "サブゴール一覧", user_goal_subgoals_path(user_id: current_user.id, goal_id: goal.id), class: "btn btn-info" %>
-              <%= link_to "検証", user_goal_goalchecks_path(user_id: current_user.id, goal_id: goal.id), class: "btn btn-warning" %>
-              <%= link_to "編集", edit_user_goal_path(@user.id, goal.id), class: "btn btn-success" %>
-              <%= link_to "削除", user_goal_path(@user.id, goal.id), method: :delete,
-                  data: { confirm: "「#{ goal.goal }」を削除してよろしいですか？" }, class: "btn btn-danger" %>
-            </td>
+            <th><%= Goal.human_attribute_name :goal %></th>
+            <th><%= Goal.human_attribute_name :start_day %></th>
+            <th><%= Goal.human_attribute_name :finish_day %></th>
           </tr>
+        </thead>
+      
+        <% if @goals.present? %>
+          <% @goals.each do |goal| %>
+            <tr>
+              <td><%= link_to "#{goal.goal}", user_goal_path(@user.id, goal.id) %></td>
+              <td><%= l(goal.start_day, format: :long) %></td>
+              <td><%= l(goal.finish_day, format: :long) %></td>
+              <td align="center">
+                <%= link_to "詳細", user_goal_path(@user.id, goal.id), class: "btn btn-primary" %>
+                <%= link_to "サブゴール一覧", user_goal_subgoals_path(user_id: current_user.id, goal_id: goal.id), class: "btn btn-info" %>
+                <%= link_to "検証", user_goal_goalchecks_path(user_id: current_user.id, goal_id: goal.id), class: "btn btn-warning" %>
+                <%= link_to "編集", edit_user_goal_path(@user.id, goal.id), class: "btn btn-success" %>
+                <%= link_to "削除", user_goal_path(@user.id, goal.id), method: :delete,
+                    data: { confirm: "「#{ goal.goal }」を削除してよろしいですか？" }, class: "btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </table>
+      </table>
+    </div>
   </div>
 </div>

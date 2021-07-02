@@ -5,7 +5,12 @@ class GoalsController < ApplicationController
   before_action :set_goal, only:[:show, :edit, :update, :destroy]
 
   def index
-    @goals = current_user.goals.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    @search_params = goal_search_params
+    if @search_params.present?
+      @goals = Goal.search(@search_params)
+    else
+      @goals = current_user.goals.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+    end
   end
 
   def show
@@ -46,9 +51,23 @@ class GoalsController < ApplicationController
     redirect_to goals_url
   end
 
+  # モーダル表示
   def goalgap_info
     @goal = Goal.find(params[:goal_id])
-    @goalgaps = @goal.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    @goalgaps = @goal.goalgaps.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+  end
+
+  # ゴール検索
+  def search
+    @search_params = goal_search_params
+    if Goal.search(@search_params).count > 0
+      @goals = Goal.search(@search_params)
+      flash.now[:success] = "#{@goals.count}件ヒットしました。"
+    else
+      @goals = current_user.goals.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+      flash.now[:danger] = "該当するゴールはありませんでした。"
+    end
+    render :index
   end
 
   private
@@ -62,6 +81,12 @@ class GoalsController < ApplicationController
     # 編集時
     def edit_goal_params
       params.require(:goal).permit(:goal, :category, :start_day, :finish_day, :progress, :goal_index, :hold, :note)
+    end
+
+    def goal_search_params
+      params.fetch(:search, {}).permit(:goal, :start_day_from, :start_day_to, :progress, :hold)
+      # fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
+      # ここでの:searchには、フォームから送られてくるparamsの値が入っている
     end
 
     # パラメーターからゴールを取得

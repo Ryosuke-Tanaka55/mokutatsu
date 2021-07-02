@@ -25,7 +25,14 @@ class SessionsController < ApplicationController
         log_in user # 引数で渡されたユーザーオブジェクトでログイン（sessionshelper参照）
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         flash[:success] = "ユーザー認証に成功しました。"
-        redirect_back_or user # sessions_helper参照
+        if current_user.admin?
+          # adminの場合 top画面へ
+          redirect_back_or root_url # sessions_helper参照
+        else
+          # 一般ユーザーはマイページへ
+          flash[:success] = "ユーザー認証に成功しました。"
+          redirect_back_or user # sessions_helper参照
+        end
       else
         flash.now[:danger] = "ユーザー認証に失敗しました。"
         render :new
