@@ -1,12 +1,5 @@
 class Goal < ApplicationRecord
   belongs_to :user
-  # Goalテーブルとのリレーション関係
-  has_many :child_goals, through: :parent_childs, source: :child
-  has_many :parent_goals, through: :parent_childs, source: :parent
-
-  # 中間テーブル（goal_connection）とのリレーション構築
-  has_many :parent_childs, foreign_key: :parent_id
-  has_many :parent_childs, foreign_key: :child_id
 
   # 配下のGoalgap、Goalcheck、Subgoal、Do、ToDo
   has_many :goalgaps, dependent: :destroy

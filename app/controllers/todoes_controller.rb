@@ -52,7 +52,8 @@ class TodoesController < ApplicationController
     # ストロングパラメーター
     # 新規登録時
     def create_todo_params
-      params.require(:todo).permit(:todo, :worked_on, :start_time, :finish_time, :estimated_time, :pattern, :priority, :hold, :note, :doing_id).merge(user_id: current_user.id)
+      params.require(:todo).permit(:todo, :worked_on, :start_time, :finish_time, :estimated_time, :pattern, 
+        :priority, :hold, :note, :doing_id).merge(user_id: current_user.id)
     end
 
     # 編集時

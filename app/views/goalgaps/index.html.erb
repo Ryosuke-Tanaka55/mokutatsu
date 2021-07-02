@@ -1,5 +1,7 @@
 <% provide(:title, 'ゴールギャップ一覧') %>
 <% provide(:body_id, 'view-background') %>
+<% provide(:class_text, 'index-goalgap') %>
+<% provide(:button_search, '検索') %>
 
 <!-- パンくずリスト -->
 <% breadcrumb :goalgap_index, @goal %>
@@ -9,6 +11,43 @@
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
+    <!-- 検索 -->
+    <div class="col-md-5 col-md-offset-6">
+      <div class="search-form">
+        <h2>ゴールギャップ検索</h2>
+        <%= form_with(scope: :search, url: search_user_goal_goalgaps_path(current_user, @goal), method: :get, local: true) do |f| %>
+          <div class="field">
+            <%= f.label :goal, Goalgap.human_attribute_name(:gap) %>
+            <%= f.text_field :gap, value: @search_params[:gap], placeholder: "キーワードを入力してください。", class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :impact, Goalgap.human_attribute_name(:impact) %><br>
+            <%= f.select :impact, Goalgap.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" } %>
+          </div>
+          
+          <div class="field">
+            <%= f.label :worktime, Goalgap.human_attribute_name(:worktime) %><br>
+            <%= f.select :worktime, Goalgap.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" } %>
+          </div>
+
+          <div class="field">
+            <%= f.label :easy, Goalgap.human_attribute_name(:easy) %><br>
+            <%= f.select :easy, Goalgap.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" } %>
+          </div>
+
+          <div class="field">
+            <%= f.label :priority, Goalgap.human_attribute_name(:priority) %><br>
+            <%= f.select :priority, Goalgap.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" } %>
+          </div>
+
+          <div class="actions">
+            <%= submit_tag "#{yield(:button_search)}", class: "btn btn-primary btn-#{yield(:class_text)}" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
     <div class="menu-btn">
       <%= link_to "ゴールギャップ新規作成", new_user_goal_goalgap_path(current_user, @goal), class: "btn btn-lg btn-primary" %>
       <span class="mgr-10">

@@ -7,7 +7,12 @@ class GoalgapsController < ApplicationController
 
 
   def index
-    @goalgaps = current_user.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    @search_params = goalgap_search_params
+    if @search_params.present?
+      @goals = Goalgap.search(@search_params)
+    else
+      @goalgaps = @goal.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    end
   end
 
   def show
@@ -47,11 +52,29 @@ class GoalgapsController < ApplicationController
     redirect_to user_goal_goalgaps_url
   end
 
+  # ゴールギャップ検索
+  def search
+    @search_params = goalgap_search_params
+    if Goalgap.search(@search_params).count > 0
+      @goalgaps = Goalgap.search(@search_params)
+      flash.now[:success] = "#{@goalgaps.count}件ヒットしました。"
+    else
+      @goalgaps = @goal.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+      flash.now[:danger] = "該当するゴールギャップはありませんでした。"
+    end
+    render :index
+  end
+
   private
     # ストロングパラメーター
     def goalgap_params
-      params.require(:goalgap).permit(:gap, :detail, :solution, :impact, 
-        :worktime, :easy, :priority, :goal_id)
+      params.require(:goalgap).permit(:gap, :detail, :solution, :impact, :worktime, :easy, :priority, :goal_id)
+    end
+
+    def goalgap_search_params
+      params.fetch(:search, {}).permit(:gap, :impact, :worktime, :easy, :priority).merge(goal_id: @goal.id)
+      # fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
+      # ここでの:searchには、フォームから送られてくるparamsの値が入っている
     end
 
     # paramsハッシュからgoalgapを取得

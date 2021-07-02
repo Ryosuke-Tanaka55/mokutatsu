@@ -27,8 +27,7 @@
 
           <div class="field">
             <%= f.label :progress, Goal.human_attribute_name(:progress) %><br>
-            <%= f.select :progress, options_for_select([["未着手", "未着手"],["作業中","作業中"],["完了","完了"],["中止","中止"]]), 
-                { selected: @search_params[:progress], include_blank: "選択してください。" },  { class: "form-control" } %>
+            <%= f.select :progress, Goal.progresses.keys, { include_blank: "選択してください。", selected: "選択してください。"},  { class: "form-control" } %>
           </div>
 
           <div class="field">
