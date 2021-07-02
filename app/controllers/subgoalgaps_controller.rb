@@ -6,9 +6,13 @@ class SubgoalgapsController < ApplicationController
   before_action :set_subgoalgap, only:[:show, :edit, :update, :destroy]
   before_action :correct_user
 
-
   def index
-    @subgoalgaps = current_user.subgoalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    @search_params = subgoalgap_search_params
+    if @search_params.present?
+      @subgoalgaps = Subgoalgap.search(@search_params)
+    else
+      @subgoalgaps = current_user.subgoalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    end
   end
 
   def show
@@ -48,10 +52,30 @@ class SubgoalgapsController < ApplicationController
     redirect_to user_goal_subgoal_subgoalgaps_url
   end
 
+  # サブゴールギャップ検索
+  def search
+    @search_params = subgoalgap_search_params
+    if Subgoalgap.search(@search_params).count > 0
+      @subgoalgaps = Subgoalgap.search(@search_params)
+      flash.now[:success] = "#{ @subgoalgaps.count }件ヒットしました。"
+    else
+      @subgoalgaps = current_user.subgoalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+      flash.now[:danger] = "該当するサブゴールはありませんでした。"
+    end
+    render :index
+  end
+
   private
     # ストロングパラメーター
     def subgoalgap_params
       params.require(:subgoalgap).permit(:gap, :detail, :solution, :term, :impact, :worktime, :easy, :priority, :goal_id)
+    end
+
+    # サブゴールギャップ検索
+    def subgoalgap_search_params
+      params.fetch(:search, {}).permit(:gap, :impact, :worktime, :easy, :priority).merge(goal_id: @subgoal.goal_id, subgoal_id: @subgoal.id)
+      # fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
+      # ここでの:searchには、フォームから送られてくるparamsの値が入っている
     end
 
     # paramsハッシュからsubgoalgapを取得

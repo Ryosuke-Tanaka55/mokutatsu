@@ -47,7 +47,11 @@ Rails.application.routes.draw do
           get :search
         end
         get 'subgoalgap_info'
-        resources :subgoalgaps
+        resources :subgoalgaps do
+          collection do
+            get :search
+          end
+        end
         resources :subgoalchecks
         resources :doings do
           resources :doingchecks

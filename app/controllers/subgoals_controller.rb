@@ -13,7 +13,6 @@ class SubgoalsController < ApplicationController
     else
       @subgoals = current_user.subgoals.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
     end
-
   end
 
   def new

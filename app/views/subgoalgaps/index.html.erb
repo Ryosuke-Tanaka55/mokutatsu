@@ -1,15 +1,53 @@
 <% provide(:title, 'サブゴールギャップ一覧') %>
 <% provide(:body_id, 'view-background') %>
+<% provide(:button_search, '検索') %>
 
 <!-- パンくずリスト -->
 <% breadcrumb :subgoalgap_index, @subgoal %>
 
 <h1><%= @subgoal.subgoal %><br>
-    サブゴールギャップ一覧
+  サブゴールギャップ一覧
 </h1>
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
+    <!-- 検索 -->
+    <div class="col-md-5 col-md-offset-6">
+      <div class="search-form">
+        <h2>サブゴールギャップ検索</h2>
+        <%= form_with(scope: :search, url:search_user_goal_subgoal_subgoalgaps_path(current_user, @subgoal), method: :get, local: true) do |f| %>
+          <div class="field">
+            <%= f.label :gap, Subgoalgap.human_attribute_name(:gap) %>
+            <%= f.text_field :gap, value: @search_params[:gap], placeholder: "キーワードを入力してください。", class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :impact, Subgoalgap.human_attribute_name(:impact) %><br>
+            <%= f.select :impact, Subgoalgap.impacts.keys, { include_blank: "選択してください。", selected: "選択してください。"},  { class: "form-control" } %>
+          </div>
+
+          <div class="field">
+            <%= f.label :worktime, Subgoalgap.human_attribute_name(:worktime) %><br>
+            <%= f.select :worktime, Subgoalgap.worktimes.keys, { include_blank: "選択してください。", selected: "選択してください。"},  { class: "form-control" } %>
+          </div>
+
+          <div class="field">
+            <%= f.label :easy, Subgoalgap.human_attribute_name(:easy) %><br>
+            <%= f.select :easy, Subgoalgap.easies.keys, { include_blank: "選択してください。", selected: "選択してください。"},  { class: "form-control" } %>
+          </div>
+
+          <div class="field">
+            <%= f.label :priority, Subgoalgap.human_attribute_name(:priority) %><br>
+            <%= f.select :priority, Subgoalgap.priorities.keys, { include_blank: "選択してください。", selected: "選択してください。"},  { class: "form-control" } %>
+          </div>
+
+          <div class="actions">
+            <%= submit_tag "#{yield(:button_search)}", class: "btn btn-primary btn-#{yield(:class_text)}" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
     <div class="menu-button">
       <%= link_to "サブゴールギャップ新規作成", new_user_goal_subgoal_subgoalgap_path(user_id: current_user.id, goal_id: @goal.id, subgoal_id: @subgoal.id), class: "btn btn-lg btn-primary" %>
       <%= link_to "サブゴール一覧へ戻る", user_goal_subgoals_path(user_id: current_user.id, goal_id: @goal.id), class: "btn btn-lg btn-default" %>
@@ -29,8 +67,8 @@
           <tr>
             <td><%= link_to "#{ subgoalgap.gap }", user_goal_subgoal_subgoalgap_path(user_id: current_user, goal_id: @goal.id, subgoal_id: @subgoal.id, id: subgoalgap.id) %></td>
             <td><%= subgoalgap.priority %></td>
-            <td><%= l(subgoalgap.created_at, format: :long) %></td>
-            <td><%= l(subgoalgap.updated_at, format: :long) %></td>
+            <td><%= l(subgoalgap.created_at, format: :short) %></td>
+            <td><%= l(subgoalgap.updated_at, format: :short) %></td>
             <td align="center">
               <%= link_to "詳細", user_goal_subgoal_subgoalgap_path(user_id: current_user, goal_id: @goal.id, subgoal_id: @subgoal.id, id: subgoalgap.id), class: "btn btn-primary" %>
               <%= link_to "編集", edit_user_goal_subgoal_subgoalgap_path(user_id: current_user, goal_id: @goal.id, subgoal_id: @subgoal.id, id: subgoalgap.id), class: "btn btn-success" %>
