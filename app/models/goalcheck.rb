@@ -21,5 +21,21 @@ class Goalcheck < ApplicationRecord
   def check_at_fast_than_today_if_invalid
     errors.add(:check_at, "が過去です。")  if check_at < Date.today
   end
+
+  # 検索条件
+  scope :search, -> (search_params) do  # scopeでsearchメソッドを定義。(search_params)は引数
+    return if search_params.blank?  # 検索フォームに値がなければ以下の手順は行わない
+
+    estimate_check_at_from(search_params[:estimate_check_at_from])
+      .estimate_check_at_to(search_params[:estimate_check_at_to])
+      .check_at_from(search_params[:check_at_from])
+      .check_at_to(search_params[:check_at_to])  # 下記で定義しているscopeメソッドの呼び出し。「.」で繋げている
+  end
+
+  # if 引数.present?をつけることで、検索フォームに値がない場合は実行されない
+  scope :estimate_check_at_from, -> (from) { where('? <= estimate_check_at', from) if from.present? } # 日付の範囲検索をするため、fromとtoをつけている
+  scope :estimate_check_at_to, -> (to) { where('estimate_check_at <= ?', to) if to.present? }
+  scope :check_at_from, -> (from) { where('? <= check_at', from) if from.present? } # 日付の範囲検索をするため、fromとtoをつけている
+  scope :check_at_to, -> (to) { where('check_at <= ?', to) if to.present? }
   
 end
