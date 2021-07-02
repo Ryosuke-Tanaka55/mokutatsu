@@ -6,9 +6,13 @@ class SubgoalchecksController < ApplicationController
   before_action :set_subgoalcheck, only:[:show, :edit, :update, :destroy]
   before_action :correct_user
 
-
   def index
-    @subgoalchecks = @subgoal.subgoalchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    @search_params = subgoalcheck_search_params
+    if @search_params.present?
+      @subgoalchecks = Subgoalcheck.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    else
+      @subgoalchecks = @subgoal.subgoalchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    end
   end
 
   def show
@@ -48,11 +52,32 @@ class SubgoalchecksController < ApplicationController
     redirect_to user_goal_subgoal_subgoalchecks_url
   end
 
+  # サブゴール検証検索
+  def search
+    @search_params = subgoalcheck_search_params
+    if Subgoalcheck.search(@search_params).count > 0
+      @subgoalchecks = Subgoalcheck.search(@search_params)
+      flash.now[:success] = "#{ @subgoalchecks.count }件ヒットしました。"
+    else
+      @subgoalchecks = current_user.goals.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+      flash.now[:danger] = "該当するサブゴール検証はありませんでした。"
+    end
+    render :index
+  end
+
   private
     # ストロングパラメーター
     def subgoalcheck_params
       params.require(:subgoalcheck).permit(:check, :adjust, :estimate_check_at, :check_at, :span, 
         :achivement, :note, :subgoal_id)
+    end
+
+    # サブゴール検証検索
+    def subgoalcheck_search_params
+      params.fetch(:search, {}).permit(:estimate_check_at_from, :estimate_check_at_to, :check_at_from, 
+        :check_at_from, :check_at_to).merge(goal_id: @subgoal.goal_id, subgoal_id: @subgoal.id )
+      # fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
+      # ここでの:searchには、フォームから送られてくるparamsの値が入っている
     end
 
     # paramsハッシュからid取得

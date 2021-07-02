@@ -52,7 +52,11 @@ Rails.application.routes.draw do
             get :search
           end
         end
-        resources :subgoalchecks
+        resources :subgoalchecks do
+          collection do
+            get :search
+          end
+        end
         resources :doings do
           resources :doingchecks
           resources :todoes
