@@ -54,7 +54,7 @@ class GoalsController < ApplicationController
   # モーダル表示
   def goalgap_info
     @goal = Goal.find(params[:goal_id])
-    @goalgaps = @goal.goalgaps.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+    @goalgaps = @goal.goalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
   end
 
   # ゴール検索

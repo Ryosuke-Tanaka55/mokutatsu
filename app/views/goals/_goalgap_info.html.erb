@@ -20,6 +20,7 @@
                 <th width="80"><%= Goalgap.human_attribute_name :priority %></th>
                 <th width="150"><%= Goalgap.human_attribute_name :created_at %></th>
                 <th width="150"><%= Goalgap.human_attribute_name :updated_at %></th>
+                <th></th>
               </tr>
             </thead>
           
@@ -31,8 +32,8 @@
                   <td><%= goalgap.worktime %></td>
                   <td><%= goalgap.easy %></td>
                   <td><%= goalgap.priority %></td>
-                  <td><%= l(goalgap.created_at, format: :short) %></td>
-                  <td><%= l(goalgap.updated_at, format: :short) %></td>
+                  <td><%= goalgap.created_at.strftime("%Y年%-m月%-d日") %></td>
+                  <td><%= goalgap.updated_at.strftime("%Y年%-m月%-d日") %></td>
                   <td align="center">
                     <%= link_to "詳細", user_goal_goalgap_path(user_id: current_user, goal_id: @goal.id, id: goalgap.id), class: "btn btn-primary" %>
                   </td>

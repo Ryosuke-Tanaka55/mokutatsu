@@ -52,7 +52,7 @@
         <%= link_to "編集", edit_user_goal_goalgap_path(user_id: current_user.id, goal_id: @goal.id, id: @goalgap.id), class: "btn btn-success" %>
         <%= link_to "削除", user_goal_goalgap_path(user_id: current_user.id, goal_id: @goal.id, id: @goalgap.id), method: :delete,
             data: { confirm: "#{ @goalgap.gap }を削除してよろしいですか？" }, class: "btn btn-danger" %>
-        <%= link_to "#{yield(:button_cancel)}", user_goal_goalgaps_path(user_id: current_user.id, goal_id: @goal.id), class: "btn btn-default" %>
+        <%= link_to "#{yield(:button_cancel)}", :back, class: "btn btn-default" %>
       </td>
     </tr>
   </div>

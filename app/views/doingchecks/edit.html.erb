@@ -42,8 +42,11 @@
         ・調整の必要なし
       </div>
 
+      <%= f.label :check_at, class: "label-#{yield(:class_text)}" %>
+      <%= f.datetime_field :check_at, class: "form-control datetime-form" %><br>
+      
       <%= f.label :estimate_check_at, class: "label-#{yield(:class_text)}" %>
-      <%= f.datetime_select :estimate_check_at, class: "form-control datetime-form" %><br>
+      <%= f.datetime_field :estimate_check_at, class: "form-control datetime-form" %><br>
 
       <%= f.label :span, class: "label-#{yield(:class_text)}" %>
       <%= f.text_field :span, class: "form-control" %><br>

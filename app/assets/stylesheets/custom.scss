@@ -72,6 +72,10 @@ p {
   margin: 5px 5px;
 }
 
+table td {
+  word-break : break-all;
+}
+
 /* header */
 
 #top-bar {

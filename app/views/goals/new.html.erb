@@ -34,10 +34,10 @@
         { class: "form-control" , required: true } %>
 
       <%= f.label :start_day, class: "label-#{yield(:class_text)}" %>
-      <%= f.date_select :start_day, start_year: Time.now.year, class: "form-control datetime-form" %><br>
+      <%= f.date_field :start_day, start_year: Time.now.year, class: "form-control datetime-form" %><br>
 
       <%= f.label :finish_day, class: "label-#{yield(:class_text)}" %>
-      <%= f.date_select :finish_day, class: "form-control datetime-form" %><br>
+      <%= f.date_field :finish_day, class: "form-control datetime-form" %><br>
 
       <%= f.label :goal_index, class: "label-#{yield(:class_text)}" %>
       <%= f.text_field :goal_index, class: "form-control" %>
