@@ -11,7 +11,7 @@ class SubgoalgapsController < ApplicationController
     if @search_params.present?
       @subgoalgaps = Subgoalgap.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     else
-      @subgoalgaps = current_user.subgoalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+      @subgoalgaps = @subgoal.subgoalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     end
   end
 

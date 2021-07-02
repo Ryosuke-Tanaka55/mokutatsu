@@ -8,7 +8,12 @@ class TodoesController < ApplicationController
   before_action :correct_user
 
   def index
-    @todoes = current_user.todoes.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    @search_params = todo_search_params
+    if @search_params.present?
+      @todoes = Todo.search(@search_params).paginate(page: params[:page], per_page: 20).order(start_time: "DESC")
+    else
+      @todoes = @doing.todoes.paginate(page: params[:page], per_page: 20).order(start_time: "DESC")
+    end
   end
 
   def new
@@ -48,6 +53,19 @@ class TodoesController < ApplicationController
     redirect_to user_goal_subgoal_doing_todoes_url
   end
 
+  # Do検索
+  def search
+    @search_params = todo_search_params
+    if Todo.search(@search_params).count > 0
+      @todoes = Todo.search(@search_params)
+      flash.now[:success] = "#{ @todoes.count }件ヒットしました。"
+    else
+      @todoes = @doing.todoes.paginate(page: params[:page], per_page: 20).order(start_time: "DESC")
+      flash.now[:danger] = "該当するToDoはありませんでした。"
+    end
+    render :index
+  end
+
   private
     # ストロングパラメーター
     # 新規登録時
@@ -62,6 +80,14 @@ class TodoesController < ApplicationController
         :actual_start_time, :actual_finish_time, :achivement, :check, :adjust, :pattern, :priority, :hold, :note, :doing_id
       )
     end
+
+      # Todo検索
+      def todo_search_params
+        params.fetch(:search, {}).permit(:todo, :start_time_from, :start_time_to, 
+          :priority, :hold).merge(subgoal_id: @doing.subgoal_id, doing_id: @doing.id)
+        # fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
+        # ここでの:searchには、フォームから送られてくるparamsの値が入っている
+      end
 
     # パラメーターからDoを取得
     def set_todo

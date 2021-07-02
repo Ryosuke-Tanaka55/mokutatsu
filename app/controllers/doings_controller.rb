@@ -11,7 +11,7 @@ class DoingsController < ApplicationController
     if @search_params.present?
       @doings = Doing.search(@search_params).paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
     else
-      @doings = current_user.doings.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+      @doings = @subgoal.doings.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
     end
   end
 
@@ -59,7 +59,7 @@ class DoingsController < ApplicationController
       @doings = Doing.search(@search_params)
       flash.now[:success] = "#{ @doings.count }件ヒットしました。"
     else
-      @doings = current_user.doings.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+      @doings = @subgoal.doings.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
       flash.now[:danger] = "該当するDoはありませんでした。"
     end
     render :index

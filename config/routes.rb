@@ -66,7 +66,11 @@ Rails.application.routes.draw do
               get :search
             end
           end
-          resources :todoes
+          resources :todoes do
+            collection do
+              get :search
+            end
+          end
         end
       end
     end
