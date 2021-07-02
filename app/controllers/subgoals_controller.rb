@@ -7,7 +7,13 @@ class SubgoalsController < ApplicationController
   
 
   def index
-    @subgoals = current_user.subgoals.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+    @search_params = subgoal_search_params
+    if @search_params.present?
+      @subgoals = Subgoal.search(@search_params)
+    else
+      @subgoals = current_user.subgoals.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+    end
+
   end
 
   def new
@@ -50,9 +56,23 @@ class SubgoalsController < ApplicationController
     redirect_to user_goal_subgoals_url
   end
 
+  # モーダル表示
   def subgoalgap_info
     @subgoal = Subgoal.find(params[:subgoal_id])
     @subgoalgaps = @subgoal.subgoalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+  end
+
+  # サブゴール検索
+  def search
+    @search_params = subgoal_search_params
+    if Subgoal.search(@search_params).count > 0
+      @subgoals = Subgoal.search(@search_params)
+      flash.now[:success] = "#{ @subgoals.count }件ヒットしました。"
+    else
+      @subgoals = current_user.subgoals.paginate(page: params[:page], per_page: 20).order(start_day: "DESC")
+      flash.now[:danger] = "該当するサブゴールはありませんでした。"
+    end
+    render :index
   end
 
   private
@@ -67,6 +87,13 @@ class SubgoalsController < ApplicationController
     def edit_subgoal_params
       params.require(:subgoal).permit(:subgoal, :start_day, :finish_day, :pattern, :priority, :impact, 
         :worktime, :easy, :progress, :hold, :note)
+    end
+
+    # サブゴール検索
+    def subgoal_search_params
+      params.fetch(:search, {}).permit(:subgoal, :important, :start_day_from, :start_day_to, :priority, :hold).merge(goal_id: @goal.id)
+      # fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる
+      # ここでの:searchには、フォームから送られてくるparamsの値が入っている
     end
 
     # パラメーターから目標を取得

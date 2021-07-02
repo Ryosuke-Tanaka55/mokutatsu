@@ -83,6 +83,7 @@ class GoalsController < ApplicationController
       params.require(:goal).permit(:goal, :category, :start_day, :finish_day, :progress, :goal_index, :hold, :note)
     end
 
+    # ゴール検索
     def goal_search_params
       params.fetch(:search, {}).permit(:goal, :start_day_from, :start_day_to, :progress, :hold)
       # fetch(:search, {})と記述することで、検索フォームに値がない場合はnilを返し、エラーが起こらなくなる

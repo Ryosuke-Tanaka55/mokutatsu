@@ -8,6 +8,39 @@
 <h1>サブゴール検証一覧</h1>
 
 <div class="row">
+  <!-- 検索 -->
+  <div class="col-md-5 col-md-offset-6">
+    <div class="search-form">
+      <h2>サブゴール検索</h2>
+      <%= form_with(scope: :search, url: search_user_goal_subgoals_path(current_user, @goal), method: :get, local: true) do |f| %>
+        <div class="field">
+          <%= f.label :goal, Subgoal.human_attribute_name(:subgoal) %>
+          <%= f.text_field :subgoal, value: @search_params[:subgoal], placeholder: "キーワードを入力してください。", class: "form-control" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :start_day, Goal.human_attribute_name(:start_day) %><br>
+          <%= f.date_field :start_day_from, value: @search_params[:start_day_from] %> ~
+          <%= f.date_field :start_day_to, value: @search_params[:start_day_to] %>
+        </div>
+
+        <div class="field">
+          <%= f.label :progress, Goal.human_attribute_name(:progress) %><br>
+          <%= f.select :progress, Goal.progresses.keys, { include_blank: "選択してください。", selected: "選択してください。"},  { class: "form-control" } %>
+        </div>
+
+        <div class="field">
+          <%= f.label :hold, Goal.human_attribute_name(:hold) %>
+          <%= f.check_box :hold, { class: "form-check-input "} %>
+        </div>
+
+        <div class="actions">
+          <%= submit_tag "#{yield(:button_search)}", class: "btn btn-primary btn-#{yield(:class_text)}" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
   <div class="col-md-10 col-md-offset-1">
     <div class="menu-button">
       <%= link_to "サブゴール検証新規作成", new_user_goal_subgoal_subgoalcheck_path(current_user, @goal, @subgoal), class: "btn btn-lg btn-primary" %>

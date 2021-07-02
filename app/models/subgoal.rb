@@ -45,4 +45,24 @@ class Subgoal < ApplicationRecord
   # 進捗
   enum progress: { 未着手: 0, 作業中: 1, 完了: 2, 中止: 3 }, _prefix: true
 
+  # 検索条件
+  scope :search, -> (search_params) do  # scopeでsearchメソッドを定義。(search_params)は引数
+    return if search_params.blank?  # 検索フォームに値がなければ以下の手順は行わない
+
+    subgoal_like(search_params[:subgoal])
+      .important_check(search_params[:important])
+      .start_day_from(search_params[:start_day_from])
+      .start_day_to(search_params[:start_day_to])
+      .priority_select(search_params[:priority])
+      .hold_check(search_params[:hold])   # 下記で定義しているscopeメソッドの呼び出し。「.」で繋げている
+  end
+
+  # if 引数.present?をつけることで、検索フォームに値がない場合は実行されない
+  scope :subgoal_like, -> (subgoal) { where('subgoal LIKE ?', "%#{subgoal}%") if subgoal.present? }  # scopeを定義
+  scope :important_check, -> (important) { where(important: important) if important.present? }  # scopeを定義
+  scope :start_day_from, -> (from) { where('? <= start_day', from) if from.present? } # 日付の範囲検索をするため、fromとtoをつけている
+  scope :start_day_to, -> (to) { where('start_day <= ?', to) if to.present? }
+  scope :priority_select, -> (priority) { where(priority: priority) if priority.present? }  # scopeを定義
+  scope :hold_check, -> (hold) { where(hold: hold) if hold.present? }  # scopeを定義
+
 end
