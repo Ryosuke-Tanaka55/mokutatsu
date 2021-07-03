@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user, only: [:edit, :show, :update]
   before_action :admin_or_correct_user, only: [:destroy]
-  before_action :not_admin_user, only: [:show]
 
   def index
     @users = User.paginate(page: params[:page]).where.not(admin: true)
@@ -79,7 +78,12 @@ class UsersController < ApplicationController
   def search
     if params[:name].present?
       @users = User.where('name LIKE ?', "%#{params[:name]}%").paginate(page: params[:page], per_page: 20 )
-      flash.now[:success] = "#{@users.count}件ヒットしました。"
+      if @users.count > 0
+        flash.now[:success] = "#{ @users.count }件ヒットしました。" 
+      else
+        @users = User.paginate(page: params[:page], per_page: 20 )
+        flash.now[:danger] = "該当ユーザーはいませんでした。"
+      end
     else
       @users = User.paginate(page: params[:page], per_page: 20 )
       flash.now[:danger] = "該当ユーザーはいませんでした。"

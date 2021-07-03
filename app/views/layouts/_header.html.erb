@@ -10,7 +10,7 @@
           <% end %>
         </li>
         <% if logged_in? %>
-          <li><%= link_to  "マイページ", current_user unless current_user.admin? %></li>
+          <li><%= link_to  "マイページ", current_user %></li>
           <li>
             <% if unchecked_notifications.any? %>
               <%= link_to user_posts_path(current_user), method: :get do %>
