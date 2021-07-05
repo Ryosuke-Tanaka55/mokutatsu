@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # Google認証
     auth = request.env['omniauth.auth']
     if auth.present?
       user = User.from_omniauth(request.env['omniauth.auth'])
@@ -16,6 +17,7 @@ class SessionsController < ApplicationController
         flash[:danger] = "ユーザー認証に失敗しました。"
         redirect_to login_url
       end
+    # パスワード認証
     elsif !verify_recaptcha(message: "reCAPTCHAのチェックをしてください。")
       render :new
     else
@@ -25,14 +27,7 @@ class SessionsController < ApplicationController
         log_in user # 引数で渡されたユーザーオブジェクトでログイン（sessionshelper参照）
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         flash[:success] = "ユーザー認証に成功しました。"
-        if current_user.admin?
-          # adminの場合 top画面へ
-          redirect_back_or root_url # sessions_helper参照
-        else
-          # 一般ユーザーはマイページへ
-          flash[:success] = "ユーザー認証に成功しました。"
-          redirect_back_or user # sessions_helper参照
-        end
+        redirect_back_or user # sessions_helper参照
       else
         flash.now[:danger] = "ユーザー認証に失敗しました。"
         render :new
