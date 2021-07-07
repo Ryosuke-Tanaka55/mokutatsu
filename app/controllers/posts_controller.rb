@@ -71,9 +71,16 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    path = Rails.application.routes.recognize_path(request.referer) # どこから画面遷移してきたかを取得
     @post.destroy
     flash[:success] = "投稿を削除しました。"
-    redirect_to request.referrer || :index  # 一つ前のURLかindexへリダイレクト
+    # showアクションの場合
+    if path[:action] == "show"
+      redirect_to :index and return
+    # showアクションの以外場合
+    else
+      redirect_to request.referrer 
+    end
   end
 
   private
