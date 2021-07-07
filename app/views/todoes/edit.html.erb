@@ -103,7 +103,7 @@
         </div>
 
         <%= f.label :note, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_area :note, class: "form-control" %>
+        <%= f.text_field :note, class: "form-control" %>
           
       <div class="button">
         <%= f.submit yield(:button_update), class: "btn btn-primary btn-lg btn-#{yield(:button_update)}" %>

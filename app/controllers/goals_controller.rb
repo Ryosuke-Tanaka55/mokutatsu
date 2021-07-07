@@ -48,7 +48,7 @@ class GoalsController < ApplicationController
   def destroy
     @goal.destroy
     flash[:success] = "「#{ @goal.goal }」を削除しました。"
-    redirect_to user_goals_Url
+    redirect_to user_goals_url
   end
 
   # モーダル表示

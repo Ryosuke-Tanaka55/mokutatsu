@@ -53,7 +53,7 @@
       </div>
 
       <%= f.label :note, class: "label-#{yield(:class_text)}" %>
-      <%= f.text_area :note, class: "form-control" %>
+      <%= f.text_field :note, class: "form-control" %>
 
       <div class="goalgaps">
         <%= f.fields_for :goalgaps do |g| %>

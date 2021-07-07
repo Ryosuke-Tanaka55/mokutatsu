@@ -57,7 +57,7 @@
         </div>
 
         <%= f.label :note, class: "label-#{yield(:class_text)}" %>
-        <%= f.text_area :note, class: "form-control" %>
+        <%= f.text_field :note, class: "form-control" %>
 
         <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
         <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_subgoalchecks_path(current_user, @goal, @subgoal), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>
