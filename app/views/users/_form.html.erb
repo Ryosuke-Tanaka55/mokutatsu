@@ -13,10 +13,16 @@
   <%= f.label :email, class: "label-#{yield(:class_text)}" %>&nbsp;<span class="badge badge-danger">必須</span>
   <%= f.email_field :email, class: "form-control" %>
 
-  <%= f.label :password, class: "label-#{yield(:class_text)}" %>&nbsp;<span class="badge badge-danger">必須</span>
+  <%= f.label :password, class: "label-#{yield(:class_text)}" %>
+  <% if current_page?(signup_path) %>
+    &nbsp;<span class="badge badge-danger">必須</span>
+  <% end %>
   <%= f.password_field :password, class: "form-control" %>
 
-  <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>&nbsp;<span class="badge badge-danger">必須</span>
+  <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
+  <% if current_page?(signup_path) %>
+    &nbsp;<span class="badge badge-danger">必須</span>
+  <% end %>
   <%= f.password_field :password_confirmation, class: "form-control" %>
 
   <!-- 新規ユーザー作成の場合、利用規約の同意を確認 -->
