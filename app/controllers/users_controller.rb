@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    flash[:success] = "#{ @user.name }のデータを削除しました。"
+    flash[:success] = "#{ @user.name }さんのデータを削除しました。"
     if current_user.admin?
       redirect_to users_url
     else
