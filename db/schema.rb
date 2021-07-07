@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_040956) do
     t.integer "easy"
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
-    t.text "note"
+    t.string "note"
     t.bigint "subgoal_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_040956) do
     t.string "goal_index"
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
-    t.text "note"
+    t.string "note"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -223,7 +223,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_040956) do
     t.integer "easy", default: 0, null: false
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
-    t.text "note"
+    t.string "note"
     t.bigint "goal_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -245,7 +245,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_040956) do
     t.boolean "pattern", default: false, null: false
     t.integer "progress", default: 0, null: false
     t.boolean "hold", default: false, null: false
-    t.text "note"
+    t.string "note"
     t.bigint "user_id", null: false
     t.bigint "doing_id", null: false
     t.datetime "created_at", precision: 6, null: false
