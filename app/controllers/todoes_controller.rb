@@ -10,7 +10,7 @@ class TodoesController < ApplicationController
   def index
     @search_params = todo_search_params
     if @search_params.present?
-      @todoes = Todo.search(@search_params).paginate(page: params[:page], per_page: 20).order(start_time: "DESC")
+      @todoes = @doing.todoes.search(@search_params).paginate(page: params[:page], per_page: 20).order(start_time: "DESC")
     else
       @todoes = @doing.todoes.paginate(page: params[:page], per_page: 20).order(start_time: "DESC")
     end
@@ -53,11 +53,11 @@ class TodoesController < ApplicationController
     redirect_to user_goal_subgoal_doing_todoes_url
   end
 
-  # Do検索
+  # ToDo検索
   def search
     @search_params = todo_search_params
-    if Todo.search(@search_params).count > 0
-      @todoes = Todo.search(@search_params)
+    if @doing.todoes.search(@search_params).count > 0
+      @todoes = @doing.todoes.search(@search_params)
       flash.now[:success] = "#{ @todoes.count }件ヒットしました。"
     else
       @todoes = @doing.todoes.paginate(page: params[:page], per_page: 20).order(start_time: "DESC")

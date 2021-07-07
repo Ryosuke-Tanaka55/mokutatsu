@@ -25,8 +25,8 @@ class Goalgap < ApplicationRecord
     gap_like(search_params[:gap])
       .impact_select(search_params[:impact])
       .worktime_select(search_params[:worktime])   
-      .impact_select(search_params[:easy])  
-      .impact_select(search_params[:impact])  # 下記で定義しているscopeメソッドの呼び出し。「.」で繋げている
+      .easy_select(search_params[:easy])  
+      .priority_select(search_params[:priority])  # 下記で定義しているscopeメソッドの呼び出し。「.」で繋げている
   end
 
   # if 引数.present?をつけることで、検索フォームに値がない場合は実行されない
@@ -34,6 +34,6 @@ class Goalgap < ApplicationRecord
   scope :impact_select, -> (impact) { where(impact: impact) if impact.present? }  # scopeを定義
   scope :worktime_select, -> (worktime) { where(worktime: worktime) if worktime.present? }  # scopeを定義
   scope :easy_select, -> (easy) { where(easy: easy) if easy.present? }  # scopeを定義
-  scope :impact_select, -> (impact) { where(impact: impact) if impact.present? }  # scopeを定義
+  scope :priority_select, -> (priority) { where(priority: priority) if priority.present? }  # scopeを定義
 
 end

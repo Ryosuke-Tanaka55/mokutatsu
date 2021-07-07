@@ -11,7 +11,7 @@ class DoingchecksController < ApplicationController
   def index
     @search_params = doingcheck_search_params
     if @search_params.present?
-      @doingchecks = Doingcheck.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+      @doingchecks = @doing.doingchecks.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     else
       @doingchecks = @doing.doingchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     end
@@ -57,8 +57,8 @@ class DoingchecksController < ApplicationController
   # Do検証検索
   def search
     @search_params = doingcheck_search_params
-    if Doingcheck.search(@search_params).count > 0
-      @doingchecks = Doingcheck.search(@search_params)
+    if @doing.doingchecks.search(@search_params).count > 0
+      @doingchecks = @doing.doingchecks.search(@search_params)
       flash.now[:success] = "#{ @doings.count }件ヒットしました。"
     else
       @doingchecks = @doing.doingchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")

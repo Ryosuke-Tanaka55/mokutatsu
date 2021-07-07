@@ -9,7 +9,7 @@ class GoalchecksController < ApplicationController
   def index
     @search_params = goalcheck_search_params
     if @search_params.present?
-      @goalchecks = Goalcheck.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+      @goalchecks = @goal.goalchecks.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     else
       @goalchecks = @goal.goalchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     end
@@ -55,9 +55,9 @@ class GoalchecksController < ApplicationController
   # ゴール検証検索
   def search
     @search_params = goalcheck_search_params
-    if Goalcheck.search(@search_params).count > 0
-      @goalchecks = Goalcheck.search(@search_params)
-      flash.now[:success] = "#{@goalchecks.count}件ヒットしました。"
+    if @goal.goalchecks.search(@search_params).count > 0
+      @goalchecks = @goal.goalchecks.search(@search_params)
+      flash.now[:success] = "#{ @goalchecks.count }件ヒットしました。"
     else
       @goalchecks = @goal.goalchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
       flash.now[:danger] = "該当するゴール検証はありませんでした。"

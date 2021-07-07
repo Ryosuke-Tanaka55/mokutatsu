@@ -9,7 +9,7 @@ class SubgoalgapsController < ApplicationController
   def index
     @search_params = subgoalgap_search_params
     if @search_params.present?
-      @subgoalgaps = Subgoalgap.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+      @subgoalgaps = @subgoal.subgoalgaps.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     else
       @subgoalgaps = @subgoal.subgoalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     end
@@ -55,8 +55,8 @@ class SubgoalgapsController < ApplicationController
   # サブゴールギャップ検索
   def search
     @search_params = subgoalgap_search_params
-    if Subgoalgap.search(@search_params).count > 0
-      @subgoalgaps = Subgoalgap.search(@search_params)
+    if @subgoal.subgoalgaps.search(@search_params).count > 0
+      @subgoalgaps = @subgoal.subgoalgaps.search(@search_params)
       flash.now[:success] = "#{ @subgoalgaps.count }件ヒットしました。"
     else
       @subgoalgaps = @subgoal.subgoalgaps.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")

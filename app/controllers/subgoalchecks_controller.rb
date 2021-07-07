@@ -9,7 +9,7 @@ class SubgoalchecksController < ApplicationController
   def index
     @search_params = subgoalcheck_search_params
     if @search_params.present?
-      @subgoalchecks = Subgoalcheck.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
+      @subgoalchecks = @subgoal.subgoalchecks.search(@search_params).paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     else
       @subgoalchecks = @subgoal.subgoalchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
     end
@@ -55,8 +55,8 @@ class SubgoalchecksController < ApplicationController
   # サブゴール検証検索
   def search
     @search_params = subgoalcheck_search_params
-    if Subgoalcheck.search(@search_params).count > 0
-      @subgoalchecks = Subgoalcheck.search(@search_params)
+    if @subgoal.subgoalchecks.search(@search_params).count > 0
+      @subgoalchecks = @subgoal.subgoalchecks.search(@search_params)
       flash.now[:success] = "#{ @subgoalchecks.count }件ヒットしました。"
     else
       @subgoalchecks = @subgoal.subgoalchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
