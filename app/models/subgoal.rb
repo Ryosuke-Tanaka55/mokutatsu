@@ -5,7 +5,7 @@ class Subgoal < ApplicationRecord
   has_many :subgoalgaps, dependent: :destroy
   accepts_nested_attributes_for :subgoalgaps, allow_destroy: true
   has_many :subgoalchecks, dependent: :destroy
-  has_many :doings
+  has_many :doings, dependent: :destroy
   accepts_nested_attributes_for :doings, allow_destroy: true
   has_many :todoes, through: :doings
   

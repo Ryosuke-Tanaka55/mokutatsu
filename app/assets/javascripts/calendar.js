@@ -78,7 +78,7 @@ $(document).on('turbolinks:load', function () {
       resourceLabelText: 'リソース',
     
       // 日付クリック
-      dayClick : function (start, end , jsEvent , view) {
+      dayClick : function (start, end, jsEvent , view) {
         $('#inputScheduleForm').modal('show');
         },
       

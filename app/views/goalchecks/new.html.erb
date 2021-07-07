@@ -19,7 +19,7 @@
     <%= form_with(model: @goalcheck, url: user_goal_goalchecks_path(current_user, @goal), local: true) do |f| %>
       <%= render 'shared/object_error_messages', object: f.object %>
 
-      <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
+      <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>&nbsp;<span class="supplement">※10%刻み</span>
       <%= f.number_field :achivement, in: 0..100, step: 10, class: "form-control" %>
       <div id="form-assist">
         ・ゴール達成率を記載する

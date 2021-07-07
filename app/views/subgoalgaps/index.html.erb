@@ -15,7 +15,7 @@
     <div class="col-md-5 col-md-offset-6">
       <div class="search-form">
         <h2>サブゴールギャップ検索</h2>
-        <%= form_with(scope: :search, url:search_user_goal_subgoal_subgoalgaps_path(current_user, @subgoal), method: :get, local: true) do |f| %>
+        <%= form_with(scope: :search, url:search_user_goal_subgoal_subgoalgaps_path(user_id: current_user, goal_id: @subgoal.goal_id, subgoal_id: @subgoal.id), method: :get, local: true) do |f| %>
           <div class="field">
             <%= f.label :gap, Subgoalgap.human_attribute_name(:gap) %>
             <%= f.text_field :gap, value: @search_params[:gap], placeholder: "キーワードを入力してください。", class: "form-control" %>

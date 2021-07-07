@@ -8,7 +8,7 @@
 <% breadcrumb :doing_edit, @doing %>
 
 <h1>Do編集</h1>
-<h2 class="head-supplement">サブゴールとのギャップを埋める解決策を行動にしたものを登録します。</h2>
+<h2 class="head">サブゴールとのギャップを埋める解決策を行動にしたものを登録します。</h2>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -67,7 +67,7 @@
       <%= f.label :progress, class: "label-#{yield(:class_text)}" %>
       <%= f.select :progress, Doing.progresses.keys, { include_blank: "選択してください。", selected: "選択してください。"}, { class: "form-control" , required: true } %>
 
-      <%= f.label :hold, class: "label-#{yield(:class_text)}" %>
+      <%= f.label :hold, class: "label-#{yield(:class_text)}" %>&nbsp;
       <%= f.check_box :hold, class: "form-inline checkbox-doing" %>
       <div id="form-assist">
         ・すぐに着手しない場合はチェック

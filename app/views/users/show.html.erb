@@ -19,8 +19,8 @@
       <thead>
         <tr>
           <th colspan="3">ToDo</th>
-          <th colspan="3">予定開始時間</th>
-          <th colspan="3">予定終了時間</th>
+          <th colspan="3">開始時間</th>
+          <th colspan="3">終了時間</th>
           <th colspan="3">進捗状況</th>
         </tr>
       </thead>
@@ -28,8 +28,8 @@
         <% @todoes_today.each do |todo| %>
         <tr>
           <td colspan="3"><%= todo.todo %></td>
-          <td colspan="3"><%= l(todo.estimated_start_time, format: :time) %></td>
-          <td colspan="3"><%= l(todo.estimated_finish_time, format: :time) %></td>
+          <td colspan="3"><%= l(todo.start_time, format: :time) %></td>
+          <td colspan="3"><%= l(todo.finish_time, format: :time) %></td>
           <td colspan="3"><%= todo.progress %></td>
         </tr>
         <% end %>

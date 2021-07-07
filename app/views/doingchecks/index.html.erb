@@ -14,7 +14,7 @@
     <div class="col-md-6 col-md-offset-6">
       <div class="search-form">
         <h2>Do検証検索</h2>
-        <%= form_with(scope: :search, url: search_user_goal_subgoal_doing_doingchecks_path(current_user, @doing), method: :get, local: true) do |f| %>
+        <%= form_with(scope: :search, url: search_user_goal_subgoal_doing_doingchecks_path(subgoal_id: @doing.subgoal_id, doing_id: @doing.id), method: :get, local: true) do |f| %>
           <div class="field">
             <%= f.label :estimate_check_at, Doingcheck.human_attribute_name(:estimate_check_at) %><br>
             <%= f.datetime_field :estimate_check_at_from, value: @search_params[:estimate_check_at_from] %> ~

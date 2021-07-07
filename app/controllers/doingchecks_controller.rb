@@ -58,8 +58,8 @@ class DoingchecksController < ApplicationController
   def search
     @search_params = doingcheck_search_params
     if @doing.doingchecks.search(@search_params).count > 0
-      @doingchecks = @doing.doingchecks.search(@search_params)
-      flash.now[:success] = "#{ @doings.count }件ヒットしました。"
+      @doingchecks = @doing.doingchecks.search(@search_params).order(created_at: "DESC")
+      flash.now[:success] = "#{ @doingchecks.count }件ヒットしました。"
     else
       @doingchecks = @doing.doingchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")
       flash.now[:danger] = "該当するDo検証はありませんでした。"
@@ -73,7 +73,7 @@ class DoingchecksController < ApplicationController
       params.require(:doingcheck).permit(:check, :adjust, :estimate_check_at, :check_at, :span, :achivement, :note, :doing_id)
     end
 
-    # サブゴール検証検索
+    # Do検証検索
     def doingcheck_search_params
       params.fetch(:search, {}).permit(:estimate_check_at_from, :estimate_check_at_to, :check_at_from, 
         :check_at_from, :check_at_to).merge(subgoal_id: @doing.subgoal_id, doing_id: @doing.id )

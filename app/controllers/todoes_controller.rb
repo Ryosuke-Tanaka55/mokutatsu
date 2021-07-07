@@ -57,7 +57,7 @@ class TodoesController < ApplicationController
   def search
     @search_params = todo_search_params
     if @doing.todoes.search(@search_params).count > 0
-      @todoes = @doing.todoes.search(@search_params)
+      @todoes = @doing.todoes.search(@search_params).order(start_time: "DESC")
       flash.now[:success] = "#{ @todoes.count }件ヒットしました。"
     else
       @todoes = @doing.todoes.paginate(page: params[:page], per_page: 20).order(start_time: "DESC")

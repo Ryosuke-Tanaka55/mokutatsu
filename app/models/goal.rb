@@ -18,7 +18,7 @@ class Goal < ApplicationRecord
   validates :goal_index, presence: true
   validates :progress, presence: true
   
-  # 開始日は今日以降出ないと無効
+  # 開始日は今日以降でないと無効
   validate :start_day_fast_than_today_if_invalid
 
   # 開始日より終了日が早い場合は無効

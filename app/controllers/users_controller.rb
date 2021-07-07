@@ -10,10 +10,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @goals = Goal.where(user_id: @user.id)
-    @goal = Goal.new
-    @todoes = Todo.where(doing_id: @user.todoes.ids)
-    @todoes_today = Todo.where(doing_id: @user.todoes.ids, start_time: Date.today)
+    @todoes = Todo.where(user_id: @user.id).order(start_time: "ASC")
+    beginning_of_day = DateTime.now.beginning_of_day
+    end_of_day = DateTime.now.end_of_day
+    @todoes_today = @todoes.where('start_time BETWEEN ? AND ?', beginning_of_day, end_of_day)
     # カレンダーのEvent
     @events = Event.where(user_id: @user.id)
     @event = Event.new

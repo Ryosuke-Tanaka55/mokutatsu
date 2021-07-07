@@ -21,7 +21,7 @@
     <%= form_with(model: @doingcheck, url: user_goal_subgoal_doing_doingcheck_path(current_user, @goal, @subgoal, @doing), local: true) do |f| %>
       <%= render 'shared/object_error_messages', object: f.object %>
 
-      <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
+      <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>&nbsp;<span class="supplement">※10%刻み</span>
       <%= f.number_field :achivement, in: 0..100, step: 10, class: "form-control" %>
 
       <%= f.label :check, class: "label-#{yield(:class_text)}" %>
@@ -55,7 +55,7 @@
       </div>
 
       <%= f.label :note, class: "label-#{yield(:class_text)}" %>
-      <%= f.text_area :note, class: "form-control" %>
+      <%= f.text_field :note, class: "form-control" %>
 
       <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-#{yield(:class_text)}" %>
       <%= link_to "#{yield(:button_cancel)}", user_goal_subgoal_doing_doingchecks_path(current_user, @goal, @subgoal, @doing), class: "btn btn-default btn-lg btn-#{yield(:class_text)}" %>

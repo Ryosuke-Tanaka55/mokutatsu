@@ -2,24 +2,32 @@ class Subgoalcheck < ApplicationRecord
   belongs_to :subgoal
 
   # バリデーション
+  validates :achivement, presence: true
   validates :check, presence: true, length: { minimum: 2 }
   validates :adjust, presence: true, length: { minimum: 2 }
+  validates :check_at, presence: true
   validates :estimate_check_at, presence: true
   validates :span, presence: true
-  validates :achivement, presence: true
 
-  # 検証予定日は今日以降出ないと無効
+  # 検証日が未来の場合は無効
+  validate :today_fast_than_check_at_if_invalid
+
+  # 検証予定日は今日以降でないと無効
   validate :estimate_check_at_fast_than_today_if_invalid
 
-  # 検証日は今日以降出ないと無効
-  validate :check_at_fast_than_today_if_invalid
+  # 検証予定日は検証日以降でないと無効
+  validate :estimate_check_at_fast_than_check_at
 
-  def estimate_check_at_fast_than_today_if_invalid
-    errors.add(:estimate_check_at, "が過去です。")  if estimate_check_at < Date.today
+  def today_fast_than_check_at_if_invalid
+    errors.add(:check_at, "が未来の場合は無効です。")  if Date.today + 1 < check_at
   end
 
-  def check_at_fast_than_today_if_invalid
-    errors.add(:check_at, "が過去です。")  if check_at < Date.today
+  def estimate_check_at_fast_than_today_if_invalid
+    errors.add(:estimate_check_at, "が過去の場合は無効です。")  if estimate_check_at < Date.today
+  end
+
+  def estimate_check_at_fast_than_check_at
+    errors.add(:estimate_check_at, "より早い検証日は無効です。")  if estimate_check_at < check_at
   end
 
   # 検索条件

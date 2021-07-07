@@ -56,7 +56,7 @@ class SubgoalchecksController < ApplicationController
   def search
     @search_params = subgoalcheck_search_params
     if @subgoal.subgoalchecks.search(@search_params).count > 0
-      @subgoalchecks = @subgoal.subgoalchecks.search(@search_params)
+      @subgoalchecks = @subgoal.subgoalchecks.search(@search_params).order(created_at: "DESC")
       flash.now[:success] = "#{ @subgoalchecks.count }件ヒットしました。"
     else
       @subgoalchecks = @subgoal.subgoalchecks.paginate(page: params[:page], per_page: 20).order(created_at: "DESC")

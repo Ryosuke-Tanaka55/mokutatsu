@@ -2,9 +2,6 @@ class Todo < ApplicationRecord
   belongs_to :doing
   belongs_to :user
 
-  # 配下のイベント
-  has_many :events, dependent: :destroy
-
   # バリデーション
   validates :todo, presence: true
   validates :start_time, presence: true
@@ -14,7 +11,7 @@ class Todo < ApplicationRecord
   validates :priority, presence: true
   validates :progress, presence: true
 
-  # 開始日は今日以降出ないと無効
+  # 開始日は今日以降でないと無効
   validate :start_time_than_fast_than_today_if_invalid
   
   # 開始日より終了日が早い場合は無効

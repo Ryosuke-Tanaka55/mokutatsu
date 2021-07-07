@@ -1,5 +1,5 @@
 <div data-turbolinks="false">
-  <% events.each do |event| %>
+  <% @events.each do |event| %>
     <div id='inputScheduleEditForm<%= event.id %>' class="modal fade" tabindex="-1">
       <div class="modal-dialog modal-nm">
         <div class="modal-content">
@@ -8,7 +8,7 @@
           </div>
           <div class="modal-body">
             <div  class="col">
-              <%= form_with(model: event, url: user_event_path(user_id:current_user.id, id:event.id), local: true) do |f| %>
+              <%= form_with(model: event, url: user_event_path(user_id: current_user.id, id: event.id), local: true) do |f| %>
                 <p>
                   <span>ToDo</span>
                   <span id="inputTitle" value=""><span><%= f.collection_select :title, @todoes, :todo, :todo, { include_blank: "選択してください。" }, { class:"form-control" } %></span>
@@ -27,6 +27,8 @@
                 <div class="modal-footer">
                   <%= f.hidden_field :user_id, :value => current_user.id %>
                   <%= f.submit "編集する", class: "btn btn-primary" %>
+                  <%= link_to "削除", user_event_path(user_id: @user.id, id: event.id), method: :delete, 
+                  data: { confirm: "#{ event.title } を削除してよろしいですか。"}, class: "btn btn-danger" %>
                   <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
                 </div>
               <% end %>

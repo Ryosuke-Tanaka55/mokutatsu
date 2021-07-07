@@ -6,12 +6,13 @@ class EventsController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    @todoes = Todo.where(doing_id: @user.todoes.ids)
-    @events = Event.where(user_id: @user.id)
+    @todoes = Todo.where(user_id: current_user)
+    @events = Event.where(user_id:current_user.id)
     @event = Event.new
   end
 
   def create
+    @user = User.find(params[:user_id])
     @event = Event.new(event_params)
     if @event.save
       flash[:success] = "スケジュール登録に成功しました。"
@@ -21,7 +22,6 @@ class EventsController < ApplicationController
       flash[:danger] = "スケジュール登録に失敗しました。"
       redirect_to user_url(current_user.id)
     end
-    
   end
 
   def update
@@ -36,14 +36,15 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
-    event.destroy
+    @event.destroy
+    flash[:success] = "#{ @event.title }を削除しました。"
     redirect_to user_url(current_user.id)
   end
 
   private
     # ストロングパラメーター
     def event_params
-      params.require(:event).permit(:title, :start_time, :end_time, :description, :allday, :color, :user_id, :todo_id)
+      params.require(:event).permit(:title, :start_time, :end_time, :description, :allday, :color)
     end
   
 end

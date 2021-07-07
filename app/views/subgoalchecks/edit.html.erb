@@ -10,7 +10,7 @@
 <h1>サブゴール検証編集</h1>
 <h2 class="head-supplement">
   <div class="h2-text">
-    サブゴールを検証するポイント<br>
+    ・サブゴールを検証するポイント<br>
     ・結果目標に対する達成率を検証する<br>
     ・数字を比較し達成率を確認する<br>
   </div>
@@ -21,7 +21,7 @@
       <%= form_with(model: @subgoalcheck, url: user_goal_subgoal_subgoalcheck_path(current_user, @goal, @subgoal), local: true) do |f| %>
         <%= render 'shared/object_error_messages', object: @subgoalcheck %>
         
-        <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>
+        <%= f.label :achivement, class: "label-#{yield(:class_text)}" %>&nbsp;<span class="supplement">※10%刻み</span>
         <%= f.number_field :achivement, in: 0..100, step: 10, class: "form-control" %>
         <div id="form-assist">
           ・サブゴールの達成率を把握する<br>
@@ -47,8 +47,11 @@
           ・調整の必要なし
         </div>
 
+        <%= f.label :check_at, class: "label-#{yield(:class_text)}" %>
+        <%= f.datetime_field :check_at, class: "form-control datetime-form" %><br>
+
         <%= f.label :estimate_check_at, class: "label-#{yield(:class_text)}" %>
-        <%= f.datetime_select :estimate_check_at, class: "form-control datetime-form" %><br>
+        <%= f.datetime_field :estimate_check_at, class: "form-control datetime-form" %><br>
 
         <%= f.label :span, class: "label-#{yield(:class_text)}" %>
         <%= f.text_field :span, class: "form-control" %>

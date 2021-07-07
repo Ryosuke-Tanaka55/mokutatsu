@@ -51,6 +51,10 @@
           <td class="col-md-9"><%= @subgoal.progress %></td>
       </tr>
       <tr>
+        <th class="col-md-3"><%= Subgoal.human_attribute_name :priority %></th>
+          <td class="col-md-9"><%= @subgoal.priority %></td>
+      </tr>
+      <tr>
         <th class="col-md-3"><%= Subgoal.human_attribute_name :hold %></th>
           <td class="col-md-9"><%= @subgoal.hold ? "保留中" : "実行中" %></td>
       </tr>

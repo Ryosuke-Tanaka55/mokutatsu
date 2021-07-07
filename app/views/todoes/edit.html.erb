@@ -8,12 +8,13 @@
 <% breadcrumb :todo_edit, @todo %>
 
 <h1>ToDo編集</h1>
-<h2 class="head-supplement">Doを具体的なタスクレベルまで落とし込みます<br>
+<h2 class="head">Doを具体的なタスクレベルまで落とし込みます</h2><br>
+<h2 class="head-supplement">
   <div class="h2-text">
-    ・ToDoとはこれなら今すぐに手をつけられるレベルまで落とし込まれたタスクのこと。<br>
-    ・スケジュール帳に書き込めるかどうかを判断基準にする。<br>
-    ・進捗確認は1日最低1回は実施する。<br>
-    ・ToDoは検証同時に実施していく。
+    ・ToDoとはこれなら今すぐに手をつけられるレベルまで落とし込まれたタスクのこと<br>
+    ・スケジュール帳に書き込めるかどうかを判断基準にする<br>
+    ・進捗確認は1日最低1回は実施する<br>
+    ・ToDoは検証同時に実施していく
   </div>
 </h2>
 
@@ -29,7 +30,7 @@
         </div>
 
         <%= f.label :worked_on, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-        <%= f.date_select :worked_on, class: "form-control datetime-form" %><br>
+        <%= f.date_field :worked_on, class: "form-control datetime-form" %><br>
         <div id="form-assist">
           ・ToDoを実行する日付を記載
         </div>
@@ -41,24 +42,24 @@
         </div>
 
         <%= f.label :start_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-        <%= f.datetime_select :start_time, class: "form-control datetime-form" %><br>
+        <%= f.datetime_field :start_time, class: "form-control datetime-form" %><br>
 
         <%= f.label :finish_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-        <%= f.datetime_select :finish_time, class: "form-control datetime-form" %><br>
+        <%= f.datetime_field :finish_time, class: "form-control datetime-form" %><br>
 
         <%= f.label :actual_start_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-        <%= f.datetime_select :actual_start_time, class: "form-control datetime-form" %><br>
+        <%= f.datetime_field :actual_start_time, class: "form-control datetime-form" %><br>
         <div id="form-assist">
           ・実際にToDoを開始した時間を記載
         </div>
 
         <%= f.label :actual_finish_time, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
-        <%= f.datetime_select :actual_finish_time, class: "form-control datetime-form" %><br>
+        <%= f.datetime_field :actual_finish_time, class: "form-control datetime-form" %><br>
         <div id="form-assist">
           ・実際にToDoが終了した時間を記載
         </div>
 
-        <%= f.label :achivement, class: "label-#{yield(:class_text)}" %> &nbsp;&nbsp;
+        <%= f.label :achivement, class: "label-#{yield(:class_text)}" %> &nbsp;<span class="supplement">※10%刻み</span>
         <%= f.number_field :achivement, in: 0..100, step: 10, class: "form-control" %>
         <div id="form-assist">
           ・ToDo達成率を記載する

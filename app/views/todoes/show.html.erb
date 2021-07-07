@@ -20,11 +20,11 @@
       </tr>
       <tr>
         <th class="col-md-3"><%= Todo.human_attribute_name :start_time %></th>
-          <td class="col-md-9"><%= @todo.start_time %></td>
+          <td class="col-md-9"><%= l(@todo.start_time, format: :long) %></td>
       </tr>
       <tr>
         <th class="col-md-3"><%= Todo.human_attribute_name :finish_time %></th>
-          <td class="col-md-9"><%= @todo.finish_time %></td>
+          <td class="col-md-9"><%= l(@todo.finish_time, format: :long) %></td>
       </tr>
       <tr>
         <th class="col-md-3"><%= Todo.human_attribute_name :estimated_time %></th>
