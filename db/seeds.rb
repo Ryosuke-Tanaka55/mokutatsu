@@ -25,7 +25,7 @@ User.create!(name: "吉田 正尚",
   password_confirmation: "password",
   agreement: true)
 
-User.create!(name: "杉本 祐太郎",
+User.create!(name: "杉本 祐太郎(ラオウ)",
   email: "sugimoto@email.com",
   password: "password",
   password_confirmation: "password",

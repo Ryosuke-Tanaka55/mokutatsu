@@ -1,7 +1,7 @@
 <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/object_error_messages', object: f.object %>
 
-  <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+  <%= f.label :name, class: "label-#{yield(:class_text)}" %>&nbsp;<span class="badge badge-danger">必須</span>
   <%= f.text_field :name, class: "form-control" %>
 
   <%= f.label :image, class: "label-#{yield(:class_text)}" %>
@@ -10,13 +10,13 @@
   <%= f.label :introduction, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :introduction, class: "form-control" %>
 
-  <%= f.label :email, class: "label-#{yield(:class_text)}" %>
+  <%= f.label :email, class: "label-#{yield(:class_text)}" %>&nbsp;<span class="badge badge-danger">必須</span>
   <%= f.email_field :email, class: "form-control" %>
 
-  <%= f.label :password, class: "label-#{yield(:class_text)}" %>
+  <%= f.label :password, class: "label-#{yield(:class_text)}" %>&nbsp;<span class="badge badge-danger">必須</span>
   <%= f.password_field :password, class: "form-control" %>
 
-  <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
+  <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>&nbsp;<span class="badge badge-danger">必須</span>
   <%= f.password_field :password_confirmation, class: "form-control" %>
 
   <!-- 新規ユーザー作成の場合、利用規約の同意を確認 -->
