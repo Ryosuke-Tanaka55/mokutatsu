@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :set_user, only: [:show_own_post]
   before_action :set_user_id, only: [:index, :create]
   before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :admin_or_correct_user, only: [:destroy]
   
   def index
     @feed_items = current_user.feed.paginate(page: params[:page])

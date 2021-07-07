@@ -12,8 +12,10 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3" >
     <%= image_tag("#{ @user.image }", class: 'account-page__inner--icon__input__image') %>
-    <% if current_user.password.present? %>
+    <!-- Google認証でログインしていない場合 -->
+    <% if !current_user.uid.present? %>
       <%= render 'form' %>
+    <!-- Google認証でログインしている場合 -->
     <% else %>
       <%= form_with(model: @user, local: true) do |f| %>
         <%= render 'shared/object_error_messages', object: f.object %>

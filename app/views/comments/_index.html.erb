@@ -12,7 +12,7 @@
           <p><%= link_to "@#{ comment.user.name }", posts_show_own_post_user_path(comment.user.id) %></p>
           <div class="comment-entry">
             <%= comment.comment %>
-            <% if comment.user == current_user %>
+            <% if (comment.user == current_user || current_user.admin?) %>
               <%= link_to user_post_comment_path(comment.user.id, comment.post_id, comment.id), method: :delete,
                 data: { confirm: "削除してよろしいですか？" }, remote: true, class: "comment_destroy" do %>
                 <i class="fas fa-fw fa-trash-alt" style="color: black;"></i>
@@ -40,7 +40,7 @@
                 <p><%= link_to "@#{ comment.user.name }", posts_show_own_post_user_path(comment.user.id) %></p>
                 <div class="comment-entry">
                   <%= comment.comment %>
-                  <% if comment.user == current_user %>
+                  <% if (comment.user == current_user || current_user.admin?) %>
                     <%= link_to user_post_comment_path(comment.user.id, comment.post_id, comment.id), method: :delete,
                       data: { confirm: "削除してよろしいですか？" }, remote: true, class: "comment_destroy" do %>
                       <i class="fas fa-fw fa-trash-alt" style="color: black;"></i>

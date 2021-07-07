@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :logged_in_user
   before_action :set_user_id
+  before_action :admin_or_correct_user, only: [:destroy]
 
   def create
     @post = Post.find(params[:post_id])
