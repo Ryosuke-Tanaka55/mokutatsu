@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :logged_in_user
   before_action :set_user, only: [:show_own_post]
-  before_action :set_user_id, only: [:index, :create]
+  before_action :set_user_id, only: [:index, :create, :destroy]
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :admin_or_correct_user, only: [:destroy]
   
@@ -45,12 +45,6 @@ class PostsController < ApplicationController
       redirect_to posts_show_own_post_user_url(current_user) and return
     end
     if @post.save
-      # 画像が投稿されていた場合
-      if params[:post_images].present?
-        params[:post_images][:post_image].each do |image|
-          @post_image = @post.post_images.create!(post_image: image, post_id: @post.id)
-        end
-      end
       flash[:success] = "新規作成に成功しました。"
       redirect_to posts_show_own_post_user_url(current_user)
     else
@@ -76,7 +70,7 @@ class PostsController < ApplicationController
     flash[:success] = "投稿を削除しました。"
     # showアクションの場合
     if path[:action] == "show"
-      redirect_to :index and return
+      redirect_to posts_show_own_post_user_url(@user) and return
     # showアクションの以外場合
     else
       redirect_to request.referrer 
@@ -86,7 +80,7 @@ class PostsController < ApplicationController
   private
     # ストロングパラメーター
     def post_params
-      params.require(:post).permit(:title, :content, post_images_attributes: [:post_image]).merge(user_id: current_user.id)
+      params.require(:post).permit(:title, :content, :post_image).merge(user_id: current_user.id)
     end
 
     # paramsハッシュからpostを取得

@@ -78,18 +78,18 @@ $(document).on('turbolinks:load', function () {
       resourceLabelText: 'リソース',
     
       // 日付クリック
-      dayClick : function (start, end, jsEvent , view) {
+      dayClick : function (start, end, jsEvent, view) {
         $('#inputScheduleForm').modal('show');
         },
       
       // event クリックで編集、削除
-      eventClick : function (event, jsEvent , view) {
+      eventClick : function (event, jsEvent ,view) {
         jsEvent.preventDefault();
         $(`#inputScheduleEditForm${event.id}`).modal('show');
         $(`#inputScheduleEditForm${event.id}`).removeAttr("disabled");
       },
 
-      eventMouseover : function(event, jsEvent , view) {
+      eventMouseover : function(event, jsEvent, view) {
         jsEvent.preventDefault();
       }
     });

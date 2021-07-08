@@ -2,7 +2,6 @@
 @import "bootstrap";
 
 /* universal */
-
 html, body{
 	margin: 0;	/* 余白の削除 */
 	padding: 0;	/* 余白の削除 */
@@ -42,7 +41,6 @@ textarea {
 }
 
 /* typography */
-
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
@@ -77,7 +75,6 @@ table td {
 }
 
 /* header */
-
 #top-bar {
   background: #014099;
 }
@@ -134,7 +131,6 @@ table td {
 }
 
 /* debug */
-
 .debug_dump {
   clear: both;
   float: left;
@@ -215,7 +211,6 @@ table td {
 }
 
 /* error_messages */
-
 #error_explanation {
   color: red;
   ul {
@@ -232,7 +227,6 @@ table td {
 }
 
 /* ボタン */
-
 .menu-button {
   margin: 20px 0px;
   .mgr-10 {
@@ -251,7 +245,6 @@ table td {
 }
 
 /* モーダルウインドウの位置調整 */
-
 .modal-dialog-center {
   padding-top: 10%;
 }
@@ -263,7 +256,6 @@ table td {
 }
 
 /* sidebar */
-
 aside {
   section.user_info {
     margin-top: 20px;
@@ -339,7 +331,6 @@ aside {
 }
 
 /* 投稿 */
-
 .posts {
   list-style: none;
   padding: 0;
@@ -382,6 +373,11 @@ span.image {
   input {
     border: 0;
   }
+}
+
+h4.text-left {
+  font-weight: bold;
+  padding: 10px, opx;
 }
 
 /* 背景画像 */

@@ -9,10 +9,8 @@
       内容：<%= post.content %>
     </div>
     <div class="post_image">
-      <% if post.post_images.present? %>
-        <% post.post_images.each do |image| %>
-          <%= image_tag image.post_image.url, class: 'images' %>
-        <% end %>
+      <% if post.post_image.present? %>
+        <%= image_tag post.post_image.url, class: 'images', size: '200x200' %>
       <% end %>
     </div>
   </span>

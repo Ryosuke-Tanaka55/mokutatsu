@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_040956) do
+ActiveRecord::Schema.define(version: 2021_04_15_133241) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -155,17 +155,10 @@ ActiveRecord::Schema.define(version: 2021_06_22_040956) do
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
-  create_table "post_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "post_image"
-    t.bigint "post_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_post_images_on_post_id"
-  end
-
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
+    t.string "post_image"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -283,7 +276,6 @@ ActiveRecord::Schema.define(version: 2021_06_22_040956) do
   add_foreign_key "goals", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
-  add_foreign_key "post_images", "posts"
   add_foreign_key "posts", "users"
   add_foreign_key "subgoalchecks", "subgoals"
   add_foreign_key "subgoalgaps", "subgoals"

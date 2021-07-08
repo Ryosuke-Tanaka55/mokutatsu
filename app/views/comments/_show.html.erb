@@ -1,10 +1,10 @@
 <div class="row">
+  <div class="comment-create">
+    <h4 class="text-left">レビュー</h4>
+  </div>
   <ul>
-    <li class="comment-create">
-      <h4 class="text-left title">レビュー</h4>
-    </li>
-      <li id="comments_area">
-        <%= render partial: 'comments/index', locals: { comments: @comments } if @comments.present? %>
+    <li id="comments_area">
+      <%= render partial: 'comments/index', locals: { comments: @comments } if @comments.present? %>
     </li>
   </ul>
   <hr>
