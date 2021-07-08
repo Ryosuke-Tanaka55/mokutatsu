@@ -29,7 +29,7 @@ document.addEventListener("turbolinks:load", function() {
   pagetop.hide();
   // 100px スクロールしたらボタン表示
   $(window).scroll(function () {
-     if ($(this).scrollTop() > 400) {
+     if ($(this).scrollTop() > 350) {
           pagetop.fadeIn();
      } else {
           pagetop.fadeOut();

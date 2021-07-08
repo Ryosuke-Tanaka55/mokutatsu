@@ -78,7 +78,7 @@ crumb :goal_new do
 end
 
 crumb :goal_show do |goal|
-  link "ゴール詳細", user_goals_path(goal)
+  link "ゴール詳細", user_goal_path(goal)
   parent :goal_index, current_user
 end
 
@@ -90,7 +90,7 @@ end
 # ゴールギャップ
 crumb :goalgap_index do |goal|
   link "ゴールギャップ一覧", user_goal_goalgaps_path(goal)
-  parent :goal_show, current_user, goal
+  parent :goal_index, current_user
 end
 
 crumb :goalgap_new do |goal|
