@@ -21,16 +21,11 @@ gem 'jquery-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
-gem 'image_processing'
-gem 'mini_magick'
-gem 'active_storage_validations'
 gem 'google-api-client'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'recaptcha',  require: "recaptcha/rails"
-# Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'bootstrap-sass'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -67,6 +62,8 @@ gem 'wdm'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Use mysql as the database for Active Record
+  gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 end
 
 group :development do
