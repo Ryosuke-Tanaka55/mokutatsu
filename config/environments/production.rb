@@ -93,5 +93,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # アップロードされたファイルをAWSに保存する
-  config.active_storage.service = :amazon
+  # config.active_storage.service = :amazon
 end
