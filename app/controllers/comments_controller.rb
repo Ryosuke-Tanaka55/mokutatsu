@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     #投稿に紐づいたコメントを作成
     @comment = @post.comments.build(comment_params)
-    @comment.user_id = current_user.id
     @comment.save
     # 通知機能
     @post.create_notification_comment!(current_user, @comment.id)
@@ -22,6 +21,6 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:comment, :post_id, :user_id)
+    params.require(:comment).permit(:comment, :post_id).merge(user_id: current_user.id)
   end
 end
