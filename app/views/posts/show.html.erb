@@ -26,25 +26,25 @@
       <div class="post_content">
         内容：<%= @post.content %>
       </div>
-    <div class="post_image">
-      <% if @post.post_image.present? %>
-        <%= image_tag @post.post_image.url, class: 'images' %>
-      <% end %>
-    </div>
+      <div class="post_image">
+        <% if @post.post_image.present? %>
+          <%= image_tag @post.post_image.url, class: 'images' %>
+        <% end %>
+      </div>
     </span>
     <span class="timestamp">
-    <%= time_ago_in_words(@post.created_at) %>前に投稿
-    <% if (current_user?(@post.user) || current_user.admin?) %>
-      <%= link_to user_post_path(@post.user.id, @post.id), method: :delete,
-        data: { confirm: "削除してよろしいですか？" }, remote: true, class: "comment_destroy" do %>
-        削除<i class="fas fa-fw fa-trash-alt" style="color: black;"></i>
+      <%= time_ago_in_words(@post.created_at) %>前に投稿
+      <% if (current_user?(@post.user) || current_user.admin?) %>
+        <%= link_to user_post_path(@post.user.id, @post.id), method: :delete,
+          data: { confirm: "削除してよろしいですか？" }, remote: true, class: "comment_destroy" do %>
+          削除<i class="fas fa-fw fa-trash-alt" style="color: black;"></i>
+        <% end %>
       <% end %>
-    <% end %>
-  </span>
-  <div id="index_like_<%= @post.id %>">
-    <%= render 'likes/like', post: @post %>
-  </div>
-    <div id="comment_area">
+    </span>
+    <div id="index_like_<%= @post.id %>">
+      <%= render 'likes/like', post: @post %>
+    </div>
+    <div id="comments_create">
       <%= render 'comments/show', post: @post %>
     </div>
   </div>

@@ -7,16 +7,25 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     #投稿に紐づいたコメントを作成
     @comment = @post.comments.build(comment_params)
-    @comment.save
-    # 通知機能
-    @post.create_notification_comment!(current_user, @comment.id)
-    render :index
+    if @comment.save
+      # 通知機能
+      @post.create_notification_comment!(current_user, @comment.id)
+      flash[:success] = "コメント投稿に成功しました。"
+    else
+      flash[:danger] = "コメント投稿に失敗しました。"
+    end
+    redirect_to user_post_url(@user.id, @post.id)
   end
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
-    render :index
+    if @comment.destroy
+      @post = Post.find(params[:post_id])
+      flash[:success] = "コメント削除に成功しました。"
+    else
+      flash[:danger] = "コメント削除に失敗しました。"
+    end
+      redirect_to user_post_url(@user.id, @post.id)
   end
 
   private

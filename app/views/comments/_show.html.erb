@@ -1,6 +1,6 @@
 <div class="row">
   <div class="comment-create">
-    <h4 class="text-left">レビュー</h4>
+    <h4 class="text-left">コメント</h4>
   </div>
   <ul>
     <li id="comments_area">
@@ -10,7 +10,7 @@
   <hr>
   <% if logged_in? %>
     <div class="comment-create">
-      <h4 class="text-left">レビューを投稿する</h4>
+      <h4 class="text-left">コメントを投稿する</h4>
       <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
     </div>
   <% end %>
