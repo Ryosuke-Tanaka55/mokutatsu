@@ -44,7 +44,7 @@ class EventsController < ApplicationController
   private
     # ストロングパラメーター
     def event_params
-      params.require(:event).permit(:title, :start_time, :end_time, :description, :allday, :color)
+      params.require(:event).permit(:title, :start_time, :end_time, :description, :allday, :color).merge(user_id: current_user.id)
     end
   
 end
