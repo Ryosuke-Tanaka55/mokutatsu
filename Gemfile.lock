@@ -46,11 +46,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-<<<<<<< HEAD
-=======
-    active_storage_validations (0.9.5)
-      rails (>= 5.2.0)
->>>>>>> 983f7356d0e1a937cad419eddcf36129fb3b58e7
     activejob (6.0.4)
       activesupport (= 6.0.4)
       globalid (>= 0.3.6)
@@ -76,25 +71,6 @@ GEM
       io-like (~> 0.3.0)
     autoprefixer-rails (10.2.5.1)
       execjs (> 0)
-<<<<<<< HEAD
-=======
-    aws-eventstream (1.1.1)
-    aws-partitions (1.476.0)
-    aws-sdk-core (3.116.0)
-      aws-eventstream (~> 1, >= 1.0.2)
-      aws-partitions (~> 1, >= 1.239.0)
-      aws-sigv4 (~> 1.1)
-      jmespath (~> 1.0)
-    aws-sdk-kms (1.44.0)
-      aws-sdk-core (~> 3, >= 3.112.0)
-      aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.46.0)
-      aws-sdk-core (~> 3, >= 3.61.1)
-      aws-sdk-kms (~> 1)
-      aws-sigv4 (~> 1.1)
-    aws-sigv4 (1.2.4)
-      aws-eventstream (~> 1, >= 1.0.2)
->>>>>>> 983f7356d0e1a937cad419eddcf36129fb3b58e7
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.5)
@@ -149,11 +125,7 @@ GEM
     execjs (2.8.1)
     faker (2.18.0)
       i18n (>= 1.6, < 2)
-<<<<<<< HEAD
     faraday (1.5.1)
-=======
-    faraday (1.5.0)
->>>>>>> 983f7356d0e1a937cad419eddcf36129fb3b58e7
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -168,11 +140,7 @@ GEM
     faraday-excon (1.1.0)
     faraday-httpclient (1.0.1)
     faraday-net_http (1.0.1)
-<<<<<<< HEAD
     faraday-net_http_persistent (1.2.0)
-=======
-    faraday-net_http_persistent (1.1.0)
->>>>>>> 983f7356d0e1a937cad419eddcf36129fb3b58e7
     faraday-patron (1.0.0)
     ffi (1.15.3-x64-mingw32)
     fullcalendar-rails (3.9.0.0)
