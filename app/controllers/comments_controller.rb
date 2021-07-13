@@ -11,15 +11,14 @@ class CommentsController < ApplicationController
     if @comment.save
       # 通知機能
       @post.create_notification_comment!(current_user, @comment.id)
-      render :index
     end
+      render :index
   end
 
   def destroy
     @comment = Comment.find(params[:id])
-    if @comment.destroy
-      render :index
-    end
+    @comment.destroy
+    render :index
   end
 
   private
