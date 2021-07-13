@@ -8,11 +8,10 @@ class CommentsController < ApplicationController
     #投稿に紐づいたコメントを作成
     @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
-    if @comment.save
-      # 通知機能
-      @post.create_notification_comment!(current_user, @comment.id)
-    end
-      render :index
+    @comment.save
+    # 通知機能
+    @post.create_notification_comment!(current_user, @comment.id)
+    render :index
   end
 
   def destroy
