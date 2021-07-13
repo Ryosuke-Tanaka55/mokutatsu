@@ -20,7 +20,6 @@
 //= require fullcalendar/lang/ja
 //= require bootstrap
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 
 document.addEventListener("turbolinks:load", function() {
